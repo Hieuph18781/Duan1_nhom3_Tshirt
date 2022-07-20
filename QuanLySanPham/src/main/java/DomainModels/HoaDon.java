@@ -1,0 +1,122 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DomainModels;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.xml.crypto.Data;
+import org.hibernate.annotations.Nationalized;
+
+/**
+ *
+ * @author Nguyen Van Thuan
+ */
+@Entity
+@Table(name = "HoaDon")
+public class HoaDon implements Serializable {
+    @Id
+    private String MaHoaDon;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date ThoiGianTao;
+    
+    @Nationalized
+    private int TrangThai; //1: đang chờ thanh toán, 2: hủy, 3: thanh toán thành công
+
+    @ManyToOne
+    @JoinColumn(name = "MaNhanVien")
+    private NhanVien nhanvien;
+
+    @ManyToOne
+    @JoinColumn(name = "MaKhachHang")
+    private KhachHang khachhang;
+
+    @ManyToOne
+    @JoinColumn(name = "IdKhuyenMai")
+    private KhuyenMai khuyenmai;
+
+    @OneToMany(mappedBy = "hoadon",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonChiTiet> lstHoaDonChitiet;
+
+    public HoaDon() {
+    }
+
+    public HoaDon(String MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
+        this.MaHoaDon = MaHoaDon;
+        this.ThoiGianTao = ThoiGianTao;
+        this.TrangThai = TrangThai;
+        this.nhanvien = nhanvien;
+        this.khachhang = khachhang;
+        this.khuyenmai = khuyenmai;
+    }
+
+    public String getMaHoaDon() {
+        return MaHoaDon;
+    }
+
+    public void setMaHoaDon(String MaHoaDon) {
+        this.MaHoaDon = MaHoaDon;
+    }
+
+    public Date getThoiGianTao() {
+        return ThoiGianTao;
+    }
+
+    public void setThoiGianTao(Date ThoiGianTao) {
+        this.ThoiGianTao = ThoiGianTao;
+    }
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    public NhanVien getNhanvien() {
+        return nhanvien;
+    }
+
+    public void setNhanvien(NhanVien nhanvien) {
+        this.nhanvien = nhanvien;
+    }
+
+    public KhachHang getKhachhang() {
+        return khachhang;
+    }
+
+    public void setKhachhang(KhachHang khachhang) {
+        this.khachhang = khachhang;
+    }
+
+    public KhuyenMai getKhuyenmai() {
+        return khuyenmai;
+    }
+
+    public void setKhuyenmai(KhuyenMai khuyenmai) {
+        this.khuyenmai = khuyenmai;
+    }
+
+    public List<HoaDonChiTiet> getLstHoaDonChitiet() {
+        return lstHoaDonChitiet;
+    }
+
+    public void setLstHoaDonChitiet(List<HoaDonChiTiet> lstHoaDonChitiet) {
+        this.lstHoaDonChitiet = lstHoaDonChitiet;
+    }
+    
+}
