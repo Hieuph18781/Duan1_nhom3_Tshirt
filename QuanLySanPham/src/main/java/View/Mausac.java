@@ -10,9 +10,7 @@ package View;
  */
 public class Mausac extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Mausac
-     */
+    
     public Mausac() {
         initComponents();
     }
