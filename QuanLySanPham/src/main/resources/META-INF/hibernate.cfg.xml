@@ -14,7 +14,11 @@
             jdbc:sqlserver://localhost:1433;databaseName=QuanLySanPham;
         </property>
 
+<<<<<<< HEAD
+        <property name="connection.username">ab</property>
+=======
         <property name="connection.username">hieu26</property>
+>>>>>>> main
         <property name="connection.password">12345</property>
 
         <!-- JDBC connection pool (use the built-in) -->
