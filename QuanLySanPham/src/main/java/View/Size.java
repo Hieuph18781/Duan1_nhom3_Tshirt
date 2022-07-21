@@ -27,7 +27,6 @@ public class Size extends javax.swing.JFrame {
     private void initComponents() {
 
         Size = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_them = new javax.swing.JButton();
         btn_sua = new javax.swing.JButton();
@@ -35,12 +34,11 @@ public class Size extends javax.swing.JFrame {
         txt_masize = new javax.swing.JTextField();
         txt_tensize = new javax.swing.JTextField();
         txt_mota = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Size.setText("Size");
-
-        jLabel2.setText("Mã size");
 
         jLabel3.setText("Tên size");
 
@@ -50,11 +48,19 @@ public class Size extends javax.swing.JFrame {
 
         jLabel4.setText("Mô tả");
 
+        txt_masize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_masizeActionPerformed(evt);
+            }
+        });
+
         txt_tensize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_tensizeActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,13 +76,11 @@ public class Size extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_mota)
-                            .addComponent(txt_tensize)
-                            .addComponent(txt_masize))))
+                            .addComponent(txt_tensize))))
                 .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(101, Short.MAX_VALUE)
@@ -84,17 +88,27 @@ public class Size extends javax.swing.JFrame {
                 .addGap(79, 79, 79)
                 .addComponent(btn_sua)
                 .addGap(92, 92, 92))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_masize)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(Size)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_masize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_masize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_tensize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -115,6 +129,10 @@ public class Size extends javax.swing.JFrame {
     private void txt_tensizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tensizeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_tensizeActionPerformed
+
+    private void txt_masizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_masizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_masizeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +173,7 @@ public class Size extends javax.swing.JFrame {
     private javax.swing.JLabel Size;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txt_masize;

@@ -34,14 +34,12 @@
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txt_mota" max="32767" attributes="0"/>
                           <Component id="txt_tensize" max="32767" attributes="0"/>
-                          <Component id="txt_masize" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -54,6 +52,13 @@
               <Component id="btn_sua" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txt_masize" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -61,12 +66,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="Size" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_masize" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="txt_masize" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_tensize" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -92,11 +103,6 @@
         <Property name="text" type="java.lang.String" value="Size"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe3; size"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xea;n size"/>
@@ -118,6 +124,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_masize">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_masizeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_tensize">
       <Events>
@@ -125,6 +134,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_mota">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
