@@ -1,0 +1,52 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ViewsModel;
+
+/**
+ *
+ * @author Admin
+ */
+public class SizeModel {
+     private String MaSize;
+     private String TenSize;
+      private String Mota;
+
+    public SizeModel() {
+    }
+
+    public SizeModel(String MaSize, String TenSize, String Mota) {
+        this.MaSize = MaSize;
+        this.TenSize = TenSize;
+        this.Mota = Mota;
+    }
+
+    public String getMaSize() {
+        return MaSize;
+    }
+
+    public void setMaSize(String MaSize) {
+        this.MaSize = MaSize;
+    }
+
+    public String getTenSize() {
+        return TenSize;
+    }
+
+    public void setTenSize(String TenSize) {
+        this.TenSize = TenSize;
+    }
+
+    public String getMota() {
+        return Mota;
+    }
+
+    public void setMota(String Mota) {
+        this.Mota = Mota;
+    }
+      
+      
+    
+    
+}
