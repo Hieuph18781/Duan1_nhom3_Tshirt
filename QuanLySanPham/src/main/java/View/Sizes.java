@@ -4,17 +4,64 @@
  */
 package View;
 
+import Services.IManageSizeService;
+import Services.ManageSizeServixe;
+import DomainModels.Size;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hieu
  */
-public class Size extends javax.swing.JFrame {
-
+public class Sizes extends javax.swing.JFrame {
+    private  final IManageSizeService _iManageSize;
+ private int _currentPage;
+    private int _totalPages;
+    private final int _pageSize;
+    private long _totalProducts;
+    int row=0;
     /**
      * Creates new form Size
      */
-    public Size() {
+    public Sizes() {
         initComponents();
+        _iManageSize=new ManageSizeServixe();
+        
+        _currentPage = 1;
+        _pageSize = 10;
+        LoadDataTable();
+    }
+    
+    private  void LoadDataTable(){
+        List<Size> ds= _iManageSize.getSize(_currentPage - 1, _pageSize);
+        DefaultTableModel dtm=(DefaultTableModel) this.tbl_size.getModel();
+        dtm.setRowCount(0);
+        for (Size d : ds) {
+            Object[] rowdata={d.getMaSize(),d.getTenSize(),d.getMota()}; 
+              dtm.addRow(rowdata);
+        }
+      
+    }
+    
+    
+
+    private  Size getSizeFromInput(){
+        DomainModels.Size size=new DomainModels.Size();
+        String maSize=txt_masize.getText();
+        size.setMaSize(maSize);
+        String tenSize=txt_tensize.getText();
+        size.setTenSize(tenSize);
+        String moTa=txt_mota.getText();
+        size.setMota(moTa);
+       
+        return size;
+    }
+    
+    private  String getSizeFromSelectdRow(){
+        int selectRowIndex=tbl_size.getSelectedRow();
+        return String.valueOf(tbl_size.getValueAt(selectRowIndex, 0).toString());
     }
 
     /**
@@ -35,6 +82,8 @@ public class Size extends javax.swing.JFrame {
         txt_masize = new javax.swing.JTextField();
         txt_tensize = new javax.swing.JTextField();
         txt_mota = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_size = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,8 +94,18 @@ public class Size extends javax.swing.JFrame {
         jLabel3.setText("Tên size");
 
         btn_them.setText("Thêm");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
         btn_sua.setText("Sửa");
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Mô tả");
 
@@ -56,17 +115,40 @@ public class Size extends javax.swing.JFrame {
             }
         });
 
+        tbl_size.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Ma Size", "Ten Size", "Mo Ta"
+            }
+        ));
+        tbl_size.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_sizeMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_sizeMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_size);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(btn_them)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_sua))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(Size, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 125, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -78,12 +160,10 @@ public class Size extends javax.swing.JFrame {
                             .addComponent(txt_tensize)
                             .addComponent(txt_masize))))
                 .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addComponent(btn_them)
-                .addGap(79, 79, 79)
-                .addComponent(btn_sua)
-                .addGap(92, 92, 92))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +182,13 @@ public class Size extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them)
                     .addComponent(btn_sua))
-                .addGap(52, 52, 52))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,6 +197,57 @@ public class Size extends javax.swing.JFrame {
     private void txt_tensizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tensizeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_tensizeActionPerformed
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+       Size newSize= getSizeFromInput();
+        if (_iManageSize.createNewSize(newSize) !=null) {
+            JOptionPane.showMessageDialog(this, "thanh cong");
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "that bai");
+        }
+        LoadDataTable();
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+      Size updateSize= getSizeFromInput();
+      String updateMaSize=getSizeFromSelectdRow();
+      updateSize.setMaSize(updateMaSize);
+        if (_iManageSize.UpdateNewSize(updateSize)!=null) {
+        JOptionPane.showMessageDialog(this, "thanh cong");
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "that bai");
+        }
+        LoadDataTable();
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void tbl_sizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sizeMouseClicked
+        int row=tbl_size.getSelectedRow();
+        if (row == -1) {
+            return;          
+        }
+        String maSize=this.tbl_size.getValueAt(row, 1).toString();
+        String tenSize=this.tbl_size.getValueAt(row, 2).toString();
+        String moTa=this.tbl_size.getValueAt(row, 3).toString();
+        
+        this.txt_masize.setText(maSize);
+        this.txt_tensize.setText(tenSize);
+        this.txt_mota.setText(moTa);
+        
+
+    }//GEN-LAST:event_tbl_sizeMouseClicked
+
+    private void tbl_sizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sizeMousePressed
+        // TODO add your handling code here:
+//        
+//        if (evt.getClickCount()== 2) {
+//            this.row=tbl_size.rowAtPoint(evt.getPoint());
+//            
+//            
+//            
+//        }
+    }//GEN-LAST:event_tbl_sizeMousePressed
 
     /**
      * @param args the command line arguments
@@ -146,7 +279,7 @@ public class Size extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Size().setVisible(true);
+                new Sizes().setVisible(true);
             }
         });
     }
@@ -158,6 +291,8 @@ public class Size extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbl_size;
     private javax.swing.JTextField txt_masize;
     private javax.swing.JTextField txt_mota;
     private javax.swing.JTextField txt_tensize;
