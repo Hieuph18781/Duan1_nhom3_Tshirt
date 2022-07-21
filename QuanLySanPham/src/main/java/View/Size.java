@@ -4,15 +4,15 @@
  */
 package View;
 
+import java.util.List;
+
 /**
  *
  * @author hieu
  */
 public class Size extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Size
-     */
+    List<Mausac> _lListmasac;
     public Size() {
         initComponents();
     }
