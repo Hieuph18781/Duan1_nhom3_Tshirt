@@ -4,17 +4,41 @@
  */
 package View;
 
+import Repositories.IMauSacRepository;
+import Services.IMauSacService;
+import Services.MauSacService;
+import ViewsModel.MauSacModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hieu
  */
-public class Mausac extends javax.swing.JFrame {
+public class Color extends javax.swing.JFrame {
 
+    IMauSacService _IMauSacService;
+    DefaultTableModel _DefaultTableModel;
     
-    public Mausac() {
+    public Color() {
         initComponents();
+        _IMauSacService = new MauSacService();
+        loadtable();
     }
-
+    
+    MauSacModel getdata(){
+        return new MauSacModel(txt_mamausac.getText(), txt_tenmaussac.getText(), txt_mota.getText());
+    }
+    
+    public void loadtable(){
+         List<MauSacModel> ds = _IMauSacService.getproduct();
+         _DefaultTableModel = (DefaultTableModel) tbl_mausac.getModel();
+         _DefaultTableModel.setRowCount(0);
+         for (MauSacModel x : ds) {
+             _DefaultTableModel.addRow(new Object[]{x.getMaMauSac(),x.getTenMauSac(),x.getMota()});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,11 +52,13 @@ public class Mausac extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_them = new javax.swing.JButton();
-        btn_sua = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txt_mamausac = new javax.swing.JTextField();
         txt_tenmaussac = new javax.swing.JTextField();
         txt_mota = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_mausac = new javax.swing.JTable();
+        btn_sua = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,14 +69,37 @@ public class Mausac extends javax.swing.JFrame {
         jLabel3.setText("Tên màu sắc");
 
         btn_them.setText("Thêm");
-
-        btn_sua.setText("Sửa");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Mô tả");
 
         txt_mamausac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_mamausacActionPerformed(evt);
+            }
+        });
+
+        tbl_mausac.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "mã màu sắc", "Tên", "mô tả"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_mausac);
+
+        btn_sua.setText("sửa");
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
             }
         });
 
@@ -71,12 +120,6 @@ public class Mausac extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_tenmaussac))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(btn_them)
-                        .addGap(67, 67, 67)
-                        .addComponent(btn_sua)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -86,11 +129,21 @@ public class Mausac extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addComponent(btn_them)
+                .addGap(64, 64, 64)
+                .addComponent(btn_sua)
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -104,11 +157,13 @@ public class Mausac extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them)
                     .addComponent(btn_sua))
-                .addGap(52, 52, 52))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -118,6 +173,30 @@ public class Mausac extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_mamausacActionPerformed
 
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+         List<MauSacModel> ds = _IMauSacService.getproduct();
+        MauSacModel spMoi = getdata();
+        for (MauSacModel x : ds) {
+            if (x.getMaMauSac() == spMoi.getMaMauSac()) {
+                JOptionPane.showMessageDialog(this, "khoong nhap trung ma");
+                return;
+            }
+        
+        if (_IMauSacService.createNewProduct(getdata())  != null) {
+            JOptionPane.showMessageDialog(this, "Thành công");
+        } else{
+            JOptionPane.showMessageDialog(this, "Thất bại");
+        }
+        loadtable();
+        }
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        if(_IMauSacService.updateProductById(getdata())!=null){
+             JOptionPane.showMessageDialog(this, "Thành công");
+        }
+    }//GEN-LAST:event_btn_suaActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -135,20 +214,21 @@ public class Mausac extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mausac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mausac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mausac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mausac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mausac().setVisible(true);
+                new Color().setVisible(true);
             }
         });
     }
@@ -160,6 +240,8 @@ public class Mausac extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbl_mausac;
     private javax.swing.JTextField txt_mamausac;
     private javax.swing.JTextField txt_mota;
     private javax.swing.JTextField txt_tenmaussac;
