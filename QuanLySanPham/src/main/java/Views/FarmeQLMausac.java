@@ -236,7 +236,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         int row = tbl_mausac.getSelectedRow();
         txt_mamausac.setText(tbl_mausac.getValueAt(row, 0).toString());
         txt_tenmaussac.setText(tbl_mausac.getValueAt(row, 1).toString());
-        txt_mota.setText(tbl_mausac.getValueAt(row, 2).toString());  
+        txt_mota.setText(tbl_mausac.getValueAt(row, 2).toString());
     }//GEN-LAST:event_tbl_mausacMouseClicked
     
     /**

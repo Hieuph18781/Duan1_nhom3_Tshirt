@@ -225,6 +225,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
         txt_madanhmuc.setText(Ma);
         txt_tendanhmuc.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 2).toString());
         tar_mota.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 3).toString());
+        
     }//GEN-LAST:event_tbl_danhmucsanphamMouseReleased
 
     /**
