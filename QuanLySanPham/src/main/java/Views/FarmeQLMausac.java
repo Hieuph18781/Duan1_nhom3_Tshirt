@@ -7,6 +7,7 @@ package Views;
 
 import Services.IMauSacService;
 import Services.MauSacService;
+import Utils.CheckData;
 import ViewsModels.MauSacModel;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,6 +23,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
 
     IMauSacService _IMauSacService;
     DefaultTableModel _DefaultTableModel;
+    CheckData _check;
     
     public FarmeQLMausac() {
         initComponents();
@@ -64,6 +66,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Màu sắc");
 
         jLabel2.setText("Mã màu sắc");
@@ -115,62 +118,62 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_mota))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_tenmaussac))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_mota)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_them)
+                                .addGap(51, 51, 51)
+                                .addComponent(btn_sua)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_mamausac)))
-                .addGap(38, 38, 38))
+                        .addComponent(txt_mamausac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(394, 394, 394)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(btn_them)
-                .addGap(64, 64, 64)
-                .addComponent(btn_sua)
-                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_mamausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_them)
-                    .addComponent(btn_sua))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txt_mamausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_them)
+                            .addComponent(btn_sua))
+                        .addGap(170, 170, 170))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -181,22 +184,16 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_mamausacActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        Pattern pattern = Pattern.compile("\\d+");
-        Pattern pattern1 = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(txt_mamausac.getText().replace(" ", " "));
-        if (!matcher.matches()) {
-            JOptionPane.showMessageDialog(this, " lúc nhập ko đuọc có khoảng trắng và kí tự đặc biệt ");
-            return;
-        }
-//        if (matcher.matches()) {
-//            JOptionPane.showMessageDialog(this, "  kí tự đặc biệt ");
-//            return;
-//        }
+
         if (txt_mamausac.getText().isBlank() || txt_tenmaussac.getText().isBlank() || txt_mota.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "phải nhập đủ dữ liệu ");
             return;
         }
-
+        
+        if (_check.chekcKhoangTrang(txt_mamausac.getText()) || _check.checkKyTuCoDau(txt_mamausac.getText())) {
+            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
+            return;
+        }
         List<MauSacModel> ds = _IMauSacService.getproduct();
         MauSacModel spMoi = getdata();
         for (MauSacModel x : ds) {
@@ -216,10 +213,22 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if(_IMauSacService.updateProductById(getdata())!=null){
-             JOptionPane.showMessageDialog(this, "Thành công");
+        if (_check.checkNullString(txt_mamausac.getText()) || _check.checkNullString(txt_tenmaussac.getText()) || _check.checkNullString(txt_mamausac.getText())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống Mã và Tên");
+            return;
         }
-        loadtable();
+        if (_check.chekcKhoangTrang(txt_mamausac.getText()) || _check.checkKyTuCoDau(txt_mamausac.getText())) {
+            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
+            return;
+        }
+        for (MauSacModel x : _IMauSacService.getproduct()) {
+            if (x.getMaMauSac().equals(txt_mamausac.getText())) {
+                JOptionPane.showMessageDialog(this, _IMauSacService.updateProductById(getdata()));
+                loadtable();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Không tìm thấy mã!");
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void tbl_mausacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_mausacMouseClicked
