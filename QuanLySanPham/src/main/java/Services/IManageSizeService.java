@@ -4,7 +4,8 @@
  */
 package Services;
 
-import DomainModels.Size;
+import ViewsModel.SizeModel;
+
 import java.util.List;
 
 /**
@@ -12,8 +13,8 @@ import java.util.List;
  * @author Admin
  */
 public interface IManageSizeService {
-    List<Size> getSize(int position,int pageSize);
-    Size createNewSize(Size size);
-    Size UpdateNewSize(Size size);
+    List<SizeModel> getSize(int position,int pageSize);
+    SizeModel createNewSize(SizeModel size);
+    SizeModel UpdateNewSize(SizeModel size);
   
 }

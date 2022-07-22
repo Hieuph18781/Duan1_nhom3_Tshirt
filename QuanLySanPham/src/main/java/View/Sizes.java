@@ -5,8 +5,9 @@
 package View;
 
 import Services.IManageSizeService;
-import Services.ManageSizeServixe;
+import Services.ManageSizeService;
 import DomainModels.Size;
+import ViewsModel.SizeModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,7 @@ public class Sizes extends javax.swing.JFrame {
      */
     public Sizes() {
         initComponents();
-        _iManageSize=new ManageSizeServixe();
+        _iManageSize=new ManageSizeService();
         
         _currentPage = 1;
         _pageSize = 10;
@@ -35,10 +36,10 @@ public class Sizes extends javax.swing.JFrame {
     }
     
     private  void LoadDataTable(){
-        List<Size> ds= _iManageSize.getSize(_currentPage - 1, _pageSize);
+        List<SizeModel> ds= _iManageSize.getSize(_currentPage - 1, _pageSize);
         DefaultTableModel dtm=(DefaultTableModel) this.tbl_size.getModel();
         dtm.setRowCount(0);
-        for (Size d : ds) {
+        for (SizeModel d : ds) {
             Object[] rowdata={d.getMaSize(),d.getTenSize(),d.getMota()}; 
               dtm.addRow(rowdata);
         }
@@ -47,8 +48,8 @@ public class Sizes extends javax.swing.JFrame {
     
     
 
-    private  Size getSizeFromInput(){
-        DomainModels.Size size=new DomainModels.Size();
+    private  SizeModel getSizeFromInput(){
+       SizeModel size=new SizeModel();
         String maSize=txt_masize.getText();
         size.setMaSize(maSize);
         String tenSize=txt_tensize.getText();
@@ -199,7 +200,7 @@ public class Sizes extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tensizeActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-       Size newSize= getSizeFromInput();
+       SizeModel newSize= getSizeFromInput();
         if (_iManageSize.createNewSize(newSize) !=null) {
             JOptionPane.showMessageDialog(this, "thanh cong");
             
@@ -210,7 +211,7 @@ public class Sizes extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-      Size updateSize= getSizeFromInput();
+      SizeModel updateSize= getSizeFromInput();
       String updateMaSize=getSizeFromSelectdRow();
       updateSize.setMaSize(updateMaSize);
         if (_iManageSize.UpdateNewSize(updateSize)!=null) {
@@ -227,9 +228,9 @@ public class Sizes extends javax.swing.JFrame {
         if (row == -1) {
             return;          
         }
-        String maSize=this.tbl_size.getValueAt(row, 1).toString();
-        String tenSize=this.tbl_size.getValueAt(row, 2).toString();
-        String moTa=this.tbl_size.getValueAt(row, 3).toString();
+        String maSize=this.tbl_size.getValueAt(row, 0).toString();
+        String tenSize=this.tbl_size.getValueAt(row, 1).toString();
+        String moTa=this.tbl_size.getValueAt(row, 2).toString();
         
         this.txt_masize.setText(maSize);
         this.txt_tensize.setText(tenSize);
