@@ -4,7 +4,7 @@
  */
 package View;
 
-import Repositories.IMauSacRepository;
+
 import Services.IMauSacService;
 import Services.MauSacService;
 import ViewsModel.MauSacModel;
@@ -181,6 +181,7 @@ public class Color extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "khoong nhap trung ma");
                 return;
             }
+        }
         
         if (_IMauSacService.createNewProduct(getdata())  != null) {
             JOptionPane.showMessageDialog(this, "Thành công");
@@ -188,7 +189,7 @@ public class Color extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thất bại");
         }
         loadtable();
-        }
+        
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
