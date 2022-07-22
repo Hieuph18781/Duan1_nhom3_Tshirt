@@ -47,17 +47,27 @@ public class KieuDangRepository implements IKieuDangRepository{
         }
     } 
 
-    @Override
-    public KieuDang findById(String ma) {
-       KieuDang kieudang;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT m FROM KieuDang m WHERE m.MaKieuDang = :MaKieuDang";
-            TypedQuery<KieuDang> query = session.createQuery(hql, KieuDang.class);
-            query.setParameter("MaMauSac", ma);
-            kieudang = query.getSingleResult();
+   public boolean update(KieuDang kieudangSp) {
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction trans = session.getTransaction();
+            trans.begin();
+            try {
+                session.saveOrUpdate(kieudangSp);
+                trans.commit();
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                trans.rollback();
+                return false;
+            }
+        } finally {
+            return true;
         }
-        return kieudang;
     }
 
     
-}
+
+    }
+
+   
+

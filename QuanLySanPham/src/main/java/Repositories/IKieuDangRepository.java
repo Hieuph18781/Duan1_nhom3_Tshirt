@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface IKieuDangRepository {
     List<KieuDang> findAll();
-    KieuDang Save(KieuDang color);
-    KieuDang findById(String ma);
+    public KieuDang Save(KieuDang kieudang);
+   public boolean update(KieuDang kieudang );
 }

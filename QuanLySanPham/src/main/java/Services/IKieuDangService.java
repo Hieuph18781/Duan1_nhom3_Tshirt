@@ -14,7 +14,7 @@ import java.util.List;
  * @author hieu
  */
 public interface IKieuDangService {
-    List<KieuDangModel> getproduct();
+     List<KieuDangModel> getproduct();
     KieuDangModel createNewProduct(KieuDangModel kieudang);
-    KieuDangModel updateProductById(KieuDangModel kieudang); 
+   public String sua(KieuDangModel kieudang); 
 }

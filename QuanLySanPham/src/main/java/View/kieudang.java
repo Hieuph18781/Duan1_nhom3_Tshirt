@@ -214,10 +214,17 @@ public class kieudang extends javax.swing.JFrame {
         txt_makieudang.setText(tbl_kieudang.getValueAt(row, 0).toString());
         txt_tenkieudang.setText(tbl_kieudang.getValueAt(row, 1).toString());
         txt_mota.setText(tbl_kieudang.getValueAt(row, 2).toString()); 
+        txt_makieudang.setEnabled(false);
     }//GEN-LAST:event_tbl_kieudangMouseClicked
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if(_ikieudangService.updateProductById(getdata())!=null){
+      
+        if (txt_makieudang.getText().isEmpty() || txt_tenkieudang.getText().isEmpty()|| txt_mota.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "k đc để trống");
+            return;
+        }
+        
+        if(_ikieudangService.sua(getdata())!=null){
              JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
         }
         loadtable();
