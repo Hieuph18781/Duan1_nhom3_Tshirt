@@ -22,13 +22,11 @@ public class ChatLieuRepository implements IChatLieuRepository {
 
 
     @Override
-    public List<ChatLieu> getProducts(int position, int pageSize) {
+    public List<ChatLieu> getProducts() {
         List<ChatLieu> chatLieus;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT c FROM ChatLieu c";
             TypedQuery<ChatLieu> query = session.createQuery(hql, ChatLieu.class);
-            query.setFirstResult(position);
-            query.setMaxResults(pageSize);
             chatLieus = query.getResultList();
         }
         return chatLieus;

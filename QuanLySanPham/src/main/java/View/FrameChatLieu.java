@@ -24,10 +24,6 @@ public class FrameChatLieu extends javax.swing.JFrame {
 
     private final IManageChatLieuService _iManageChatLieuService;
 
-    private int _currentPage;
-    private int _totalPages;
-    private final int _pageSize;
-    private long _totalProducts;
 
     /**
      * Creates new form chatlieu
@@ -35,13 +31,12 @@ public class FrameChatLieu extends javax.swing.JFrame {
     public FrameChatLieu() {
         initComponents();
         _iManageChatLieuService = new ManageChatLieuService();
-        _currentPage = 1;
-        _pageSize = 10;
+
         loadDataToTable();
     }
 
     private void loadDataToTable() {
-        List<ChatLieuModel> ds = _iManageChatLieuService.getProducts(_currentPage - 1, _pageSize);
+        List<ChatLieuModel> ds = _iManageChatLieuService.getProducts();
         DefaultTableModel dtm = (DefaultTableModel) this.tbChatLieu.getModel();
         dtm.setRowCount(0);
         for (ChatLieuModel chatlieu : ds) {
@@ -245,6 +240,12 @@ public class FrameChatLieu extends javax.swing.JFrame {
                     && validate.checkNullText(txt_mota)) {
                 if (validate.checkMaCL(txt_machatlieu)) {
                     ChatLieuModel clm = getProductFromInput2();
+                    for (ChatLieuModel x : _iManageChatLieuService.getProducts()) {
+                        if (x.getMaChatLieu().equals(txt_machatlieu.getText())) {
+                            JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
+                            return;
+                        }
+                    }
                     if (_iManageChatLieuService.insert(clm) != null) {
                         JOptionPane.showMessageDialog(this, "Thành công");
                     } else {
