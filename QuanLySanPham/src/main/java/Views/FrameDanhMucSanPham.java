@@ -31,7 +31,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
     }
 
     DanhMucSanPhamModel getGuidanhmucSp() {
-        return new DanhMucSanPhamModel(txt_madanhmuc.getText(), txt_madanhmuc.getText(), tar_mota.getText());
+        return new DanhMucSanPhamModel(txt_madanhmuc.getText(), txt_tendanhmuc.getText(), tar_mota.getText());
     }
 
     public void loadtable() {

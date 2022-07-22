@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hieu
  */
-public class Mausac extends javax.swing.JFrame {
+public class Color extends javax.swing.JFrame {
 
     IMauSacService _IMauSacService;
     DefaultTableModel _DefaultTableModel;
     
-    public Mausac() {
+    public Color() {
         initComponents();
         _IMauSacService = new MauSacService();
         loadtable();
