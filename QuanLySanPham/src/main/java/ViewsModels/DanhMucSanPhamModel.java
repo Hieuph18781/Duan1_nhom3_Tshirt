@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ViewsModel;
+package ViewsModels;
 
 /**
  *
@@ -10,7 +10,7 @@ package ViewsModel;
  */
 public class DanhMucSanPhamModel {
      private String MaDanhMuc;
-    private String TenTheLoai;
+    private String TenDanhMuc;
       private String Mota;
 
     public DanhMucSanPhamModel() {
@@ -18,7 +18,7 @@ public class DanhMucSanPhamModel {
 
     public DanhMucSanPhamModel(String MaDanhMuc, String TenTheLoai, String Mota) {
         this.MaDanhMuc = MaDanhMuc;
-        this.TenTheLoai = TenTheLoai;
+        this.TenDanhMuc = TenTheLoai;
         this.Mota = Mota;
     }
 
@@ -30,12 +30,12 @@ public class DanhMucSanPhamModel {
         this.MaDanhMuc = MaDanhMuc;
     }
 
-    public String getTenTheLoai() {
-        return TenTheLoai;
+    public String getTenDanhMuc() {
+        return TenDanhMuc;
     }
 
-    public void setTenTheLoai(String TenTheLoai) {
-        this.TenTheLoai = TenTheLoai;
+    public void setTenDanhMuc(String TenTheLoai) {
+        this.TenDanhMuc = TenTheLoai;
     }
 
     public String getMota() {
