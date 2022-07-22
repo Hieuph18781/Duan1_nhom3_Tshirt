@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author chung
+ * @author Chung
  */
 public interface ISizeRepository {
     List<Size> finAll(int position,int pageSize);
