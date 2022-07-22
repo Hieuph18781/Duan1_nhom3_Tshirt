@@ -7,7 +7,7 @@ package Services;
 import DomainModels.ChatLieu;
 import Repositories.ChatLieuRepository;
 import Repositories.IChatLieuRepository;
-import ViewsModel.ChatLieuModel;
+import ViewsModels.ChatLieuModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class ManageChatLieuService implements IManageChatLieuService {
     }
 
     @Override
-    public List<ChatLieuModel> getProducts(int position, int pageSize) {
+    public List<ChatLieuModel> getProducts() {
         _lstQlChatLieu = new ArrayList<>();
-        var cl = _IChatLieuRepository.getProducts(position, pageSize);
+        var cl = _IChatLieuRepository.getProducts();
         for (ChatLieu x : cl) {
             _lstQlChatLieu.add(new ChatLieuModel(x.getMaChatLieu(), x.getMota(), x.getTenChatLieu()));
         }

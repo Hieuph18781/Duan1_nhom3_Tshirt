@@ -5,7 +5,7 @@
 package Services;
 
 import DomainModels.ChatLieu;
-import ViewsModel.ChatLieuModel;
+import ViewsModels.ChatLieuModel;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  * @author dytc0
  */
 public interface IManageChatLieuService {
-    List<ChatLieuModel> getProducts(int position, int pageSize);
+    List<ChatLieuModel> getProducts();
     
     ChatLieuModel insert(ChatLieuModel chatLieu);
     ChatLieuModel update(ChatLieuModel chatLieu);

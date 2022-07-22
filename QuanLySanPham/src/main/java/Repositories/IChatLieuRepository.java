@@ -12,7 +12,7 @@ import java.util.List;
  * @author dytc0
  */
 public interface IChatLieuRepository {
-    List<ChatLieu> getProducts(int position, int pageSize);
+    List<ChatLieu> getProducts();
     
     ChatLieu save(ChatLieu chatLieu);
     ChatLieu update2(ChatLieu chatLieu);
