@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hieu
  */
-public class Sizes extends javax.swing.JFrame {
+public class FarmeQLSize extends javax.swing.JFrame {
     private  final IManageSizeService _iManageSize;
  private int _currentPage;
     private int _totalPages;
@@ -26,7 +26,7 @@ public class Sizes extends javax.swing.JFrame {
     /**
      * Creates new form Size
      */
-    public Sizes() {
+    public FarmeQLSize() {
         initComponents();
         _iManageSize=new ManageSizeService();
         
@@ -280,7 +280,7 @@ public class Sizes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sizes().setVisible(true);
+                new FarmeQLSize().setVisible(true);
             }
         });
     }

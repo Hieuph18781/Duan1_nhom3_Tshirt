@@ -14,7 +14,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Chung
+ * @author chung
  */
 public class SizeRepository implements ISizeRepository {
 

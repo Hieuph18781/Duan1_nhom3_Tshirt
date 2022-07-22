@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author chung
+ * @author Chung
  */
 public class ManageSizeService implements IManageSizeService {
 
