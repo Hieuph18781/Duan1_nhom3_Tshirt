@@ -28,6 +28,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     public FarmeQLMausac() {
         initComponents();
         _IMauSacService = new MauSacService();
+        _check = new CheckData();
         loadtable();
     }
     
