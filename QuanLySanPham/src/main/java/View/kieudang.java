@@ -155,9 +155,6 @@ public class kieudang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txt_makieudang;
     private javax.swing.JTextField txt_mota;
-    private javax.swing.JTextField txt_tenchatlieu;
-    private javax.swing.JTextField txt_tenchatlieu1;
-    private javax.swing.JTextField txt_tenchatlieu2;
     private javax.swing.JTextField txt_tendanhmuc;
     // End of variables declaration//GEN-END:variables
 }
