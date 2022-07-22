@@ -9,6 +9,8 @@ import Services.IMauSacService;
 import Services.MauSacService;
 import ViewsModel.MauSacModel;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,6 +96,11 @@ public class Color extends javax.swing.JFrame {
                 "mã màu sắc", "Tên", "mô tả"
             }
         ));
+        tbl_mausac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_mausacMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_mausac);
 
         btn_sua.setText("sửa");
@@ -174,18 +181,34 @@ public class Color extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_mamausacActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-         List<MauSacModel> ds = _IMauSacService.getproduct();
+        Pattern pattern = Pattern.compile("\\d+");
+        Pattern pattern1 = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(txt_mamausac.getText().replace(" ", " "));
+        if (!matcher.matches()) {
+            JOptionPane.showMessageDialog(this, " lúc nhập ko đuọc có khoảng trắng và kí tự đặc biệt ");
+            return;
+        }
+//        if (matcher.matches()) {
+//            JOptionPane.showMessageDialog(this, "  kí tự đặc biệt ");
+//            return;
+//        }
+        if (txt_mamausac.getText().isBlank() || txt_tenmaussac.getText().isBlank() || txt_mota.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "phải nhập đủ dữ liệu ");
+            return;
+        }
+
+        List<MauSacModel> ds = _IMauSacService.getproduct();
         MauSacModel spMoi = getdata();
         for (MauSacModel x : ds) {
-            if (x.getMaMauSac() == spMoi.getMaMauSac()) {
-                JOptionPane.showMessageDialog(this, "khoong nhap trung ma");
+            if (x.getMaMauSac().equals(spMoi.getMaMauSac())) {
+                JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
                 return;
             }
         }
-        
-        if (_IMauSacService.createNewProduct(getdata())  != null) {
+
+        if (_IMauSacService.createNewProduct(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thành công");
-        } else{
+        } else {
             JOptionPane.showMessageDialog(this, "Thất bại");
         }
         loadtable();
@@ -196,7 +219,15 @@ public class Color extends javax.swing.JFrame {
         if(_IMauSacService.updateProductById(getdata())!=null){
              JOptionPane.showMessageDialog(this, "Thành công");
         }
+        loadtable();
     }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void tbl_mausacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_mausacMouseClicked
+        int row = tbl_mausac.getSelectedRow();
+        txt_mamausac.setText(tbl_mausac.getValueAt(row, 0).toString());
+        txt_tenmaussac.setText(tbl_mausac.getValueAt(row, 1).toString());
+        txt_mota.setText(tbl_mausac.getValueAt(row, 2).toString());  
+    }//GEN-LAST:event_tbl_mausacMouseClicked
     
     /**
      * @param args the command line arguments
