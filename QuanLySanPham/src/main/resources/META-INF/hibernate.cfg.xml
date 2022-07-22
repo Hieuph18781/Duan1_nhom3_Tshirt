@@ -13,10 +13,7 @@
         <property name="connection.url">
             jdbc:sqlserver://localhost:1433;databaseName=QuanLySanPham;
         </property>
-
-
         <property name="connection.username">hieu26</property>
-
         <property name="connection.password">12345</property>
 
         <!-- JDBC connection pool (use the built-in) -->

@@ -184,14 +184,12 @@ public class Color extends javax.swing.JFrame {
         Pattern pattern = Pattern.compile("\\d+");
         Pattern pattern1 = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(txt_mamausac.getText().replace(" ", " "));
+          
         if (!matcher.matches()) {
             JOptionPane.showMessageDialog(this, " lúc nhập ko đuọc có khoảng trắng và kí tự đặc biệt ");
             return;
         }
-//        if (matcher.matches()) {
-//            JOptionPane.showMessageDialog(this, "  kí tự đặc biệt ");
-//            return;
-//        }
+
         if (txt_mamausac.getText().isBlank() || txt_tenmaussac.getText().isBlank() || txt_mota.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "phải nhập đủ dữ liệu ");
             return;
