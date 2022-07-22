@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Size extends javax.swing.JFrame {
 
-    List<Mausac> _lListmasac;
+    List<Color> _lListmasac;
     public Size() {
         initComponents();
     }
