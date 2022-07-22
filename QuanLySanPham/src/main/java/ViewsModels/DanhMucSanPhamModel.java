@@ -16,9 +16,9 @@ public class DanhMucSanPhamModel {
     public DanhMucSanPhamModel() {
     }
 
-    public DanhMucSanPhamModel(String MaDanhMuc, String TenTheLoai, String Mota) {
+    public DanhMucSanPhamModel(String MaDanhMuc, String TenDanhMuc, String Mota) {
         this.MaDanhMuc = MaDanhMuc;
-        this.TenDanhMuc = TenTheLoai;
+        this.TenDanhMuc = TenDanhMuc;
         this.Mota = Mota;
     }
 
