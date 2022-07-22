@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hieu
  */
-public class Color extends javax.swing.JFrame {
+public class FrameMauSac extends javax.swing.JFrame {
 
     IMauSacService _IMauSacService;
     DefaultTableModel _DefaultTableModel;
     
-    public Color() {
+    public FrameMauSac() {
         initComponents();
         _IMauSacService = new MauSacService();
         loadtable();
@@ -181,11 +181,11 @@ public class Color extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_mamausacActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        Pattern pattern = Pattern.compile("\\d+");
-        Pattern pattern1 = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        //Pattern pattern = Pattern.compile("[^a-z0-9 ]");
+        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(txt_mamausac.getText().replace(" ", " "));
           
-        if (!matcher.matches()) {
+        if (matcher.matches()) {
             JOptionPane.showMessageDialog(this, " lúc nhập ko đuọc có khoảng trắng và kí tự đặc biệt ");
             return;
         }
@@ -244,21 +244,23 @@ public class Color extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMauSac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMauSac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMauSac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Color.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameMauSac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Color().setVisible(true);
+                new FrameMauSac().setVisible(true);
             }
         });
     }
