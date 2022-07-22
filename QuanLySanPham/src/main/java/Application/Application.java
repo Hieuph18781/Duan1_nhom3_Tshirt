@@ -4,7 +4,7 @@
  */
 package Application;
 
-import Views.BanHang;
+import Views.FarmeQLBanHang;
 import Views.FrameDanhMucSanPham;
 
 /**
