@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package Views;
 
 import Services.IManageSizeService;
 import Services.ManageSizeService;
 import DomainModels.Size;
-import ViewsModel.SizeModel;
+import ViewsModels.SizeModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

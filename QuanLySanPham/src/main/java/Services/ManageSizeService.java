@@ -7,7 +7,7 @@ package Services;
 import DomainModels.Size;
 import Repositories.ISizeRepository;
 import Repositories.SizeRepository;
-import ViewsModel.SizeModel;
+import ViewsModels.SizeModel;
 import java.util.ArrayList;
 import java.util.List;
 

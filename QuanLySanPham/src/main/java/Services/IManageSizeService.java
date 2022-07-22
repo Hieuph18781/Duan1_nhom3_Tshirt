@@ -4,7 +4,7 @@
  */
 package Services;
 
-import ViewsModel.SizeModel;
+import ViewsModels.SizeModel;
 
 import java.util.List;
 
