@@ -16,7 +16,7 @@ import org.hibernate.annotations.Nationalized;
 
 /**
  *
- * @author Nguyen Van Thuan
+ * @author chung
  */
 @Entity
 @Table(name = "DanhMucSanPham")
@@ -25,7 +25,7 @@ public class DanhMucSanPham implements Serializable{
     private String MaDanhMuc;
     
     @Nationalized
-    private String TenTheLoai;
+    private String TenDanhMuc;
     
     @Nationalized
     private String Mota;
@@ -39,7 +39,7 @@ public class DanhMucSanPham implements Serializable{
 
     public DanhMucSanPham(String MaDanhMuc, String TenTheLoai, String Mota) {
         this.MaDanhMuc = MaDanhMuc;
-        this.TenTheLoai = TenTheLoai;
+        this.TenDanhMuc = TenTheLoai;
         this.Mota = Mota;
     }
 
@@ -51,12 +51,12 @@ public class DanhMucSanPham implements Serializable{
         this.MaDanhMuc = MaDanhMuc;
     }
 
-    public String getTenTheLoai() {
-        return TenTheLoai;
+    public String getTenDanhMuc() {
+        return TenDanhMuc;
     }
 
-    public void setTenTheLoai(String TenTheLoai) {
-        this.TenTheLoai = TenTheLoai;
+    public void setTenDanhMuc(String TenTheLoai) {
+        this.TenDanhMuc = TenTheLoai;
     }
 
     public String getMota() {
