@@ -11,7 +11,7 @@ package Views;
 public class FarmeQLBanHang extends javax.swing.JFrame {
 
     /**
-     * Creates new form BanHang
+     * Creates new form banhang
      */
     public FarmeQLBanHang() {
         initComponents();

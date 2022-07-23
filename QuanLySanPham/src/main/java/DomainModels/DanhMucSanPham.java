@@ -16,7 +16,7 @@ import org.hibernate.annotations.Nationalized;
 
 /**
  *
- * @author Nguyen Van Thuan
+ * @author chung
  */
 @Entity
 @Table(name = "DanhMucSanPham")
