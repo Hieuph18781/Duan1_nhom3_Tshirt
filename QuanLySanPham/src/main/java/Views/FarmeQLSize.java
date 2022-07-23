@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author hieu
+ * @author chung
  */
 public class FarmeQLSize extends javax.swing.JFrame {
     private  final IManageSizeService _iManageSize;

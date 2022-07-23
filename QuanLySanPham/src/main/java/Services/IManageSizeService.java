@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author chung
+ * @author Chung
  */
 public interface IManageSizeService {
     List<SizeModel> getSize(int position,int pageSize);
