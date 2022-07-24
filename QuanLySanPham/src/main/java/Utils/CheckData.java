@@ -6,6 +6,9 @@ package Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,7 +18,7 @@ public class CheckData {
 
     public CheckData() {
     }
-  
+
     public boolean chekcKhoangTrang(String text) {
         int temp = text.indexOf(" ");
         if (temp > -1) {
@@ -47,5 +50,23 @@ public class CheckData {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
+    }
+
+    public static boolean checkNullText(JTextField txt) {
+        if (txt.getText().trim().length() > 0) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống " + txt.getName());
+            return false;
+        }
+    }
+
+    public static boolean checkNullText(JTextArea txt) {
+        if (txt.getText().trim().length() > 0) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống " + txt.getName());
+            return false;
+        }
     }
 }
