@@ -6,7 +6,7 @@ package Views;
 
 import Services.IKieuDangService;
 import Services.KieuDangService;
-import ViewsModel.KieuDangModel;
+import ViewsModels.KieuDangModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,13 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hieu
  */
-public class kieudang extends javax.swing.JFrame {
+public class FarmeQLKieuDang extends javax.swing.JFrame {
     IKieuDangService _ikieudangService;
     DefaultTableModel _default;
     /**
      * Creates new form 
      */
-    public kieudang() {
+    public FarmeQLKieuDang() {
         initComponents();
         _ikieudangService = new KieuDangService();
         loadtable();
