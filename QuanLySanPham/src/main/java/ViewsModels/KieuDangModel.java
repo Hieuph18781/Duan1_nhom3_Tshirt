@@ -22,6 +22,10 @@ public class KieuDangModel {
         this.Mota = Mota;
     }
 
+    public KieuDangModel(String tenKieuDang, String mota) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getMaKieuDang() {
         return MaKieuDang;
     }
