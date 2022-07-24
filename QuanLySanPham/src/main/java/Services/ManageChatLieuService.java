@@ -38,14 +38,19 @@ public class ManageChatLieuService implements IManageChatLieuService {
     @Override
     public ChatLieuModel insert(ChatLieuModel chatLieu) {
         chatLieu.getMaChatLieu();
-        var x = _IChatLieuRepository.save(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(),chatLieu.getMota()));
-        return new ChatLieuModel(x.getMaChatLieu(),x.getMota(), x.getTenChatLieu());
+        var x = _IChatLieuRepository.save(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(), chatLieu.getMota()));
+        return new ChatLieuModel(x.getMaChatLieu(), x.getMota(), x.getTenChatLieu());
     }
 
     @Override
     public ChatLieuModel update(ChatLieuModel chatLieu) {
-        var x = _IChatLieuRepository.update2(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(),chatLieu.getMota()));
-        return new ChatLieuModel(x.getMaChatLieu(),x.getMota(), x.getTenChatLieu());
+        var x = _IChatLieuRepository.update2(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(), chatLieu.getMota()));
+        return new ChatLieuModel(x.getMaChatLieu(), x.getMota(), x.getTenChatLieu());
+    }
+
+    @Override
+    public int getMaChatLieu() {
+        return _lstQlChatLieu.get(_lstQlChatLieu.size() - 1).getMaChatLieu() + 1;
     }
 
 }
