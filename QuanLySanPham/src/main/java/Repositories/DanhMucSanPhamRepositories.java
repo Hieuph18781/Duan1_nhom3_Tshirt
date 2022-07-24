@@ -19,6 +19,7 @@ public class DanhMucSanPhamRepositories implements IDanhMucSanPhamRepositories {
 
     @Override
     public DanhMucSanPham insert(DanhMucSanPham danhMucSp) {
+        danhMucSp.setMaDanhMuc(0);
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();

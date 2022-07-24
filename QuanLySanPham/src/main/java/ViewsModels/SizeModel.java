@@ -9,24 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class SizeModel {
-     private String MaSize;
+     private int MaSize;
      private String TenSize;
       private String Mota;
 
     public SizeModel() {
     }
 
-    public SizeModel(String MaSize, String TenSize, String Mota) {
+    public SizeModel(int MaSize, String TenSize, String Mota) {
         this.MaSize = MaSize;
         this.TenSize = TenSize;
         this.Mota = Mota;
     }
 
-    public String getMaSize() {
+    public int getMaSize() {
         return MaSize;
     }
 
-    public void setMaSize(String MaSize) {
+    public void setMaSize(int MaSize) {
         this.MaSize = MaSize;
     }
 

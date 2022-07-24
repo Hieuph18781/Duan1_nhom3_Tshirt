@@ -11,7 +11,7 @@ import Repositories.KieuDangRepository;
 import java.util.ArrayList;
 import java.util.List;
 import Repositories.IKieuDangRepository;
-import ViewsModel.KieuDangModel;
+import ViewsModels.KieuDangModel;
 import javax.swing.JOptionPane;
 import org.hibernate.cfg.JPAIndexHolder;
 

@@ -9,24 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class MauSacModel {
-     private String MaMauSac;
+     private int MaMauSac;
      private String TenMauSac;
       private String Mota;
 
     public MauSacModel() {
     }
 
-    public MauSacModel(String MaMauSac, String TenMauSac, String Mota) {
+    public MauSacModel(int MaMauSac, String TenMauSac, String Mota) {
         this.MaMauSac = MaMauSac;
         this.TenMauSac = TenMauSac;
         this.Mota = Mota;
     }
 
-    public String getMaMauSac() {
+    public int getMaMauSac() {
         return MaMauSac;
     }
 
-    public void setMaMauSac(String MaMauSac) {
+    public void setMaMauSac(int MaMauSac) {
         this.MaMauSac = MaMauSac;
     }
 

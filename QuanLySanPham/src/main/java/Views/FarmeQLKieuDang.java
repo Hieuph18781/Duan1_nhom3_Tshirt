@@ -6,7 +6,7 @@ package Views;
 
 import Services.IKieuDangService;
 import Services.KieuDangService;
-import ViewsModel.KieuDangModel;
+import ViewsModels.KieuDangModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,20 +15,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hieu
  */
-public class kieudang extends javax.swing.JFrame {
+public class FarmeQLKieuDang extends javax.swing.JFrame {
     IKieuDangService _ikieudangService;
     DefaultTableModel _default;
     /**
      * Creates new form 
      */
-    public kieudang() {
+    public FarmeQLKieuDang() {
         initComponents();
         _ikieudangService = new KieuDangService();
         loadtable();
         
     }
     KieuDangModel getdata(){
-        return new KieuDangModel(txt_makieudang.getText(), txt_tenkieudang.getText(), txt_mota.getText());
+        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText()), txt_tenkieudang.getText(), txt_mota.getText());
     }
     public void loadtable(){
          List<KieuDangModel> kd = _ikieudangService.getproduct();
@@ -190,12 +190,11 @@ public class kieudang extends javax.swing.JFrame {
           List<KieuDangModel> kd = _ikieudangService.getproduct();
         KieuDangModel kdmoi = getdata();
         for (KieuDangModel x : kd) {
-            if (x.getMaKieuDang().equals(kdmoi.getMaKieuDang())) {
+            if (Integer.parseInt(txt_makieudang.getText())== kdmoi.getMaKieuDang()) {
                 JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
                 return;
             }
         }
-
         if (_ikieudangService.createNewProduct(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
         } else {

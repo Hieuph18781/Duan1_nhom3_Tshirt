@@ -15,4 +15,5 @@ public interface IDanhMucSanPhamService {
     public String them(DanhMucSanPhamModel danhMucSanPhamModel);
     public String sua(DanhMucSanPhamModel danhMucSanPhamModel);
     public List<DanhMucSanPhamModel> getListFromDB();
+    public int getMaDanhMuc();
 }
