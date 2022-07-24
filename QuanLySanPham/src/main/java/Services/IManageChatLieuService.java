@@ -18,5 +18,6 @@ public interface IManageChatLieuService {
     
     ChatLieuModel insert(ChatLieuModel chatLieu);
     ChatLieuModel update(ChatLieuModel chatLieu);
+    public int getMaChatLieu();
     
 }

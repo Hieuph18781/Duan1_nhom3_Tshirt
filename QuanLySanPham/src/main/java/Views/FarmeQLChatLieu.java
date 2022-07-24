@@ -7,7 +7,7 @@ package Views;
 import DomainModels.ChatLieu;
 import Services.IManageChatLieuService;
 import Services.ManageChatLieuService;
-import Utils.validate;
+import Utils.CheckData;
 import ViewsModels.ChatLieuModel;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,6 +31,8 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
         initComponents();
         _iManageChatLieuService = new ManageChatLieuService();
         loadDataToTable();
+        txt_machatlieu.setText("CL" + String.valueOf(_iManageChatLieuService.getMaChatLieu()));
+        txt_machatlieu.setEnabled(false);
     }
 
     private void loadDataToTable() {
@@ -39,7 +41,7 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (ChatLieuModel chatlieu : ds) {
             Object[] rowData = {
-                chatlieu.getMaChatLieu(),
+                "CL" + chatlieu.getMaChatLieu(),
                 chatlieu.getMota(),
                 chatlieu.getTenChatLieu()};
 
@@ -49,33 +51,13 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
     }
 
     private void clearForm() {
-        txt_machatlieu.setEnabled(true);
-        txt_machatlieu.setText("");
+        txt_machatlieu.setText("CL" + String.valueOf(_iManageChatLieuService.getMaChatLieu()));
         txt_mota.setText("");
         txt_tenchatlieu.setText("");
     }
 
-    private ChatLieuModel getProductFromInput() {
-        ChatLieuModel qlcl = new ChatLieuModel();
-
-        String mota = txt_mota.getText();
-        qlcl.setMota(mota);
-        String tenchatlieu = txt_tenchatlieu.getText();
-        qlcl.setTenChatLieu(tenchatlieu);
-
-        return qlcl;
-    }
-
-    private ChatLieuModel getProductFromInput2() {
-        ChatLieuModel qlcl = new ChatLieuModel();
-        String machatlieu = txt_machatlieu.getText();
-        qlcl.setMaChatLieu(machatlieu);
-        String mota = txt_mota.getText();
-        qlcl.setMota(mota);
-        String tenchatlieu = txt_tenchatlieu.getText();
-        qlcl.setTenChatLieu(tenchatlieu);
-
-        return qlcl;
+    ChatLieuModel getGuiChatLieu() {
+        return new ChatLieuModel(Integer.parseInt(txt_machatlieu.getText().substring(2)), txt_tenchatlieu.getText(), txt_mota.getText());
     }
 
     private String getProductIdFromSelectedRow() {
@@ -145,13 +127,24 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
             new String [] {
                 "Mã chất liệu", "Tên chất liệu", "Mô tả"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbChatLieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbChatLieuMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tbChatLieu);
+        if (tbChatLieu.getColumnModel().getColumnCount() > 0) {
+            tbChatLieu.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btn_clear.setText("Clear");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {
@@ -233,24 +226,19 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null,
                 objects, objects[0]);
         if (choice == 0) {
-            if (validate.checkNullText(txt_machatlieu)
-                    && validate.checkNullText(txt_tenchatlieu)
-                    && validate.checkNullText(txt_mota)) {
-                if (validate.checkMaCL(txt_machatlieu)) {
-                    ChatLieuModel clm = getProductFromInput2();
-                    for (ChatLieuModel x : _iManageChatLieuService.getProducts()) {
-                        if (x.getMaChatLieu().equals(txt_machatlieu.getText())) {
-                            JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
-                            return;
-                        }
-                    }
-                    if (_iManageChatLieuService.insert(clm) != null) {
-                        JOptionPane.showMessageDialog(this, "Thành công");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Thất bại");
-                    }
-                    loadDataToTable();
+            if (CheckData.checkNullText(txt_machatlieu)
+                    && CheckData.checkNullText(txt_tenchatlieu)
+                    && CheckData.checkNullText(txt_mota)) {
+
+                ChatLieuModel clm = getGuiChatLieu();
+
+                if (_iManageChatLieuService.insert(clm) != null) {
+                    JOptionPane.showMessageDialog(this, "Thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Thất bại");
                 }
+                loadDataToTable();
+                clearForm();
 
             }
         }
@@ -286,13 +274,10 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null,
                 objects, objects[0]);
         if (choice == 0) {
-            if (validate.checkNullText(txt_mota)
-                    && validate.checkNullText(txt_machatlieu)
-                    && validate.checkNullText(txt_tenchatlieu)) {
-                ChatLieuModel clm = getProductFromInput();
-                String updatedProductId = getProductIdFromSelectedRow();
-                clm.setMaChatLieu(updatedProductId);
-                System.out.println(updatedProductId);
+            if (CheckData.checkNullText(txt_mota)
+                    && CheckData.checkNullText(txt_machatlieu)
+                    && CheckData.checkNullText(txt_tenchatlieu)) {
+                ChatLieuModel clm = getGuiChatLieu();
                 if (_iManageChatLieuService.update(clm) != null) {
                     JOptionPane.showMessageDialog(this, "Thành công");
                 } else {
