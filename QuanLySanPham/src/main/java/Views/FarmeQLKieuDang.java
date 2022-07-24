@@ -28,7 +28,7 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         
     }
     KieuDangModel getdata(){
-        return new KieuDangModel(txt_makieudang.getText(), txt_tenkieudang.getText(), txt_mota.getText());
+        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText()), txt_tenkieudang.getText(), txt_mota.getText());
     }
     public void loadtable(){
          List<KieuDangModel> kd = _ikieudangService.getproduct();
@@ -190,12 +190,11 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
           List<KieuDangModel> kd = _ikieudangService.getproduct();
         KieuDangModel kdmoi = getdata();
         for (KieuDangModel x : kd) {
-            if (x.getMaKieuDang().equals(kdmoi.getMaKieuDang())) {
+            if (Integer.parseInt(txt_makieudang.getText())== kdmoi.getMaKieuDang()) {
                 JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
                 return;
             }
         }
-
         if (_ikieudangService.createNewProduct(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
         } else {

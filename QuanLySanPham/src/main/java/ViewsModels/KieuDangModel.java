@@ -9,28 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class KieuDangModel {
-     private String MaKieuDang;
+     private int MaKieuDang;
      private String TenKieuDang;
       private String Mota;
 
     public KieuDangModel() {
     }
 
-    public KieuDangModel(String MaKieuDang, String TenKieuDang, String Mota) {
+    public KieuDangModel(int MaKieuDang, String TenKieuDang, String Mota) {
         this.MaKieuDang = MaKieuDang;
         this.TenKieuDang = TenKieuDang;
         this.Mota = Mota;
     }
-
-    public KieuDangModel(String tenKieuDang, String mota) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getMaKieuDang() {
+    
+    public int getMaKieuDang() {
         return MaKieuDang;
     }
 
-    public void setMaKieuDang(String MaKieuDang) {
+    public void setMaKieuDang(int MaKieuDang) {
         this.MaKieuDang = MaKieuDang;
     }
 

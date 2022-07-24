@@ -25,7 +25,8 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "ChatLieu")
 public class ChatLieu implements Serializable{
     @Id
-    private String MaChatLieu;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int MaChatLieu;
     
     @Nationalized
     private String TenChatLieu;
@@ -40,17 +41,17 @@ public class ChatLieu implements Serializable{
     public ChatLieu() {
     }
 
-    public ChatLieu(String MaChatLieu, String TenChatLieu, String Mota) {
+    public ChatLieu(int MaChatLieu, String TenChatLieu, String Mota) {
         this.MaChatLieu = MaChatLieu;
         this.TenChatLieu = TenChatLieu;
         this.Mota = Mota;
     }
 
-    public String getMaChatLieu() {
+    public int getMaChatLieu() {
         return MaChatLieu;
     }
 
-    public void setMaChatLieu(String MaChatLieu) {
+    public void setMaChatLieu(int MaChatLieu) {
         this.MaChatLieu = MaChatLieu;
     }
 

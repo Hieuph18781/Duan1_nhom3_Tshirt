@@ -25,22 +25,23 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
 
     public FrameDanhMucSanPham() {
         initComponents();
+        txt_madanhmuc.setEnabled(false);
         _iDanhMucSanPhamService = new DanhMucSanPhamService();
         _check = new CheckData();
         loadtable();
+        txt_madanhmuc.setText("DMSP" + String.valueOf(_iDanhMucSanPhamService.getMaDanhMuc()));
     }
 
     DanhMucSanPhamModel getGuidanhmucSp() {
-        return new DanhMucSanPhamModel(txt_madanhmuc.getText(), txt_tendanhmuc.getText(), tar_mota.getText());
+        return new DanhMucSanPhamModel(Integer.parseInt(txt_madanhmuc.getText().substring(4)), txt_tendanhmuc.getText(), tar_mota.getText());
     }
 
     public void loadtable() {
         DefaultTableModel _DefaultTableModel = new DefaultTableModel();
         _DefaultTableModel = (DefaultTableModel) tbl_danhmucsanpham.getModel();
         _DefaultTableModel.setRowCount(0);
-        int stt = 1;
         for (DanhMucSanPhamModel x : _iDanhMucSanPhamService.getListFromDB()) {
-            _DefaultTableModel.addRow(new Object[]{stt++, x.getMaDanhMuc(), x.getTenDanhMuc(), x.getMota()});
+            _DefaultTableModel.addRow(new Object[]{"DMSP" + x.getMaDanhMuc(), x.getTenDanhMuc(), x.getMota()});
         }
     }
 
@@ -65,6 +66,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
         tbl_danhmucsanpham = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tar_mota = new javax.swing.JTextArea();
+        btn_sua1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,11 +99,11 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Mã danh mục", "Tên Danh Mục", "Mô Tả"
+                "Mã danh mục", "Tên Danh Mục", "Mô Tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,29 +121,41 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
         tar_mota.setRows(5);
         jScrollPane2.setViewportView(tar_mota);
 
+        btn_sua1.setText("Clear");
+        btn_sua1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sua1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(txt_tendanhmuc)
-                    .addComponent(txt_madanhmuc)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btn_them)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btn_them)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(txt_tendanhmuc)
+                            .addComponent(txt_madanhmuc)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addComponent(btn_sua)
-                        .addGap(17, 17, 17)))
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_sua1)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -174,7 +188,8 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_sua)
-                            .addComponent(btn_them)))))
+                            .addComponent(btn_them)
+                            .addComponent(btn_sua1)))))
         );
 
         pack();
@@ -182,16 +197,12 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (_check.checkNullString(txt_madanhmuc.getText()) || _check.checkNullString(txt_tendanhmuc.getText()) || _check.checkNullString(txt_madanhmuc.getText())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống Mã và Tên");
-            return;
-        }
-        if (_check.chekcKhoangTrang(txt_madanhmuc.getText()) || _check.checkKyTuCoDau(txt_madanhmuc.getText())) {
-            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
+        if (_check.checkNullString(txt_tendanhmuc.getText())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
         }
         for (DanhMucSanPhamModel x : _iDanhMucSanPhamService.getListFromDB()) {
-            if (x.getMaDanhMuc().equals(txt_madanhmuc.getText())) {
+            if (x.getMaDanhMuc() == Integer.parseInt(txt_madanhmuc.getText().substring(4))) {
                 JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
                 return;
             }
@@ -201,16 +212,13 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (_check.checkNullString(txt_madanhmuc.getText()) || _check.checkNullString(txt_tendanhmuc.getText()) || _check.checkNullString(txt_madanhmuc.getText())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống Mã và Tên");
-            return;
-        }
-        if (_check.chekcKhoangTrang(txt_madanhmuc.getText()) || _check.checkKyTuCoDau(txt_madanhmuc.getText())) {
-            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
-            return;
-        }
+
         for (DanhMucSanPhamModel x : _iDanhMucSanPhamService.getListFromDB()) {
-            if (x.getMaDanhMuc().equals(txt_madanhmuc.getText())) {
+            if (x.getMaDanhMuc() == Integer.parseInt(txt_madanhmuc.getText().substring(4))) {
+                if (_check.checkNullString(txt_tendanhmuc.getText())) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống Tên");
+                    return;
+                }
                 JOptionPane.showMessageDialog(this, _iDanhMucSanPhamService.sua(getGuidanhmucSp()));
                 loadtable();
                 return;
@@ -221,12 +229,18 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
 
     private void tbl_danhmucsanphamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_danhmucsanphamMouseReleased
         int index = tbl_danhmucsanpham.getSelectedRow();
-        String Ma = tbl_danhmucsanpham.getModel().getValueAt(index, 1).toString();
+        String Ma = tbl_danhmucsanpham.getModel().getValueAt(index, 0).toString();
         txt_madanhmuc.setText(Ma);
-        txt_tendanhmuc.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 2).toString());
-        tar_mota.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 3).toString());
-        
+        txt_tendanhmuc.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 1).toString());
+        tar_mota.setText(tbl_danhmucsanpham.getModel().getValueAt(index, 2).toString());
+
     }//GEN-LAST:event_tbl_danhmucsanphamMouseReleased
+
+    private void btn_sua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua1ActionPerformed
+        txt_madanhmuc.setText("DMSP" + String.valueOf(_iDanhMucSanPhamService.getMaDanhMuc()));
+        txt_tendanhmuc.setText("");
+        tar_mota.setText("");
+    }//GEN-LAST:event_btn_sua1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +282,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sua;
+    private javax.swing.JButton btn_sua1;
     private javax.swing.JButton btn_them;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

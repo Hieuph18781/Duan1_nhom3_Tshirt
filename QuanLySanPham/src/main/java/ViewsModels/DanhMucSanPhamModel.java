@@ -9,24 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class DanhMucSanPhamModel {
-     private String MaDanhMuc;
+     private int MaDanhMuc;
     private String TenDanhMuc;
       private String Mota;
 
     public DanhMucSanPhamModel() {
     }
 
-    public DanhMucSanPhamModel(String MaDanhMuc, String TenTheLoai, String Mota) {
+    public DanhMucSanPhamModel(int MaDanhMuc, String TenTheLoai, String Mota) {
         this.MaDanhMuc = MaDanhMuc;
         this.TenDanhMuc = TenTheLoai;
         this.Mota = Mota;
     }
 
-    public String getMaDanhMuc() {
+    public int getMaDanhMuc() {
         return MaDanhMuc;
     }
 
-    public void setMaDanhMuc(String MaDanhMuc) {
+    public void setMaDanhMuc(int MaDanhMuc) {
         this.MaDanhMuc = MaDanhMuc;
     }
 

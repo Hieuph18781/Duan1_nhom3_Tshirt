@@ -5,6 +5,7 @@
 package Application;
 
 import Views.FarmeQLBanHang;
+import Views.FarmeQLKhuyenMai;
 import Views.FrameDanhMucSanPham;
 
 /**
