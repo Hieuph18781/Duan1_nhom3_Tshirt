@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,7 +24,8 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "Size")
 public class Size implements Serializable{
     @Id
-    private String MaSize;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int MaSize;
     
     @Nationalized
     private String TenSize;
@@ -36,17 +39,17 @@ public class Size implements Serializable{
     public Size() {
     }
 
-    public Size(String MaSize, String TenSize, String Mota) {
+    public Size(int MaSize, String TenSize, String Mota) {
         this.MaSize = MaSize;
         this.TenSize = TenSize;
         this.Mota = Mota;
     }
 
-    public String getMaSize() {
+    public int getMaSize() {
         return MaSize;
     }
 
-    public void setMaSize(String MaSize) {
+    public void setMaSize(int MaSize) {
         this.MaSize = MaSize;
     }
 

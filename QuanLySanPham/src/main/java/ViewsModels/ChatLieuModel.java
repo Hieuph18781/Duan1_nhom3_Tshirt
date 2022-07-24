@@ -9,24 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class ChatLieuModel {
-     private String MaChatLieu;
+     private int MaChatLieu;
      private String TenChatLieu;
       private String Mota;
 
     public ChatLieuModel() {
     }
 
-    public ChatLieuModel(String MaChatLieu, String TenChatLieu, String Mota) {
+    public ChatLieuModel(int MaChatLieu, String TenChatLieu, String Mota) {
         this.MaChatLieu = MaChatLieu;
         this.TenChatLieu = TenChatLieu;
         this.Mota = Mota;
     }
 
-    public String getMaChatLieu() {
+    public int getMaChatLieu() {
         return MaChatLieu;
     }
 
-    public void setMaChatLieu(String MaChatLieu) {
+    public void setMaChatLieu(int MaChatLieu) {
         this.MaChatLieu = MaChatLieu;
     }
 

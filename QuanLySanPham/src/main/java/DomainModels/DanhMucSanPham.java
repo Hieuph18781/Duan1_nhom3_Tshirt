@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,16 +22,18 @@ import org.hibernate.annotations.Nationalized;
  */
 @Entity
 @Table(name = "DanhMucSanPham")
-public class DanhMucSanPham implements Serializable{
+public class DanhMucSanPham implements Serializable {
+
     @Id
-    private String MaDanhMuc;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int MaDanhMuc;
+
     @Nationalized
     private String TenDanhMuc;
-    
+
     @Nationalized
     private String Mota;
-    
+
     @OneToMany(mappedBy = "danhMucSanPham",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SanPham> lstSanPham;
@@ -37,17 +41,17 @@ public class DanhMucSanPham implements Serializable{
     public DanhMucSanPham() {
     }
 
-    public DanhMucSanPham(String MaDanhMuc, String TenTheLoai, String Mota) {
+    public DanhMucSanPham(int MaDanhMuc, String TenTheLoai, String Mota) {
         this.MaDanhMuc = MaDanhMuc;
         this.TenDanhMuc = TenTheLoai;
         this.Mota = Mota;
     }
 
-    public String getMaDanhMuc() {
+    public int getMaDanhMuc() {
         return MaDanhMuc;
     }
 
-    public void setMaDanhMuc(String MaDanhMuc) {
+    public void setMaDanhMuc(int MaDanhMuc) {
         this.MaDanhMuc = MaDanhMuc;
     }
 
@@ -75,5 +79,4 @@ public class DanhMucSanPham implements Serializable{
         this.lstSanPham = lstSanPham;
     }
 
-   
 }

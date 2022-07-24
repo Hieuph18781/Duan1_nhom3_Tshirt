@@ -14,6 +14,6 @@ import Views.FrameDanhMucSanPham;
  */
 public class Application {
     public static void main(String[] args) {
-        new FarmeQLKhuyenMai().setVisible(true);
+        new FrameDanhMucSanPham().setVisible(true);
     }
 }
