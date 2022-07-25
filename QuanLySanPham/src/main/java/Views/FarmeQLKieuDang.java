@@ -96,13 +96,26 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
             new String [] {
                 "Mã kiểu dáng", "Tên kiểu dáng", "Mô tả"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_kieudang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_kieudangMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_kieudang);
+        if (tbl_kieudang.getColumnModel().getColumnCount() > 0) {
+            tbl_kieudang.getColumnModel().getColumn(0).setResizable(false);
+            tbl_kieudang.getColumnModel().getColumn(1).setResizable(false);
+            tbl_kieudang.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel5.setText("Danh Sách Kiểu Dáng");
 
