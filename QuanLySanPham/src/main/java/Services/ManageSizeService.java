@@ -68,5 +68,10 @@ public class ManageSizeService implements IManageSizeService {
         }
     }
 
+    @Override
+    public int getMaxIdSize() {
+        return _lstSize.size()+1;
+    }
+
     
 }

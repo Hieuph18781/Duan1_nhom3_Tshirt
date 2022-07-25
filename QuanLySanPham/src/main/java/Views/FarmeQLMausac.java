@@ -4,7 +4,6 @@
  */
 package Views;
 
-
 import Services.IMauSacService;
 import Services.MauSacService;
 import Utils.CheckData;
@@ -24,27 +23,29 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     IMauSacService _IMauSacService;
     DefaultTableModel _DefaultTableModel;
     CheckData _check;
-    
+
     public FarmeQLMausac() {
         initComponents();
         _IMauSacService = new MauSacService();
         _check = new CheckData();
         loadtable();
-         //txt_mamausac.setText("DMSP" + String.valueOf(_IMauSacService.getmamausac()));
+        txt_mamausac.setText("MS" + String.valueOf(_IMauSacService.getmamausac()));
+        txt_mamausac.setEnabled(false);
     }
-    
-    MauSacModel getdata(){
-        return new MauSacModel(Integer.parseInt(txt_mamausac.getText()), txt_tenmaussac.getText(), txt_mota.getText());
+
+    MauSacModel getdata() {
+        return new MauSacModel(Integer.parseInt(txt_mamausac.getText().substring(2)), txt_tenmaussac.getText(), txt_mota.getText());
     }
-    
-    public void loadtable(){
-         List<MauSacModel> ds = _IMauSacService.getproduct();
-         _DefaultTableModel = (DefaultTableModel) tbl_mausac.getModel();
-         _DefaultTableModel.setRowCount(0);
-         for (MauSacModel x : ds) {
-             _DefaultTableModel.addRow(new Object[]{x.getMaMauSac(),x.getTenMauSac(),x.getMota()});
+
+    public void loadtable() {
+        List<MauSacModel> ds = _IMauSacService.getproduct();
+        _DefaultTableModel = (DefaultTableModel) tbl_mausac.getModel();
+        _DefaultTableModel.setRowCount(0);
+        for (MauSacModel x : ds) {
+            _DefaultTableModel.addRow(new Object[]{"MS" + x.getMaMauSac(), x.getTenMauSac(), x.getMota()});
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +66,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         tbl_mausac = new javax.swing.JTable();
         btn_sua = new javax.swing.JButton();
         txt_mamausac = new javax.swing.JTextField();
+        btn_sua1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,36 +111,45 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             }
         });
 
+        btn_sua1.setText("Clear");
+        btn_sua1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sua1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_mota)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_tenmaussac, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(txt_mamausac))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
                                 .addComponent(btn_them)
-                                .addGap(51, 51, 51)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_sua)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_mamausac))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_sua1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(394, 394, 394)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,13 +171,14 @@ public class FarmeQLMausac extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_them)
-                            .addComponent(btn_sua))
+                            .addComponent(btn_sua)
+                            .addComponent(btn_sua1))
                         .addGap(170, 170, 170))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,48 +186,33 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
-        if (txt_mamausac.getText().isBlank() || txt_tenmaussac.getText().isBlank() || txt_mota.getText().isBlank()) {
-            JOptionPane.showMessageDialog(this, "phải nhập đủ dữ liệu ");
-            return;
-        }
-        
-        if (_check.chekcKhoangTrang(txt_mamausac.getText()) || _check.checkKyTuCoDau(txt_mamausac.getText())) {
-            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
+        if (txt_tenmaussac.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
         List<MauSacModel> ds = _IMauSacService.getproduct();
         MauSacModel spMoi = getdata();
-        for (MauSacModel x : ds) {
-            if (x.getMaMauSac()== Integer.parseInt(txt_mamausac.getText())) {
-                JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
-                return;
-            }
-        }
-
         if (_IMauSacService.them(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thành công");
         } else {
             JOptionPane.showMessageDialog(this, "Thất bại");
         }
         loadtable();
-        
+
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (_check.checkNullString(txt_mamausac.getText()) || _check.checkNullString(txt_tenmaussac.getText()) || _check.checkNullString(txt_mamausac.getText())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống Mã và Tên");
-            return;
-        }
-        if (_check.chekcKhoangTrang(txt_mamausac.getText()) || _check.checkKyTuCoDau(txt_mamausac.getText())) {
-            JOptionPane.showMessageDialog(this, "Mã không được để khoảng trắng,có dấu và ký tự đặc biệt");
-            return;
-        }
         for (MauSacModel x : _IMauSacService.getproduct()) {
-            if (x.getMaMauSac()== Integer.parseInt(txt_mamausac.getText())) {
+            if (x.getMaMauSac() == Integer.parseInt(txt_mamausac.getText().substring(2))) {
+                if (_check.checkNullString(txt_tenmaussac.getText())) {
+                    JOptionPane.showMessageDialog(this, "Không được để trốngTên");
+                    return;
+                }
                 JOptionPane.showMessageDialog(this, _IMauSacService.sua(getdata()));
                 loadtable();
                 return;
@@ -230,7 +227,13 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         txt_tenmaussac.setText(tbl_mausac.getValueAt(row, 1).toString());
         txt_mota.setText(tbl_mausac.getValueAt(row, 2).toString());
     }//GEN-LAST:event_tbl_mausacMouseClicked
-    
+
+    private void btn_sua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua1ActionPerformed
+        txt_mamausac.setText("MS" + String.valueOf(_IMauSacService.getmamausac()));
+        txt_tenmaussac.setText("");
+        txt_mota.setText("");
+    }//GEN-LAST:event_btn_sua1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,6 +272,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sua;
+    private javax.swing.JButton btn_sua1;
     private javax.swing.JButton btn_them;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

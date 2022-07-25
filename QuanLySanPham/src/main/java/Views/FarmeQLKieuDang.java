@@ -16,30 +16,34 @@ import javax.swing.table.DefaultTableModel;
  * @author hieu
  */
 public class FarmeQLKieuDang extends javax.swing.JFrame {
+
     IKieuDangService _ikieudangService;
     DefaultTableModel _default;
+
     /**
-     * Creates new form 
+     * Creates new form
      */
     public FarmeQLKieuDang() {
         initComponents();
         _ikieudangService = new KieuDangService();
+        txt_makieudang.setEnabled(false);
         loadtable();
-        
+        txt_makieudang.setText("KD" + _ikieudangService.getMaxIdKieuDang());
     }
-    KieuDangModel getdata(){
-        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText()), txt_tenkieudang.getText(), txt_mota.getText());
+
+    KieuDangModel getdata() {
+        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText().substring(2)), txt_tenkieudang.getText(), txt_mota.getText());
     }
-    public void loadtable(){
-         List<KieuDangModel> kd = _ikieudangService.getproduct();
-         _default = (DefaultTableModel) tbl_kieudang.getModel();
-         _default.setRowCount(0);
-         for (KieuDangModel x : kd) {
-             _default.addRow(new Object[]{x.getMaKieuDang(),x.getTenKieuDang(),x.getMota()});
+
+    public void loadtable() {
+        List<KieuDangModel> kd = _ikieudangService.getproduct();
+        _default = (DefaultTableModel) tbl_kieudang.getModel();
+        _default.setRowCount(0);
+        for (KieuDangModel x : kd) {
+            _default.addRow(new Object[]{"KD" +x.getMaKieuDang(), x.getTenKieuDang(), x.getMota()});
         }
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,10 +60,11 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_kieudang = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        btn_clear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Kiểu dáng");
+        jLabel1.setText("Thông Tin Kiểu dáng");
 
         jLabel2.setText("Mã kiểu dáng");
 
@@ -101,49 +106,49 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
 
         jLabel5.setText("Danh Sách Kiểu Dáng");
 
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(171, 171, 171)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(jLabel2)
-                                    .addGap(21, 21, 21)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_makieudang, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_tenkieudang, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_makieudang, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_tenkieudang, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(btn_them)
-                        .addGap(85, 85, 85)
-                        .addComponent(btn_sua)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_sua)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_clear)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(227, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,35 +171,30 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txt_tenkieudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(134, 134, 134)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_mota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_them)
-                            .addComponent(btn_sua)))
+                            .addComponent(btn_sua)
+                            .addComponent(btn_clear)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-         if (txt_makieudang.getText().isEmpty() || txt_tenkieudang.getText().isEmpty()|| txt_mota.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "k đc để trống");
+        if (txt_tenkieudang.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
-          List<KieuDangModel> kd = _ikieudangService.getproduct();
         KieuDangModel kdmoi = getdata();
-        for (KieuDangModel x : kd) {
-            if (Integer.parseInt(txt_makieudang.getText())== kdmoi.getMaKieuDang()) {
-                JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
-                return;
-            }
-        }
         if (_ikieudangService.createNewProduct(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
         } else {
@@ -204,25 +204,31 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void tbl_kieudangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_kieudangMouseClicked
-       int row = tbl_kieudang.getSelectedRow();
+        int row = tbl_kieudang.getSelectedRow();
         txt_makieudang.setText(tbl_kieudang.getValueAt(row, 0).toString());
         txt_tenkieudang.setText(tbl_kieudang.getValueAt(row, 1).toString());
-        txt_mota.setText(tbl_kieudang.getValueAt(row, 2).toString()); 
+        txt_mota.setText(tbl_kieudang.getValueAt(row, 2).toString());
         txt_makieudang.setEnabled(false);
     }//GEN-LAST:event_tbl_kieudangMouseClicked
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-      
-        if (txt_makieudang.getText().isEmpty() || txt_tenkieudang.getText().isEmpty()|| txt_mota.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "k đc để trống");
+
+        if (txt_tenkieudang.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
-        
-        if(_ikieudangService.sua(getdata())!=null){
-             JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
+
+        if (_ikieudangService.sua(getdata()) != null) {
+            JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
         }
         loadtable();
     }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        txt_makieudang.setText("KD" + _ikieudangService.getMaxIdKieuDang());
+        txt_tenkieudang.setText("");
+        txt_mota.setText("");
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,6 +267,7 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JLabel jLabel1;

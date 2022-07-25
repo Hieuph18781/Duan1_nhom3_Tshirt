@@ -61,7 +61,7 @@ public class DanhMucSanPhamService implements IDanhMucSanPhamService {
     
     @Override
     public int getMaDanhMuc(){
-        return _lstdanhMucSpModels.get(_lstdanhMucSpModels.size()-1).getMaDanhMuc()+1;
+        return _lstdanhMucSpModels.size()+1;
     }
     
 }
