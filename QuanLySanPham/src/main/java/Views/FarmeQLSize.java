@@ -129,7 +129,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
             new String [] {
                 "Ma Size", "Ten Size", "Mo Ta"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_size.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_sizeMouseClicked(evt);
@@ -139,6 +147,11 @@ public class FarmeQLSize extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_size);
+        if (tbl_size.getColumnModel().getColumnCount() > 0) {
+            tbl_size.getColumnModel().getColumn(0).setResizable(false);
+            tbl_size.getColumnModel().getColumn(1).setResizable(false);
+            tbl_size.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         btn_clear.setText("Clear");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {

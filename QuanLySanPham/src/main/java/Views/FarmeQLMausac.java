@@ -96,13 +96,26 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             new String [] {
                 "mã màu sắc", "Tên", "mô tả"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_mausac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_mausacMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_mausac);
+        if (tbl_mausac.getColumnModel().getColumnCount() > 0) {
+            tbl_mausac.getColumnModel().getColumn(0).setResizable(false);
+            tbl_mausac.getColumnModel().getColumn(1).setResizable(false);
+            tbl_mausac.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         btn_sua.setText("sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
