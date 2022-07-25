@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface IMauSacRepository {
     List<MauSac> findAll();
-    MauSac Save(MauSac color);
+    public MauSac insert(MauSac danhMucSp);
+
+    public boolean update(MauSac danhMucSp);
     MauSac findById(String ma);
 }

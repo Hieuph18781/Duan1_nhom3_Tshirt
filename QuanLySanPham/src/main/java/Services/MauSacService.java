@@ -10,6 +10,7 @@ import ViewsModels.MauSacModel;
 import java.util.ArrayList;
 import java.util.List;
 import Repositories.IMauSacRepository;
+import ViewsModels.DanhMucSanPhamModel;
 
 /**
  *
@@ -23,7 +24,13 @@ public class MauSacService implements IMauSacService{
             _iTruyvanmausac = new MauSacRepository();
             _lstMausac = new ArrayList<>();
         }
-
+MauSac getDanhMucRpst(MauSacModel danhMucSanPhamModel){
+        MauSac danhmucSP = new MauSac();
+        danhmucSP.setMaMauSac(danhMucSanPhamModel.getMaMauSac());
+        danhmucSP.setTenMauSac(danhMucSanPhamModel.getTenMauSac());
+        danhmucSP.setMota(danhMucSanPhamModel.getMota());
+        return danhmucSP;
+    }
     @Override
     public List<MauSacModel> getproduct() {
          _lstMausac = new ArrayList<>();
@@ -34,16 +41,30 @@ public class MauSacService implements IMauSacService{
         return _lstMausac;
     }
 
+    
+
     @Override
-    public MauSacModel createNewProduct(MauSacModel color) {
-         var x = _iTruyvanmausac.Save(new MauSac(color.getMaMauSac(), color.getTenMauSac(), color.getMota()));
-         return new MauSacModel(x.getMaMauSac(), x.getTenMauSac(), x.getMota());
+    public int getmamausac() {
+      return _lstMausac.get(_lstMausac.size()).getMaMauSac()+1;
+        
     }
 
     @Override
-    public MauSacModel updateProductById(MauSacModel colors) {
-       var x = _iTruyvanmausac.Save(new MauSac(colors.getMaMauSac(), colors.getTenMauSac(), colors.getMota()));
-         return new MauSacModel(x.getMaMauSac(), x.getTenMauSac(), x.getMota());
+    public String them(MauSacModel danhMucSanPhamModel) {
+        MauSac dmsp = _iTruyvanmausac.insert(getDanhMucRpst(danhMucSanPhamModel));
+        if (dmsp == null) {
+            return "Thêm Không thành công";
+        }
+        return "Thêm thành công";
+    }
+
+    @Override
+    public String sua(MauSacModel danhMucSanPhamModel) {
+        boolean checkdmsp = _iTruyvanmausac.update(getDanhMucRpst(danhMucSanPhamModel));
+        if (checkdmsp == false) {
+            return "Sửa Không thành công";
+        }
+        return "Sửa thành công";
     }
 
     

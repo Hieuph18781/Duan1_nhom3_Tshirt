@@ -5,6 +5,7 @@
 package Services;
 
 import DomainModels.MauSac;
+import ViewsModels.DanhMucSanPhamModel;
 import ViewsModels.MauSacModel;
 import ViewsModels.MauSacModel;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface IMauSacService {
     List<MauSacModel> getproduct();
-    MauSacModel createNewProduct(MauSacModel color);
-    MauSacModel updateProductById(MauSacModel colors); 
+    public String them(MauSacModel danhMucSanPhamModel);
+    public String sua(MauSacModel danhMucSanPhamModel);
+    public int getmamausac();
 }

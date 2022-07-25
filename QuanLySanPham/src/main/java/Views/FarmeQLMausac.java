@@ -30,10 +30,11 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         _IMauSacService = new MauSacService();
         _check = new CheckData();
         loadtable();
+         //txt_mamausac.setText("DMSP" + String.valueOf(_IMauSacService.getmamausac()));
     }
     
     MauSacModel getdata(){
-        return new MauSacModel(txt_mamausac.getText(), txt_tenmaussac.getText(), txt_mota.getText());
+        return new MauSacModel(Integer.parseInt(txt_mamausac.getText()), txt_tenmaussac.getText(), txt_mota.getText());
     }
     
     public void loadtable(){
@@ -58,12 +59,12 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btn_them = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_mamausac = new javax.swing.JTextField();
         txt_tenmaussac = new javax.swing.JTextField();
         txt_mota = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_mausac = new javax.swing.JTable();
         btn_sua = new javax.swing.JButton();
+        txt_mamausac = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,12 +83,6 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Mô tả");
-
-        txt_mamausac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_mamausacActionPerformed(evt);
-            }
-        });
 
         tbl_mausac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +114,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,12 +130,13 @@ public class FarmeQLMausac extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_mamausac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_mamausac))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_tenmaussac, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -180,10 +176,6 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_mamausacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_mamausacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_mamausacActionPerformed
-
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
         if (txt_mamausac.getText().isBlank() || txt_tenmaussac.getText().isBlank() || txt_mota.getText().isBlank()) {
@@ -198,13 +190,13 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         List<MauSacModel> ds = _IMauSacService.getproduct();
         MauSacModel spMoi = getdata();
         for (MauSacModel x : ds) {
-            if (x.getMaMauSac().equals(spMoi.getMaMauSac())) {
+            if (x.getMaMauSac()== Integer.parseInt(txt_mamausac.getText())) {
                 JOptionPane.showMessageDialog(this, "Trùng mã mời nhập lại");
                 return;
             }
         }
 
-        if (_IMauSacService.createNewProduct(getdata()) != null) {
+        if (_IMauSacService.them(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thành công");
         } else {
             JOptionPane.showMessageDialog(this, "Thất bại");
@@ -223,8 +215,8 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             return;
         }
         for (MauSacModel x : _IMauSacService.getproduct()) {
-            if (x.getMaMauSac().equals(txt_mamausac.getText())) {
-                JOptionPane.showMessageDialog(this, _IMauSacService.updateProductById(getdata()));
+            if (x.getMaMauSac()== Integer.parseInt(txt_mamausac.getText())) {
+                JOptionPane.showMessageDialog(this, _IMauSacService.sua(getdata()));
                 loadtable();
                 return;
             }
