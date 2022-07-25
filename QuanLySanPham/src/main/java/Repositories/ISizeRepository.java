@@ -15,6 +15,7 @@ public interface ISizeRepository {
     List<Size> finAll(int position,int pageSize);
     Size save(Size size);
     String dalete(String MaSize);
+    public boolean  update (Size size);
     
             
 }

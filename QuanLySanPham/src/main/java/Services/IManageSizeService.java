@@ -16,5 +16,6 @@ public interface IManageSizeService {
     List<SizeModel> getSize(int position,int pageSize);
     SizeModel createNewSize(SizeModel size);
     SizeModel UpdateNewSize(SizeModel size);
+    public String sua(SizeModel size);
   
 }

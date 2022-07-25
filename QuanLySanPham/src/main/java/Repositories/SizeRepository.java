@@ -74,4 +74,23 @@ public class SizeRepository implements ISizeRepository {
         return sizes;
     
 }
+
+    @Override
+    public boolean update(Size size) {
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()){
+            Transaction trans = session.getTransaction();
+            trans.begin();
+            try {
+                session.saveOrUpdate(size);
+                trans.commit();
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                trans.rollback();
+                return false;
+            }
+        } finally {
+            return true;
+        }
+    }
 }

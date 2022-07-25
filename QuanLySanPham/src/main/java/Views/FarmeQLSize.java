@@ -50,14 +50,17 @@ public class FarmeQLSize extends javax.swing.JFrame {
 
     private  SizeModel getSizeFromInput(){
        SizeModel size=new SizeModel();
-        String maSize=txt_masize.getText();
-        size.setMaSize(maSize);
+//        int maSize=txt_masize.getText();
+//        size.setMaSize(_pageSize);
+       
         String tenSize=txt_tensize.getText();
         size.setTenSize(tenSize);
         String moTa=txt_mota.getText();
         size.setMota(moTa);
        
         return size;
+
+  // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
     }
     
     private  String getSizeFromSelectdRow(){
@@ -213,13 +216,21 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
       SizeModel updateSize= getSizeFromInput();
       String updateMaSize=getSizeFromSelectdRow();
-      updateSize.setMaSize(updateMaSize);
+      updateSize.setMaSize(Integer.parseInt(updateMaSize));
         if (_iManageSize.UpdateNewSize(updateSize)!=null) {
         JOptionPane.showMessageDialog(this, "thanh cong");
             
         }else{
             JOptionPane.showMessageDialog(this, "that bai");
         }
+//if (txt_masize.getText().isEmpty() || txt_tensize.getText().isEmpty() || txt_mota.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "khong de trong");
+//            return;
+//        }
+//        if (_iManageSize.UpdateNewSize(getSizeFromInput()) != null) {
+//            JOptionPane.showMessageDialog(this, "thanh cong");
+//            
+//        }
         LoadDataTable();
     }//GEN-LAST:event_btn_suaActionPerformed
 

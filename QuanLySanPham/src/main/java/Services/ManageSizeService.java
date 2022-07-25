@@ -49,6 +49,24 @@ public class ManageSizeService implements IManageSizeService {
         }
         return _lstSize;
     }
+    Size getSizemodel(SizeModel sizemodel){
+        Size sizes=new Size();
+        sizes.setMaSize(sizemodel.getMaSize());
+        sizes.setTenSize(sizemodel.getTenSize());
+        sizes.setMota(sizemodel.getMota());
+        return sizes;
+    }
+
+    @Override
+    public String sua(SizeModel size) {
+        boolean check=_iSizeRepostiory.update(getSizemodel(size));
+        if (check== false) {
+            return "sua thanh cong";
+            
+        }else{
+            return "that bai";
+        }
+    }
 
     
 }
