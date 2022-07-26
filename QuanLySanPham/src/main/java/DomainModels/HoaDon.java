@@ -30,7 +30,7 @@ import org.hibernate.annotations.Nationalized;
 public class HoaDon implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String MaHoaDon;
+    private int MaHoaDon;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date ThoiGianTao;
@@ -57,7 +57,7 @@ public class HoaDon implements Serializable {
     public HoaDon() {
     }
 
-    public HoaDon(String MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
+    public HoaDon(int MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
         this.MaHoaDon = MaHoaDon;
         this.ThoiGianTao = ThoiGianTao;
         this.TrangThai = TrangThai;
@@ -66,11 +66,11 @@ public class HoaDon implements Serializable {
         this.khuyenmai = khuyenmai;
     }
 
-    public String getMaHoaDon() {
+    public int getMaHoaDon() {
         return MaHoaDon;
     }
 
-    public void setMaHoaDon(String MaHoaDon) {
+    public void setMaHoaDon(int MaHoaDon) {
         this.MaHoaDon = MaHoaDon;
     }
 
