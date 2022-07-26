@@ -45,7 +45,7 @@ MauSac getDanhMucRpst(MauSacModel danhMucSanPhamModel){
 
     @Override
     public int getmamausac() {
-      return _lstMausac.get(_lstMausac.size()).getMaMauSac()+1;
+      return _lstMausac.size()+1;
         
     }
 

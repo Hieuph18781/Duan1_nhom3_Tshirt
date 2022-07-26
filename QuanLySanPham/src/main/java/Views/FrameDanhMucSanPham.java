@@ -116,6 +116,11 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_danhmucsanpham);
+        if (tbl_danhmucsanpham.getColumnModel().getColumnCount() > 0) {
+            tbl_danhmucsanpham.getColumnModel().getColumn(0).setResizable(false);
+            tbl_danhmucsanpham.getColumnModel().getColumn(1).setResizable(false);
+            tbl_danhmucsanpham.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         tar_mota.setColumns(20);
         tar_mota.setRows(5);

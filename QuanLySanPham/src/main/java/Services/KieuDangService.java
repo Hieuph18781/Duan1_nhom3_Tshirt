@@ -19,24 +19,27 @@ import org.hibernate.cfg.JPAIndexHolder;
  *
  * @author hieu
  */
-public class KieuDangService implements IKieuDangService{
-IKieuDangRepository _iTruyvankieudang;
-        List<KieuDangModel> _lstkieudang;
+public class KieuDangService implements IKieuDangService {
 
-        public KieuDangService(){
-            _iTruyvankieudang = new KieuDangRepository();
-            _lstkieudang = new ArrayList<>();
-        }
- KieuDang getkieudang(KieuDangModel kieudangModel){
+    IKieuDangRepository _iTruyvankieudang;
+    List<KieuDangModel> _lstkieudang;
+
+    public KieuDangService() {
+        _iTruyvankieudang = new KieuDangRepository();
+        _lstkieudang = new ArrayList<>();
+    }
+
+    KieuDang getkieudang(KieuDangModel kieudangModel) {
         KieuDang kieudangSP = new KieuDang();
-       kieudangSP.setMaKieuDang(kieudangModel.getMaKieuDang());
-       kieudangSP.setTenKieuDang(kieudangModel.getTenKieuDang());
+        kieudangSP.setMaKieuDang(kieudangModel.getMaKieuDang());
+        kieudangSP.setTenKieuDang(kieudangModel.getTenKieuDang());
         kieudangSP.setMota(kieudangModel.getMota());
         return kieudangSP;
     }
+
     @Override
     public List<KieuDangModel> getproduct() {
-         _lstkieudang = new ArrayList<>();
+        _lstkieudang = new ArrayList<>();
         var kieudang = _iTruyvankieudang.findAll();
         for (KieuDang x : kieudang) {
             _lstkieudang.add(new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota()));
@@ -46,19 +49,24 @@ IKieuDangRepository _iTruyvankieudang;
 
     @Override
     public KieuDangModel createNewProduct(KieuDangModel kieudang) {
-         var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota()));
-         return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota());
+        kieudang.setMaKieuDang(0);
+        var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota()));
+        return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota());
     }
-public String sua(KieuDangModel kieudangModel) {
-         boolean checkdmsp = _iTruyvankieudang.update(getkieudang(kieudangModel));
+
+    @Override
+    public String sua(KieuDangModel kieudangModel) {
+        boolean checkdmsp = _iTruyvankieudang.update(getkieudang(kieudangModel));
         if (checkdmsp == false) {
             return "Sửa Không thành công";
         }
         return "Sửa thành công";
     }
 
-   
-  
+    @Override
+    public int getMaxIdKieuDang() {
+        return _lstkieudang.size()+1;
+    }
 
-      
+    
 }

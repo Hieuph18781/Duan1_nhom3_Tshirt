@@ -17,55 +17,57 @@ import javax.swing.table.DefaultTableModel;
  * @author chung
  */
 public class FarmeQLSize extends javax.swing.JFrame {
-    private  final IManageSizeService _iManageSize;
- private int _currentPage;
+
+    private final IManageSizeService _iManageSize;
+    private int _currentPage;
     private int _totalPages;
     private final int _pageSize;
     private long _totalProducts;
-    int row=0;
+    int row = 0;
+
     /**
      * Creates new form Size
      */
     public FarmeQLSize() {
         initComponents();
-        _iManageSize=new ManageSizeService();
-        
+        _iManageSize = new ManageSizeService();
+
         _currentPage = 1;
         _pageSize = 10;
         LoadDataTable();
+        txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        txt_masize.setEnabled(false);
     }
-    
-    private  void LoadDataTable(){
-        List<SizeModel> ds= _iManageSize.getSize(_currentPage - 1, _pageSize);
-        DefaultTableModel dtm=(DefaultTableModel) this.tbl_size.getModel();
+
+    private void LoadDataTable() {
+        List<SizeModel> ds = _iManageSize.getSize(_currentPage - 1, _pageSize);
+        DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
         dtm.setRowCount(0);
         for (SizeModel d : ds) {
-            Object[] rowdata={d.getMaSize(),d.getTenSize(),d.getMota()}; 
-              dtm.addRow(rowdata);
+            Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
+            dtm.addRow(rowdata);
         }
-      
-    }
-    
-    
 
-    private  SizeModel getSizeFromInput(){
-       SizeModel size=new SizeModel();
+    }
+
+    private SizeModel getSizeFromInput() {
+        SizeModel size = new SizeModel();
 //        int maSize=txt_masize.getText();
 //        size.setMaSize(_pageSize);
-       
-        String tenSize=txt_tensize.getText();
+
+        String tenSize = txt_tensize.getText();
         size.setTenSize(tenSize);
-        String moTa=txt_mota.getText();
+        String moTa = txt_mota.getText();
         size.setMota(moTa);
-       
+
         return size;
 
-  // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
+        // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
     }
-    
-    private  String getSizeFromSelectdRow(){
-        int selectRowIndex=tbl_size.getSelectedRow();
-        return String.valueOf(tbl_size.getValueAt(selectRowIndex, 0).toString());
+
+    private String getSizeFromSelectdRow() {
+        int selectRowIndex = tbl_size.getSelectedRow();
+        return String.valueOf(tbl_size.getValueAt(selectRowIndex, 0).toString().substring(2));
     }
 
     /**
@@ -88,6 +90,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         txt_mota = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_size = new javax.swing.JTable();
+        btn_clear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,7 +129,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
             new String [] {
                 "Ma Size", "Ten Size", "Mo Ta"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_size.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_sizeMouseClicked(evt);
@@ -136,6 +147,18 @@ public class FarmeQLSize extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_size);
+        if (tbl_size.getColumnModel().getColumnCount() > 0) {
+            tbl_size.getColumnModel().getColumn(0).setResizable(false);
+            tbl_size.getColumnModel().getColumn(1).setResizable(false);
+            tbl_size.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,10 +166,6 @@ public class FarmeQLSize extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(Size, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 125, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,11 +177,17 @@ public class FarmeQLSize extends javax.swing.JFrame {
                             .addComponent(txt_mota)
                             .addComponent(txt_tensize)
                             .addComponent(txt_masize)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(Size, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 150, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(btn_them)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_sua)))
+                        .addGap(49, 49, 49)
+                        .addComponent(btn_sua)
+                        .addGap(59, 59, 59)
+                        .addComponent(btn_clear)))
                 .addGap(83, 83, 83))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -189,13 +214,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them)
-                    .addComponent(btn_sua))
+                    .addComponent(btn_sua)
+                    .addComponent(btn_clear))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_tensizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tensizeActionPerformed
@@ -203,24 +230,24 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tensizeActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-       SizeModel newSize= getSizeFromInput();
-        if (_iManageSize.createNewSize(newSize) !=null) {
+        SizeModel newSize = getSizeFromInput();
+        if (_iManageSize.createNewSize(newSize) != null) {
             JOptionPane.showMessageDialog(this, "thanh cong");
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "that bai");
         }
         LoadDataTable();
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-      SizeModel updateSize= getSizeFromInput();
-      String updateMaSize=getSizeFromSelectdRow();
-      updateSize.setMaSize(Integer.parseInt(updateMaSize));
-        if (_iManageSize.UpdateNewSize(updateSize)!=null) {
-        JOptionPane.showMessageDialog(this, "thanh cong");
-            
-        }else{
+        SizeModel updateSize = getSizeFromInput();
+        String updateMaSize = getSizeFromSelectdRow();
+        updateSize.setMaSize(Integer.parseInt(updateMaSize));
+        if (_iManageSize.UpdateNewSize(updateSize) != null) {
+            JOptionPane.showMessageDialog(this, "thanh cong");
+
+        } else {
             JOptionPane.showMessageDialog(this, "that bai");
         }
 //if (txt_masize.getText().isEmpty() || txt_tensize.getText().isEmpty() || txt_mota.getText().isEmpty()) {
@@ -235,18 +262,18 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void tbl_sizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sizeMouseClicked
-        int row=tbl_size.getSelectedRow();
+        int row = tbl_size.getSelectedRow();
         if (row == -1) {
-            return;          
+            return;
         }
-        String maSize=this.tbl_size.getValueAt(row, 0).toString();
-        String tenSize=this.tbl_size.getValueAt(row, 1).toString();
-        String moTa=this.tbl_size.getValueAt(row, 2).toString();
-        
+        String maSize = this.tbl_size.getValueAt(row, 0).toString();
+        String tenSize = this.tbl_size.getValueAt(row, 1).toString();
+        String moTa = this.tbl_size.getValueAt(row, 2).toString();
+
         this.txt_masize.setText(maSize);
         this.txt_tensize.setText(tenSize);
         this.txt_mota.setText(moTa);
-        
+
 
     }//GEN-LAST:event_tbl_sizeMouseClicked
 
@@ -260,6 +287,12 @@ public class FarmeQLSize extends javax.swing.JFrame {
 //            
 //        }
     }//GEN-LAST:event_tbl_sizeMousePressed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        this.txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        this.txt_tensize.setText("");
+        this.txt_mota.setText("");
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +331,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Size;
+    private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JLabel jLabel2;

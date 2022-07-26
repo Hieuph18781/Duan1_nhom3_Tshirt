@@ -144,6 +144,8 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbChatLieu);
         if (tbChatLieu.getColumnModel().getColumnCount() > 0) {
             tbChatLieu.getColumnModel().getColumn(0).setResizable(false);
+            tbChatLieu.getColumnModel().getColumn(1).setResizable(false);
+            tbChatLieu.getColumnModel().getColumn(2).setResizable(false);
         }
 
         btn_clear.setText("Clear");
@@ -210,7 +212,7 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                                     .addComponent(btn_them)
                                     .addComponent(btn_clear)))
                             .addComponent(jLabel4))
-                        .addContainerGap(69, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))

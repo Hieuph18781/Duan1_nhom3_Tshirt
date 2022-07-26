@@ -17,5 +17,5 @@ public interface IManageSizeService {
     SizeModel createNewSize(SizeModel size);
     SizeModel UpdateNewSize(SizeModel size);
     public String sua(SizeModel size);
-  
+    public int getMaxIdSize();
 }
