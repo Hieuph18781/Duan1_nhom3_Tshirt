@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hieu
  */
 public class FarmeQLMausac extends javax.swing.JFrame {
-
+    MauSacModel _MauSacModel;
     IMauSacService _IMauSacService;
     DefaultTableModel _DefaultTableModel;
     CheckData _check;
@@ -28,7 +28,8 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         initComponents();
         _IMauSacService = new MauSacService();
         _check = new CheckData();
-        loadtable();
+        
+        loadtable(_IMauSacService.getproduct());
         txt_mamausac.setText("MS" + String.valueOf(_IMauSacService.getmamausac()));
         txt_mamausac.setEnabled(false);
     }
@@ -37,7 +38,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         return new MauSacModel(Integer.parseInt(txt_mamausac.getText().substring(2)), txt_tenmaussac.getText(), txt_mota.getText());
     }
 
-    public void loadtable() {
+    public void loadtable(List<MauSacModel> ms) {
         List<MauSacModel> ds = _IMauSacService.getproduct();
         _DefaultTableModel = (DefaultTableModel) tbl_mausac.getModel();
         _DefaultTableModel.setRowCount(0);
@@ -67,6 +68,8 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         btn_sua = new javax.swing.JButton();
         txt_mamausac = new javax.swing.JTextField();
         btn_sua1 = new javax.swing.JButton();
+        txt_timkiem = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +134,13 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,15 +174,23 @@ public class FarmeQLMausac extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(394, 394, 394)
+                .addGap(168, 168, 168)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203)
+                .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -215,21 +233,21 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Thất bại");
         }
-        loadtable();
+        loadtable(_IMauSacService.getproduct());
 
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         for (MauSacModel x : _IMauSacService.getproduct()) {
-            if (x.getMaMauSac() == Integer.parseInt(txt_mamausac.getText().substring(2))) {
+             if (x.getMaMauSac() == Integer.parseInt(txt_mamausac.getText().substring(2))) {
                 if (_check.checkNullString(txt_tenmaussac.getText())) {
                     JOptionPane.showMessageDialog(this, "Không được để trốngTên");
                     return;
                 }
                 JOptionPane.showMessageDialog(this, _IMauSacService.sua(getdata()));
-                loadtable();
+                loadtable(_IMauSacService.getproduct());
                 return;
-            }
+        }
         }
         JOptionPane.showMessageDialog(this, "Không tìm thấy mã!");
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -246,6 +264,11 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         txt_tenmaussac.setText("");
         txt_mota.setText("");
     }//GEN-LAST:event_btn_sua1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       JOptionPane.showMessageDialog(this, _IMauSacService.Timkiem(txt_timkiem.getText())); 
+        loadtable(_IMauSacService.getproduct());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +310,7 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_sua1;
     private javax.swing.JButton btn_them;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,5 +320,6 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     private javax.swing.JTextField txt_mamausac;
     private javax.swing.JTextField txt_mota;
     private javax.swing.JTextField txt_tenmaussac;
+    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package Repositories;
 
 import DomainModels.MauSac;
+import ViewsModels.MauSacModel;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface IMauSacRepository {
 
     public boolean update(MauSac danhMucSp);
     MauSac findById(String ma);
+    
 }
