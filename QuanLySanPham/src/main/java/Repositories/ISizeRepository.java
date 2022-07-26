@@ -16,6 +16,7 @@ public interface ISizeRepository {
     Size save(Size size);
     String dalete(String MaSize);
     public boolean  update (Size size);
+    List<Size> find();
     
             
 }

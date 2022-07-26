@@ -37,6 +37,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         LoadDataTable();
         txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
         txt_masize.setEnabled(false);
+        findTable();
     }
 
     private void LoadDataTable() {
@@ -48,6 +49,20 @@ public class FarmeQLSize extends javax.swing.JFrame {
             dtm.addRow(rowdata);
         }
 
+    }
+    private  void findTable(){
+       DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
+        dtm.setRowCount(0); 
+        try {
+            String key=txt_timkie.getText();
+            List<SizeModel> timkiem= _iManageSize.TimKiem(key);
+            for (SizeModel d : timkiem) {
+                Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
+            dtm.addRow(rowdata);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi tìm kiếm");
+        }
     }
 
     private SizeModel getSizeFromInput() {
@@ -85,15 +100,19 @@ public class FarmeQLSize extends javax.swing.JFrame {
         btn_them = new javax.swing.JButton();
         btn_sua = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_masize = new javax.swing.JTextField();
+        txt_timkie = new javax.swing.JTextField();
         txt_tensize = new javax.swing.JTextField();
         txt_mota = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_size = new javax.swing.JTable();
         btn_clear = new javax.swing.JButton();
+        txt_masize = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        btn_timkiem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Size.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Size.setText("Size");
 
         jLabel2.setText("Mã size");
@@ -160,6 +179,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Tìm Kiếm");
+
+        btn_timkiem.setText("tìm");
+        btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timkiemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,24 +199,30 @@ public class FarmeQLSize extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_mota)
                             .addComponent(txt_tensize)
-                            .addComponent(txt_masize)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(Size, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 150, Short.MAX_VALUE))
+                            .addComponent(txt_masize)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_timkie, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_timkiem))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_them)
                         .addGap(49, 49, 49)
                         .addComponent(btn_sua)
                         .addGap(59, 59, 59)
-                        .addComponent(btn_clear)))
-                .addGap(83, 83, 83))
+                        .addComponent(btn_clear)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(Size, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -197,13 +231,21 @@ public class FarmeQLSize extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addComponent(Size)
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_masize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(txt_timkie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(btn_timkiem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txt_masize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_tensize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,7 +259,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
                     .addComponent(btn_sua)
                     .addComponent(btn_clear))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -294,6 +336,12 @@ public class FarmeQLSize extends javax.swing.JFrame {
         this.txt_mota.setText("");
     }//GEN-LAST:event_btn_clearActionPerformed
 
+    private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
+//       JOptionPane.showMessageDialog(this, _iManageSize.TimKiem(txt_timkie.getText()));
+//       LoadDataTable(_iManageSize.TimKiem(txt_tensize.getText()));
+findTable();
+    }//GEN-LAST:event_btn_timkiemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,13 +382,16 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
+    private javax.swing.JButton btn_timkiem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_size;
     private javax.swing.JTextField txt_masize;
     private javax.swing.JTextField txt_mota;
     private javax.swing.JTextField txt_tensize;
+    private javax.swing.JTextField txt_timkie;
     // End of variables declaration//GEN-END:variables
 }

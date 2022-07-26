@@ -93,4 +93,16 @@ public class SizeRepository implements ISizeRepository {
             return true;
         }
     }
+
+    @Override
+    public List<Size> find() {
+        List<Size> sizes;
+        try(Session sesion =HibernateUtil.getSessionFactory().openSession()){
+            String hql="select p from Size p";
+              TypedQuery<Size> query=sesion.createQuery(hql,Size.class);
+               sizes=query.getResultList();
+               
+        }
+        return sizes;
+    }
 }
