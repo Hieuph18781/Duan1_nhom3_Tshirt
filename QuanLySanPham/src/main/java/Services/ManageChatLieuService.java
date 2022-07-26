@@ -50,7 +50,7 @@ public class ManageChatLieuService implements IManageChatLieuService {
 
     @Override
     public int getMaChatLieu() {
-        return _lstQlChatLieu.get(_lstQlChatLieu.size() - 1).getMaChatLieu() + 1;
+        return _lstQlChatLieu.size() + 1;
     }
 
 }

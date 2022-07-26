@@ -56,7 +56,7 @@ public class CheckData {
         if (txt.getText().trim().length() > 0) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống " + txt.getName());
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống ");
             return false;
         }
     }
@@ -65,7 +65,7 @@ public class CheckData {
         if (txt.getText().trim().length() > 0) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống " + txt.getName());
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống ");
             return false;
         }
     }
