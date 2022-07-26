@@ -25,7 +25,7 @@ import org.hibernate.annotations.Nationalized;
 public class KhachHang implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String MaKhachHang;
+    private int MaKhachHang;
     
     @Nationalized
     private String HoTen;
@@ -43,7 +43,7 @@ public class KhachHang implements Serializable{
     public KhachHang() {
     }
 
-    public KhachHang(String MaKhachHang, String HoTen, String SoDienThoai, String DiaChi, String Email) {
+    public KhachHang(int MaKhachHang, String HoTen, String SoDienThoai, String DiaChi, String Email) {
         this.MaKhachHang = MaKhachHang;
         this.HoTen = HoTen;
         this.SoDienThoai = SoDienThoai;
@@ -51,11 +51,11 @@ public class KhachHang implements Serializable{
         this.Email = Email;
     }
 
-    public String getMaKhachHang() {
+    public int getMaKhachHang() {
         return MaKhachHang;
     }
 
-    public void setMaKhachHang(String MaKhachHang) {
+    public void setMaKhachHang(int MaKhachHang) {
         this.MaKhachHang = MaKhachHang;
     }
 
