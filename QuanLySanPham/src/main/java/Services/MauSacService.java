@@ -67,6 +67,19 @@ MauSac getDanhMucRpst(MauSacModel danhMucSanPhamModel){
         return "Sửa thành công";
     }
 
+    @Override
+    public List<MauSacModel> Timkiem(String ten) {
+        List<MauSacModel> ms = new ArrayList<>();
+       List<MauSac> mausac = new ArrayList<>();
+        for (MauSac x : _iTruyvanmausac.findAll()) {
+            if (x.getTenMauSac().toLowerCase().contains(ten.toLowerCase()) ) {
+                ms.add(new MauSacModel(x.getMaMauSac(),x.getTenMauSac(), x.getMota()));
+                System.out.println(ms + "ádsd");
+            }
+        }
+        return ms;
+    }
+
     
       
 }
