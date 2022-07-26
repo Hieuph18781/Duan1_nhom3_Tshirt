@@ -27,29 +27,25 @@ import org.hibernate.annotations.Nationalized;
  */
 @Entity
 @Table(name = "KhuyenMai")
-public class KhuyenMai implements Serializable{
-    
+public class KhuyenMai implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdKhuyenMai;
-    
+
     @Nationalized
     private String TenKhuyenMai;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date NgayBatDau;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date NgayKetThuc;
     private int GiaKhuyenMai;
-    
+
     @Nationalized
     private String MoTa;
-    
-    @ManyToOne
-    @JoinColumn(name = "MaNhanVien")
-    private NhanVien nhanvien;
-    
+
     @OneToMany(mappedBy = "khuyenmai",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDon> lstHoaDon;
@@ -57,14 +53,13 @@ public class KhuyenMai implements Serializable{
     public KhuyenMai() {
     }
 
-    public KhuyenMai(int IdKhuyenMai, String TenKhuyenMai, Date NgayBatDau, Date NgayKetThuc, int GiaKhuyenMai, String MoTa, NhanVien nhanvien) {
+    public KhuyenMai(int IdKhuyenMai, String TenKhuyenMai, Date NgayBatDau, Date NgayKetThuc, int GiaKhuyenMai, String MoTa ) {
         this.IdKhuyenMai = IdKhuyenMai;
         this.TenKhuyenMai = TenKhuyenMai;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.GiaKhuyenMai = GiaKhuyenMai;
         this.MoTa = MoTa;
-        this.nhanvien = nhanvien;
     }
 
     public int getIdKhuyenMai() {
@@ -115,14 +110,6 @@ public class KhuyenMai implements Serializable{
         this.MoTa = MoTa;
     }
 
-    public NhanVien getNhanVien() {
-        return nhanvien;
-    }
-
-    public void setNhanVien(NhanVien nhanVien) {
-        this.nhanvien = nhanVien;
-    }
-
     public List<HoaDon> getLstHoaDon() {
         return lstHoaDon;
     }
@@ -131,6 +118,4 @@ public class KhuyenMai implements Serializable{
         this.lstHoaDon = lstHoaDon;
     }
 
-    
-    
 }

@@ -24,44 +24,40 @@ import org.hibernate.annotations.Nationalized;
  */
 @Entity
 @Table(name = "NhanVien")
-public class NhanVien implements Serializable{
-    
+public class NhanVien implements Serializable {
+
     @Id
     private String MaNhanVien;
-    
+
     @Nationalized
     private String HoTen;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date NgaySinh;
-    
+
     @Nationalized
     private String GioiTinh;
     private String SoDienThoai;
     private String Email;
-    
+
     @Nationalized
     private String DiaChi;
     private String CCCD;
-    
+
     @Nationalized
     private String ChucVu;
-    
+
     private boolean TrangThai;
-    
+
     private String MatKhau;
-    
+
     @OneToMany(mappedBy = "nhanvien",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LichSuNguoiDung> lstLichSuNguoiDung;
-    
+
     @OneToMany(mappedBy = "nhanvien",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDon> lstHoaDon;
-    
-    @OneToMany(mappedBy = "nhanvien",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<KhuyenMai> lstKhuyenMai;
 
     public NhanVien() {
     }
@@ -183,7 +179,5 @@ public class NhanVien implements Serializable{
     public void setLstHoaDon(List<HoaDon> lstHoaDon) {
         this.lstHoaDon = lstHoaDon;
     }
-    
-    
-    
+
 }

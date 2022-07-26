@@ -36,15 +36,13 @@ public class validate {
             return false;
         }
     }
-    public static boolean checkMaCL(JTextField txt) {
-        txt.setBackground(white);
+    public static boolean checkMaNV(JTextField txt) {
         String id = txt.getText();
-        String rgx = "CL[00-99]{2}";
+        String rgx = "CL[000-999]{2}";
         if (id.matches(rgx)) {
             return true;
         } else {
-            txt.setBackground(pink);
-            JOptionPane.showMessageDialog(txt.getRootPane(), txt.getName() + " không đúng định dạng");
+            JOptionPane.showMessageDialog(txt.getRootPane(),"Không đúng định dạng. VD: NV001");
             return false;
         }
     }
