@@ -28,7 +28,6 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         initComponents();
         _IMauSacService = new MauSacService();
         _check = new CheckData();
-        
         loadtable(_IMauSacService.getproduct());
         txt_mamausac.setText("MS" + String.valueOf(_IMauSacService.getmamausac()));
         txt_mamausac.setEnabled(false);
@@ -39,10 +38,9 @@ public class FarmeQLMausac extends javax.swing.JFrame {
     }
 
     public void loadtable(List<MauSacModel> ms) {
-        List<MauSacModel> ds = _IMauSacService.getproduct();
         _DefaultTableModel = (DefaultTableModel) tbl_mausac.getModel();
         _DefaultTableModel.setRowCount(0);
-        for (MauSacModel x : ds) {
+        for (MauSacModel x : ms) {
             _DefaultTableModel.addRow(new Object[]{"MS" + x.getMaMauSac(), x.getTenMauSac(), x.getMota()});
         }
     }
@@ -134,7 +132,18 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
+        txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timkiemActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Tìm kiếm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -185,13 +194,17 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -267,8 +280,19 @@ public class FarmeQLMausac extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        JOptionPane.showMessageDialog(this, _IMauSacService.Timkiem(txt_timkiem.getText())); 
-        loadtable(_IMauSacService.getproduct());
+        loadtable( _IMauSacService.Timkiem(txt_timkiem.getText()));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
+         JOptionPane.showMessageDialog(this, _IMauSacService.Timkiem(txt_timkiem.getText())); 
+        loadtable(_IMauSacService.Timkiem(txt_timkiem.getText()));
+    }//GEN-LAST:event_txt_timkiemActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+        
+        loadtable(_IMauSacService.Timkiem(txt_timkiem.getText()));
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
      * @param args the command line arguments
