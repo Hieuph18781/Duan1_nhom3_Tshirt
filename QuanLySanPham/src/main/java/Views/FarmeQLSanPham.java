@@ -4,19 +4,87 @@
  */
 package Views;
 
+import DomainModels.MauSac;
+import Repositories.IMauSacRepository;
+import Repositories.MauSacRepository;
+import Services.DanhMucSanPhamService;
+import Services.IDanhMucSanPhamService;
+import Services.IKieuDangService;
+import Services.IManageChatLieuService;
+import Services.IManageSizeService;
+import Services.IMauSacService;
+import Services.KieuDangService;
+import Services.ManageChatLieuService;
+import Services.ManageSizeService;
+import Services.MauSacService;
+import ViewsModels.ChatLieuModel;
+import ViewsModels.DanhMucSanPhamModel;
+import ViewsModels.KieuDangModel;
+import ViewsModels.MauSacModel;
+import ViewsModels.SizeModel;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Bùi Công Minh
  */
 public class FarmeQLSanPham extends javax.swing.JFrame {
-
-    /**
-     * Creates new form qlao
-     */
+    
+    IMauSacService _IMauSacService;
+    IDanhMucSanPhamService _DanhMucSanPhamService;
+    IManageChatLieuService _ChatLieuService;
+    IManageSizeService _IManageSizeService;
+    IKieuDangService _KieuDangService;
+    
     public FarmeQLSanPham() {
         initComponents();
+        _ChatLieuService = new ManageChatLieuService();
+        _DanhMucSanPhamService = new DanhMucSanPhamService();
+        _IManageSizeService = new ManageSizeService();
+        _KieuDangService = new KieuDangService();
+        _IMauSacService =  new MauSacService();
+        cbxmausac();
+        cbxchatlieu();
+        cbxdanhmuc();
+        cbxkieudang();
+        //cbxsize();
     }
-
+    
+    public void cbxmausac(){
+            DefaultComboBoxModel cbx = new DefaultComboBoxModel();
+            for (MauSacModel x : _IMauSacService.getproduct()){
+                cbx.addElement(x.getTenMauSac());
+        }
+            cbx_mausac.setModel(cbx);
+    }
+    public void cbxsize(){
+            DefaultComboBoxModel cbx = new DefaultComboBoxModel();
+            for (SizeModel x : _IManageSizeService.getSize(1, 10)){
+                cbx.addElement(x.getTenSize());
+        }
+            cbx_size.setModel(cbx);
+    }
+    public void cbxchatlieu(){
+            DefaultComboBoxModel cbx = new DefaultComboBoxModel();
+            for (ChatLieuModel x : _ChatLieuService.getProducts()){
+                cbx.addElement(x.getMota());
+        }
+            cbx_chatlieu.setModel(cbx);
+    }
+    public void cbxkieudang(){
+            DefaultComboBoxModel cbx = new DefaultComboBoxModel();
+            for (KieuDangModel x : _KieuDangService.getproduct()){
+                cbx.addElement(x.getTenKieuDang());
+        }
+            cbx_kieudang.setModel(cbx);
+    }
+    public void cbxdanhmuc(){
+            DefaultComboBoxModel cbx = new DefaultComboBoxModel();
+            for (DanhMucSanPhamModel x : _DanhMucSanPhamService.getListFromDB()){
+                cbx.addElement(x.getTenDanhMuc());
+        }
+            cbx_danhmuc.setModel(cbx);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,15 +111,15 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        cbx_mausac = new javax.swing.JComboBox<>();
+        cbx_kieudang = new javax.swing.JComboBox<>();
+        cbx_size = new javax.swing.JComboBox<>();
+        cbx_danhmuc = new javax.swing.JComboBox<>();
+        cbx_chatlieu = new javax.swing.JComboBox<>();
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,7 +169,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(102, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSIGNMENT_JAVA3/CodeThu/anh/shirt.png"))); // NOI18N
         jLabel2.setText("Quản Lý Sản Phẩm");
         jLabel2.setAutoscrolls(true);
         jLabel2.setOpaque(true);
@@ -144,6 +211,16 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
             }
         });
 
+        cbx_mausac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbx_kieudang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbx_size.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbx_danhmuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbx_chatlieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -170,14 +247,14 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField6)
-                                    .addComponent(jTextField7)
-                                    .addComponent(jTextField8)
                                     .addComponent(jTextField9)
                                     .addComponent(jTextField10)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbx_mausac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbx_kieudang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbx_size, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbx_danhmuc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbx_chatlieu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,23 +276,23 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_kieudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_mausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_danhmuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_chatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -314,6 +391,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbx_chatlieu;
+    private javax.swing.JComboBox<String> cbx_danhmuc;
+    private javax.swing.JComboBox<String> cbx_kieudang;
+    private javax.swing.JComboBox<String> cbx_mausac;
+    private javax.swing.JComboBox<String> cbx_size;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -335,11 +417,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
