@@ -69,15 +69,12 @@ public class DanhMucSanPhamService implements IDanhMucSanPhamService {
     @Override
     public List<DanhMucSanPhamModel> findDanhMucSp(String tenDmSp) {
         List<DanhMucSanPhamModel> lstFind = new ArrayList<>();
-        String pattern = ".*"+tenDmSp.toLowerCase()+".*";
+        String pattern = ".*"+Utils.CheckData.unAccent(tenDmSp.toLowerCase())+".*";
         if (tenDmSp.isBlank()) {
             return _lstdanhMucSpModels;
         }
         for (DanhMucSanPhamModel x : _lstdanhMucSpModels) {
-//            if (x.getTenDanhMuc().toLowerCase().startsWith(tenDmSp.toLowerCase())) {
-//                lstFind.add(x);
-//            }
-            if (x.getTenDanhMuc().toLowerCase().matches(pattern)) {
+            if (Utils.CheckData.unAccent(x.getTenDanhMuc()).toLowerCase().matches(pattern)) {
                 lstFind.add(x);
             }
         }
