@@ -105,4 +105,14 @@ public class SizeRepository implements ISizeRepository {
         }
         return sizes;
     }
+    @Override
+    public List<Size> getfullsizedb(){
+    List<Size> sizes;
+        try (Session session=HibernateUtil.getSessionFactory().openSession()){
+            String hql="select p from Size p";
+            TypedQuery<Size> query=session.createQuery(hql,Size.class);
+            sizes= query.getResultList();
+        }
+        return sizes;
+    }
 }

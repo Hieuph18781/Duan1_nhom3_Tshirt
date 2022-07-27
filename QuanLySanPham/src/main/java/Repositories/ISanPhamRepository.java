@@ -4,10 +4,17 @@
  */
 package Repositories;
 
+import DomainModels.SanPham;
+import java.util.List;
+
 /**
  *
  * @author hieu
  */
 public interface ISanPhamRepository {
-    
+    List<SanPham> findAll();
+    public SanPham insert(SanPham danhMucSp);
+
+    public boolean update(SanPham danhMucSp);
+    SanPham findById(String ma);
 }
