@@ -23,13 +23,15 @@ public class DanhMucSanPhamService implements IDanhMucSanPhamService {
     public DanhMucSanPhamService() {
         _IDanhMucSanPhamRepositories = new DanhMucSanPhamRepositories();
     }
-    DanhMucSanPham getDanhMucRpst(DanhMucSanPhamModel danhMucSanPhamModel){
+
+    DanhMucSanPham getDanhMucRpst(DanhMucSanPhamModel danhMucSanPhamModel) {
         DanhMucSanPham danhmucSP = new DanhMucSanPham();
         danhmucSP.setMaDanhMuc(danhMucSanPhamModel.getMaDanhMuc());
         danhmucSP.setTenDanhMuc(danhMucSanPhamModel.getTenDanhMuc());
         danhmucSP.setMota(danhMucSanPhamModel.getMota());
         return danhmucSP;
     }
+
     @Override
     public String them(DanhMucSanPhamModel danhMucSanPhamModel) {
         DanhMucSanPham dmsp = _IDanhMucSanPhamRepositories.insert(getDanhMucRpst(danhMucSanPhamModel));
@@ -41,7 +43,7 @@ public class DanhMucSanPhamService implements IDanhMucSanPhamService {
 
     @Override
     public String sua(DanhMucSanPhamModel danhMucSanPhamModel) {
-         boolean checkdmsp = _IDanhMucSanPhamRepositories.update(getDanhMucRpst(danhMucSanPhamModel));
+        boolean checkdmsp = _IDanhMucSanPhamRepositories.update(getDanhMucRpst(danhMucSanPhamModel));
         if (checkdmsp == false) {
             return "Sửa Không thành công";
         }
@@ -58,10 +60,28 @@ public class DanhMucSanPhamService implements IDanhMucSanPhamService {
         }
         return _lstdanhMucSpModels;
     }
-    
+
     @Override
-    public int getMaDanhMuc(){
-        return _lstdanhMucSpModels.size()+1;
+    public int getMaDanhMuc() {
+        return _lstdanhMucSpModels.size() + 1;
     }
-    
+
+    @Override
+    public List<DanhMucSanPhamModel> findDanhMucSp(String tenDmSp) {
+        List<DanhMucSanPhamModel> lstFind = new ArrayList<>();
+        String pattern = ".*"+tenDmSp.toLowerCase()+".*";
+        if (tenDmSp.isBlank()) {
+            return _lstdanhMucSpModels;
+        }
+        for (DanhMucSanPhamModel x : _lstdanhMucSpModels) {
+//            if (x.getTenDanhMuc().toLowerCase().startsWith(tenDmSp.toLowerCase())) {
+//                lstFind.add(x);
+//            }
+            if (x.getTenDanhMuc().toLowerCase().matches(pattern)) {
+                lstFind.add(x);
+            }
+        }
+        return lstFind;
+    }
+
 }

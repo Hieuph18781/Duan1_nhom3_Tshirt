@@ -52,7 +52,6 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Khuyễn Mãi");
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(563, 1190));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 620));
