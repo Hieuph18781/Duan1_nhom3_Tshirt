@@ -39,18 +39,32 @@ public class ManageChatLieuService implements IManageChatLieuService {
     public ChatLieuModel insert(ChatLieuModel chatLieu) {
         chatLieu.getMaChatLieu();
         var x = _IChatLieuRepository.save(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(), chatLieu.getMota()));
-        return new ChatLieuModel(x.getMaChatLieu(), x.getMota(), x.getTenChatLieu());
+        return new ChatLieuModel(x.getMaChatLieu(), x.getTenChatLieu(), x.getMota());
     }
 
     @Override
     public ChatLieuModel update(ChatLieuModel chatLieu) {
-        var x = _IChatLieuRepository.update2(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(), chatLieu.getMota()));
-        return new ChatLieuModel(x.getMaChatLieu(), x.getMota(), x.getTenChatLieu());
+        var x = _IChatLieuRepository.update2(new ChatLieu(chatLieu.getMaChatLieu(), chatLieu.getTenChatLieu(),chatLieu.getMota()));
+        return new ChatLieuModel(x.getMaChatLieu(), x.getTenChatLieu(), x.getMota());
     }
 
     @Override
     public int getMaChatLieu() {
         return _lstQlChatLieu.size() + 1;
+    }
+
+    @Override
+    public List<ChatLieuModel> findChatLieuByName(String tenChatLieu) {
+        List<ChatLieuModel> lstFind = new ArrayList<>();
+        if (tenChatLieu.isBlank()) {
+            return _lstQlChatLieu;
+        }
+        for (ChatLieuModel x : _lstQlChatLieu) {
+            if (x.getTenChatLieu().toLowerCase().contains(tenChatLieu)) {
+                lstFind.add(x);
+            }
+        }
+        return lstFind;
     }
 
 }
