@@ -18,4 +18,5 @@ public interface IManageSizeService {
     SizeModel UpdateNewSize(SizeModel size);
     public String sua(SizeModel size);
     public int getMaxIdSize();
+    public List<SizeModel> TimKiem(String ten);
 }

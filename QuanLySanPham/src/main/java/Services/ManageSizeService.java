@@ -73,5 +73,18 @@ public class ManageSizeService implements IManageSizeService {
         return _lstSize.size()+1;
     }
 
+    @Override
+    public List<SizeModel> TimKiem(String ten) {
+        List<SizeModel> sizem= new ArrayList<>();
+       
+        for (Size x : _iSizeRepostiory.find()) {
+            if (x.getTenSize().toLowerCase().contains(ten.toLowerCase())) {
+               sizem.add( new SizeModel(x.getMaSize(),x.getTenSize(),x.getMota()));
+                System.out.println(sizem +".... ");
+            }
+        }
+        return sizem;
+    }
+
     
 }
