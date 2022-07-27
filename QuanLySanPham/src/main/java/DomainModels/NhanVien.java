@@ -46,9 +46,9 @@ public class NhanVien implements Serializable {
 
     @Nationalized
     private String ChucVu;
-    @Nationalized
-    private String TrangThai;
-    @Nationalized
+
+    private boolean TrangThai;
+
     private String MatKhau;
 
     @OneToMany(mappedBy = "nhanvien",
@@ -62,7 +62,7 @@ public class NhanVien implements Serializable {
     public NhanVien() {
     }
 
-    public NhanVien(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, String TrangThai, String MatKhau) {
+    public NhanVien(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, boolean TrangThai, String MatKhau) {
         this.MaNhanVien = MaNhanVien;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -148,11 +148,11 @@ public class NhanVien implements Serializable {
         this.ChucVu = ChucVu;
     }
 
-    public String getTrangThai() {
+    public boolean getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(String TrangThai) {
+    public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
 
