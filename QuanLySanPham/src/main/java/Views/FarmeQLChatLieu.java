@@ -30,24 +30,18 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
     public FarmeQLChatLieu() {
         initComponents();
         _iManageChatLieuService = new ManageChatLieuService();
-        loadDataToTable();
+        loadtable(_iManageChatLieuService.getProducts());
         txt_machatlieu.setText("CL" + String.valueOf(_iManageChatLieuService.getMaChatLieu()));
         txt_machatlieu.setEnabled(false);
     }
 
-    private void loadDataToTable() {
-        List<ChatLieuModel> ds = _iManageChatLieuService.getProducts();
-        DefaultTableModel dtm = (DefaultTableModel) this.tbChatLieu.getModel();
-        dtm.setRowCount(0);
-        for (ChatLieuModel chatlieu : ds) {
-            Object[] rowData = {
-                "CL" + chatlieu.getMaChatLieu(),
-                chatlieu.getMota(),
-                chatlieu.getTenChatLieu()};
-
-            dtm.addRow(rowData);
+    public void loadtable(List<ChatLieuModel> lstCl) {
+        DefaultTableModel _DefaultTableModel = new DefaultTableModel();
+        _DefaultTableModel = (DefaultTableModel) tbChatLieu.getModel();
+        _DefaultTableModel.setRowCount(0);
+        for (ChatLieuModel x : lstCl) {
+            _DefaultTableModel.addRow(new Object[]{"CL" + x.getMaChatLieu(), x.getTenChatLieu(), x.getMota()});
         }
-
     }
 
     private void clearForm() {
@@ -57,7 +51,7 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
     }
 
     ChatLieuModel getGuiChatLieu() {
-        return new ChatLieuModel(Integer.parseInt(txt_machatlieu.getText().substring(2)), txt_tenchatlieu.getText(), txt_mota.getText());
+        return new ChatLieuModel(Integer.parseInt(txt_machatlieu.getText().substring(2)), txt_mota.getText(), txt_tenchatlieu.getText());
     }
 
     private String getProductIdFromSelectedRow() {
@@ -87,6 +81,8 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbChatLieu = new javax.swing.JTable();
         btn_clear = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txt_timkiem = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 255));
@@ -155,6 +151,14 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Tìm Kiếm");
+
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,7 +185,12 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(295, 295, 295)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -193,12 +202,14 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_machatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_machatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_tenchatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -211,11 +222,9 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                                     .addComponent(btn_sua)
                                     .addComponent(btn_them)
                                     .addComponent(btn_clear)))
-                            .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel4)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -239,34 +248,13 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Thất bại");
                 }
-                loadDataToTable();
+                loadtable(_iManageChatLieuService.getProducts());
                 clearForm();
 
             }
         }
         return;
-//        if (validate.checkNullText(txt_machatlieu)
-//                && validate.checkNullText(txt_tenchatlieu)
-//                && validate.checkNullText(txt_mota)) {
-//            if (validate.checkMaCL(txt_machatlieu)) {
-//                ChatLieuModel clm = getProductFromInput2();
-//                if (_iManageChatLieuService.insert(clm) != null) {
-//                    JOptionPane.showMessageDialog(this, "Thành công");
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Thất bại");
-//                }
-//                loadDataToTable();
-//            }
-//
-//        }
 
-//        ChatLieuModel clm = getProductFromInput2();
-//        if (_iManageChatLieuService.insert(clm) != null) {
-//            JOptionPane.showMessageDialog(this, "Thành công");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Thất bại");
-//        }
-//        loadDataToTable();
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -285,22 +273,12 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Thất bại");
                 }
-                loadDataToTable();
+                loadtable(_iManageChatLieuService.getProducts());
                 clearForm();
             }
         }
         return;
 
-//        ChatLieuModel clm = getProductFromInput();
-//        String updatedProductId = getProductIdFromSelectedRow();
-//        clm.setMaChatLieu(updatedProductId);
-//        System.out.println(updatedProductId);
-//        if (_iManageChatLieuService.update(clm) != null) {
-//            JOptionPane.showMessageDialog(this, "Thành công");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Thất bại");
-//        }
-//        loadDataToTable();
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void tbChatLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChatLieuMouseClicked
@@ -319,6 +297,10 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         clearForm();
     }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+        loadtable(_iManageChatLieuService.findChatLieuByName(txt_timkiem.getText()));
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -490,11 +472,13 @@ public class FarmeQLChatLieu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbChatLieu;
     private javax.swing.JTextField txt_machatlieu;
     private javax.swing.JTextArea txt_mota;
     private javax.swing.JTextField txt_tenchatlieu;
+    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }
