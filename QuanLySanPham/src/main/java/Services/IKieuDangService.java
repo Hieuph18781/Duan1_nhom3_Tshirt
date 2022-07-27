@@ -19,4 +19,6 @@ public interface IKieuDangService {
     public String sua(KieuDangModel kieudang);
     
     public int getMaxIdKieuDang();
+
+    public void findKieuDang(String tenkiedang);
 }

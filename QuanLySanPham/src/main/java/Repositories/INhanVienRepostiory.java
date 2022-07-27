@@ -4,17 +4,15 @@
  */
 package Repositories;
 
-import DomainModels.SanPham;
+import DomainModels.NhanVien;
 import java.util.List;
 
 /**
  *
- * @author hieu
+ * @author Bùi Công Minh
  */
-public interface ISanPhamRepository {
-    List<SanPham> findAll();
-    public SanPham insert(SanPham danhMucSp);
-
-    public boolean update(SanPham danhMucSp);
-    SanPham findById(String ma);
+public interface INhanVienRepostiory {
+    List<NhanVien> findAll();
+    public NhanVien Save(NhanVien nhanvien);
+   public boolean update(NhanVien nhanvien );
 }

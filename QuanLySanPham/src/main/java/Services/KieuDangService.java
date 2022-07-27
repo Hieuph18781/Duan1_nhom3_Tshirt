@@ -42,7 +42,7 @@ public class KieuDangService implements IKieuDangService {
         _lstkieudang = new ArrayList<>();
         var kieudang = _iTruyvankieudang.findAll();
         for (KieuDang x : kieudang) {
-            _lstkieudang.add(new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota()));
+            _lstkieudang.add(new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh()));
         }
         return _lstkieudang;
     }
@@ -50,8 +50,8 @@ public class KieuDangService implements IKieuDangService {
     @Override
     public KieuDangModel createNewProduct(KieuDangModel kieudang) {
         kieudang.setMaKieuDang(0);
-        var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota()));
-        return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota());
+        var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota(),kieudang.getHinhAnh()));
+        return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh());
     }
 
     @Override
@@ -68,5 +68,18 @@ public class KieuDangService implements IKieuDangService {
         return _lstkieudang.size()+1;
     }
 
-    
+    @Override
+    public void findKieuDang(String tenkiedang) {
+        List<KieuDangModel> lstFind = new ArrayList<>();
+        if (tenkiedang.isBlank()) {
+            return ;
+        }
+        for (KieuDangModel x : _lstkieudang) {
+            if (x.getTenKieuDang().toLowerCase().contains(tenkiedang)) {
+                lstFind.add(x);
+            }
+        }
+        return; //To change body of generated methods, choose Tools | Templates.
+    }
+      
 }
