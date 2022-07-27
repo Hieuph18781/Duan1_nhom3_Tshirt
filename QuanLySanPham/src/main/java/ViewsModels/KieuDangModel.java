@@ -12,14 +12,19 @@ public class KieuDangModel {
      private int MaKieuDang;
      private String TenKieuDang;
       private String Mota;
+      private String HinhAnh;
+      
+      
+      
 
     public KieuDangModel() {
     }
 
-    public KieuDangModel(int MaKieuDang, String TenKieuDang, String Mota) {
+    public KieuDangModel(int MaKieuDang, String TenKieuDang, String Mota,String HinhAnh) {
         this.MaKieuDang = MaKieuDang;
         this.TenKieuDang = TenKieuDang;
         this.Mota = Mota;
+        this.HinhAnh = HinhAnh;
     }
     
     public int getMaKieuDang() {
@@ -46,7 +51,13 @@ public class KieuDangModel {
         this.Mota = Mota;
     }
       
-      
+   public String getHinhAnh() {
+        return HinhAnh;
+    }
+
+    public void setHinhAnh(String HinhAnhg) {
+        this.HinhAnh = HinhAnh;
+    }   
     
     
 }
