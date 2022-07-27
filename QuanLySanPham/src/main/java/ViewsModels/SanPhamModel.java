@@ -21,29 +21,32 @@ public class SanPhamModel {
     private int SoLuong;
     private double gia;
     private String Mota;
-    private boolean TrangThai;
-    private ChatLieu chatlieu;
-    private KieuDang kieudang;
-    private DanhMucSanPham danhMucSanPham;
-    private MauSac mausac;
-    private Size size;
+    
+    private ChatLieuModel chatlieuModel;
+    private KieuDangModel kieudangModel;
+    private DanhMucSanPhamModel danhMucSanPhamModel;
+    private MauSacModel mausacModel;
+    private SizeModel sizeModel;
 
+    
+    
     public SanPhamModel() {
     }
 
-    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, boolean TrangThai, ChatLieu chatlieu, KieuDang kieudang, DanhMucSanPham danhMucSanPham, MauSac mausac, Size size) {
+    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, ChatLieuModel chatlieuModel, KieuDangModel kieudangModel, DanhMucSanPhamModel danhMucSanPhamModel, MauSacModel mausacModel, SizeModel sizeModel) {
         this.MaSanPham = MaSanPham;
         this.TenSanPham = TenSanPham;
         this.SoLuong = SoLuong;
         this.gia = gia;
         this.Mota = Mota;
-        this.TrangThai = TrangThai;
-        this.chatlieu = chatlieu;
-        this.kieudang = kieudang;
-        this.danhMucSanPham = danhMucSanPham;
-        this.mausac = mausac;
-        this.size = size;
+        this.chatlieuModel = chatlieuModel;
+        this.kieudangModel = kieudangModel;
+        this.danhMucSanPhamModel = danhMucSanPhamModel;
+        this.mausacModel = mausacModel;
+        this.sizeModel = sizeModel;
     }
+
+    
 
     public String getMaSanPham() {
         return MaSanPham;
@@ -85,52 +88,51 @@ public class SanPhamModel {
         this.Mota = Mota;
     }
 
-    public boolean isTrangThai() {
-        return TrangThai;
+    public ChatLieuModel getChatlieuModel() {
+        return chatlieuModel;
     }
 
-    public void setTrangThai(boolean TrangThai) {
-        this.TrangThai = TrangThai;
+    public void setChatlieuModel(ChatLieuModel chatlieuModel) {
+        this.chatlieuModel = chatlieuModel;
     }
 
-    public ChatLieu getChatlieu() {
-        return chatlieu;
+    public KieuDangModel getKieudangModel() {
+        return kieudangModel;
     }
 
-    public void setChatlieu(ChatLieu chatlieu) {
-        this.chatlieu = chatlieu;
+    public void setKieudangModel(KieuDangModel kieudangModel) {
+        this.kieudangModel = kieudangModel;
     }
 
-    public KieuDang getKieudang() {
-        return kieudang;
+    public DanhMucSanPhamModel getDanhMucSanPhamModel() {
+        return danhMucSanPhamModel;
     }
 
-    public void setKieudang(KieuDang kieudang) {
-        this.kieudang = kieudang;
+    public void setDanhMucSanPhamModel(DanhMucSanPhamModel danhMucSanPhamModel) {
+        this.danhMucSanPhamModel = danhMucSanPhamModel;
     }
 
-    public DanhMucSanPham getDanhMucSanPham() {
-        return danhMucSanPham;
+    public MauSacModel getMausacModel() {
+        return mausacModel;
     }
 
-    public void setDanhMucSanPham(DanhMucSanPham danhMucSanPham) {
-        this.danhMucSanPham = danhMucSanPham;
+    public void setMausacModel(MauSacModel mausacModel) {
+        this.mausacModel = mausacModel;
     }
 
-    public MauSac getMausac() {
-        return mausac;
+    public SizeModel getSizeModel() {
+        return sizeModel;
     }
 
-    public void setMausac(MauSac mausac) {
-        this.mausac = mausac;
+    public void setSizeModel(SizeModel sizeModel) {
+        this.sizeModel = sizeModel;
     }
 
-    public Size getSize() {
-        return size;
+   
+    public String trangthai(int soluong){
+        if (this.SoLuong >0) {
+            return "Còn hàng";
+        }
+        return "hết";
     }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
 }

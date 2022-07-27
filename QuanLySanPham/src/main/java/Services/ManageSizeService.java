@@ -85,6 +85,15 @@ public class ManageSizeService implements IManageSizeService {
         }
         return sizem;
     }
-
+    @Override
+    public List<SizeModel> getfullize(){
+         _lstSize=new ArrayList<>();
+       var size= _iSizeRepostiory.find();
+        for (Size x : size) {
+            _lstSize.add(new SizeModel(x.getMaSize(),x.getTenSize(),x.getMota()));
+            
+        }
+        return _lstSize;   
+    }
     
 }
