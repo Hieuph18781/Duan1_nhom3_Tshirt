@@ -34,6 +34,9 @@ public class KieuDang implements Serializable{
     @Nationalized
     private String Mota;
     
+    @Nationalized
+    private String HinhAnh;
+    
     @OneToMany(mappedBy = "chatlieu",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SanPham> lstSanPham;
@@ -41,10 +44,11 @@ public class KieuDang implements Serializable{
     public KieuDang() {
     }
 
-    public KieuDang(int MaKieuDang, String TenKieuDang, String Mota) {
+    public KieuDang(int MaKieuDang, String TenKieuDang, String Mota,String HinhAnh) {
         this.MaKieuDang = MaKieuDang;
         this.TenKieuDang = TenKieuDang;
         this.Mota = Mota;
+        this.HinhAnh = HinhAnh;
     }
 
     public int getMaKieuDang() {
@@ -74,6 +78,14 @@ public class KieuDang implements Serializable{
     public List<SanPham> getLstSanPham() {
         return lstSanPham;
     }
+     public String getHinhAnh() {
+        return HinhAnh;
+    }
+
+    public void setHinhAnh(String HinhAnh) {
+        this.HinhAnh = HinhAnh;
+    }
+
 
     public void setLstSanPham(List<SanPham> lstSanPham) {
         this.lstSanPham = lstSanPham;
