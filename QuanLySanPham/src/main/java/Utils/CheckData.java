@@ -76,4 +76,6 @@ public class CheckData {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "");
     }
+    
+    
 }

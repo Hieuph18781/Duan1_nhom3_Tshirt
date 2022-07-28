@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class FarmeQLKieuDang extends javax.swing.JFrame {
 
     IKieuDangService _ikieudangService;
+    KieuDangService _kieudangsevice;
     DefaultTableModel _default;
     ArrayList<KieuDang> _lstkd;
 String đuongang="C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\src\\main\\java\\img";
@@ -157,8 +158,6 @@ int vitri=-1;
                 btn_timkiemActionPerformed(evt);
             }
         });
-
-        lbl_hinhanh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/img/12186-womans-clothes-icon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,7 +305,8 @@ public ImageIcon ReziseIcon(String imgpath){
     }//GEN-LAST:event_btn_hinhanhActionPerformed
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
-     // loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText()));
+      _kieudangsevice.findKieuDang(txt_timkiem.getText());
+      loadtable();
               
                
             

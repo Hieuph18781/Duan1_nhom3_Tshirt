@@ -29,13 +29,13 @@ public class NhanVienService implements INhanVienService{
            nhanvien.setMaNhanVien(nhanvienmodel.getMaNhanVien());
            nhanvien.setHoTen(nhanvienmodel.getHoTen());
            nhanvien.setNgaySinh(nhanvienmodel.getNgaySinh());
-           nhanvien.setGioiTinh(nhanvienmodel.getGioiTinh());
+           nhanvien.setGioiTinh(nhanvienmodel.isGioiTinh());
            nhanvien.setSoDienThoai(nhanvienmodel.getSoDienThoai());
            nhanvien.setEmail(nhanvienmodel.getEmail());
            nhanvien.setDiaChi(nhanvienmodel.getDiaChi());
            nhanvien.setCCCD(nhanvienmodel.getCCCD());
            nhanvien.setChucVu(nhanvienmodel.getChucVu());
-           nhanvien.setTrangThai(nhanvienmodel.isTrangThai());
+           nhanvien.setTrangThai(nhanvienmodel.getTrangThai());
            nhanvien.setMatKhau(nhanvienmodel.getMatKhau());
            return nhanvien;
            
@@ -46,7 +46,7 @@ public class NhanVienService implements INhanVienService{
         _lstnhanvien = new ArrayList<>();
         var nhanvien = _inhanvientruyvan.findAll();
         for (NhanVien x : nhanvien) {
-            _lstnhanvien.add(new NhanVienModel(x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.getGioiTinh(), x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()));
+            _lstnhanvien.add(new NhanVienModel(x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.isGioiTinh(), x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()));
         }
         return _lstnhanvien;
     } //To change body of generated methods, choose Tools | Templates.
@@ -55,8 +55,10 @@ public class NhanVienService implements INhanVienService{
     @Override
     public NhanVienModel createNewProduct(NhanVienModel nhanvienmodel) {
         //nhanvienmodel.setMaNhanVien();
-        var x = _inhanvientruyvan.Save(new NhanVien(nhanvienmodel.getMaNhanVien(), nhanvienmodel.getHoTen(), nhanvienmodel.getNgaySinh(), nhanvienmodel.getGioiTinh() , nhanvienmodel.getSoDienThoai(), nhanvienmodel.getEmail(), nhanvienmodel.getEmail(), nhanvienmodel.getDiaChi(), nhanvienmodel.getChucVu(), nhanvienmodel.isTrangThai(), nhanvienmodel.getMatKhau()));
-        return new NhanVienModel(x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.getGioiTinh(), x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("2");
+        var x = _inhanvientruyvan.Save(new NhanVien(nhanvienmodel.getMaNhanVien(), nhanvienmodel.getHoTen(), nhanvienmodel.getNgaySinh(), nhanvienmodel.isGioiTinh(),nhanvienmodel.getSoDienThoai(), nhanvienmodel.getEmail(), nhanvienmodel.getDiaChi(), nhanvienmodel.getCCCD(),nhanvienmodel.getChucVu(), nhanvienmodel.getTrangThai(), nhanvienmodel.getMatKhau()));
+        System.out.println("1");
+        return new NhanVienModel(x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.isGioiTinh(), x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -72,5 +74,13 @@ public class NhanVienService implements INhanVienService{
     public int getMaxIdNhanVien() {
         return _lstnhanvien.size()+1; //To change body of generated methods, choose Tools | Templates.
     }
-    
+     public List<NhanVienModel> getListByHoTen(String hoten) {
+        List<NhanVienModel> lst=new ArrayList<>();
+        for (NhanVienModel x : _lstnhanvien) {
+            if (x.getHoTen().toLowerCase().contains(hoten.toLowerCase())) {
+                lst.add(x);
+            }
+        }
+        return lst;
+    }
 }
