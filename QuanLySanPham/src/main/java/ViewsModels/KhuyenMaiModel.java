@@ -19,19 +19,19 @@ public class KhuyenMaiModel {
          private Date NgayKetThuc;
     private int GiaKhuyenMai;
       private String MoTa;
-      private NhanVien nhanvien;
+     
 
     public KhuyenMaiModel() {
     }
 
-    public KhuyenMaiModel(int IdKhuyenMai, String TenKhuyenMai, Date NgayBatDau, Date NgayKetThuc, int GiaKhuyenMai, String MoTa, NhanVien nhanvien) {
+    public KhuyenMaiModel(int IdKhuyenMai, String TenKhuyenMai, Date NgayBatDau, Date NgayKetThuc, int GiaKhuyenMai, String MoTa) {
         this.IdKhuyenMai = IdKhuyenMai;
         this.TenKhuyenMai = TenKhuyenMai;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.GiaKhuyenMai = GiaKhuyenMai;
         this.MoTa = MoTa;
-        this.nhanvien = nhanvien;
+        
     }
 
     public int getIdKhuyenMai() {
@@ -81,14 +81,5 @@ public class KhuyenMaiModel {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
-
-    public NhanVien getNhanvien() {
-        return nhanvien;
-    }
-
-    public void setNhanvien(NhanVien nhanvien) {
-        this.nhanvien = nhanvien;
-    }
-      
-      
+     
 }
