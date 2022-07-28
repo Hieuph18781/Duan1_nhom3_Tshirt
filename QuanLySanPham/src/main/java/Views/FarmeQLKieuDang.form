@@ -240,11 +240,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_hinhanh">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Views/img/12186-womans-clothes-icon.png"/>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
