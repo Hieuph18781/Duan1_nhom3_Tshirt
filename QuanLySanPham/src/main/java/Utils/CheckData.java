@@ -83,4 +83,5 @@ public class CheckData {
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
     
+    
 }

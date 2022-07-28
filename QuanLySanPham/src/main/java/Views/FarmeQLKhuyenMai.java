@@ -9,6 +9,7 @@ import Services.IKhuyenMaiService;
 import Services.KhuyenMaiService;
 import Utils.CheckData;
 import ViewsModels.KhuyenMaiModel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,27 +25,32 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     IKhuyenMaiService _IKhuyenMaiService;
     CheckData _check;
     List<KhuyenMaiModel> _lstKhuyenMaiModel;
+
     public FarmeQLKhuyenMai() {
         initComponents();
         _IKhuyenMaiService = new KhuyenMaiService();
         _lstKhuyenMaiModel = new ArrayList<>();
         _check = new CheckData();
+        SimpleDateFormat date = new SimpleDateFormat();
         loadtable();
-        txt_makm.setText( String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        txt_makm.setText("KM" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        //txt_giakm.setText(String.valueOf(txt_giakm.getText()) + "%");
+        txt_makm.setEnabled(false);
         
+
     }
-    
-    KhuyenMaiModel getdata(){
-        return new KhuyenMaiModel(Integer.parseInt(txt_makm.getText()), txt_tenkm.getText(), dc_ngaybatdau.getDate(), dc_ngaykt.getDate(), Integer.parseInt(txt_giakm.getText()  ) , txt_mota.getText());
+
+    KhuyenMaiModel getdata() {
+        return new KhuyenMaiModel(Integer.parseInt(txt_makm.getText().substring(2)), txt_tenkm.getText(), dc_ngaybatdau.getDate(), dc_ngaykt.getDate(), Integer.parseInt(txt_giakm.getText()), txt_mota.getText());
     }
-    
-    public void loadtable(){
+
+    public void loadtable() {
         DefaultTableModel _DefaultTableModel = new DefaultTableModel();
         _DefaultTableModel = (DefaultTableModel) tbl_khuyenmai.getModel();
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
         for (KhuyenMaiModel x : _IKhuyenMaiService.getListFromDB()) {
-            _DefaultTableModel.addRow(new Object[]{stt++,"KM" + x.getIdKhuyenMai(),x.getTenKhuyenMai(),x.getNgayBatDau(),x.getNgayKetThuc(),x.getGiaKhuyenMai(),x.getMoTa()});
+            _DefaultTableModel.addRow(new Object[]{stt++, "KM" + x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai() , x.getMoTa()});
         }
     }
     /**
@@ -299,28 +305,62 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-         if (_check.checkNullString(txt_tenkm.getText())) {
+        if (!_check.checkso(txt_giakm.getText())) {
+            JOptionPane.showMessageDialog(this, "không nhập chữ");
+            return;
+        }
+        if (Integer.parseInt(txt_giakm.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "không nhập qua 100%");
+            return;
+        }
+        if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
+                || _check.checkNullString(txt_mota.getText()) || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
         }
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
+
+        if (dc_ngaybatdau.getDate().after(dc_ngaykt.getDate())) {
+            JOptionPane.showMessageDialog(this, "ngày bắt đầu phải bé hơn ngày kết thúc");
+            return;
+        }
         for (KhuyenMaiModel x : _IKhuyenMaiService.getListFromDB()) {
-            if (x.getIdKhuyenMai()== Integer.parseInt(txt_giakm.getText())) {
+            if (x.getIdKhuyenMai() == Integer.parseInt(txt_giakm.getText())) {
                 JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
                 return;
             }
         }
-        
+
         JOptionPane.showMessageDialog(this, _IKhuyenMaiService.them(getdata()));
         loadtable();
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-         JOptionPane.showMessageDialog(this, _IKhuyenMaiService.sua(getdata()));
+        if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
+                || _check.checkNullString(txt_mota.getText()) || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống Tên");
+            return;
+        }
+        if (Integer.parseInt(txt_giakm.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "không nhập qua 100%");
+            return;
+        }
+        if (!_check.checkso(txt_giakm.getText())) {
+            JOptionPane.showMessageDialog(this, "không nhập chữ");
+            return;
+        }
+        if (dc_ngaybatdau.getDate().after(dc_ngaykt.getDate())) {
+            JOptionPane.showMessageDialog(this, "ngày bắt đầu phải bé hơn ngày kết thúc");
+            return;
+        }
+        JOptionPane.showMessageDialog(this, _IKhuyenMaiService.sua(getdata()));
         loadtable();
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void tbl_khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khuyenmaiMouseClicked
-        int row= tbl_khuyenmai.getSelectedRow();
+        int row = tbl_khuyenmai.getSelectedRow();
         txt_makm.setText(tbl_khuyenmai.getValueAt(row, 1).toString());
         txt_tenkm.setText(tbl_khuyenmai.getValueAt(row, 2).toString());
         txt_mota.setText(tbl_khuyenmai.getValueAt(row, 6).toString());
@@ -330,11 +370,11 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_khuyenmaiMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-       txt_makm.setText(String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
-       txt_tenkm.setText("");
-       txt_mota.setText("");
-       txt_giakm.setText("");
-       
+        txt_makm.setText("Km" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        txt_tenkm.setText("");
+        txt_mota.setText("");
+        txt_giakm.setText("");
+
     }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
