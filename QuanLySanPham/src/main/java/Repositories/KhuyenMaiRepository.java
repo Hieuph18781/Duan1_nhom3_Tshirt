@@ -5,58 +5,45 @@
 package Repositories;
 
 import DomainModels.DanhMucSanPham;
-import DomainModels.SanPham;
+import DomainModels.KhuyenMai;
 import Utils.HibernateUtil;
-
 import java.util.List;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 /**
  *
  * @author hieu
  */
-public class SanPhamRepository implements ISanPhamRepository{
+public class KhuyenMaiRepository implements IKhuyenmaiRepository{
 
     @Override
-    public List<SanPham> findAll() {
-       List<SanPham> products;
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT i FROM SanPham i";
-            TypedQuery<SanPham> query = session.createQuery(hql, SanPham.class);
-            products = query.getResultList();
-        }
-        return products;
-    }
-
-    @Override
-    public SanPham insert(SanPham danhMucSp) {
-         danhMucSp.setMaSanPham("");
+    public KhuyenMai insert(KhuyenMai km) {
+        km.setIdKhuyenMai(0);
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
-                session.saveOrUpdate(danhMucSp);
+                session.saveOrUpdate(km);
                 trans.commit();
             } catch (Exception e) {
                 e.printStackTrace();
                 trans.rollback();
-                danhMucSp = null;
+                km = null;
             }
         } finally {
-            return danhMucSp;
+            return km;
         }
     }
 
     @Override
-    public boolean update(SanPham danhMucSp) {
+    public boolean update(KhuyenMai km) {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
-                session.saveOrUpdate(danhMucSp);
+                session.saveOrUpdate(km);
                 trans.commit();
                 return true;
             } catch (Exception e) {
@@ -70,7 +57,18 @@ public class SanPhamRepository implements ISanPhamRepository{
     }
 
     @Override
-    public SanPham findById(String ma) {
+    public List<KhuyenMai> selectAll() {
+         List<KhuyenMai> products;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT k FROM KhuyenMai k";
+            TypedQuery<KhuyenMai> query = session.createQuery(hql, KhuyenMai.class);
+            products = query.getResultList();
+        }
+        return products;
+    }
+
+    @Override
+    public KhuyenMai selectById(KhuyenMai enity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

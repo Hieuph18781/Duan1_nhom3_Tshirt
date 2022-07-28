@@ -4,17 +4,19 @@
  */
 package Repositories;
 
-import DomainModels.SanPham;
+import DomainModels.KhuyenMai;
 import java.util.List;
 
 /**
  *
  * @author hieu
  */
-public interface ISanPhamRepository {
-    List<SanPham> findAll();
-    public SanPham insert(SanPham danhMucSp);
+public interface IKhuyenmaiRepository {
+    public KhuyenMai insert(KhuyenMai km);
 
-    public boolean update(SanPham danhMucSp);
-    SanPham findById(String ma);
+    public boolean update(KhuyenMai km);
+
+    public List<KhuyenMai> selectAll();
+
+    public KhuyenMai selectById(KhuyenMai enity);
 }

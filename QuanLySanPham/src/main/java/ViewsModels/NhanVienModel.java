@@ -15,23 +15,21 @@ public class NhanVienModel {
     private String MaNhanVien;
     private String HoTen;
     private Date NgaySinh;
-    private String GioiTinh;
+    private boolean  GioiTinh;
     private String SoDienThoai;
     private String Email;
     private String DiaChi;
     private String CCCD;
     private String ChucVu;
 
-    private boolean TrangThai;
+    private String TrangThai;
 
     private String MatKhau;
 
     public NhanVienModel() {
     }
-    
-    
 
-    public NhanVienModel(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, boolean TrangThai, String MatKhau) {
+    public NhanVienModel(String MaNhanVien, String HoTen, Date NgaySinh, boolean GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, String TrangThai, String MatKhau) {
         this.MaNhanVien = MaNhanVien;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -69,11 +67,11 @@ public class NhanVienModel {
         this.NgaySinh = NgaySinh;
     }
 
-    public String getGioiTinh() {
+    public boolean isGioiTinh() {
         return GioiTinh;
     }
 
-    public void setGioiTinh(String GioiTinh) {
+    public void setGioiTinh(boolean GioiTinh) {
         this.GioiTinh = GioiTinh;
     }
 
@@ -117,11 +115,11 @@ public class NhanVienModel {
         this.ChucVu = ChucVu;
     }
 
-    public boolean isTrangThai() {
+    public String getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(boolean TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 
@@ -132,6 +130,20 @@ public class NhanVienModel {
     public void setMatKhau(String MatKhau) {
         this.MatKhau = MatKhau;
     }
+
+    @Override
+    public String toString() {
+        return "NhanVienModel{" + "MaNhanVien=" + MaNhanVien + ", HoTen=" + HoTen + ", NgaySinh=" + NgaySinh + ", GioiTinh=" + GioiTinh + ", SoDienThoai=" + SoDienThoai + ", Email=" + Email + ", DiaChi=" + DiaChi + ", CCCD=" + CCCD + ", ChucVu=" + ChucVu + ", TrangThai=" + TrangThai + ", MatKhau=" + MatKhau + '}';
+    }
+
+    
+
+   
+
+    
+    
+
+    
     
     
 

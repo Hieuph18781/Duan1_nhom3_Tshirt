@@ -4,6 +4,7 @@
  */
 package Utils;
 
+import java.text.Normalizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -69,4 +70,12 @@ public class CheckData {
             return false;
         }
     }
+    
+    public static String unAccent(String s) {//Convert từ tiếng việt có dấu về tiếng việt 0 dấu
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "");
+    }
+    
+    
 }

@@ -17,6 +17,6 @@ public interface ISizeRepository {
     String dalete(String MaSize);
     public boolean  update (Size size);
     List<Size> find();
-    
+    public List<Size> getfullsizedb();
             
 }

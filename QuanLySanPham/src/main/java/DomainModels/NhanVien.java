@@ -36,7 +36,7 @@ public class NhanVien implements Serializable {
     private Date NgaySinh;
 
     @Nationalized
-    private String GioiTinh;
+    private boolean GioiTinh;
     private String SoDienThoai;
     private String Email;
 
@@ -46,9 +46,9 @@ public class NhanVien implements Serializable {
 
     @Nationalized
     private String ChucVu;
-
-    private boolean TrangThai;
-
+    @Nationalized
+    private String TrangThai;
+    @Nationalized
     private String MatKhau;
 
     @OneToMany(mappedBy = "nhanvien",
@@ -62,7 +62,7 @@ public class NhanVien implements Serializable {
     public NhanVien() {
     }
 
-    public NhanVien(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, boolean TrangThai, String MatKhau) {
+    public NhanVien(String MaNhanVien, String HoTen, Date NgaySinh, boolean GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, String TrangThai, String MatKhau) {
         this.MaNhanVien = MaNhanVien;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -100,11 +100,11 @@ public class NhanVien implements Serializable {
         this.NgaySinh = NgaySinh;
     }
 
-    public String getGioiTinh() {
+    public boolean isGioiTinh() {
         return GioiTinh;
     }
 
-    public void setGioiTinh(String GioiTinh) {
+    public void setGioiTinh(boolean GioiTinh) {
         this.GioiTinh = GioiTinh;
     }
 
@@ -148,11 +148,11 @@ public class NhanVien implements Serializable {
         this.ChucVu = ChucVu;
     }
 
-    public boolean getTrangThai() {
+    public String getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(boolean TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 
@@ -179,5 +179,7 @@ public class NhanVien implements Serializable {
     public void setLstHoaDon(List<HoaDon> lstHoaDon) {
         this.lstHoaDon = lstHoaDon;
     }
+
+   
 
 }
