@@ -49,20 +49,26 @@ public class SanPhamService implements ISanPhamService{
         for (SanPham x : lstSp) {
             ChatLieuModel clmd = new ChatLieuModel();
             clmd.setMaChatLieu(x.getChatlieu().getMaChatLieu());
+            clmd.setTenChatLieu(x.getChatlieu().getTenChatLieu());
+            
             KieuDangModel kdmd = new KieuDangModel();
             kdmd.setMaKieuDang(x.getKieudang().getMaKieuDang());
+            kdmd.setTenKieuDang(x.getKieudang().getTenKieuDang());
+            
             DanhMucSanPhamModel dmsp = new DanhMucSanPhamModel();
             dmsp.setMaDanhMuc(x.getDanhMucSanPham().getMaDanhMuc());
+            dmsp.setTenDanhMuc(x.getDanhMucSanPham().getTenDanhMuc());
+            
             MauSacModel msmd = new MauSacModel();
             msmd.setMaMauSac(x.getMausac().getMaMauSac());
+            msmd.setTenMauSac(x.getMausac().getTenMauSac());
+            
             SizeModel szmd = new SizeModel();
             szmd.setMaSize(x.getSize().getMaSize());
-            _lstsanpham.add(new SanPhamModel(x.getMaSanPham(), x.getTenSanPham(), x.getSoLuong(), x.getGia(), x.getMota(),
-                    clmd
-                    , kdmd
-                    , dmsp
-                    , msmd
-                    , szmd));
+            szmd.setTenSize(x.getSize().getTenSize());
+            
+
+            _lstsanpham.add(new SanPhamModel(x.getMaSanPham(), x.getTenSanPham(), x.getSoLuong(), x.getGia(), x.getMota(),x.getTrangThai(),clmd , kdmd, dmsp , msmd, szmd));
     }
         return _lstsanpham;
     }

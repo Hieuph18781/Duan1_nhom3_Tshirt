@@ -21,6 +21,7 @@ public class SanPhamModel {
     private int SoLuong;
     private double gia;
     private String Mota;
+    private boolean TrangThai;
     
     private ChatLieuModel chatlieuModel;
     private KieuDangModel kieudangModel;
@@ -33,20 +34,19 @@ public class SanPhamModel {
     public SanPhamModel() {
     }
 
-    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, ChatLieuModel chatlieuModel, KieuDangModel kieudangModel, DanhMucSanPhamModel danhMucSanPhamModel, MauSacModel mausacModel, SizeModel sizeModel) {
+    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, boolean TrangThai, ChatLieuModel chatlieuModel, KieuDangModel kieudangModel, DanhMucSanPhamModel danhMucSanPhamModel, MauSacModel mausacModel, SizeModel sizeModel) {
         this.MaSanPham = MaSanPham;
         this.TenSanPham = TenSanPham;
         this.SoLuong = SoLuong;
         this.gia = gia;
         this.Mota = Mota;
+        this.TrangThai = TrangThai;
         this.chatlieuModel = chatlieuModel;
         this.kieudangModel = kieudangModel;
         this.danhMucSanPhamModel = danhMucSanPhamModel;
         this.mausacModel = mausacModel;
         this.sizeModel = sizeModel;
     }
-
-    
 
     public String getMaSanPham() {
         return MaSanPham;
@@ -86,6 +86,14 @@ public class SanPhamModel {
 
     public void setMota(String Mota) {
         this.Mota = Mota;
+    }
+
+    public boolean isTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
     }
 
     public ChatLieuModel getChatlieuModel() {
@@ -128,11 +136,4 @@ public class SanPhamModel {
         this.sizeModel = sizeModel;
     }
 
-   
-    public String trangthai(int soluong){
-        if (this.SoLuong >0) {
-            return "Còn hàng";
-        }
-        return "hết";
-    }
 }
