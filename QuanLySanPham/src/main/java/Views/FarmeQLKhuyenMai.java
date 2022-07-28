@@ -4,19 +4,49 @@
  */
 package Views;
 
+import DomainModels.KhuyenMai;
+import Services.IKhuyenMaiService;
+import Services.KhuyenMaiService;
+import Utils.CheckData;
+import ViewsModels.KhuyenMaiModel;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Nguyen Van Thuan
  */
 public class FarmeQLKhuyenMai extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FarmeKhuyenMai
-     */
+    IKhuyenMaiService _IKhuyenMaiService;
+    CheckData _check;
+    List<KhuyenMaiModel> _lstKhuyenMaiModel;
     public FarmeQLKhuyenMai() {
         initComponents();
+        _IKhuyenMaiService = new KhuyenMaiService();
+        _lstKhuyenMaiModel = new ArrayList<>();
+        _check = new CheckData();
+        loadtable();
+        txt_makm.setText( String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        
     }
-
+    
+    KhuyenMaiModel getdata(){
+        return new KhuyenMaiModel(Integer.parseInt(txt_makm.getText()), txt_tenkm.getText(), dc_ngaybatdau.getDate(), dc_ngaykt.getDate(), Integer.parseInt(txt_giakm.getText()  ) , txt_mota.getText());
+    }
+    
+    public void loadtable(){
+        DefaultTableModel _DefaultTableModel = new DefaultTableModel();
+        _DefaultTableModel = (DefaultTableModel) tbl_khuyenmai.getModel();
+        _DefaultTableModel.setRowCount(0);
+        int stt = 1;
+        for (KhuyenMaiModel x : _IKhuyenMaiService.getListFromDB()) {
+            _DefaultTableModel.addRow(new Object[]{stt++,"KM" + x.getIdKhuyenMai(),x.getTenKhuyenMai(),x.getNgayBatDau(),x.getNgayKetThuc(),x.getGiaKhuyenMai(),x.getMoTa()});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,21 +63,21 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_tenkm = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txt_makm = new javax.swing.JTextField();
+        txt_giakm = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        txt_mota = new javax.swing.JTextArea();
+        btn_them = new javax.swing.JButton();
+        btn_sua = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
+        dc_ngaybatdau = new com.toedter.calendar.JDateChooser();
+        dc_ngaykt = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_khuyenmai = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Khuyễn Mãi");
@@ -79,19 +109,34 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Mô tả :");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_mota.setColumns(20);
+        txt_mota.setRows(5);
+        jScrollPane1.setViewportView(txt_mota);
 
-        jButton2.setText("Thêm");
+        btn_them.setText("Thêm");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Sửa");
+        btn_sua.setText("Sửa");
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Clear");
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
 
-        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        dc_ngaybatdau.setDateFormatString("yyyy-MM-dd");
 
-        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+        dc_ngaykt.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,23 +153,23 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                            .addComponent(txt_makm)
+                            .addComponent(txt_tenkm)
+                            .addComponent(dc_ngaybatdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dc_ngaykt, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btn_them, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
-                                .addComponent(jButton3)
+                                .addComponent(btn_sua)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4))
-                            .addComponent(jTextField5)
+                                .addComponent(btn_clear))
+                            .addComponent(txt_giakm)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -136,22 +181,22 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_makm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_tenkm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dc_ngaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dc_ngaykt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_giakm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -161,9 +206,9 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_clear)
+                    .addComponent(btn_them)
+                    .addComponent(btn_sua))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -171,7 +216,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Danh Sách Khuyến Mãi", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(719, 719));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_khuyenmai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -182,9 +227,14 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                 "STT", "Mã Khuyễn Mãi", "Tên Khuyễn Mãi", "Ngày bắt đầu", "Ngày kết thúc", "Giá Khuyễn Mãi", "Mô tả"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        tbl_khuyenmai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_khuyenmaiMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_khuyenmai);
+        if (tbl_khuyenmai.getColumnModel().getColumnCount() > 0) {
+            tbl_khuyenmai.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -193,14 +243,14 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -225,7 +275,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -233,7 +283,9 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,6 +297,45 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+         if (_check.checkNullString(txt_tenkm.getText())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống Tên");
+            return;
+        }
+        for (KhuyenMaiModel x : _IKhuyenMaiService.getListFromDB()) {
+            if (x.getIdKhuyenMai()== Integer.parseInt(txt_giakm.getText())) {
+                JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
+                return;
+            }
+        }
+        
+        JOptionPane.showMessageDialog(this, _IKhuyenMaiService.them(getdata()));
+        loadtable();
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+         JOptionPane.showMessageDialog(this, _IKhuyenMaiService.sua(getdata()));
+        loadtable();
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void tbl_khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khuyenmaiMouseClicked
+        int row= tbl_khuyenmai.getSelectedRow();
+        txt_makm.setText(tbl_khuyenmai.getValueAt(row, 1).toString());
+        txt_tenkm.setText(tbl_khuyenmai.getValueAt(row, 2).toString());
+        txt_mota.setText(tbl_khuyenmai.getValueAt(row, 6).toString());
+        txt_giakm.setText(tbl_khuyenmai.getValueAt(row, 5).toString());
+        dc_ngaybatdau.setDate((Date) tbl_khuyenmai.getValueAt(row, 3));
+        dc_ngaykt.setDate((Date) tbl_khuyenmai.getValueAt(row, 4));
+    }//GEN-LAST:event_tbl_khuyenmaiMouseClicked
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+       txt_makm.setText(String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+       txt_tenkm.setText("");
+       txt_mota.setText("");
+       txt_giakm.setText("");
+       
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,12 +374,12 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_sua;
+    private javax.swing.JButton btn_them;
+    private com.toedter.calendar.JDateChooser dc_ngaybatdau;
+    private com.toedter.calendar.JDateChooser dc_ngaykt;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -300,10 +391,10 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tbl_khuyenmai;
+    private javax.swing.JTextField txt_giakm;
+    private javax.swing.JTextField txt_makm;
+    private javax.swing.JTextArea txt_mota;
+    private javax.swing.JTextField txt_tenkm;
     // End of variables declaration//GEN-END:variables
 }

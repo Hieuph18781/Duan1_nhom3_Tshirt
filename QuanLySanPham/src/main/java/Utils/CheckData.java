@@ -53,6 +53,12 @@ public class CheckData {
         return matcher.matches();
     }
 
+    public Boolean checksoThuc(String text) {
+        Pattern pattern = Pattern.compile("[0-9]{1,13}(\\.[0-9]*)?");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
     public static boolean checkNullText(JTextField txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
@@ -70,10 +76,11 @@ public class CheckData {
             return false;
         }
     }
-    
+
     public static String unAccent(String s) {//Convert từ tiếng việt có dấu về tiếng việt 0 dấu
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "");
+        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
+    
 }

@@ -136,4 +136,9 @@ public class SanPhamModel {
         this.sizeModel = sizeModel;
     }
 
+    @Override
+    public String toString() {
+        return "SanPhamModel{" + "MaSanPham=" + MaSanPham + ", TenSanPham=" + TenSanPham + ", SoLuong=" + SoLuong + ", gia=" + gia + ", Mota=" + Mota + ", TrangThai=" + TrangThai + ", chatlieuModel=" + chatlieuModel + ", kieudangModel=" + kieudangModel + ", danhMucSanPhamModel=" + danhMucSanPhamModel + ", mausacModel=" + mausacModel + ", sizeModel=" + sizeModel + '}';
+    }
+
 }
