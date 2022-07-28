@@ -22,7 +22,7 @@ public class NhanVienModel {
     private String CCCD;
     private String ChucVu;
 
-    private boolean TrangThai;
+    private String TrangThai;
 
     private String MatKhau;
 
@@ -31,7 +31,7 @@ public class NhanVienModel {
     
     
 
-    public NhanVienModel(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, boolean TrangThai, String MatKhau) {
+    public NhanVienModel(String MaNhanVien, String HoTen, Date NgaySinh, String GioiTinh, String SoDienThoai, String Email, String DiaChi, String CCCD, String ChucVu, String TrangThai, String MatKhau) {
         this.MaNhanVien = MaNhanVien;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -117,11 +117,11 @@ public class NhanVienModel {
         this.ChucVu = ChucVu;
     }
 
-    public boolean isTrangThai() {
+    public String isTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(boolean TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 
@@ -131,6 +131,11 @@ public class NhanVienModel {
 
     public void setMatKhau(String MatKhau) {
         this.MatKhau = MatKhau;
+    }
+
+    @Override
+    public String toString() {
+        return "NhanVienModel{" + "MaNhanVien=" + MaNhanVien + ", HoTen=" + HoTen + ", NgaySinh=" + NgaySinh + ", GioiTinh=" + GioiTinh + ", SoDienThoai=" + SoDienThoai + ", Email=" + Email + ", DiaChi=" + DiaChi + ", CCCD=" + CCCD + ", ChucVu=" + ChucVu + ", TrangThai=" + TrangThai + ", MatKhau=" + MatKhau + '}';
     }
     
     
