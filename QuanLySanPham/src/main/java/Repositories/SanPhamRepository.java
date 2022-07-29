@@ -33,7 +33,6 @@ public class SanPhamRepository implements ISanPhamRepository{
 
     @Override
     public SanPham insert(SanPham danhMucSp) {
-         danhMucSp.setMaSanPham("");
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();

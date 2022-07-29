@@ -6,6 +6,7 @@ package Application;
 
 import Views.FarmeQLBanHang;
 import Views.FarmeQLKhuyenMai;
+import Views.FarmeQLSanPham;
 import Views.FrameDanhMucSanPham;
 
 /**
@@ -14,6 +15,6 @@ import Views.FrameDanhMucSanPham;
  */
 public class Application {
     public static void main(String[] args) {
-        new FrameDanhMucSanPham().setVisible(true);
+        new FarmeQLSanPham().setVisible(true);
     }
 }

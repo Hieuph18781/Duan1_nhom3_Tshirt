@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -53,7 +54,22 @@ public class CheckData {
         return matcher.matches();
     }
 
+    public Boolean checksoThuc(String text) {
+        Pattern pattern = Pattern.compile("[0-9]{1,13}(\\.[0-9]*)?");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
     public static boolean checkNullText(JTextField txt) {
+        if (txt.getText().trim().length() > 0) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống ");
+            return false;
+        }
+    }
+
+    public static boolean checkNullText(JPasswordField txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
         } else {
@@ -70,12 +86,19 @@ public class CheckData {
             return false;
         }
     }
-    
+
     public static String unAccent(String s) {//Convert từ tiếng việt có dấu về tiếng việt 0 dấu
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "");
+        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
     
-    
+    public static boolean chekcKhoangTrang2(String text) {
+        int temp = text.indexOf(" ");
+        if (temp > -1) {
+            return true;
+        }
+        return false;
+    }
+
 }

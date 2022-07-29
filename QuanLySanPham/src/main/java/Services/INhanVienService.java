@@ -4,7 +4,6 @@
  */
 package Services;
 
-
 import ViewsModels.NhanVienModel;
 import java.util.List;
 
@@ -13,11 +12,16 @@ import java.util.List;
  * @author Bùi Công Minh
  */
 public interface INhanVienService {
-     List<NhanVienModel> getproduct();
+
+    List<NhanVienModel> getproduct();
 
     NhanVienModel createNewProduct(NhanVienModel nhanvienmodel);
 
     public String sua(NhanVienModel nhanvienmodel);
-    
+
     public int getMaxIdNhanVien();
+
+    NhanVienModel findNhanVien(String MaNhanVien);
+
+    public void updatemk(String MaNhanVien, String matkhau);
 }
