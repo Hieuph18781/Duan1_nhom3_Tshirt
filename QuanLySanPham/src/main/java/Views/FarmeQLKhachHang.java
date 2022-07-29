@@ -8,7 +8,9 @@ import Services.IManagerKhachHangService;
 import Services.ManagerKhachHangServicr;
 import Utils.CheckData;
 import ViewsModels.KhachHangModel;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,13 +33,14 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         _iManageKhachHang = new ManagerKhachHangServicr();
         _currentPage = 1;
         _pageSize = 10;
-        LoadDataTable();
+        LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
 //        txt_Ma.setText("KH" + String.valueOf(_iManageKhachHang.getmaKH()));
         txt_Ma.setEnabled(false);
         find();
+//        setRbo();
     }
 
-    private void LoadDataTable() {
+    private void LoadDataTable(List<KhachHangModel> lstKH) {
         List<KhachHangModel> KHmodel = _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize);
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_khachhang.getModel();
         dtm.setRowCount(0);
@@ -90,44 +93,50 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
     boolean flag = false;
 
-    void check() {
+    boolean check() {
         if (txt_ten.getText().length() < 3) {
             if (txt_ten.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
+                return false;
 
-            }
-            if (txt_ten.getText().length() > 0 && txt_ten.getText().length() < 10) {
+            } else if (txt_ten.getText().length() > 0 && txt_ten.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "Tên phải lớn hơn 5 ký tự");
+              return false;
 
             }
+
         } else if (txt_SDT.getText().length() < 10) {
 
             if (txt_SDT.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "SDT không được để trống");
-            }
-            if (txt_SDT.getText().length() > 0 && txt_SDT.getText().length() < 10) {
+              return false;
+            } else if (txt_SDT.getText().length() > 0 && txt_SDT.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
-            }
-
-            if (!txt_SDT.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                return false;
+            } else if (!txt_SDT.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
                 JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
+                return false;
             }
+           
+
         } else if (txt_email.getText().length() < 5) {
             if (txt_email.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "email không được để trống");
-            }
-            if (!txt_email.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+               return false;
+            } else if (!txt_email.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
                 JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
+               return false;
 
             }
+            
         } else if (txt_diachi.getText().length() < 3) {
             if (txt_diachi.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống !");
+               return false;
             }
-
-        } else {
-            flag = true;
+            
         }
+       return true;
     }
 
     /**
@@ -302,7 +311,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
                         .addComponent(btn_them)
                         .addGap(18, 18, 18)
                         .addComponent(btn_sua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_clear)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -343,6 +352,11 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
         txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_timkiemActionPerformed(evt);
@@ -374,12 +388,12 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btn_tim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
                         .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -388,9 +402,9 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tim))
@@ -426,32 +440,42 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
-        check();
-        if (flag == true) {
+//        if (_check.checkNullString(txt_ten.getText()) || _check.checkNullString(txt_email.getText())  ||  _check.checkNullString( txt_SDT.getText()) ||_check.checkNullString( txt_diachi.getText())) {
+//            JOptionPane.showMessageDialog(this, "không được để trống");
+//            return;
+//            
+//        }
+//        if (!_check.checkso(txt_SDT.getText())) {
+//             JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
+//            return;
+//            
+//        }
+//        if (!_check.checkemail(txt_email.getText())) {
+//             JOptionPane.showMessageDialog(this, "email phải đúng định dan");
+//            return;
+//        }
+
+      
+        if (check() == false) {
+            return;
+        }
+
+      
             KhachHangModel newKH = getKhachHangFromInput();
             if (_iManageKhachHang.createNewKhachHang(newKH) != null) {
-
+                    
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
+                return ;
 
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm Thất bại !");
-            }
-            LoadDataTable();
-        }
 
-//if (txt_ten.getText().isBlank()) {
-//    JOptionPane.showMessageDialog(this  ,"không được để trống" );
-//    return ;          
-//        }
-//List<KhachHangModel> ds= _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize);
-//KhachHangModel KhMoi= getdata();
-//        if (_iManageKhachHang.createNewKhachHang(getdata()) != null) {
-//            JOptionPane.showMessageDialog(this, "thành công");
-//            
-//        }else{
-//                       JOptionPane.showMessageDialog(this, "thất bại ");
-//        }
-//        LoadDataTable();
+            }
+            LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
+
+        
+
+
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -464,7 +488,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thất bại");
 
         }
-        LoadDataTable();
+        LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -502,8 +526,41 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_khachhangMouseClicked
 
     private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
-        LoadDataTable();
+        LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
     }//GEN-LAST:event_btn_loadActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+//        if (txt_timkiem.getText().isBlank()) {
+//        LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
+//            return;         
+//        }
+//        List<KhachHangModel> lstTemp=new ArrayList<>();
+//        if (rbo_ten.isSelected()) {
+//            for (KhachHangModel x : _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize)) {
+//                if (_iManageKhachHang.timKiem2(x.getHoTen(),txt_timkiem.getText())) {
+//                    lstTemp.add(x);
+//                }
+//            }
+//            
+//        }
+//        if (rbo_email.isSelected()) {
+//             for (KhachHangModel x : _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize)) {
+//                if (_iManageKhachHang.timKiem2(x.getEmail(),txt_timkiem.getText())) {
+//                    lstTemp.add(x);
+//                }
+//            }
+//            
+//        }
+//         if (rbo_sdt.isSelected()) {
+//             for (KhachHangModel x : _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize)) {
+//                if (_iManageKhachHang.timKiem2(x.getSoDienThoai(),txt_timkiem.getText())) {
+//                    lstTemp.add(x);
+//                }
+//            }
+//            
+//        }
+//         LoadDataTable(lstTemp);
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
      * @param args the command line arguments
