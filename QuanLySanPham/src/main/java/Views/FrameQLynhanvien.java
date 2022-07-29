@@ -51,8 +51,8 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         nvmd.setMaNhanVien(txt_manv.getText());
         nvmd.setHoTen(txt_hoten.getText());
         nvmd.setNgaySinh(txt_ngaysinh.getDate());
-       nvmd.setGioiTinh(rdb_nam.isSelected()?true:false);
-     
+        nvmd.setGioiTinh(rdb_nam.isSelected() ? true : false);
+
 //        nvmd.setGioiTinh(rdb_nu.getText());
         nvmd.setSoDienThoai(txt_sdt.getText());
         nvmd.setEmail(txt_email.getText());
@@ -69,7 +69,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         _defaultTB = (DefaultTableModel) tbl_nhanvien.getModel();
         _defaultTB.setRowCount(0);
         for (NhanVienModel x : nvmd) {
-            _defaultTB.addRow(new Object[]{x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.isGioiTinh()==true ? "Nam" : "Nữ", x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()});
+            _defaultTB.addRow(new Object[]{x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.isGioiTinh() == true ? "Nam" : "Nữ", x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()});
         }
     }
 
@@ -413,14 +413,14 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        try {                                        
+        try {
             System.out.println(getdata().toString());
             try {
-                if (txt_hoten.getText().isEmpty()){
+                if (txt_hoten.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Không được để trống tên");
                     return;
                 }
-                
+
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
                 }
@@ -480,10 +480,10 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             txt_manv.setText(tbl_nhanvien.getValueAt(row, 0).toString());
             txt_hoten.setText(tbl_nhanvien.getValueAt(row, 1).toString());
             txt_ngaysinh.setDate(format_date.parse(tbl_nhanvien.getValueAt(row, 2).toString()));
-             rdb_nam.setSelected(true);
-        if (tbl_nhanvien.getModel().getValueAt(row, 3).toString().equals("Nữ")) {
-            rdb_nu.setSelected(true);
-        }
+            rdb_nam.setSelected(true);
+            if (tbl_nhanvien.getModel().getValueAt(row, 3).toString().equals("Nữ")) {
+                rdb_nu.setSelected(true);
+            }
 //          rdb_nam.setSelected(_lstnv.get(row).getGioiTinh().equals("Nam") ? true : false);
 //            rdb_nu.setSelected(_lstnv.get(row).getGioiTinh().equals("Nữ") ? true : false);
             txt_sdt.setText(tbl_nhanvien.getValueAt(row, 4).toString());
@@ -500,20 +500,20 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_nhanvienMouseClicked
 
     private void btn_moiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_moiActionPerformed
-  txt_manv.setText("NV" + _inhanvienservice.getMaxIdNhanVien());
+        txt_manv.setText("NV" + _inhanvienservice.getMaxIdNhanVien());
         txt_hoten.setText("");
-        txt_cccd.setText("");  
+        txt_cccd.setText("");
         txt_diachi.setText("");
         txt_email.setText("");
         txt_matkhau.setText("");
         txt_sdt.setText("");
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_moiActionPerformed
 
     private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
-       
-      //  loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
+
+        //  loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
 
     /**
