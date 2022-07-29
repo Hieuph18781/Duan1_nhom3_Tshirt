@@ -97,9 +97,25 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
                 KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi()));
 
             }
+            else if (x.getDiaChi().toLowerCase().contains(ten.toLowerCase())) {
+                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi()));
+            }
+            else if (x.getSoDienThoai().toLowerCase().contains(ten.toLowerCase())) {
+                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi()));
+            
+             }
 
         }
         return KHmodel;
 
+    }
+
+    @Override
+    public boolean timKiem2(String chuoi1, String chuoi2) {
+    String pattern =".*"+Utils.CheckData.unAccent(chuoi2.toLowerCase())+ ".*";
+     if (Utils.CheckData.unAccent(chuoi1).toLowerCase().matches(pattern)) {
+            return true;
+        }
+        return false;
     }
 }
