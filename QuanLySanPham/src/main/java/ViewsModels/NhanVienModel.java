@@ -15,7 +15,7 @@ public class NhanVienModel {
     private String MaNhanVien;
     private String HoTen;
     private Date NgaySinh;
-    private boolean  GioiTinh;
+    private boolean GioiTinh;
     private String SoDienThoai;
     private String Email;
     private String DiaChi;
@@ -40,6 +40,19 @@ public class NhanVienModel {
         this.CCCD = CCCD;
         this.ChucVu = ChucVu;
         this.TrangThai = TrangThai;
+        this.MatKhau = MatKhau;
+    }
+
+    public NhanVienModel(String MaNhanVien, String Email, String ChucVu, String TrangThai, String MatKhau) {
+        this.MaNhanVien = MaNhanVien;
+        this.Email = Email;
+        this.ChucVu = ChucVu;
+        this.TrangThai = TrangThai;
+        this.MatKhau = MatKhau;
+    }
+
+    public NhanVienModel(String MaNhanVien, String MatKhau) {
+        this.MaNhanVien = MaNhanVien;
         this.MatKhau = MatKhau;
     }
 
@@ -135,16 +148,5 @@ public class NhanVienModel {
     public String toString() {
         return "NhanVienModel{" + "MaNhanVien=" + MaNhanVien + ", HoTen=" + HoTen + ", NgaySinh=" + NgaySinh + ", GioiTinh=" + GioiTinh + ", SoDienThoai=" + SoDienThoai + ", Email=" + Email + ", DiaChi=" + DiaChi + ", CCCD=" + CCCD + ", ChucVu=" + ChucVu + ", TrangThai=" + TrangThai + ", MatKhau=" + MatKhau + '}';
     }
-
-    
-
-   
-
-    
-    
-
-    
-    
-    
 
 }

@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -68,6 +69,15 @@ public class CheckData {
         }
     }
 
+    public static boolean checkNullText(JPasswordField txt) {
+        if (txt.getText().trim().length() > 0) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(txt.getRootPane(), "Không được để trống ");
+            return false;
+        }
+    }
+
     public static boolean checkNullText(JTextArea txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
@@ -82,6 +92,5 @@ public class CheckData {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
-    
-    
+
 }
