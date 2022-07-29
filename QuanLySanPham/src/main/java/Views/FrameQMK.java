@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import Utils.CheckData;
 
+
 /**
  *
  * @author dytc0

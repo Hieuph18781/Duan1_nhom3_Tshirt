@@ -82,6 +82,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         btn_clear = new javax.swing.JButton();
         dc_ngaybatdau = new com.toedter.calendar.JDateChooser();
         dc_ngaykt = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_khuyenmai = new javax.swing.JTable();
@@ -147,6 +148,9 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
 
         dc_ngaykt.setDateFormatString("yyyy-MM-dd");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("%");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -170,9 +174,12 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                                 .addContainerGap(46, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_giakm)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txt_giakm, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +218,8 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_giakm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_giakm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -219,7 +227,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them)
                     .addComponent(btn_sua)
@@ -340,9 +348,9 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             return;
         }
         if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
-                || _check.checkNullString(txt_mota.getText()) || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                 || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
                 || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống Tên");
+            JOptionPane.showMessageDialog(this, "Không được để trống");
             return;
         }
         SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
@@ -359,7 +367,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
-                || _check.checkNullString(txt_mota.getText()) || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                 || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
                 || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
@@ -391,7 +399,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_khuyenmaiMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        txt_makm.setText("Km" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        txt_makm.setText("KM" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
         txt_tenkm.setText("");
         txt_mota.setText("");
         txt_giakm.setText("");
@@ -452,6 +460,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
