@@ -96,6 +96,10 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
 
             }
+            if (txt_ten.getText().length() > 0 && txt_ten.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "Tên phải lớn hơn 5 ký tự");
+
+            }
         } else if (txt_SDT.getText().length() < 10) {
 
             if (txt_SDT.getText().length() == 0) {
