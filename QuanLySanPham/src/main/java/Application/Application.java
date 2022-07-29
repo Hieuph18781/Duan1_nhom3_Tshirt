@@ -16,6 +16,7 @@ import Views.FrameLogin;
  * @author Nguyen Van Thuan
  */
 public class Application {
+
     public static void main(String[] args) {
         new FarmeQLBanHang().setVisible(true);
     }
