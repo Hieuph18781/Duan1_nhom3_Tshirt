@@ -92,5 +92,13 @@ public class CheckData {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
+    
+    public static boolean chekcKhoangTrang2(String text) {
+        int temp = text.indexOf(" ");
+        if (temp > -1) {
+            return true;
+        }
+        return false;
+    }
 
 }

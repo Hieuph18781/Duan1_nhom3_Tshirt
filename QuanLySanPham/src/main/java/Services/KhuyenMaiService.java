@@ -20,6 +20,7 @@ public class KhuyenMaiService implements IKhuyenMaiService{
     IKhuyenmaiRepository _Ikhuyenmairepo;
     public KhuyenMaiService(){
         _Ikhuyenmairepo = new KhuyenMaiRepository();
+        
     }
     
     KhuyenMai getkm(KhuyenMaiModel kmModel){
@@ -69,7 +70,15 @@ public class KhuyenMaiService implements IKhuyenMaiService{
 
     @Override
     public List<KhuyenMaiModel> findDanhMucSp(String tenDmSp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<KhuyenMaiModel> ms = new ArrayList<>();
+       List<KhuyenMai> mausac = new ArrayList<>();
+        for (KhuyenMai x : _Ikhuyenmairepo.selectAll()) {
+            if (x.getTenKhuyenMai().toLowerCase().contains(tenDmSp.toLowerCase()) ) {
+                ms.add(new KhuyenMaiModel(x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai(), x.getMoTa()));
+                System.out.println(ms + "ádsd");
+            }
+        }
+        return ms;
     }
     
 }
