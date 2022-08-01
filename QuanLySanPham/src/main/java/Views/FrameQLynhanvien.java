@@ -79,6 +79,48 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         btn.add(rdb_nu);
         rdb_nam.setSelected(true);
     }
+    
+    boolean flag = false;
+
+    void check() {
+        if (txt_hoten.getText().length() < 3) {
+            if (txt_hoten.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Tên không được để trống");
+
+            }
+            if (txt_manv.getText().length() > 0 && txt_hoten.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "Tên phải lớn hơn 5 ký tự");
+
+            }
+        } else if (txt_sdt.getText().length() < 10) {
+
+            if (txt_sdt.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "SDT không được để trống");
+            }
+            if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+            }
+
+            if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
+            }
+        } else if (txt_email.getText().length() < 5) {
+            if (txt_email.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "email không được để trống");
+            }
+            if (!txt_email.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
+
+            }
+        } else if (txt_diachi.getText().length() < 3) {
+            if (txt_diachi.getText().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống !");
+            }
+
+        } else {
+            flag = true;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -413,6 +455,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        check();
         try {
             System.out.println(getdata().toString());
             try {
@@ -450,16 +493,18 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_cbc_trangthaiActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        
         try {
             System.out.println(getdata().toString());
         } catch (ParseException ex) {
             Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            if (txt_hoten.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Không được để trống tên");
-                return;
-            }
+            check();
+//            if (txt_hoten.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "Không được để trống tên");
+//                return;
+//            }
             NhanVienModel nv = getdata();
             if (_inhanvienservice.createNewProduct(getdata()) != null) {
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
