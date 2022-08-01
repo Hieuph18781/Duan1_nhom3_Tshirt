@@ -563,7 +563,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
 
     private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
 
-        //  loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
+//          loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
 
     private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
