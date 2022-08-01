@@ -239,6 +239,10 @@ public class FarmeQLMausac extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm ko ? ");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
         List<MauSacModel> ds = _IMauSacService.getproduct();
         MauSacModel spMoi = getdata();
         if (_IMauSacService.them(getdata()) != null) {
@@ -254,9 +258,13 @@ public class FarmeQLMausac extends javax.swing.JFrame {
         for (MauSacModel x : _IMauSacService.getproduct()) {
              if (x.getMaMauSac() == Integer.parseInt(txt_mamausac.getText().substring(2))) {
                 if (_check.checkNullString(txt_tenmaussac.getText())) {
-                    JOptionPane.showMessageDialog(this, "Không được để trốngTên");
+                    JOptionPane.showMessageDialog(this, "Không được để trống Tên");
                     return;
                 }
+                int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn có muốn tháy đổi ko?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
                 JOptionPane.showMessageDialog(this, _IMauSacService.sua(getdata()));
                 loadtable(_IMauSacService.getproduct());
                 return;

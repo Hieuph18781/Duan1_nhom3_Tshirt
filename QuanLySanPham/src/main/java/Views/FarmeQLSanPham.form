@@ -61,7 +61,7 @@
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="jButton6" min="-2" pref="73" max="-2" attributes="0"/>
@@ -352,10 +352,18 @@
                                           <Component id="Mota" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="cbc_trangThai" alignment="0" pref="139" max="32767" attributes="0"/>
-                                          <Component id="txt_soLuong" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="cbc_trangThai" alignment="0" pref="139" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="txt_soLuong" min="-2" pref="48" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btl_themSoLuong" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btn_truSoLuong" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -396,7 +404,7 @@
                               <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -442,6 +450,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txt_soLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btl_themSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_truSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -464,7 +474,7 @@
                           <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_clear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="82" max="32767" attributes="0"/>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -667,6 +677,22 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_tenSanPham">
+            </Component>
+            <Component class="javax.swing.JButton" name="btl_themSoLuong">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="+"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btl_themSoLuongActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_truSoLuong">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="-"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_truSoLuongActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
