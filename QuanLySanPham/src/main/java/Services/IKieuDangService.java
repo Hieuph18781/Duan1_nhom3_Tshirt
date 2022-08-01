@@ -20,5 +20,5 @@ public interface IKieuDangService {
     
     public int getMaxIdKieuDang();
 
-    public void findKieuDang(String tenkiedang);
+    public List<KieuDangModel> findKieuDang(String tenkiedang);
 }

@@ -14,6 +14,7 @@ import Repositories.IKieuDangRepository;
 import ViewsModels.KieuDangModel;
 import javax.swing.JOptionPane;
 import org.hibernate.cfg.JPAIndexHolder;
+import Utils.CheckData;
 
 /**
  *
@@ -68,18 +69,23 @@ public class KieuDangService implements IKieuDangService {
         return _lstkieudang.size()+1;
     }
 
-    @Override
-    public void findKieuDang(String tenkiedang) {
-        List<KieuDangModel> lstFind = new ArrayList<>();
+    public List<KieuDangModel> findKieuDang(String tenkiedang) {
+      List<KieuDangModel> lstFind = new ArrayList<>();
+        String pattern = ".*"+Utils.CheckData.unAccent(tenkiedang.toLowerCase())+".*";
         if (tenkiedang.isBlank()) {
-            return ;
+            System.out.println("4");
+            return _lstkieudang;
         }
+        System.out.println("1");
         for (KieuDangModel x : _lstkieudang) {
-            if (x.getTenKieuDang().toLowerCase().contains(tenkiedang)) {
+            System.out.println("2");
+            if (Utils.CheckData.unAccent(x.getTenKieuDang()).toLowerCase().matches(pattern)) {
                 lstFind.add(x);
+                System.out.println("3");
             }
         }
-        return; //To change body of generated methods, choose Tools | Templates.
+        System.out.println("5");
+        return lstFind; //To change body of generated methods, choose Tools | Templates.
     }
       
 }
