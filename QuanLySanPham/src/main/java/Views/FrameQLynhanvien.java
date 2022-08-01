@@ -189,6 +189,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_nhanvien);
 
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
         txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_timkiemActionPerformed(evt);
@@ -560,6 +565,10 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
 
         //  loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
      * @param args the command line arguments
