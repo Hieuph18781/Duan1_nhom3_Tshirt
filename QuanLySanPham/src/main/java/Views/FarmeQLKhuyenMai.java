@@ -360,7 +360,10 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             return;
         }
         
-
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
         JOptionPane.showMessageDialog(this, _IKhuyenMaiService.them(getdata()));
         loadtable(_IKhuyenMaiService.getListFromDB());
     }//GEN-LAST:event_btn_themActionPerformed
@@ -382,6 +385,10 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         }
         if (dc_ngaybatdau.getDate().after(dc_ngaykt.getDate())) {
             JOptionPane.showMessageDialog(this, "ngày bắt đầu phải bé hơn ngày kết thúc");
+            return;
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn có muốn thay đổi không?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
         JOptionPane.showMessageDialog(this, _IKhuyenMaiService.sua(getdata()));
