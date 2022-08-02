@@ -267,6 +267,7 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Không thêm được");
         }
+        
         loadtable(_ikieudangService.getproduct());
     }//GEN-LAST:event_btn_themActionPerformed
    
@@ -295,6 +296,7 @@ if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
         if (_ikieudangService.sua(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
         }
+         
         loadtable(_ikieudangService.getproduct());
     }//GEN-LAST:event_btn_suaActionPerformed
 
