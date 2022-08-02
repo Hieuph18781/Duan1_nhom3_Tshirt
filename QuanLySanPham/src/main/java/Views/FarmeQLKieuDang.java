@@ -248,6 +248,10 @@ int vitri=-1;
             JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
+          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
         KieuDangModel kdmoi = getdata();
         if (_ikieudangService.createNewProduct(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");

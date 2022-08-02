@@ -235,6 +235,10 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
                 return;
             }
         }
+          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
         JOptionPane.showMessageDialog(this, _iDanhMucSanPhamService.them(getGuidanhmucSp()));
         loadtable(_iDanhMucSanPhamService.getListFromDB());
     }//GEN-LAST:event_btn_themActionPerformed
@@ -243,6 +247,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
 
         for (DanhMucSanPhamModel x : _iDanhMucSanPhamService.getListFromDB()) {
             if (x.getMaDanhMuc() == Integer.parseInt(txt_madanhmuc.getText().substring(4))) {
+                
                 if (_check.checkNullString(txt_tendanhmuc.getText())) {
                     JOptionPane.showMessageDialog(this, "Không được để trống Tên");
                     return;
@@ -251,6 +256,7 @@ public class FrameDanhMucSanPham extends javax.swing.JFrame {
                 loadtable(_iDanhMucSanPhamService.getListFromDB());
                 return;
             }
+            
         }
         JOptionPane.showMessageDialog(this, "Không tìm thấy mã!");
     }//GEN-LAST:event_btn_suaActionPerformed

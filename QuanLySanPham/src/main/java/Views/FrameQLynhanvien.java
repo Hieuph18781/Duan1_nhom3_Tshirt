@@ -460,6 +460,10 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Không được để trống tên");
                 return;
             }
+              int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
             NhanVienModel nv = getdata();
             if (_inhanvienservice.createNewProduct(getdata()) != null) {
                 JOptionPane.showMessageDialog(this, "Thêm thành công");

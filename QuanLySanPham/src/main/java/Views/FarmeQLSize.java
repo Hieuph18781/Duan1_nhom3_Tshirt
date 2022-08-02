@@ -272,6 +272,10 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tensizeActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
         SizeModel newSize = getSizeFromInput();
         if (_iManageSize.createNewSize(newSize) != null) {
             JOptionPane.showMessageDialog(this, "thanh cong");

@@ -440,23 +440,13 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
-//        if (_check.checkNullString(txt_ten.getText()) || _check.checkNullString(txt_email.getText())  ||  _check.checkNullString( txt_SDT.getText()) ||_check.checkNullString( txt_diachi.getText())) {
-//            JOptionPane.showMessageDialog(this, "không được để trống");
-//            return;
-//            
-//        }
-//        if (!_check.checkso(txt_SDT.getText())) {
-//             JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
-//            return;
-//            
-//        }
-//        if (!_check.checkemail(txt_email.getText())) {
-//             JOptionPane.showMessageDialog(this, "email phải đúng định dan");
-//            return;
-//        }
 
       
         if (check() == false) {
+            return;
+        }
+         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
 
