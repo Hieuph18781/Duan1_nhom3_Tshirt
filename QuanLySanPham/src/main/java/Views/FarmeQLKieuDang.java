@@ -264,9 +264,9 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         if (temp == 1) {
             JOptionPane.showMessageDialog(this, "Đã chọn không thêm");
         }
-        if (temp == 2) {
-            JOptionPane.showMessageDialog(this, "Đã chọn quay về");
-        }
+
+        
+        loadtable(_ikieudangService.getproduct());
 
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -303,6 +303,13 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         if (temp == 2) {
             JOptionPane.showMessageDialog(this, "Bạn đã chọn quay về");
         }
+
+
+        if (_ikieudangService.sua(getdata()) != null) {
+            JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
+        }
+         
+        loadtable(_ikieudangService.getproduct());
 
     }//GEN-LAST:event_btn_suaActionPerformed
 
