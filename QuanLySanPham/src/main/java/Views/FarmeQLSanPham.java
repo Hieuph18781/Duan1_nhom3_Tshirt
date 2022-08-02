@@ -217,6 +217,8 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         btn_sua = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
         txt_tenSanPham = new javax.swing.JTextField();
+        btl_themSoLuong = new javax.swing.JButton();
+        btn_truSoLuong = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -431,6 +433,20 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
             }
         });
 
+        btl_themSoLuong.setText("+");
+        btl_themSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btl_themSoLuongActionPerformed(evt);
+            }
+        });
+
+        btn_truSoLuong.setText("-");
+        btn_truSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_truSoLuongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -450,10 +466,16 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                                     .addComponent(Mota1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Mota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(cbc_trangThai, 0, 139, Short.MAX_VALUE)
-                                    .addComponent(txt_soLuong)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(cbc_trangThai, 0, 139, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txt_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btl_themSoLuong)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_truSoLuong))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -483,7 +505,7 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                         .addComponent(btn_sua)
                         .addGap(18, 18, 18)
                         .addComponent(btn_clear)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,7 +541,9 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txt_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btl_themSoLuong)
+                    .addComponent(btn_truSoLuong))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -537,7 +561,7 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                     .addComponent(btn_them)
                     .addComponent(btn_sua)
                     .addComponent(btn_clear))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -558,7 +582,7 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -818,9 +842,33 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         loadtable(lstTemp);
     }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
 
+
     private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_timKiemActionPerformed
+
+    private void btl_themSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btl_themSoLuongActionPerformed
+        String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Muốn Thêm");
+        if (!_checkDt.checkso(temp)) {
+            JOptionPane.showMessageDialog(this, "Bạn Phải nhập số và phải > 0");
+            return;
+        }
+        txt_soLuong.setText(String.valueOf(Integer.parseInt(txt_soLuong.getText()) + Integer.parseInt(temp)));
+    }//GEN-LAST:event_btl_themSoLuongActionPerformed
+
+    private void btn_truSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_truSoLuongActionPerformed
+        String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Muốn Thêm");
+        if (!_checkDt.checkso(temp)) {
+            JOptionPane.showMessageDialog(this, "Bạn Phải nhập số và phải > 0");
+            return;
+        }
+        if (Integer.parseInt(txt_soLuong.getText()) < Integer.parseInt(temp)) {
+            JOptionPane.showMessageDialog(this, "Số lượng muốn trừ phải nhỏ hơn số lượng đang có");
+            return;
+        }
+        txt_soLuong.setText(String.valueOf(Integer.parseInt(txt_soLuong.getText()) - Integer.parseInt(temp)));
+    }//GEN-LAST:event_btn_truSoLuongActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -861,9 +909,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Mota;
     private javax.swing.JLabel Mota1;
+    private javax.swing.JButton btl_themSoLuong;
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
+    private javax.swing.JButton btn_truSoLuong;
     private javax.swing.JComboBox<String> cbc_chatLieu;
     private javax.swing.JComboBox<String> cbc_danhMucSanPham;
     private javax.swing.JComboBox<String> cbc_kieuDang;

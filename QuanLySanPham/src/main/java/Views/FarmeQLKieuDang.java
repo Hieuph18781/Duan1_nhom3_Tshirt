@@ -7,6 +7,7 @@ package Views;
 import DomainModels.KieuDang;
 import Services.IKieuDangService;
 import Services.KieuDangService;
+import Utils.XImage;
 import ViewsModels.KieuDangModel;
 import java.awt.Image;
 import java.io.File;
@@ -28,11 +29,10 @@ import javax.swing.table.DefaultTableModel;
 public class FarmeQLKieuDang extends javax.swing.JFrame {
 
     IKieuDangService _ikieudangService;
-    KieuDangService _kieudangsevice;
+    // KieuDangService _kieudangsevice;
     DefaultTableModel _default;
-    ArrayList<KieuDang> _lstkd;
-String đuongang="C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\src\\main\\java\\img";
-int vitri=-1;
+    ArrayList<KieuDangModel> _lstkd;
+    JFileChooser _filechooser = new JFileChooser();
 
     /**
      * Creates new form
@@ -40,23 +40,25 @@ int vitri=-1;
     public FarmeQLKieuDang() {
         initComponents();
         _ikieudangService = new KieuDangService();
-        _lstkd=new ArrayList<>();
+        _lstkd = new ArrayList<>();
         txt_makieudang.setEnabled(false);
-        loadtable();
+        loadtable(_ikieudangService.getproduct());
         txt_makieudang.setText("KD" + _ikieudangService.getMaxIdKieuDang());
-       
+        txt_makieudang.setEditable(false);
+
     }
 
     KieuDangModel getdata() {
-        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText().substring(2)), txt_tenkieudang.getText(),txt_mota.getText(),lbl_hinhanh.getText());
+        return new KieuDangModel(Integer.parseInt(txt_makieudang.getText().substring(2)), txt_tenkieudang.getText(), txt_mota.getText(), lbl_hinhanh.getToolTipText());
+
     }
 
-    public void loadtable() {
-        List<KieuDangModel> kd = _ikieudangService.getproduct();
+    public void loadtable(List<KieuDangModel> tenkiedang) {
+//        List<KieuDangModel> kd = _ikieudangService.getproduct();
         _default = (DefaultTableModel) tbl_kieudang.getModel();
         _default.setRowCount(0);
-        for (KieuDangModel x : kd) {
-            _default.addRow(new Object[]{"KD" +x.getMaKieuDang(), x.getTenKieuDang(), x.getMota()});
+        for (KieuDangModel x : tenkiedang) {
+            _default.addRow(new Object[]{"KD" + x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh()});
         }
     }
 
@@ -107,17 +109,17 @@ int vitri=-1;
 
         tbl_kieudang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã kiểu dáng", "Tên kiểu dáng", "Mô tả"
+                "Mã kiểu dáng", "Tên kiểu dáng", "Mô tả", "Ảnh"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -149,6 +151,17 @@ int vitri=-1;
         btn_hinhanh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hinhanhActionPerformed(evt);
+            }
+        });
+
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
+        txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timkiemActionPerformed(evt);
             }
         });
 
@@ -258,27 +271,28 @@ int vitri=-1;
         } else {
             JOptionPane.showMessageDialog(this, "Không thêm được");
         }
-        loadtable();
+        
+        loadtable(_ikieudangService.getproduct());
     }//GEN-LAST:event_btn_themActionPerformed
-public ImageIcon ReziseIcon(String imgpath){
-    ImageIcon MyIcon= new ImageIcon(imgpath);
-    Image imgg=MyIcon.getImage();
-    Image newimg=imgg.getScaledInstance(lbl_hinhanh.getWidth(), lbl_hinhanh.getHeight(), Image.SCALE_SMOOTH);
-    ImageIcon image=new ImageIcon(newimg);
-    return image;
-}
+   
     private void tbl_kieudangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_kieudangMouseClicked
         int row = tbl_kieudang.getSelectedRow();
         txt_makieudang.setText(tbl_kieudang.getValueAt(row, 0).toString());
         txt_tenkieudang.setText(tbl_kieudang.getValueAt(row, 1).toString());
         txt_mota.setText(tbl_kieudang.getValueAt(row, 2).toString());
-        lbl_hinhanh.setIcon(ReziseIcon(String.valueOf(_lstkd.get(vitri).getHinhAnh())));
-      //  txt_makieudang.setEnabled(false);
+//        lbl_hinhanh.setIcon(ReziseIcon(duongdan));
+//        System.out.println(ReziseIcon(duongdan).equals(1));
+if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
+            lbl_hinhanh.setToolTipText(tbl_kieudang.getModel().getValueAt(row, 3).toString());
+            lbl_hinhanh.setIcon(XImage.read(tbl_kieudang.getModel().getValueAt(row, 3).toString()));
+        }
+        //  txt_makieudang.setEnabled(false);
+        //  lbl_hinhanh.setIcon(String.valueOf());
     }//GEN-LAST:event_tbl_kieudangMouseClicked
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
 
-        if (txt_tenkieudang.getText().isEmpty()){
+        if (txt_tenkieudang.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên");
             return;
         }
@@ -286,7 +300,8 @@ public ImageIcon ReziseIcon(String imgpath){
         if (_ikieudangService.sua(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
         }
-        loadtable();
+         
+        loadtable(_ikieudangService.getproduct());
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -297,26 +312,34 @@ public ImageIcon ReziseIcon(String imgpath){
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_hinhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hinhanhActionPerformed
-        JFileChooser jf=new JFileChooser("C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\src\\main\\java\\img");
-        jf.showOpenDialog(null);
-        File file=jf.getSelectedFile();
-        if (file.getAbsoluteFile()!=null) {
-          lbl_hinhanh.setIcon(ReziseIcon(String.valueOf(đuongang)));
-        }else{
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn ảnh");
-        }
+        getImg();
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_hinhanhActionPerformed
 
+     void getImg() {
+        if (_filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = _filechooser.getSelectedFile();
+            XImage.save(file);
+            ImageIcon icon = XImage.read(file.getName());
+            lbl_hinhanh.setIcon(icon);
+            lbl_hinhanh.setToolTipText(file.getName());
+        }
+    }
+
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
-      _kieudangsevice.findKieuDang(txt_timkiem.getText());
-      loadtable();
-              
-               
-            
-           
+        //loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText()));
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_timkiemActionPerformed
+
+    private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
+     //   loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText())); // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timkiemActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+       loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText())); // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
      * @param args the command line arguments

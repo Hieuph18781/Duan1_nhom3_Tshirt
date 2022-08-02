@@ -55,7 +55,7 @@ public class KieuDangModel {
         return HinhAnh;
     }
 
-    public void setHinhAnh(String HinhAnhg) {
+    public void setHinhAnh(String HinhAnh) {
         this.HinhAnh = HinhAnh;
     }   
     

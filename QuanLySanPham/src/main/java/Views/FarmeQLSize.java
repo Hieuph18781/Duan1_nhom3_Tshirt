@@ -35,7 +35,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         _currentPage = 1;
         _pageSize = 10;
         LoadDataTable();
-        txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        txt_masize.setText("SZ" + String.valueOf(_iManageSize.getMaxIdSize()));
         txt_masize.setEnabled(false);
         findTable();
     }
@@ -45,20 +45,21 @@ public class FarmeQLSize extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
         dtm.setRowCount(0);
         for (SizeModel d : ds) {
-            Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
+            Object[] rowdata = {"SZ" + d.getMaSize(), d.getTenSize(), d.getMota()};
             dtm.addRow(rowdata);
         }
 
     }
-    private  void findTable(){
-       DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
-        dtm.setRowCount(0); 
+
+    private void findTable() {
+        DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
+        dtm.setRowCount(0);
         try {
-            String key=txt_timkie.getText();
-            List<SizeModel> timkiem= _iManageSize.TimKiem(key);
+            String key = txt_timkie.getText();
+            List<SizeModel> timkiem = _iManageSize.TimKiem(key);
             for (SizeModel d : timkiem) {
-                Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
-            dtm.addRow(rowdata);
+                Object[] rowdata = {"SZ" + d.getMaSize(), d.getTenSize(), d.getMota()};
+                dtm.addRow(rowdata);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi tìm kiếm");
@@ -283,6 +284,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "that bai");
         }
+        
         LoadDataTable();
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -304,6 +306,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "thanh cong");
 //            
 //        }
+        
         LoadDataTable();
     }//GEN-LAST:event_btn_suaActionPerformed
 
@@ -335,7 +338,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_sizeMousePressed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        this.txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        this.txt_masize.setText("SZ" + String.valueOf(_iManageSize.getMaxIdSize()));
         this.txt_tensize.setText("");
         this.txt_mota.setText("");
     }//GEN-LAST:event_btn_clearActionPerformed
@@ -343,7 +346,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
 //       JOptionPane.showMessageDialog(this, _iManageSize.TimKiem(txt_timkie.getText()));
 //       LoadDataTable(_iManageSize.TimKiem(txt_tensize.getText()));
-findTable();
+        findTable();
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
     /**
