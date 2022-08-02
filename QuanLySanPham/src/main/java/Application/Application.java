@@ -5,16 +5,19 @@
 package Application;
 
 import Views.FarmeQLBanHang;
+import Views.FarmeQLKhachHang;
 import Views.FarmeQLKhuyenMai;
 import Views.FarmeQLSanPham;
 import Views.FrameDanhMucSanPham;
+import Views.FrameLogin;
 
 /**
  *
  * @author Nguyen Van Thuan
  */
 public class Application {
+
     public static void main(String[] args) {
-        new FarmeQLSanPham().setVisible(true);
+        new FarmeQLBanHang().setVisible(true);
     }
 }
