@@ -261,8 +261,10 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
             loadtable(_ikieudangService.getproduct());
             JOptionPane.showMessageDialog(this, "Thêm thành công ");
         }
+
         if (temp == 1) {
             JOptionPane.showMessageDialog(this, "Đã chọn không thêm");
+
         }
 
         

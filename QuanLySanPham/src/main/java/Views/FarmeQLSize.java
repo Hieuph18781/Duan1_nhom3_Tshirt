@@ -25,9 +25,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private long _totalProducts;
     int row = 0;
 
-    /**
-     * Creates new form Size
-     */
+  
     public FarmeQLSize() {
         initComponents();
         _iManageSize = new ManageSizeService();
@@ -78,7 +76,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 
         return size;
 
-        // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
+  
     }
 
     private String getSizeFromSelectdRow() {
@@ -273,6 +271,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tensizeActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
+        if (txt_tensize.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "tên size ko được để trống");
+            return ;
+            
+        }
         SizeModel newSize = getSizeFromInput();
         if (_iManageSize.createNewSize(newSize) != null) {
             JOptionPane.showMessageDialog(this, "thanh cong");

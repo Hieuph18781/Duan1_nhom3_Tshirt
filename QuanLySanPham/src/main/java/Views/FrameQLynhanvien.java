@@ -547,6 +547,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_cbc_trangthaiActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+
        
                                                 
             
@@ -554,6 +555,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                 System.out.println(getdata().toString());
             } catch (ParseException ex) {
                 Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+
             }
             
             

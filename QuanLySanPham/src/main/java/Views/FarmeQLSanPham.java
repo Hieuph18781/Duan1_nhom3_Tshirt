@@ -259,6 +259,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                 txt_timKiemCaretUpdate(evt);
             }
         });
+        txt_timKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timKiemActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Tìm Kiếm");
 
@@ -635,12 +640,17 @@ dispose();// TODO add your handling code here:
     }//GEN-LAST:event_tbl_sanphamMouseReleased
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        
         if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
             return;
         }
         if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
             JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
+            return;
+        }
+          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
         _ISanPhamService.them(getdata());
@@ -834,6 +844,11 @@ dispose();// TODO add your handling code here:
         loadtable(lstTemp);
     }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
 
+
+    private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timKiemActionPerformed
+
     private void btl_themSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btl_themSoLuongActionPerformed
         String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Muốn Thêm");
         if (!_checkDt.checkso(temp)) {
@@ -855,6 +870,7 @@ dispose();// TODO add your handling code here:
         }
         txt_soLuong.setText(String.valueOf(Integer.parseInt(txt_soLuong.getText()) - Integer.parseInt(temp)));
     }//GEN-LAST:event_btn_truSoLuongActionPerformed
+
 
     /**
      * @param args the command line arguments
