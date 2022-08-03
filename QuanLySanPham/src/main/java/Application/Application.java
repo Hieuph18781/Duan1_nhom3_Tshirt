@@ -10,6 +10,7 @@ import Views.FarmeQLKhuyenMai;
 import Views.FarmeQLSanPham;
 import Views.FrameDanhMucSanPham;
 import Views.FrameLogin;
+;
 
 /**
  *
@@ -18,6 +19,8 @@ import Views.FrameLogin;
 public class Application {
 
     public static void main(String[] args) {
-        new FarmeQLBanHang().setVisible(true);
+        //new FarmeQLBanHang().setVisible(true);
+        new FrameLogin().setVisible(true);
+       
     }
 }
