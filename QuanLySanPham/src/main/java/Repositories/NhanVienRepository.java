@@ -100,4 +100,16 @@ public class NhanVienRepository implements INhanVienRepostiory {
         }
 
     }
+
+    @Override
+    public NhanVien findByChucVu(String ChucVu) {
+         NhanVien nv;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT n FROM NhanVien n WHERE n.ChucVu= :ChucVu";
+            TypedQuery<NhanVien> query = session.createQuery(hql, NhanVien.class);
+            query.setParameter("Quản Lý", ChucVu);
+            nv = query.getSingleResult();
+        }
+        return nv; //To change body of generated methods, choose Tools | Templates.
+    }
 }

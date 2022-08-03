@@ -69,9 +69,8 @@
               <Component id="btn_sanpham" alignment="0" max="32767" attributes="0"/>
               <Component id="btn_hoadon" alignment="0" max="32767" attributes="0"/>
               <Component id="btn_nhanvien" alignment="0" max="32767" attributes="0"/>
-              <Component id="btn_khachhang" alignment="0" max="32767" attributes="0"/>
+              <Component id="btn_khachhang" alignment="0" pref="267" max="32767" attributes="0"/>
               <Component id="btn_khuyenmai" alignment="0" max="32767" attributes="0"/>
-              <Component id="btn_doimatkhau" alignment="0" max="32767" attributes="0"/>
               <Component id="jButton16" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -90,9 +89,7 @@
                   <Component id="btn_khachhang" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btn_khuyenmai" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_doimatkhau" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton16" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -230,28 +227,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_khuyenmaiActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn_doimatkhau">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="33" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1ed5;i M&#x1ead;t Kh&#x1ea9;u"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-            <Property name="borderPainted" type="boolean" value="false"/>
-            <Property name="contentAreaFilled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_doimatkhauActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton16">

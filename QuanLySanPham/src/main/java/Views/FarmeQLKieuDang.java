@@ -327,7 +327,7 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_hinhanhActionPerformed
 
     void getImg() {
-        JFileChooser _filechooser = new JFileChooser ("C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\src\\main\\java\\img");
+        JFileChooser _filechooser = new JFileChooser ("C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\logos");
         if (_filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = _filechooser.getSelectedFile();
             XImage.save(file);

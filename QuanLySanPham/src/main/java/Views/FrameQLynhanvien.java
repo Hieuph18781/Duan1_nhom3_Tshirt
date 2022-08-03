@@ -466,6 +466,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 51, 102));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setText("HOME");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -500,7 +505,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (check()==true) {
+        if (check()==false) {
             JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
                 return ;
                 
@@ -552,7 +557,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             }
             
             
- if (check()==true) {
+ if (check()==false) {
      JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
                 return ;
             }
@@ -695,6 +700,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         }
         loadtable(lstTemp); // TODO add your handling code here:
     }//GEN-LAST:event_rdb_timchucvuActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+new MainTrue().setVisible(true);
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
