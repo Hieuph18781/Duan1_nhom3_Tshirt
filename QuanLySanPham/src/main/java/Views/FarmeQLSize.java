@@ -25,9 +25,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private long _totalProducts;
     int row = 0;
 
-    /**
-     * Creates new form Size
-     */
+  
     public FarmeQLSize() {
         initComponents();
         _iManageSize = new ManageSizeService();
@@ -78,7 +76,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 
         return size;
 
-        // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
+  
     }
 
     private String getSizeFromSelectdRow() {
