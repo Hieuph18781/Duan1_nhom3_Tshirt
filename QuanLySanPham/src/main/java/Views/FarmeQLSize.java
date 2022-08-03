@@ -277,6 +277,11 @@ public class FarmeQLSize extends javax.swing.JFrame {
         if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
+        if (txt_tensize.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "tên size ko được để trống");
+            return ;
+            
+        }
         SizeModel newSize = getSizeFromInput();
         if (_iManageSize.createNewSize(newSize) != null) {
             JOptionPane.showMessageDialog(this, "thanh cong");

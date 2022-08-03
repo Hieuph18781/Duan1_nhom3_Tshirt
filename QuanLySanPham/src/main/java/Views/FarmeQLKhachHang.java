@@ -474,11 +474,13 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         updateKhachHang.setMaKhachHang(Integer.parseInt(updateKhBYid));
         if (_iManageKhachHang.update(updateKhachHang) != null) {
             JOptionPane.showMessageDialog(this, "Thành công");
+            return;
         } else {
             JOptionPane.showMessageDialog(this, "Thất bại");
 
         }
         LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
+        
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -517,6 +519,11 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
     private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
         LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
+         this.txt_Ma.setText(String.valueOf(_iManageKhachHang.getmaKH()));
+        this.txt_ten.setText("");
+        this.txt_diachi.setText("");
+        this.txt_email.setText("");
+        this.txt_SDT.setText("");   
     }//GEN-LAST:event_btn_loadActionPerformed
 
     private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
