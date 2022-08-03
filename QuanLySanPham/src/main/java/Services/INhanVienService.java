@@ -24,4 +24,5 @@ public interface INhanVienService {
     NhanVienModel findNhanVien(String MaNhanVien);
 
     public void updatemk(String MaNhanVien, String matkhau);
+    public boolean Timkiem(String chuoi1, String chuoi2);
 }
