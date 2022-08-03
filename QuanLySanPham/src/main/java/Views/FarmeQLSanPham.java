@@ -613,7 +613,9 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+     
+        new MainTrue().setVisible(true);
+dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tbl_sanphamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseReleased

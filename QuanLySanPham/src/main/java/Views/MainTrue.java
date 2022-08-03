@@ -37,7 +37,6 @@ public void show(JPanel j){
         btn_nhanvien = new javax.swing.JButton();
         btn_khachhang = new javax.swing.JButton();
         btn_khuyenmai = new javax.swing.JButton();
-        btn_doimatkhau = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -129,19 +128,6 @@ public void show(JPanel j){
             }
         });
 
-        btn_doimatkhau.setBackground(new java.awt.Color(51, 255, 255));
-        btn_doimatkhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_doimatkhau.setForeground(new java.awt.Color(255, 255, 255));
-        btn_doimatkhau.setText("Đổi Mật Khẩu");
-        btn_doimatkhau.setBorder(null);
-        btn_doimatkhau.setBorderPainted(false);
-        btn_doimatkhau.setContentAreaFilled(false);
-        btn_doimatkhau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_doimatkhauActionPerformed(evt);
-            }
-        });
-
         jButton16.setBackground(new java.awt.Color(51, 255, 255));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,9 +149,8 @@ public void show(JPanel j){
             .addComponent(btn_sanpham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_hoadon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_nhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_khachhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_khachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
             .addComponent(btn_khuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_doimatkhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -183,9 +168,7 @@ public void show(JPanel j){
                 .addComponent(btn_khachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_khuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_doimatkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -287,6 +270,9 @@ public void show(JPanel j){
 
     private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed
         new FarmeQLSanPham().setVisible(true);
+        dispose();
+        
+        
        
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_sanphamActionPerformed
@@ -297,26 +283,25 @@ public void show(JPanel j){
 
     private void btn_nhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhanvienActionPerformed
         new FrameQLynhanvien().setVisible(true);
+          dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_nhanvienActionPerformed
 
     private void btn_khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachhangActionPerformed
        new FarmeQLKhachHang().setVisible(true);
+         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_khachhangActionPerformed
 
     private void btn_khuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khuyenmaiActionPerformed
         
-new FarmeQLKhuyenMai().setVisible(true);// TODO add your handling code here:
+new FarmeQLKhuyenMai().setVisible(true);
+  dispose();// TODO add your handling code here:
     }//GEN-LAST:event_btn_khuyenmaiActionPerformed
 
-    private void btn_doimatkhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doimatkhauActionPerformed
-        
-new FrameQMK(this, rootPaneCheckingEnabled).setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_btn_doimatkhauActionPerformed
-
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+new FrameLogin().setVisible(true);
+dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
@@ -355,7 +340,6 @@ new FrameQMK(this, rootPaneCheckingEnabled).setVisible(true);// TODO add your ha
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_doimatkhau;
     private javax.swing.JButton btn_hoadon;
     private javax.swing.JButton btn_khachhang;
     private javax.swing.JButton btn_khuyenmai;

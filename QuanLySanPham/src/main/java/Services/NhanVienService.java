@@ -100,5 +100,12 @@ public class NhanVienService implements INhanVienService {
         }
         return false; //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public NhanVienModel findchucvu(String ChucVu) {
+         //To change body of generated methods, choose Tools | Templates.
+        return null;
+         //To change body of generated methods, choose Tools | Templates.
+    }
     }
 
