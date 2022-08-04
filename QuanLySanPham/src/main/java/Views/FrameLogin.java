@@ -7,6 +7,7 @@ package Views;
 import DomainModels.NhanVien;
 import Services.INhanVienService;
 import Services.NhanVienService;
+import Utils.Auth;
 import ViewsModels.NhanVienModel;
 import static java.awt.Color.pink;
 import static java.awt.Color.white;
@@ -43,8 +44,9 @@ public class FrameLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "sai mat khau");
 
                 } else {
+                    Auth.user = nhanVien;
                     this.dispose();
-                    new FarmeQLChatLieu().setVisible(true);
+                    new FarmeQLBanHang().setVisible(true);
 
                 }
             }
@@ -83,6 +85,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Tên đăng nhập");
 
+        txtMaNV.setText("NV1");
         txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaNVActionPerformed(evt);
@@ -91,6 +94,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Mật khẩu");
 
+        txtMatKhau.setText("123456");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatKhauActionPerformed(evt);
@@ -172,6 +176,7 @@ public class FrameLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed

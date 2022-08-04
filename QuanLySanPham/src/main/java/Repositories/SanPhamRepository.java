@@ -12,17 +12,17 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.Query;
 
 /**
  *
  * @author hieu
  */
-public class SanPhamRepository implements ISanPhamRepository{
+public class SanPhamRepository implements ISanPhamRepository {
 
     @Override
     public List<SanPham> findAll() {
-       List<SanPham> products;
+        List<SanPham> products;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT i FROM SanPham i";
             TypedQuery<SanPham> query = session.createQuery(hql, SanPham.class);
@@ -72,5 +72,23 @@ public class SanPhamRepository implements ISanPhamRepository{
     public SanPham findById(String ma) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public boolean updateSoLuongSP(String MaSp, int soLuong) {
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "UPDATE SanPham set SoLuong = :soluong WHERE MaSanPham = :maSanPham";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("maSanPham", MaSp);
+            query.setParameter("soluong", soLuong);
+            System.out.println(hql);
+            session.beginTransaction();
+            int executeUpdate = query.executeUpdate();
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

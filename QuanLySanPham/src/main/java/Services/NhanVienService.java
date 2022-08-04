@@ -83,7 +83,7 @@ public class NhanVienService implements INhanVienService {
         if (MaNhanVien == null) {
             return new NhanVienModel();
         }
-        return new NhanVienModel(x.getMaNhanVien(), x.getEmail(), x.getChucVu(), x.getTrangThai(), x.getMatKhau());
+        return new NhanVienModel(x.getMaNhanVien(), x.getHoTen(),x.getEmail(), x.getChucVu(), x.getTrangThai(), x.getMatKhau());
     }
 
     @Override

@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.crypto.Data;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Nationalized;
 
 /**
@@ -32,7 +33,6 @@ public class HoaDon implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int MaHoaDon;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date ThoiGianTao;
     
     @Nationalized
@@ -57,6 +57,10 @@ public class HoaDon implements Serializable {
     public HoaDon() {
     }
 
+    public HoaDon(int MaHoaDon) {
+        this.MaHoaDon = MaHoaDon;
+    }
+    
     public HoaDon(int MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
         this.MaHoaDon = MaHoaDon;
         this.ThoiGianTao = ThoiGianTao;
@@ -120,6 +124,11 @@ public class HoaDon implements Serializable {
 
     public void setLstHoaDonChitiet(List<HoaDonChiTiet> lstHoaDonChitiet) {
         this.lstHoaDonChitiet = lstHoaDonChitiet;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDon{" + "MaHoaDon=" + MaHoaDon + ", ThoiGianTao=" + ThoiGianTao + ", TrangThai=" + TrangThai + ", nhanvien=" + nhanvien.getHoTen() + ", khachhang=" + khachhang.getHoTen() + ", khuyenmai=" + khuyenmai.getTenKhuyenMai() + '}';
     }
     
 }
