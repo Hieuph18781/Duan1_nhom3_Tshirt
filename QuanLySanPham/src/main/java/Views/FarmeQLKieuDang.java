@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.JPanel ;
 /**
  *
  * @author hieu
@@ -54,11 +54,11 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
     }
 
     public void loadtable(List<KieuDangModel> tenkiedang) {
-//        List<KieuDangModel> kd = _ikieudangService.getproduct();
+
         _default = (DefaultTableModel) tbl_kieudang.getModel();
         _default.setRowCount(0);
         for (KieuDangModel x : tenkiedang) {
-            _default.addRow(new Object[]{"KD" + x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh()});
+            _default.addRow(new Object[]{"KD" + x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(), x.getHinhAnh()});
         }
     }
 
@@ -80,8 +80,8 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
         btn_clear = new javax.swing.JButton();
         btn_hinhanh = new javax.swing.JButton();
         txt_timkiem = new javax.swing.JTextField();
-        btn_timkiem = new javax.swing.JButton();
         lbl_hinhanh = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,18 +159,8 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
                 txt_timkiemCaretUpdate(evt);
             }
         });
-        txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_timkiemActionPerformed(evt);
-            }
-        });
 
-        btn_timkiem.setText("Tìm kiếm theo kí tự của tên");
-        btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_timkiemActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("Tìm kiếm theo kí tự của tên");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,27 +195,26 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addComponent(lbl_hinhanh, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_timkiem)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_timkiem))
-                .addGap(22, 22, 22)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -257,52 +246,80 @@ public class FarmeQLKieuDang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (txt_tenkieudang.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không được để trống tên");
-            return;
+        int temp = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm không ? "); // yes=0 ,no=1 , canel=2
+        if (temp == 0) {
+            if (txt_tenkieudang.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Không được để trống tên");
+                return;
+            }
+            KieuDangModel kdmoi = getdata();
+            if (_ikieudangService.createNewProduct(getdata()) != null) {
+                ///  JOptionPane.showMessageDialog(this, "Thêm thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không thêm được");
+            }
+            loadtable(_ikieudangService.getproduct());
+            JOptionPane.showMessageDialog(this, "Thêm thành công ");
         }
-        KieuDangModel kdmoi = getdata();
-        if (_ikieudangService.createNewProduct(getdata()) != null) {
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
-        } else {
-            JOptionPane.showMessageDialog(this, "Không thêm được");
+
+        if (temp == 1) {
+            JOptionPane.showMessageDialog(this, "Đã chọn không thêm");
+
         }
+
+        
         loadtable(_ikieudangService.getproduct());
+
     }//GEN-LAST:event_btn_themActionPerformed
-   
+
     private void tbl_kieudangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_kieudangMouseClicked
         int row = tbl_kieudang.getSelectedRow();
         txt_makieudang.setText(tbl_kieudang.getValueAt(row, 0).toString());
         txt_tenkieudang.setText(tbl_kieudang.getValueAt(row, 1).toString());
         txt_mota.setText(tbl_kieudang.getValueAt(row, 2).toString());
-//        lbl_hinhanh.setIcon(ReziseIcon(duongdan));
-//        System.out.println(ReziseIcon(duongdan).equals(1));
-if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
+
+        if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
             lbl_hinhanh.setToolTipText(tbl_kieudang.getModel().getValueAt(row, 3).toString());
             lbl_hinhanh.setIcon(XImage.read(tbl_kieudang.getModel().getValueAt(row, 3).toString()));
         }
-        //  txt_makieudang.setEnabled(false);
-        //  lbl_hinhanh.setIcon(String.valueOf());
+
     }//GEN-LAST:event_tbl_kieudangMouseClicked
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        int temp = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa lại không ? "); // yes=0 ,no=1 , canel=2
+        if (temp == 0) {
+            if (txt_tenkieudang.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Không được để trống tên");
+                return;
+            }
 
-        if (txt_tenkieudang.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không được để trống tên");
-            return;
+            if (_ikieudangService.sua(getdata()) != null) {
+                //  JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
+            }
+            loadtable(_ikieudangService.getproduct());
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
         }
+        if (temp == 1) {
+            JOptionPane.showMessageDialog(this, "Bạn đã chọn không sửa");
+        }
+        if (temp == 2) {
+            JOptionPane.showMessageDialog(this, "Bạn đã chọn quay về");
+        }
+
 
         if (_ikieudangService.sua(getdata()) != null) {
             JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
         }
+         
         loadtable(_ikieudangService.getproduct());
+
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         txt_makieudang.setText("KD" + _ikieudangService.getMaxIdKieuDang());
         txt_tenkieudang.setText("");
         txt_mota.setText("");
-        //lbl_hinhanh.setText("");
+
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_hinhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hinhanhActionPerformed
@@ -311,7 +328,8 @@ if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_hinhanhActionPerformed
 
-     void getImg() {
+    void getImg() {
+        JFileChooser _filechooser = new JFileChooser ("C:\\Users\\Dell\\Documents\\GitHub\\Duan1_nhom3_Tshirt\\Duan1_nhom3_Tshirt\\QuanLySanPham\\logos");
         if (_filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = _filechooser.getSelectedFile();
             XImage.save(file);
@@ -321,18 +339,8 @@ if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
         }
     }
 
-    private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
-        //loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText()));
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_timkiemActionPerformed
-
-    private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
-     //   loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText())); // TODO add your handling code here:
-    }//GEN-LAST:event_txt_timkiemActionPerformed
-
     private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
-       loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText())); // TODO add your handling code here:
+        loadtable(_ikieudangService.findKieuDang(txt_timkiem.getText())); // TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     /**
@@ -376,11 +384,11 @@ if (tbl_kieudang.getModel().getValueAt(row, 3).toString() != null) {
     private javax.swing.JButton btn_hinhanh;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
-    private javax.swing.JButton btn_timkiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_hinhanh;
     private javax.swing.JTable tbl_kieudang;

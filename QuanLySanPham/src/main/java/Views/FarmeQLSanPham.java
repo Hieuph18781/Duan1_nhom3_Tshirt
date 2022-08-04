@@ -219,7 +219,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         txt_tenSanPham = new javax.swing.JTextField();
         btl_themSoLuong = new javax.swing.JButton();
         btn_truSoLuong = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản Lý Sản Phẩm");
@@ -257,6 +256,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         txt_timKiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txt_timKiemCaretUpdate(evt);
+            }
+        });
+        txt_timKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timKiemActionPerformed(evt);
             }
         });
 
@@ -556,17 +560,8 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                     .addComponent(btn_them)
                     .addComponent(btn_sua)
                     .addComponent(btn_clear))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton6.setText("HOME");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -578,15 +573,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -603,7 +594,7 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -611,10 +602,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tbl_sanphamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseReleased
         int index = tbl_sanpham.getSelectedRow();
@@ -633,12 +620,17 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_sanphamMouseReleased
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        
         if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
             return;
         }
         if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
             JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
+            return;
+        }
+          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
         _ISanPhamService.them(getdata());
@@ -832,6 +824,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         loadtable(lstTemp);
     }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
 
+
+    private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timKiemActionPerformed
+
     private void btl_themSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btl_themSoLuongActionPerformed
         String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Muốn Thêm");
         if (!_checkDt.checkso(temp)) {
@@ -853,6 +850,7 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         }
         txt_soLuong.setText(String.valueOf(Integer.parseInt(txt_soLuong.getText()) - Integer.parseInt(temp)));
     }//GEN-LAST:event_btn_truSoLuongActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -904,7 +902,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbc_mauSanPham;
     private javax.swing.JComboBox<String> cbc_size;
     private javax.swing.JComboBox<String> cbc_trangThai;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

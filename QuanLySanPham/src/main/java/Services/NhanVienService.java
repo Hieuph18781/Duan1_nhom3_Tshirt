@@ -91,13 +91,21 @@ public class NhanVienService implements INhanVienService {
         _inhanvientruyvan.updatemk(MaNhanVien, matkhau);
     }
 
-    public List<NhanVienModel> getListByHoTen(String hoten) {
-        List<NhanVienModel> lst = new ArrayList<>();
-        for (NhanVienModel x : _lstnhanvien) {
-            if (x.getHoTen().toLowerCase().contains(hoten.toLowerCase())) {
-                lst.add(x);
-            }
+   
+    @Override
+    public boolean Timkiem(String chuoi1, String chuoi2) {
+       String pattern = ".*" + Utils.CheckData.unAccent(chuoi2.toLowerCase()) + ".*";
+        if (Utils.CheckData.unAccent(chuoi1).toLowerCase().matches(pattern)) {
+            return true;
         }
-        return lst;
+        return false; //To change body of generated methods, choose Tools | Templates.
     }
-}
+
+    @Override
+    public NhanVienModel findchucvu(String ChucVu) {
+         //To change body of generated methods, choose Tools | Templates.
+        return null;
+         //To change body of generated methods, choose Tools | Templates.
+    }
+    }
+

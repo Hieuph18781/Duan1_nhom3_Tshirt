@@ -4,21 +4,27 @@
  */
 package Utils;
 
+
+
 import ViewsModels.NhanVienModel;
 
 /**
  *
- * @author Nguyen Van Thuan
+
+ * @author dytc0
  */
 public class Auth {
     public static NhanVienModel user = null;
-    public static void clear(){
-        Auth.user=null;
+
+    public static void clear() {
+        Auth.user = null;
     }
-    public static boolean isLogin(){
+
+    public static boolean isLogin() {
         return Auth.user != null;
     }
-//    public static boolean isManager(){
-//        return Auth.isLogin()&&user.get;
-//    }
+
+    public static String isManager() {
+        return user.getChucVu();
+    }
 }

@@ -25,9 +25,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private long _totalProducts;
     int row = 0;
 
-    /**
-     * Creates new form Size
-     */
+  
     public FarmeQLSize() {
         initComponents();
         _iManageSize = new ManageSizeService();
@@ -35,7 +33,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         _currentPage = 1;
         _pageSize = 10;
         LoadDataTable();
-        txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        txt_masize.setText("SZ" + String.valueOf(_iManageSize.getMaxIdSize()));
         txt_masize.setEnabled(false);
         findTable();
     }
@@ -45,20 +43,21 @@ public class FarmeQLSize extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
         dtm.setRowCount(0);
         for (SizeModel d : ds) {
-            Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
+            Object[] rowdata = {"SZ" + d.getMaSize(), d.getTenSize(), d.getMota()};
             dtm.addRow(rowdata);
         }
 
     }
-    private  void findTable(){
-       DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
-        dtm.setRowCount(0); 
+
+    private void findTable() {
+        DefaultTableModel dtm = (DefaultTableModel) this.tbl_size.getModel();
+        dtm.setRowCount(0);
         try {
-            String key=txt_timkie.getText();
-            List<SizeModel> timkiem= _iManageSize.TimKiem(key);
+            String key = txt_timkie.getText();
+            List<SizeModel> timkiem = _iManageSize.TimKiem(key);
             for (SizeModel d : timkiem) {
-                Object[] rowdata = {"SZ"+d.getMaSize(), d.getTenSize(), d.getMota()};
-            dtm.addRow(rowdata);
+                Object[] rowdata = {"SZ" + d.getMaSize(), d.getTenSize(), d.getMota()};
+                dtm.addRow(rowdata);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi tìm kiếm");
@@ -77,7 +76,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 
         return size;
 
-        // return new SizeModel(Integer.parseInt(txt_masize.getText()), txt_tensize.getText(), txt_mota.getText());
+  
     }
 
     private String getSizeFromSelectdRow() {
@@ -272,6 +271,15 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tensizeActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
+        if (txt_tensize.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "tên size ko được để trống");
+            return ;
+            
+        }
         SizeModel newSize = getSizeFromInput();
         if (_iManageSize.createNewSize(newSize) != null) {
             JOptionPane.showMessageDialog(this, "thanh cong");
@@ -279,6 +287,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "that bai");
         }
+        
         LoadDataTable();
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -300,6 +309,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "thanh cong");
 //            
 //        }
+        
         LoadDataTable();
     }//GEN-LAST:event_btn_suaActionPerformed
 
@@ -331,7 +341,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_sizeMousePressed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        this.txt_masize.setText("SZ"+String.valueOf(_iManageSize.getMaxIdSize()));
+        this.txt_masize.setText("SZ" + String.valueOf(_iManageSize.getMaxIdSize()));
         this.txt_tensize.setText("");
         this.txt_mota.setText("");
     }//GEN-LAST:event_btn_clearActionPerformed
@@ -339,7 +349,7 @@ public class FarmeQLSize extends javax.swing.JFrame {
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
 //       JOptionPane.showMessageDialog(this, _iManageSize.TimKiem(txt_timkie.getText()));
 //       LoadDataTable(_iManageSize.TimKiem(txt_tensize.getText()));
-findTable();
+        findTable();
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
     /**

@@ -11,6 +11,7 @@ import Services.NhanVienService;
 import ViewsModels.NhanVienModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         txt_manv.setEditable(false);
         txt_manv.setText("NV" + _inhanvienservice.getMaxIdNhanVien());
 
-        loadtable();
+        loadtable(_inhanvienservice.getproduct());
         btn();
 
     }
@@ -64,8 +65,8 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         return nvmd;
     }
 
-    public void loadtable() {
-        List<NhanVienModel> nvmd = _inhanvienservice.getproduct();
+    public void loadtable(List<NhanVienModel> nvmd) {
+        
         _defaultTB = (DefaultTableModel) tbl_nhanvien.getModel();
         _defaultTB.setRowCount(0);
         for (NhanVienModel x : nvmd) {
@@ -82,7 +83,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     
     boolean flag = false;
 
-    void check() {
+    boolean check() {
         if (txt_hoten.getText().length() < 3) {
             if (txt_hoten.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
@@ -99,10 +100,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             }
             if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                
             }
 
             if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
-                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
+                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng 0\\\\d{9}");
             }
         } else if (txt_email.getText().length() < 5) {
             if (txt_email.getText().length() == 0) {
@@ -120,6 +122,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         } else {
             flag = true;
         }
+        return true;
     }
 
     /**
@@ -137,6 +140,9 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_nhanvien = new javax.swing.JTable();
         txt_timkiem = new javax.swing.JTextField();
+        rdb_timmanv = new javax.swing.JRadioButton();
+        rdb_timtennv = new javax.swing.JRadioButton();
+        rdb_timchucvu = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -164,7 +170,6 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         txt_ngaysinh = new com.toedter.calendar.JDateChooser();
         rdb_nu = new javax.swing.JRadioButton();
         rdb_nam = new javax.swing.JRadioButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,9 +194,35 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_nhanvien);
 
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
         txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_timkiemActionPerformed(evt);
+            }
+        });
+
+        rdb_timmanv.setText("Tìm theo Mã nhân viên");
+        rdb_timmanv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_timmanvActionPerformed(evt);
+            }
+        });
+
+        rdb_timtennv.setText("Tìm theo tên");
+        rdb_timtennv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_timtennvActionPerformed(evt);
+            }
+        });
+
+        rdb_timchucvu.setText("Tìm theo chức vụ");
+        rdb_timchucvu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_timchucvuActionPerformed(evt);
             }
         });
 
@@ -207,14 +238,27 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                         .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(rdb_timmanv)
+                .addGap(92, 92, 92)
+                .addComponent(rdb_timtennv, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(rdb_timchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdb_timchucvu)
+                    .addComponent(rdb_timtennv)
+                    .addComponent(rdb_timmanv))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -419,19 +463,14 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        jButton6.setBackground(new java.awt.Color(255, 51, 102));
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton6.setText("HOME");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(549, 549, 549)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(207, 207, 207)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(427, 427, 427))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -441,9 +480,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton6))
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -455,19 +492,29 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        check();
+        if (check()==false) {
+            //JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
+                return ;
+                
+            }
         try {
             System.out.println(getdata().toString());
             try {
-                if (txt_hoten.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống tên");
+                if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                 }
+                
+                if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
                 }
-                loadtable();  // TODO add your handling code here:
+                loadtable(_inhanvienservice.getproduct());  // TODO add your handling code here:
             } catch (ParseException ex) {
                 Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -493,29 +540,54 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_cbc_trangthaiActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        
-        try {
-            System.out.println(getdata().toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            check();
-//            if (txt_hoten.getText().isEmpty()) {
-//                JOptionPane.showMessageDialog(this, "Không được để trống tên");
-//                return;
-//            }
-            NhanVienModel nv = getdata();
-            if (_inhanvienservice.createNewProduct(getdata()) != null) {
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "Không thêm được");
+
+       
+                                                
+            
+            try {
+                System.out.println(getdata().toString());
+            } catch (ParseException ex) {
+                Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            loadtable();
+            
+            
+ if (check()==false) {
+     JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
+                return ;
+            }
+ else{
+                try {
+                     if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                    return;
+                     }
+                      if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
+                    
+                    NhanVienModel nv = getdata();
+                } catch (ParseException ex) {
+                    Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+                try {
+                    if (_inhanvienservice.createNewProduct(getdata()) != null) {
+                        JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Không thêm được");
+                    }   } catch (ParseException ex) {
+                    Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            loadtable(_inhanvienservice.getproduct());
             // TODO add your handling code here:
-        } catch (ParseException ex) {
-            Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
         }
+        
+        
 
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -524,7 +596,12 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             int row = tbl_nhanvien.getSelectedRow();
             txt_manv.setText(tbl_nhanvien.getValueAt(row, 0).toString());
             txt_hoten.setText(tbl_nhanvien.getValueAt(row, 1).toString());
+            
+//             if (txt_ngaysinh.getDate().toString().isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "k có ngày sinh sẽ bi lỗi");
+//            }else{
             txt_ngaysinh.setDate(format_date.parse(tbl_nhanvien.getValueAt(row, 2).toString()));
+             
             rdb_nam.setSelected(true);
             if (tbl_nhanvien.getModel().getValueAt(row, 3).toString().equals("Nữ")) {
                 rdb_nu.setSelected(true);
@@ -557,9 +634,82 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_moiActionPerformed
 
     private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
+ if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
 
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        if (rdb_timmanv.isSelected()) {
+            for (NhanVienModel x : _inhanvienservice.getproduct()) {
+                if (_inhanvienservice.Timkiem(x.getMaNhanVien(), txt_timkiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_timtennv.isSelected()) {
+            for (NhanVienModel x : _inhanvienservice.getproduct()) {
+                if (_inhanvienservice.Timkiem(x.getHoTen(), txt_timkiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+          if (rdb_timchucvu.isSelected()) {
+            for (NhanVienModel x : _inhanvienservice.getproduct()) {
+                if (_inhanvienservice.Timkiem(x.getChucVu(), txt_timkiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        
 //          loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
+
+    private void rdb_timmanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timmanvActionPerformed
+       if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        for (NhanVienModel x : _inhanvienservice.getproduct()) {
+            if (_inhanvienservice.Timkiem(x.getMaNhanVien(), txt_timkiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp); // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_timmanvActionPerformed
+
+    private void rdb_timtennvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timtennvActionPerformed
+       if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        for (NhanVienModel x : _inhanvienservice.getproduct()) {
+            if (_inhanvienservice.Timkiem(x.getHoTen(), txt_timkiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp); // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_timtennvActionPerformed
+
+    private void rdb_timchucvuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timchucvuActionPerformed
+       if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        for (NhanVienModel x : _inhanvienservice.getproduct()) {
+            if (_inhanvienservice.Timkiem(x.getChucVu(), txt_timkiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp); // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_timchucvuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -606,7 +756,6 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbc_chucvu;
     private javax.swing.JComboBox<String> cbc_trangthai;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -624,6 +773,9 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rdb_nam;
     private javax.swing.JRadioButton rdb_nu;
+    private javax.swing.JRadioButton rdb_timchucvu;
+    private javax.swing.JRadioButton rdb_timmanv;
+    private javax.swing.JRadioButton rdb_timtennv;
     private javax.swing.JTable tbl_nhanvien;
     private javax.swing.JTextField txt_cccd;
     private javax.swing.JTextField txt_diachi;

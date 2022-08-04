@@ -43,7 +43,7 @@ public class KieuDangService implements IKieuDangService {
         _lstkieudang = new ArrayList<>();
         var kieudang = _iTruyvankieudang.findAll();
         for (KieuDang x : kieudang) {
-            _lstkieudang.add(new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh()));
+            _lstkieudang.add(new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(), x.getHinhAnh()));
         }
         return _lstkieudang;
     }
@@ -51,8 +51,8 @@ public class KieuDangService implements IKieuDangService {
     @Override
     public KieuDangModel createNewProduct(KieuDangModel kieudang) {
         kieudang.setMaKieuDang(0);
-        var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota(),kieudang.getHinhAnh()));
-        return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(),x.getHinhAnh());
+        var x = _iTruyvankieudang.Save(new KieuDang(kieudang.getMaKieuDang(), kieudang.getTenKieuDang(), kieudang.getMota(), kieudang.getHinhAnh()));
+        return new KieuDangModel(x.getMaKieuDang(), x.getTenKieuDang(), x.getMota(), x.getHinhAnh());
     }
 
     @Override
@@ -66,26 +66,26 @@ public class KieuDangService implements IKieuDangService {
 
     @Override
     public int getMaxIdKieuDang() {
-        return _lstkieudang.size()+1;
+        return _lstkieudang.size() + 1;
     }
 
     public List<KieuDangModel> findKieuDang(String tenkiedang) {
-      List<KieuDangModel> lstFind = new ArrayList<>();
-        String pattern = ".*"+Utils.CheckData.unAccent(tenkiedang.toLowerCase())+".*";
+        List<KieuDangModel> lstFind = new ArrayList<>();
+        String pattern = ".*" + Utils.CheckData.unAccent(tenkiedang.toLowerCase()) + ".*";
         if (tenkiedang.isBlank()) {
-            System.out.println("4");
+
             return _lstkieudang;
         }
-        System.out.println("1");
+
         for (KieuDangModel x : _lstkieudang) {
-            System.out.println("2");
+
             if (Utils.CheckData.unAccent(x.getTenKieuDang()).toLowerCase().matches(pattern)) {
                 lstFind.add(x);
-                System.out.println("3");
+
             }
         }
-        System.out.println("5");
+
         return lstFind; //To change body of generated methods, choose Tools | Templates.
     }
-      
+
 }
