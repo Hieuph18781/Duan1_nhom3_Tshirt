@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views;
+package JpanelForm;
 
 import DomainModels.KhuyenMai;
 import Services.IKhuyenMaiService;
@@ -18,27 +18,28 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nguyen Van Thuan
+ * @author dytc0
  */
-public class FarmeQLKhuyenMai extends javax.swing.JFrame {
+public class QLKhuyenMaiPanel extends javax.swing.JPanel {
 
     IKhuyenMaiService _IKhuyenMaiService;
     CheckData _check;
     List<KhuyenMaiModel> _lstKhuyenMaiModel;
 
-    public FarmeQLKhuyenMai() {
+    /**
+     * Creates new form QLKhuyenMaiPanel
+     */
+    public QLKhuyenMaiPanel() {
         initComponents();
         _IKhuyenMaiService = new KhuyenMaiService();
         _lstKhuyenMaiModel = new ArrayList<>();
         _check = new CheckData();
-        
+
         SimpleDateFormat date = new SimpleDateFormat();
         loadtable(_IKhuyenMaiService.getListFromDB());
         txt_makm.setText("KM" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
         //txt_giakm.setText(String.valueOf(txt_giakm.getText()) + "%");
         txt_makm.setEnabled(false);
-        
-
     }
 
     KhuyenMaiModel getdata() {
@@ -51,9 +52,10 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
         for (KhuyenMaiModel x : ks) {
-            _DefaultTableModel.addRow(new Object[]{stt++, "KM" + x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai() , x.getMoTa()});
+            _DefaultTableModel.addRow(new Object[]{stt++, "KM" + x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai(), x.getMoTa()});
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,10 +89,6 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         tbl_khuyenmai = new javax.swing.JTable();
         txt_timkieems = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quản Lý Khuyễn Mãi");
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 620));
@@ -160,34 +158,32 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_makm, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btn_them)
+                            .addGap(52, 52, 52)
+                            .addComponent(btn_sua)
+                            .addGap(43, 43, 43)
+                            .addComponent(btn_clear)
+                            .addGap(25, 25, 25))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(30, 30, 30))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dc_ngaykt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                .addComponent(dc_ngaybatdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(txt_tenkm)
+                                    .addContainerGap()))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(30, 30, 30))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dc_ngaykt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                            .addComponent(dc_ngaybatdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txt_tenkm)
-                                .addContainerGap())))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(btn_them)
-                        .addGap(64, 64, 64)
-                        .addComponent(btn_sua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_clear))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -199,8 +195,8 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txt_giakm, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8)))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                                .addComponent(jLabel8)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,12 +226,12 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_clear)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_them)
                     .addComponent(btn_sua)
-                    .addComponent(btn_them))
-                .addGap(52, 52, 52))
+                    .addComponent(btn_clear))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
@@ -259,9 +255,6 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tbl_khuyenmai);
-        if (tbl_khuyenmai.getColumnModel().getColumnCount() > 0) {
-            tbl_khuyenmai.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         txt_timkieems.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -279,13 +272,12 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(44, 44, 44)
                         .addComponent(txt_timkieems, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +287,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
                     .addComponent(txt_timkieems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -304,37 +296,31 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
@@ -347,7 +333,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             return;
         }
         if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
-                 || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
                 || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
             return;
@@ -358,7 +344,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ngày bắt đầu phải bé hơn ngày kết thúc");
             return;
         }
-        
+
         int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
         if (xacnhan != JOptionPane.YES_OPTION) {
             return;
@@ -369,7 +355,7 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
-                 || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
+                || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
                 || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
@@ -394,6 +380,13 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         loadtable(_IKhuyenMaiService.getListFromDB());
     }//GEN-LAST:event_btn_suaActionPerformed
 
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        txt_makm.setText("KM" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
+        txt_tenkm.setText("");
+        txt_mota.setText("");
+        txt_giakm.setText("");
+    }//GEN-LAST:event_btn_clearActionPerformed
+
     private void tbl_khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khuyenmaiMouseClicked
         int row = tbl_khuyenmai.getSelectedRow();
         txt_makm.setText(tbl_khuyenmai.getValueAt(row, 1).toString());
@@ -404,53 +397,10 @@ public class FarmeQLKhuyenMai extends javax.swing.JFrame {
         dc_ngaykt.setDate((Date) tbl_khuyenmai.getValueAt(row, 4));
     }//GEN-LAST:event_tbl_khuyenmaiMouseClicked
 
-    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        txt_makm.setText("KM" + String.valueOf(_IKhuyenMaiService.getMaDanhMuc()));
-        txt_tenkm.setText("");
-        txt_mota.setText("");
-        txt_giakm.setText("");
-
-    }//GEN-LAST:event_btn_clearActionPerformed
-
     private void txt_timkieemsCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkieemsCaretUpdate
         loadtable(_IKhuyenMaiService.findDanhMucSp(txt_timkieems.getText()));
     }//GEN-LAST:event_txt_timkieemsCaretUpdate
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FarmeQLKhuyenMai().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_clear;

@@ -22,4 +22,6 @@ public interface INhanVienRepostiory {
     public NhanVien findById(String MaNhanVien);
 
     public void updatemk(String MaNhanVien, String matkhau);
+    
+    public NhanVien findByChucVu(String ChucVu);
 }

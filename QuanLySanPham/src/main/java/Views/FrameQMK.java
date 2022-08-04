@@ -41,6 +41,7 @@ public class FrameQMK extends javax.swing.JDialog {
         btn_dmk.setEnabled(false);
         txt_maxacnhan.setEnabled(false);
         btn_xacnhan.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     public void sendemail() {
@@ -86,7 +87,13 @@ public class FrameQMK extends javax.swing.JDialog {
                 String email = new String(txt_email.getText());
                 NhanVienModel nhanVien = _iINhanVienService.findNhanVien(mamv);
                 if (!email.equals(nhanVien.getEmail())) {
-                    JOptionPane.showMessageDialog(this, "email không khớp với tài khoản");
+                    txt_maxacnhan.setEnabled(true);
+                    btn_xacnhan.setEnabled(true);
+
+                    txt_manhanvien.setEnabled(false);
+                    txt_email.setEnabled(false);
+                    JOptionPane.showMessageDialog(this, "Gửi mã xác nhận thành công");
+                    return;
 
                 } else {
                     sendemail();

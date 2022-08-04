@@ -1,14 +1,19 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views;
+package JpanelForm;
 
 import DomainModels.ChatLieu;
 import DomainModels.DanhMucSanPham;
 import DomainModels.KieuDang;
 import DomainModels.MauSac;
 import DomainModels.Size;
+import JdialogForm.QLChatLieuJDialog;
+import JdialogForm.QLDanhMucSanPhamJDialog;
+import JdialogForm.QLKieuDangJDialog;
+import JdialogForm.QLMauSacJDialog;
+import JdialogForm.QLSizeJDialog;
 import Repositories.ChatLieuRepository;
 import Repositories.IChatLieuRepository;
 import Repositories.IMauSacRepository;
@@ -36,14 +41,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Bùi Công Minh
+ * @author dytc0
  */
-public class FarmeQLSanPham extends javax.swing.JFrame {
+public class QLSanPhamPanel extends javax.swing.JPanel {
 
     ISanPhamService _ISanPhamService;
     IMauSacService _IMauSacService;
@@ -54,7 +60,10 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     DefaultTableModel _DefaultTableModel;
     CheckData _checkDt;
 
-    public FarmeQLSanPham() {
+    /**
+     * Creates new form QLSanPhamPanel
+     */
+    public QLSanPhamPanel() {
         initComponents();
         _ISanPhamService = new SanPhamService();
         _ChatLieuService = new ManageChatLieuService();
@@ -177,7 +186,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sanpham = new javax.swing.JTable();
@@ -219,13 +227,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         txt_tenSanPham = new javax.swing.JTextField();
         btl_themSoLuong = new javax.swing.JButton();
         btn_truSoLuong = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quản Lý Sản Phẩm");
-        setAlwaysOnTop(true);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -322,10 +328,9 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rdb_theoMa)
@@ -340,8 +345,10 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(rdb_theoChatLieu)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdb_theoKieuDang))
-                            .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(rdb_theoKieuDang)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txt_timKiem)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -560,47 +567,79 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
                     .addComponent(btn_them)
                     .addComponent(btn_sua)
                     .addComponent(btn_clear))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jButton1.setText("Chất Liệu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        jButton2.setText("Màu Sắc");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Size");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Danh Mục");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Kiểu Dáng");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton2)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton3)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        getAccessibleContext().setAccessibleDescription("");
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_sanphamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseReleased
@@ -618,53 +657,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         cbc_chatLieu.setSelectedItem(tbl_sanpham.getModel().getValueAt(index, 6).toString());
         cbc_trangThai.setSelectedItem(tbl_sanpham.getModel().getValueAt(index, 9).toString());
     }//GEN-LAST:event_tbl_sanphamMouseReleased
-
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        
-        if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
-            return;
-        }
-        if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
-            JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
-            return;
-        }
-          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
-        if (xacnhan != JOptionPane.YES_OPTION) {
-            return;
-        }
-        _ISanPhamService.them(getdata());
-        loadtable(_ISanPhamService.getlistsanpham());
-    }//GEN-LAST:event_btn_themActionPerformed
-
-    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
-            JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
-            return;
-        }
-        if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
-            JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
-            return;
-        }
-        _ISanPhamService.sua(getdata());
-        loadtable(_ISanPhamService.getlistsanpham());
-    }//GEN-LAST:event_btn_suaActionPerformed
-
-    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-
-        txt_maSanPham.setText(_ISanPhamService.getMaSanPham());
-        txt_tenSanPham.setText("");
-//        txt_soLuong.setText("1000");
-//        txt_giiaban.setText("90000");
-//        tar_mota.setText("Không có");
-
-//        cbc_kieuDang.setSelectedIndex(0);
-//        cbc_size.setSelectedIndex(0);
-//        cbc_mauSanPham.setSelectedIndex(0);
-//        cbc_danhMucSanPham.setSelectedIndex(0);
-//        cbc_chatLieu.setSelectedIndex(0);
-//        cbc_trangThai.setSelectedIndex(0);
-    }//GEN-LAST:event_btn_clearActionPerformed
 
     private void txt_timKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timKiemCaretUpdate
         if (txt_timKiem.getText().isBlank()) {
@@ -726,19 +718,9 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         loadtable(lstTemp);
     }//GEN-LAST:event_txt_timKiemCaretUpdate
 
-    private void rdb_theoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoTenActionPerformed
-        if (txt_timKiem.getText().isBlank()) {
-            loadtable(_ISanPhamService.getlistsanpham());
-            return;
-        }
-        List<SanPhamModel> lstTemp = new ArrayList<>();
-        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
-            if (_ISanPhamService.Timkiem(x.getTenSanPham(), txt_timKiem.getText())) {
-                lstTemp.add(x);
-            }
-        }
-        loadtable(lstTemp);
-    }//GEN-LAST:event_rdb_theoTenActionPerformed
+    private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timKiemActionPerformed
 
     private void rdb_theoMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoMaActionPerformed
         if (txt_timKiem.getText().isBlank()) {
@@ -753,6 +735,20 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         }
         loadtable(lstTemp);
     }//GEN-LAST:event_rdb_theoMaActionPerformed
+
+    private void rdb_theoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoTenActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtable(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getTenSanPham(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp);
+    }//GEN-LAST:event_rdb_theoTenActionPerformed
 
     private void rdb_theoSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoSizeActionPerformed
         if (txt_timKiem.getText().isBlank()) {
@@ -824,10 +820,52 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         loadtable(lstTemp);
     }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
 
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
-    private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_timKiemActionPerformed
+        if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
+            return;
+        }
+        if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
+            JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
+            return;
+        }
+        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+        if (xacnhan != JOptionPane.YES_OPTION) {
+            return;
+        }
+        _ISanPhamService.them(getdata());
+        loadtable(_ISanPhamService.getlistsanpham());
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
+            JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
+            return;
+        }
+        if (!_checkDt.checksoThuc(txt_giiaban.getText()) || !_checkDt.checkso(txt_soLuong.getText())) {
+            JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
+            return;
+        }
+        _ISanPhamService.sua(getdata());
+        loadtable(_ISanPhamService.getlistsanpham());
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+
+        txt_maSanPham.setText(_ISanPhamService.getMaSanPham());
+        txt_tenSanPham.setText("");
+        //        txt_soLuong.setText("1000");
+        //        txt_giiaban.setText("90000");
+        //        tar_mota.setText("Không có");
+
+        //        cbc_kieuDang.setSelectedIndex(0);
+        //        cbc_size.setSelectedIndex(0);
+        //        cbc_mauSanPham.setSelectedIndex(0);
+        //        cbc_danhMucSanPham.setSelectedIndex(0);
+        //        cbc_chatLieu.setSelectedIndex(0);
+        //        cbc_trangThai.setSelectedIndex(0);
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btl_themSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btl_themSoLuongActionPerformed
         String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Muốn Thêm");
@@ -851,42 +889,27 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         txt_soLuong.setText(String.valueOf(Integer.parseInt(txt_soLuong.getText()) - Integer.parseInt(temp)));
     }//GEN-LAST:event_btn_truSoLuongActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new QLChatLieuJDialog(null, true).setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLSanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLSanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLSanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FarmeQLSanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new QLMauSacJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FarmeQLSanPham().setVisible(true);
-            }
-        });
-    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new QLKieuDangJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new QLSizeJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        new QLDanhMucSanPhamJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Mota;
@@ -902,6 +925,11 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbc_mauSanPham;
     private javax.swing.JComboBox<String> cbc_size;
     private javax.swing.JComboBox<String> cbc_trangThai;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -914,7 +942,6 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton rdb_theoChatLieu;
@@ -932,5 +959,4 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField txt_tenSanPham;
     private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
-
 }
