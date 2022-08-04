@@ -100,10 +100,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             }
             if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                
             }
 
             if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
-                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
+                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng 0\\\\d{9}");
             }
         } else if (txt_email.getText().length() < 5) {
             if (txt_email.getText().length() == 0) {
@@ -492,17 +493,23 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (check()==false) {
-            JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
+            //JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
                 return ;
                 
             }
         try {
             System.out.println(getdata().toString());
             try {
-                if (txt_hoten.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống tên");
+                if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                 }
+                
+                if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
@@ -551,6 +558,16 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             }
  else{
                 try {
+                     if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                    return;
+                     }
+                      if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
+                    
                     NhanVienModel nv = getdata();
                 } catch (ParseException ex) {
                     Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
@@ -579,7 +596,12 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             int row = tbl_nhanvien.getSelectedRow();
             txt_manv.setText(tbl_nhanvien.getValueAt(row, 0).toString());
             txt_hoten.setText(tbl_nhanvien.getValueAt(row, 1).toString());
+            
+//             if (txt_ngaysinh.getDate().toString().isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "k có ngày sinh sẽ bi lỗi");
+//            }else{
             txt_ngaysinh.setDate(format_date.parse(tbl_nhanvien.getValueAt(row, 2).toString()));
+             
             rdb_nam.setSelected(true);
             if (tbl_nhanvien.getModel().getValueAt(row, 3).toString().equals("Nữ")) {
                 rdb_nu.setSelected(true);

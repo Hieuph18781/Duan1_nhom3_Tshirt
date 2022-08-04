@@ -142,6 +142,9 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
         rdb_timmanv = new javax.swing.JRadioButton();
         rdb_timtennv = new javax.swing.JRadioButton();
         rdb_timchucvu = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        rdb_diachi = new javax.swing.JRadioButton();
+        rdb_email = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -227,36 +230,61 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Nhập tìm kiếm ");
+
+        rdb_diachi.setText("Tìm theo địa chỉ");
+        rdb_diachi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_diachiActionPerformed(evt);
+            }
+        });
+
+        rdb_email.setText("Tìm theo email");
+        rdb_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_emailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(rdb_timmanv)
-                        .addGap(92, 92, 92)
-                        .addComponent(rdb_timtennv, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(rdb_timchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
-                            .addComponent(txt_timkiem))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(rdb_timmanv)
+                            .addGap(65, 65, 65)
+                            .addComponent(rdb_timtennv, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(68, 68, 68)
+                            .addComponent(rdb_timchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(50, 50, 50)
+                            .addComponent(rdb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(52, 52, 52)
+                            .addComponent(rdb_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdb_timchucvu)
                     .addComponent(rdb_timtennv)
-                    .addComponent(rdb_timmanv))
+                    .addComponent(rdb_timmanv)
+                    .addComponent(rdb_diachi)
+                    .addComponent(rdb_email))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
@@ -524,6 +552,20 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                 }
             }
         }
+        if (rdb_diachi.isSelected()) {
+            for (NhanVienModel x : _inhanvienservice.getproduct()) {
+                if (_inhanvienservice.Timkiem(x.getDiaChi(), txt_timkiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_email.isSelected()) {
+            for (NhanVienModel x : _inhanvienservice.getproduct()) {
+                if (_inhanvienservice.Timkiem(x.getEmail(), txt_timkiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
 
         //          loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
@@ -596,6 +638,15 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
             return;
         } else {
             try {
+                  if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                    return;
+                     }
+                      if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
                 NhanVienModel nv = getdata();
             } catch (ParseException ex) {
                 Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -630,6 +681,15 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Không được để trống tên");
                     return;
                 }
+                  if (txt_matkhau.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                    return;
+                     }
+                      if (!txt_ngaysinh.equals(null)) {
+                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+                   
+                    return;
+                      }
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
@@ -659,6 +719,34 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbc_trangthaiActionPerformed
 
+    private void rdb_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_emailActionPerformed
+       if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        for (NhanVienModel x : _inhanvienservice.getproduct()) {
+            if (_inhanvienservice.Timkiem(x.getEmail(), txt_timkiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp); // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_emailActionPerformed
+
+    private void rdb_diachiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_diachiActionPerformed
+if (txt_timkiem.getText().isBlank()) {
+            loadtable(_inhanvienservice.getproduct());
+            return;
+        }
+        List<NhanVienModel> lstTemp = new ArrayList<>();
+        for (NhanVienModel x : _inhanvienservice.getproduct()) {
+            if (_inhanvienservice.Timkiem(x.getDiaChi(), txt_timkiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtable(lstTemp);        // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_diachiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_moi;
@@ -666,6 +754,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JButton btn_them;
     private javax.swing.JComboBox<String> cbc_chucvu;
     private javax.swing.JComboBox<String> cbc_trangthai;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -680,6 +769,8 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rdb_diachi;
+    private javax.swing.JRadioButton rdb_email;
     private javax.swing.JRadioButton rdb_nam;
     private javax.swing.JRadioButton rdb_nu;
     private javax.swing.JRadioButton rdb_timchucvu;
