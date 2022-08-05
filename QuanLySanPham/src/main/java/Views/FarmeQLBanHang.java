@@ -196,11 +196,15 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
             txt_xacnhanma.setEnabled(false);
             txt_thanhTien.setEnabled(false);
             txt_tienThua.setEnabled(false);
+            rdb_dungdiem.setEnabled(false);
+            rdb_khongdungdiem.setEnabled(false);
         }
         if (!cbc_khachHang.getSelectedItem().equals("Khách Lẻ")) {
             txt_soDienThoai.setEnabled(true);
 //            txt_tenKhachHang.setEnabled(true);
             btn_guima.setEnabled(true);
+            rdb_dungdiem.setEnabled(true);
+            rdb_khongdungdiem.setEnabled(true);
         }
     }
 
@@ -266,7 +270,7 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
             });
         }
     }
-    
+
     public HoaDonModel getHoaDonCho() {
         int indexHdCho = tbl_taoHoaDon.getSelectedRow();
         return new HoaDonModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHdCho, 1).toString()));
@@ -903,25 +907,33 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
     private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
         tongTien();
         int indexHoaDOn = tbl_taoHoaDon.getSelectedRow();
-        if (indexHoaDOn<0) {
+        if (indexHoaDOn < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn cần thanh toán");
             return;
         }
-        if (Utils.CheckData.checkNullString(txt_tienKhachDua.getText())) {
-            JOptionPane.showMessageDialog(this, "Bạn định cho không người ta ư?");
+        if (tbl_sanPhamDaChon.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Hóa Đơn chưa có sản phẩm nào");
             return;
         }
-        if (cbc_khachHang.getSelectedIndex()!=0 && Utils.CheckData.checkNullString(txt_tenKhachHang.getText())) {
+        if (Utils.CheckData.checkNullString(txt_tienKhachDua.getText()) && !Utils.CheckData.checkso(txt_tienKhachDua.getText())) {
+            JOptionPane.showMessageDialog(this, "Tiền Khách đưa không được để trống và phải là số");
+            return;
+        }
+        if (cbc_khachHang.getSelectedIndex() != 0 && Utils.CheckData.checkNullString(txt_tenKhachHang.getText())) {
             JOptionPane.showMessageDialog(this, "Chưa nhập thông tin khách hàng");
             return;
         }
-        System.out.println(_randomCode==-1);
-        if (!Utils.CheckData.checkNullString(txt_tenKhachHang.getText()) && _randomCode!=-1) {
+        System.out.println(_randomCode == -1);
+        if (!Utils.CheckData.checkNullString(txt_tenKhachHang.getText()) && _randomCode != -1) {
             JOptionPane.showMessageDialog(this, "Bạn Chưa xác nhận khách hàng");
             return;
         }
+        if (Integer.parseInt(txt_tienKhachDua.getText()) < Integer.parseInt(txt_thanhTien.getText())) {
+            JOptionPane.showMessageDialog(this, "Tiền Khách đưa không đủ");
+            return;
+        }
         JOptionPane.showMessageDialog(this, "đã qua");
-         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         try {
             HoaDonModel hoaDonModel = new HoaDonModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 1).toString()), dateFormat.parse(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 2).toString()), 3, Auth.user, _khHangModel, _lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()));
             _HoaDonService.sua(hoaDonModel);
@@ -929,6 +941,7 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
             loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
             loadtableHoaDonCho(_lstHoaDonCho);
             loadtableSanPhamDaChon(_HoaDonCTService.getListFromDB(-1));
+            txt_tienKhachDua.setText("0");
         } catch (ParseException ex) {
             Logger.getLogger(FarmeQLBanHang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -947,7 +960,7 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
             return;
         }
 
-        if (Integer.parseInt(tbl_sanPham.getValueAt(indexSp, 8).toString()) == 0) {//check số lượng sản phẩm
+        if (Integer.parseInt(tbl_sanPham.getValueAt(indexSp, 8).toString()) <= 0) {//check số lượng sản phẩm
             JOptionPane.showMessageDialog(this, "Sản Phẩm đã hết");
             return;
         }
@@ -981,6 +994,16 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
         HoaDonChiTietModel hdct = null;
         for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
             if (x.getMaSanPham().equals(tbl_sanPhamDaChon.getModel().getValueAt(indexSp, 1).toString())) {
+                if (x.getSoLuong() < Integer.parseInt(tbl_sanPhamDaChon.getModel().getValueAt(indexSp, 8).toString())) {
+                    JOptionPane.showMessageDialog(this, "Số Lượng của sản phẩm chỉ còn :" + x.getSoLuong());
+                    tbl_sanPhamDaChon.getModel().setValueAt(_soluongcu, indexSp, 8);
+                    return;
+                }
+                if (x.getSoLuong() <= 0) {
+                    JOptionPane.showMessageDialog(this, "Sản phẩm đã hết hàng");
+                    tbl_sanPhamDaChon.getModel().setValueAt(_soluongcu, indexSp, 8);
+                    return;
+                }
                 _ISanPhamService.suaSoLuongSP(tbl_sanPhamDaChon.getValueAt(indexSp, 1).toString(), (x.getSoLuong() + _soluongcu) - Integer.parseInt(tbl_sanPhamDaChon.getModel().getValueAt(indexSp, 8).toString()));//update so luong san pham
                 hdct = new HoaDonChiTietModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHdCho, 1).toString()), Integer.parseInt(tbl_sanPhamDaChon.getModel().getValueAt(indexSp, 8).toString()), 0, x, getHoaDonCho());
             }
@@ -1030,7 +1053,7 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
             if (x.getSoDienThoai().equals(txt_soDienThoai.getText())) {
                 txt_tenKhachHang.setText(x.getHoTen());
                 _khHangModel = x;
-                _randomCode=0;
+                _randomCode = 0;
             }
         }
     }//GEN-LAST:event_txt_soDienThoaiCaretUpdate
