@@ -143,14 +143,14 @@ public class FarmeQLSanPham extends javax.swing.JFrame {
         cbc_danhMucSanPham.setModel(cbx);
     }
 
-    SanPhamModel getdata() {
-        return new SanPhamModel(txt_maSanPham.getText(), txt_tenSanPham.getText(), Integer.parseInt(txt_soLuong.getText()), Integer.parseInt(txt_giiaban.getText()), tar_mota.getText(), cbc_trangThai.getSelectedItem().equals("Đang Bán"),
-                _ChatLieuService.getProducts().get(cbc_chatLieu.getSelectedIndex()),
-                _KieuDangService.getproduct().get(cbc_kieuDang.getSelectedIndex()),
-                _DanhMucSanPhamService.getListFromDB().get(cbc_danhMucSanPham.getSelectedIndex()),
-                _IMauSacService.getproduct().get(cbc_mauSanPham.getSelectedIndex()),
-                _IManageSizeService.getfullize().get(cbc_size.getSelectedIndex()));
-    }
+SanPhamModel getdata() {
+    return new SanPhamModel(txt_maSanPham.getText(), txt_tenSanPham.getText(), Integer.parseInt(txt_soLuong.getText()), Integer.parseInt(txt_giiaban.getText()), tar_mota.getText(), cbc_trangThai.getSelectedItem().equals("Đang Bán"),
+            _ChatLieuService.getProducts().get(cbc_chatLieu.getSelectedIndex()),
+            _KieuDangService.getproduct().get(cbc_kieuDang.getSelectedIndex()),
+            _DanhMucSanPhamService.getListFromDB().get(cbc_danhMucSanPham.getSelectedIndex()),
+            _IMauSacService.getproduct().get(cbc_mauSanPham.getSelectedIndex()),
+            _IManageSizeService.getfullize().get(cbc_size.getSelectedIndex()));
+}
 
     public void loadtable(List<SanPhamModel> lstSP) {
         _DefaultTableModel = new DefaultTableModel();

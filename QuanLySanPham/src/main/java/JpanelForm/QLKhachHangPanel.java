@@ -70,7 +70,7 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
     }
 
     KhachHangModel getdata() {
-        return new KhachHangModel(Integer.parseInt(txt_Ma.getText()), txt_ten.getText(), txt_diachi.getText(), txt_email.getText(), txt_SDT.getText());
+        return new KhachHangModel(Integer.parseInt(txt_Ma.getText()), txt_ten.getText(), txt_diachi.getText(), txt_email.getText(), txt_SDT.getText(),0);
     }
 
     private KhachHangModel getKhachHangFromInput() {
