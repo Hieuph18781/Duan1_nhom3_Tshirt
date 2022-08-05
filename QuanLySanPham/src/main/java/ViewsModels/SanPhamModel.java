@@ -19,22 +19,27 @@ public class SanPhamModel {
     private String MaSanPham;
     private String TenSanPham;
     private int SoLuong;
-    private double gia;
+    private int gia;
     private String Mota;
     private boolean TrangThai;
-    
+
     private ChatLieuModel chatlieuModel;
     private KieuDangModel kieudangModel;
     private DanhMucSanPhamModel danhMucSanPhamModel;
     private MauSacModel mausacModel;
     private SizeModel sizeModel;
 
-    
-    
     public SanPhamModel() {
     }
 
-    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, boolean TrangThai, ChatLieuModel chatlieuModel, KieuDangModel kieudangModel, DanhMucSanPhamModel danhMucSanPhamModel, MauSacModel mausacModel, SizeModel sizeModel) {
+    public SanPhamModel(String MaSanPham, String TenSanPham, int gia) {
+        this.MaSanPham = MaSanPham;
+        this.TenSanPham = TenSanPham;
+        this.SoLuong = SoLuong;
+        this.gia = gia;
+    }
+
+    public SanPhamModel(String MaSanPham, String TenSanPham, int SoLuong, int gia, String Mota, boolean TrangThai, ChatLieuModel chatlieuModel, KieuDangModel kieudangModel, DanhMucSanPhamModel danhMucSanPhamModel, MauSacModel mausacModel, SizeModel sizeModel) {
         this.MaSanPham = MaSanPham;
         this.TenSanPham = TenSanPham;
         this.SoLuong = SoLuong;
@@ -72,11 +77,11 @@ public class SanPhamModel {
         this.SoLuong = SoLuong;
     }
 
-    public double getGia() {
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(double gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 

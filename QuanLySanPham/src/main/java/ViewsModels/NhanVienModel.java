@@ -43,8 +43,9 @@ public class NhanVienModel {
         this.MatKhau = MatKhau;
     }
 
-    public NhanVienModel(String MaNhanVien, String Email, String ChucVu, String TrangThai, String MatKhau) {
+    public NhanVienModel(String MaNhanVien, String HoTen, String Email, String ChucVu, String TrangThai, String MatKhau) {
         this.MaNhanVien = MaNhanVien;
+        this.HoTen = HoTen;
         this.Email = Email;
         this.ChucVu = ChucVu;
         this.TrangThai = TrangThai;

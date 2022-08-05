@@ -15,6 +15,7 @@ public interface ISanPhamService {
     List<SanPhamModel> getlistsanpham();
     public String them(SanPhamModel danhMucSanPhamModel);
     public String sua(SanPhamModel danhMucSanPhamModel);
+    public boolean suaSoLuongSP(String MaSp, int soLuong);
     public String getMaSanPham();
     public boolean Timkiem(String chuoi1, String chuoi2);
 }

@@ -21,7 +21,7 @@ public class CheckData {
     public CheckData() {
     }
 
-    public boolean chekcKhoangTrang(String text) {
+    public static boolean chekcKhoangTrang(String text) {
         int temp = text.indexOf(" ");
         if (temp > -1) {
             return true;
@@ -29,32 +29,32 @@ public class CheckData {
         return false;
     }
 
-    public boolean checkNullString(String text) {
+    public static boolean checkNullString(String text) {
         if (text.isBlank()) {
             return true;
         }
         return false;
     }
 
-    public boolean checkKyTuKhongDau(String text) { // check ký tự (Không bao gốm dấu)
+    public static boolean checkKyTuKhongDau(String text) { // check ký tự (Không bao gốm dấu)
         Pattern p = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
         Matcher m = p.matcher(text);// Â
         return m.find();// Fasle
     }
 
-    public boolean checkKyTuCoDau(String text) { // check ký tự (Tviet có dấu)
+    public static boolean checkKyTuCoDau(String text) { // check ký tự (Tviet có dấu)
         Pattern p = Pattern.compile("[^A-Za-z0-9]");
         Matcher m = p.matcher(text);// Â
         return m.find();// true
     }
 
-    public Boolean checkso(String text) {
+    public static Boolean checkso(String text) {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
 
-    public Boolean checksoThuc(String text) {
+    public static Boolean checksoThuc(String text) {
         Pattern pattern = Pattern.compile("[0-9]{1,13}(\\.[0-9]*)?");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();

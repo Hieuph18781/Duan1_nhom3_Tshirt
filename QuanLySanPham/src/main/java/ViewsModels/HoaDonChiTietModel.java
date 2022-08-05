@@ -6,7 +6,8 @@ package ViewsModels;
 
 import DomainModels.HoaDon;
 import DomainModels.SanPham;
-
+import ViewsModels.SanPhamModel;
+import ViewsModels.HoaDonModel;
 /**
  *
  * @author Admin
@@ -15,18 +16,18 @@ public class HoaDonChiTietModel {
      private int MaHoaDonCT;
     private int SoLuong;
     private int donGia; 
-     private SanPham sanpham;
-     private HoaDon hoadon;
+     private SanPhamModel sanPhamModel;
+     private HoaDonModel hoaDonModel;
 
     public HoaDonChiTietModel() {
     }
 
-    public HoaDonChiTietModel(int MaHoaDonCT, int SoLuong, int donGia, SanPham sanpham, HoaDon hoadon) {
+    public HoaDonChiTietModel(int MaHoaDonCT, int SoLuong, int donGia, SanPhamModel sanPhamModel, HoaDonModel hoaDonModel) {
         this.MaHoaDonCT = MaHoaDonCT;
         this.SoLuong = SoLuong;
         this.donGia = donGia;
-        this.sanpham = sanpham;
-        this.hoadon = hoadon;
+        this.sanPhamModel = sanPhamModel;
+        this.hoaDonModel = hoaDonModel;
     }
 
     public int getMaHoaDonCT() {
@@ -53,21 +54,28 @@ public class HoaDonChiTietModel {
         this.donGia = donGia;
     }
 
-    public SanPham getSanpham() {
-        return sanpham;
+    public SanPhamModel getSanPhamModel() {
+        return sanPhamModel;
     }
 
-    public void setSanpham(SanPham sanpham) {
-        this.sanpham = sanpham;
+    public void setSanPhamModel(SanPhamModel sanPhamModel) {
+        this.sanPhamModel = sanPhamModel;
     }
 
-    public HoaDon getHoadon() {
-        return hoadon;
+    public HoaDonModel getHoaDonModel() {
+        return hoaDonModel;
     }
 
-    public void setHoadon(HoaDon hoadon) {
-        this.hoadon = hoadon;
+    public void setHoaDonModel(HoaDonModel hoaDonModel) {
+        this.hoaDonModel = hoaDonModel;
     }
+
+    @Override
+    public String toString() {
+        return "HoaDonChiTietModel{" + "MaHoaDonCT=" + MaHoaDonCT + ", SoLuong=" + SoLuong + ", donGia=" + donGia + ", sanPhamModel=" + sanPhamModel.getTenSanPham() + ", hoaDonModel=" + hoaDonModel.getMaHoaDon() + '}';
+    }
+
+    
      
      
 }

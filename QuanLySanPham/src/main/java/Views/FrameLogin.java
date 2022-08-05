@@ -94,6 +94,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Tên đăng nhập");
 
+        txtMaNV.setText("NV1");
         txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaNVActionPerformed(evt);
@@ -102,6 +103,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Mật khẩu");
 
+        txtMatKhau.setText("123456");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatKhauActionPerformed(evt);
