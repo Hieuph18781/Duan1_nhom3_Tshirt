@@ -9,8 +9,14 @@ import JpanelForm.QLKhuyenMaiPanel;
 import JpanelForm.QLNhanVienPanel;
 import JpanelForm.QLSanPhamPanel;
 import Utils.Auth;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -21,9 +27,20 @@ public class MainTrue extends javax.swing.JFrame {
     /**
      * Creates new form MainTrue
      */
+      void init() {
+        new Timer(1000, new ActionListener() {
+            SimpleDateFormat fomat = new SimpleDateFormat("hh:mm:ss a");
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lbl_time.setText(fomat.format(new Date()));
+            }
+        }).start();
+           
+    }
     public MainTrue() {
         initComponents();
         setLocationRelativeTo(null);
+        init();
     }
 
     public void show(JPanel j) {
@@ -31,6 +48,8 @@ public class MainTrue extends javax.swing.JFrame {
         lbl_form.add(j);
         lbl_form.validate();
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +69,7 @@ public class MainTrue extends javax.swing.JFrame {
         btn_khuyenmai = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_time = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -187,7 +206,8 @@ public class MainTrue extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setForeground(new java.awt.Color(153, 255, 255));
 
-        jLabel3.setText("Thời Gian");
+        lbl_time.setIcon(new javax.swing.ImageIcon("C:\\java3\\Edusys\\src\\icon\\Alarm.png")); // NOI18N
+        lbl_time.setText("12:12:12 am");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -195,14 +215,14 @@ public class MainTrue extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(992, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_time, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(lbl_time)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -364,11 +384,11 @@ public class MainTrue extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel lbl_form;
+    private javax.swing.JLabel lbl_time;
     // End of variables declaration//GEN-END:variables
 
 }
