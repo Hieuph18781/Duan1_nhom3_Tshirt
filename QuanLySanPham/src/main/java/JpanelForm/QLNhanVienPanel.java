@@ -642,7 +642,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                      }
-                      if (!txt_ngaysinh.equals(null)) {
+                      if (txt_ngaysinh.equals(null)) {
                     JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
                    
                     return;
