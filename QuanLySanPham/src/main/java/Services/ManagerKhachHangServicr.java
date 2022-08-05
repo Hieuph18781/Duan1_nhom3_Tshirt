@@ -123,6 +123,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         var khachhang = _iKhachHang.find();
         for (KhachHang x : khachhang) {
             _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(),x.getDiaChi(),x.getEmail(),x.getDiem()));
+            System.out.println(x.getSoDienThoai());
         }
         return _lstKH;
     }

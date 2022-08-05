@@ -52,7 +52,9 @@ public class QLKhuyenMaiPanel extends javax.swing.JPanel {
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
         for (KhuyenMaiModel x : ks) {
-            _DefaultTableModel.addRow(new Object[]{stt++, "KM" + x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai(), x.getMoTa()});
+            if (x.getIdKhuyenMai() != 1) {
+                _DefaultTableModel.addRow(new Object[]{stt++, "KM" + x.getIdKhuyenMai(), x.getTenKhuyenMai(), x.getNgayBatDau(), x.getNgayKetThuc(), x.getGiaKhuyenMai(), x.getMoTa()});
+            }
         }
     }
 
