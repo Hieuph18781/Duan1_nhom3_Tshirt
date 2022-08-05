@@ -153,7 +153,7 @@ public class QLSanPhamPanel extends javax.swing.JPanel {
     }
 
     SanPhamModel getdata() {
-        return new SanPhamModel(txt_maSanPham.getText(), txt_tenSanPham.getText(), Integer.parseInt(txt_soLuong.getText()), Double.parseDouble(txt_giiaban.getText()), tar_mota.getText(), cbc_trangThai.getSelectedItem().equals("Đang Bán"),
+        return new SanPhamModel(txt_maSanPham.getText(), txt_tenSanPham.getText(), Integer.parseInt(txt_soLuong.getText()), Integer.parseInt(txt_giiaban.getText()), tar_mota.getText(), cbc_trangThai.getSelectedItem().equals("Đang Bán"),
                 _ChatLieuService.getProducts().get(cbc_chatLieu.getSelectedIndex()),
                 _KieuDangService.getproduct().get(cbc_kieuDang.getSelectedIndex()),
                 _DanhMucSanPhamService.getListFromDB().get(cbc_danhMucSanPham.getSelectedIndex()),
