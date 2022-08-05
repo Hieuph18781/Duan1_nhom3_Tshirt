@@ -9,21 +9,24 @@ package ViewsModels;
  * @author Admin
  */
 public class KhachHangModel {
+
     private int MaKhachHang;
-     private String HoTen;
-     private String SoDienThoai;
-      private String DiaChi;
+    private String HoTen;
+    private String SoDienThoai;
+    private String DiaChi;
     private String Email;
+    private int Diem;
 
     public KhachHangModel() {
     }
 
-    public KhachHangModel(int MaKhachHang, String HoTen, String SoDienThoai, String DiaChi, String Email) {
+    public KhachHangModel(int MaKhachHang, String HoTen, String SoDienThoai, String DiaChi, String Email, int Diem) {
         this.MaKhachHang = MaKhachHang;
         this.HoTen = HoTen;
         this.SoDienThoai = SoDienThoai;
         this.DiaChi = DiaChi;
         this.Email = Email;
+        this.Diem = Diem;
     }
 
     public int getMaKhachHang() {
@@ -65,6 +68,13 @@ public class KhachHangModel {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
-    
+
+    public int getDiem() {
+        return Diem;
+    }
+
+    public void setDiem(int Diem) {
+        this.Diem = Diem;
+    }
+
 }

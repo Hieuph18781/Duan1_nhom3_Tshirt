@@ -21,7 +21,7 @@ KhachHangModel  createNewKhachHang(KhachHangModel khachhangmodel);
          public int getmaKH();
            public List<KhachHangModel> TimKiem(String ten );
 public  boolean  timKiem2(String chuoi1,String chuoi2);
-
+    List<KhachHangModel> getAllKhachHang();
 
     
 }

@@ -30,7 +30,7 @@ public class SanPham implements Serializable {
     @Nationalized
     private String TenSanPham;
     private int SoLuong;
-    private double gia;
+    private int gia;
     
     @Nationalized
     private String Mota;
@@ -64,7 +64,11 @@ public class SanPham implements Serializable {
     public SanPham() {
     }
 
-    public SanPham(String MaSanPham, String TenSanPham, int SoLuong, double gia, String Mota, boolean TrangThai, ChatLieu chatlieu, KieuDang kieudang, DanhMucSanPham danhMucSanPham, MauSac mausac, Size size) {
+    public SanPham(String MaSanPham) {
+        this.MaSanPham = MaSanPham;
+    }
+
+    public SanPham(String MaSanPham, String TenSanPham, int SoLuong, int gia, String Mota, boolean TrangThai, ChatLieu chatlieu, KieuDang kieudang, DanhMucSanPham danhMucSanPham, MauSac mausac, Size size) {
         this.MaSanPham = MaSanPham;
         this.TenSanPham = TenSanPham;
         this.SoLuong = SoLuong;
@@ -102,11 +106,11 @@ public class SanPham implements Serializable {
         this.SoLuong = SoLuong;
     }
 
-    public double getGia() {
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(double gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 

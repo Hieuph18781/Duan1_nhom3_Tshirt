@@ -16,5 +16,6 @@ public interface ISanPhamRepository {
     public SanPham insert(SanPham danhMucSp);
 
     public boolean update(SanPham danhMucSp);
+    public boolean updateSoLuongSP(String MaSp , int soLuong);
     SanPham findById(String ma);
 }

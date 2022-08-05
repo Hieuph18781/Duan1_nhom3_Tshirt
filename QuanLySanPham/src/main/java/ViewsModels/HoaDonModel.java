@@ -14,17 +14,28 @@ import java.util.Date;
  * @author Admin
  */
 public class HoaDonModel {
-     private String MaHoaDon;
-      private Date ThoiGianTao;
-               private int TrangThai;
-                 private NhanVien nhanvien;
-                  private KhachHang khachhang;
-                   private KhuyenMai khuyenmai;
+
+    private int MaHoaDon;
+    private Date ThoiGianTao;
+    private int TrangThai;
+    private NhanVienModel nhanvien;
+    private KhachHangModel khachhang;
+    private KhuyenMaiModel khuyenmai;
 
     public HoaDonModel() {
     }
 
-    public HoaDonModel(String MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
+    public HoaDonModel(int MaHoaDon ) {
+        this.MaHoaDon = MaHoaDon;
+    }
+
+    public HoaDonModel(int MaHoaDon, int TrangThai) {
+        this.MaHoaDon = MaHoaDon;
+        this.TrangThai = TrangThai;
+    }
+    
+    
+    public HoaDonModel(int MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVienModel nhanvien, KhachHangModel khachhang, KhuyenMaiModel khuyenmai) {
         this.MaHoaDon = MaHoaDon;
         this.ThoiGianTao = ThoiGianTao;
         this.TrangThai = TrangThai;
@@ -33,11 +44,11 @@ public class HoaDonModel {
         this.khuyenmai = khuyenmai;
     }
 
-    public String getMaHoaDon() {
+    public int getMaHoaDon() {
         return MaHoaDon;
     }
 
-    public void setMaHoaDon(String MaHoaDon) {
+    public void setMaHoaDon(int MaHoaDon) {
         this.MaHoaDon = MaHoaDon;
     }
 
@@ -57,33 +68,33 @@ public class HoaDonModel {
         this.TrangThai = TrangThai;
     }
 
-    public NhanVien getNhanvien() {
+    public NhanVienModel getNhanvien() {
         return nhanvien;
     }
 
-    public void setNhanvien(NhanVien nhanvien) {
+    public void setNhanvien(NhanVienModel nhanvien) {
         this.nhanvien = nhanvien;
     }
 
-    public KhachHang getKhachhang() {
+    public KhachHangModel getKhachhang() {
         return khachhang;
     }
 
-    public void setKhachhang(KhachHang khachhang) {
+    public void setKhachhang(KhachHangModel khachhang) {
         this.khachhang = khachhang;
     }
 
-    public KhuyenMai getKhuyenmai() {
+    public KhuyenMaiModel getKhuyenmai() {
         return khuyenmai;
     }
 
-    public void setKhuyenmai(KhuyenMai khuyenmai) {
+    public void setKhuyenmai(KhuyenMaiModel khuyenmai) {
         this.khuyenmai = khuyenmai;
     }
-                   
-                   
-                   
-    
 
-               
+    @Override
+    public String toString() {
+        return "HoaDonModel{" + "MaHoaDon=" + MaHoaDon + ", ThoiGianTao=" + ThoiGianTao + ", TrangThai=" + TrangThai + ", nhanvien=" + nhanvien + ", khachhang=" + khachhang + ", khuyenmai=" + khuyenmai + '}';
+    }
+
 }

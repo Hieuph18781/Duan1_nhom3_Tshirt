@@ -40,12 +40,17 @@ public class SanPhamService implements ISanPhamService {
         SanPham SP = new SanPham();
         SP.setMaSanPham(dSanPhamModel.getMaSanPham());
         SP.setTenSanPham(dSanPhamModel.getTenSanPham());
+
         SP.setChatlieu(new ChatLieu(dSanPhamModel.getChatlieuModel().getMaChatLieu(), dSanPhamModel.getChatlieuModel().getTenChatLieu(), dSanPhamModel.getChatlieuModel().getMota()));
 
         SP.setDanhMucSanPham(new DanhMucSanPham(dSanPhamModel.getDanhMucSanPhamModel().getMaDanhMuc(), dSanPhamModel.getDanhMucSanPhamModel().getTenDanhMuc(), dSanPhamModel.getDanhMucSanPhamModel().getMota()));
+
         SP.setKieudang(new KieuDang(dSanPhamModel.getKieudangModel().getMaKieuDang(), dSanPhamModel.getKieudangModel().getTenKieuDang(), dSanPhamModel.getKieudangModel().getMota(), dSanPhamModel.getKieudangModel().getHinhAnh()));
+
         SP.setMausac(new MauSac(dSanPhamModel.getMausacModel().getMaMauSac(), dSanPhamModel.getMausacModel().getTenMauSac(), dSanPhamModel.getMausacModel().getMota()));
+
         SP.setSize(new Size(dSanPhamModel.getSizeModel().getMaSize(), dSanPhamModel.getSizeModel().getTenSize(), dSanPhamModel.getSizeModel().getMota()));
+
         SP.setSoLuong(dSanPhamModel.getSoLuong());
         SP.setMota(dSanPhamModel.getMota());
         SP.setGia(dSanPhamModel.getGia());
@@ -115,6 +120,11 @@ public class SanPhamService implements ISanPhamService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean suaSoLuongSP(String MaSp, int soLuong) {
+        return _sanphamservice.updateSoLuongSP(MaSp, soLuong);
     }
 
 }
