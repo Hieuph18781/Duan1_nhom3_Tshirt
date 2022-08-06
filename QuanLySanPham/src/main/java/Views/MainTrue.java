@@ -9,6 +9,8 @@ import JpanelForm.QLKhachHangPanel;
 import JpanelForm.QLKhuyenMaiPanel;
 import JpanelForm.QLNhanVienPanel;
 import JpanelForm.QLSanPhamPanel;
+import JpanelForm.ThongKeNVPanel;
+import JpanelForm.ThongKeQLPanel;
 import Utils.Auth;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -289,8 +291,12 @@ public class MainTrue extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongkeActionPerformed
-        // show(new NewJPanel1());
-        // new FarmeQLBanH;
+        if (Auth.isManager().equals("Nhân Viên")) {
+            show(new ThongKeNVPanel());
+        }
+        else{
+            show(new ThongKeQLPanel());
+        }
     }//GEN-LAST:event_btn_thongkeActionPerformed
 
     private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed

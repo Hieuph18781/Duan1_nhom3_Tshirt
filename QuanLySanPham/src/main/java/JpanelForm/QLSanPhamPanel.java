@@ -832,8 +832,7 @@ public class QLSanPhamPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-
-        if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
+if (_checkDt.checkNullString(txt_tenSanPham.getText()) || _checkDt.checkNullString(txt_soLuong.getText()) || _checkDt.checkNullString(txt_giiaban.getText())) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên,Giá bán,Số Lượng");
             return;
         }
@@ -841,7 +840,7 @@ public class QLSanPhamPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Số lượng và giá bán phải là số");
             return;
         }
-        int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
+          int xacnhan = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn thêm ?");
         if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }

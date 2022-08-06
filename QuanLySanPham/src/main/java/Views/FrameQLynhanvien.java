@@ -66,7 +66,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }
 
     public void loadtable(List<NhanVienModel> nvmd) {
-        
+
         _defaultTB = (DefaultTableModel) tbl_nhanvien.getModel();
         _defaultTB.setRowCount(0);
         for (NhanVienModel x : nvmd) {
@@ -80,7 +80,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         btn.add(rdb_nu);
         rdb_nam.setSelected(true);
     }
-    
+
     boolean flag = false;
 
     boolean check() {
@@ -100,7 +100,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             }
             if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
-                
+
             }
 
             if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
@@ -492,11 +492,11 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (check()==false) {
+        if (check() == false) {
             //JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
-                return ;
-                
-            }
+            return;
+
+        }
         try {
             System.out.println(getdata().toString());
             try {
@@ -504,12 +504,12 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                 }
-                
+
                 if (!txt_ngaysinh.equals(null)) {
                     JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
-                   
+
                     return;
-                      }
+                }
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
@@ -541,53 +541,47 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
 
-       
-                                                
-            
-            try {
-                System.out.println(getdata().toString());
-            } catch (ParseException ex) {
-                Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            System.out.println(getdata().toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
 
-            }
-            
-            
- if (check()==false) {
-     JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
-                return ;
-            }
- else{
-                try {
-                     if (txt_matkhau.getText().isEmpty()) {
+        }
+
+        if (check() == false) {
+            JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
+            return;
+        } else {
+            try {
+                if (txt_matkhau.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
-                     }
-                      if (!txt_ngaysinh.equals(null)) {
+                }
+                if (txt_ngaysinh.equals(null)) {
                     JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
-                   
+
                     return;
-                      }
-                    
-                    NhanVienModel nv = getdata();
-                } catch (ParseException ex) {
-                    Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
-                try {
-                    if (_inhanvienservice.createNewProduct(getdata()) != null) {
-                        JOptionPane.showMessageDialog(this, "Thêm thành công");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Không thêm được");
-                    }   } catch (ParseException ex) {
-                    Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+
+                NhanVienModel nv = getdata();
+            } catch (ParseException ex) {
+                Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                if (_inhanvienservice.createNewProduct(getdata()) != null) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không thêm được");
                 }
+            } catch (ParseException ex) {
+                Logger.getLogger(FrameQLynhanvien.class.getName()).log(Level.SEVERE, null, ex);
+            }
             loadtable(_inhanvienservice.getproduct());
             // TODO add your handling code here:
-            
-            
+
         }
-        
-        
+
 
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -596,12 +590,12 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             int row = tbl_nhanvien.getSelectedRow();
             txt_manv.setText(tbl_nhanvien.getValueAt(row, 0).toString());
             txt_hoten.setText(tbl_nhanvien.getValueAt(row, 1).toString());
-            
+
 //             if (txt_ngaysinh.getDate().toString().isEmpty()) {
 //                JOptionPane.showMessageDialog(this, "k có ngày sinh sẽ bi lỗi");
 //            }else{
             txt_ngaysinh.setDate(format_date.parse(tbl_nhanvien.getValueAt(row, 2).toString()));
-             
+
             rdb_nam.setSelected(true);
             if (tbl_nhanvien.getModel().getValueAt(row, 3).toString().equals("Nữ")) {
                 rdb_nu.setSelected(true);
@@ -634,7 +628,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_moiActionPerformed
 
     private void txt_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timkiemActionPerformed
- if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
@@ -654,14 +648,14 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                 }
             }
         }
-          if (rdb_timchucvu.isSelected()) {
+        if (rdb_timchucvu.isSelected()) {
             for (NhanVienModel x : _inhanvienservice.getproduct()) {
                 if (_inhanvienservice.Timkiem(x.getChucVu(), txt_timkiem.getText())) {
                     lstTemp.add(x);
                 }
             }
         }
-        
+
 //          loadtable(_nvsv.getListByHoTen(txt_timkiem.getText()));// TODO add your handling code here:
     }//GEN-LAST:event_txt_timkiemActionPerformed
 
@@ -670,7 +664,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     private void rdb_timmanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timmanvActionPerformed
-       if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
@@ -684,7 +678,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_rdb_timmanvActionPerformed
 
     private void rdb_timtennvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timtennvActionPerformed
-       if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
@@ -698,7 +692,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
     }//GEN-LAST:event_rdb_timtennvActionPerformed
 
     private void rdb_timchucvuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_timchucvuActionPerformed
-       if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
