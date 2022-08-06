@@ -190,6 +190,7 @@ SanPhamModel getdata() {
         rdb_theoDanMucSp = new javax.swing.JRadioButton();
         rdb_theoChatLieu = new javax.swing.JRadioButton();
         rdb_theoKieuDang = new javax.swing.JRadioButton();
+        btn_them = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -213,7 +214,6 @@ SanPhamModel getdata() {
         cbc_trangThai = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tar_mota = new javax.swing.JTextArea();
-        btn_them = new javax.swing.JButton();
         btn_sua = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
         txt_tenSanPham = new javax.swing.JTextField();
@@ -315,6 +315,13 @@ SanPhamModel getdata() {
             }
         });
 
+        btn_them.setText("Thêm");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -322,7 +329,10 @@ SanPhamModel getdata() {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_them))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -360,9 +370,15 @@ SanPhamModel getdata() {
                     .addComponent(rdb_theoDanMucSp)
                     .addComponent(rdb_theoChatLieu)
                     .addComponent(rdb_theoKieuDang))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_them)
+                        .addGap(73, 73, 73))))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
@@ -410,13 +426,6 @@ SanPhamModel getdata() {
         tar_mota.setColumns(20);
         tar_mota.setRows(5);
         jScrollPane2.setViewportView(tar_mota);
-
-        btn_them.setText("Thêm");
-        btn_them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_themActionPerformed(evt);
-            }
-        });
 
         btn_sua.setText("Sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
@@ -498,9 +507,7 @@ SanPhamModel getdata() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbc_mauSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_them)
-                        .addGap(18, 18, 18)
+                        .addGap(106, 106, 106)
                         .addComponent(btn_sua)
                         .addGap(18, 18, 18)
                         .addComponent(btn_clear)))
@@ -557,7 +564,6 @@ SanPhamModel getdata() {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_them)
                     .addComponent(btn_sua)
                     .addComponent(btn_clear))
                 .addContainerGap(73, Short.MAX_VALUE))

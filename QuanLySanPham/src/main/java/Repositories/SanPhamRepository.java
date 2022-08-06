@@ -75,6 +75,7 @@ public class SanPhamRepository implements ISanPhamRepository {
 
     @Override
     public boolean updateSoLuongSP(String MaSp, int soLuong) {
+
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "UPDATE SanPham set SoLuong = :soluong WHERE MaSanPham = :maSanPham";
             Query<?> query = session.createQuery(hql);

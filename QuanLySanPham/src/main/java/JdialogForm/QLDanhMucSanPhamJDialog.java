@@ -240,7 +240,7 @@ public class QLDanhMucSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_danhmucsanphamMouseReleased
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (_check.checkNullString(txt_tendanhmuc.getText())) {
+        if (txt_tendanhmuc.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
         }
