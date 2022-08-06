@@ -279,10 +279,8 @@
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="cbc_trangThai" alignment="0" pref="139" max="32767" attributes="0"/>
-                                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="btn_clear" alignment="1" pref="91" max="32767" attributes="0"/>
-                                              <Component id="btn_sua" alignment="1" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="btn_clear" alignment="1" pref="91" max="32767" attributes="0"/>
+                                          <Component id="btn_sua" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -388,9 +386,9 @@
                       <Component id="jScrollPane2" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_them" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btn_sua" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_them" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">

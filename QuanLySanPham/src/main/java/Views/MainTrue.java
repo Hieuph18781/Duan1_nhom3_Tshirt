@@ -4,6 +4,7 @@
  */
 package Views;
 
+import JpanelForm.QLBanHangPanel;
 import JpanelForm.QLKhachHangPanel;
 import JpanelForm.QLKhuyenMaiPanel;
 import JpanelForm.QLNhanVienPanel;
@@ -304,7 +305,7 @@ public class MainTrue extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_sanphamActionPerformed
 
     private void btn_hoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoadonActionPerformed
-        // TODO add your handling code here:
+        show(new QLBanHangPanel());
     }//GEN-LAST:event_btn_hoadonActionPerformed
 
     private void btn_nhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhanvienActionPerformed
