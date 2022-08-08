@@ -31,13 +31,13 @@ public class FrameLogin extends javax.swing.JFrame {
         initUI();
 
     }
+
     private void initUI() {
- 
+
         setTitle("CHÀO MỪNG ĐẾN HỆ THỐNG QUẢN LÝ CỦA CỬA HÀNG ");
-     
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
- 
 
     void login() {
         try {
@@ -206,9 +206,12 @@ public class FrameLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangnhapActionPerformed
-        // TODO add your handling code here:
 
-        login();
+        if (CheckData.chekcKhoangTrang3(txtMaNV)
+                && CheckData.chekcKhoangTrang3(txtMatKhau)) {
+            login();
+
+        }
 
 
     }//GEN-LAST:event_btn_dangnhapActionPerformed
