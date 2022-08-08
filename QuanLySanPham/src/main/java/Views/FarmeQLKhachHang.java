@@ -435,6 +435,10 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
+        if (_check.chekcKhoangTrang(txt_email.getText()) || _check.chekcKhoangTrang( txt_ten.getText()) ) {
+            JOptionPane.showMessageDialog(this, "Không để khoảng trắng");
+            return;
+        }
 
       
             KhachHangModel newKH = getKhachHangFromInput();
