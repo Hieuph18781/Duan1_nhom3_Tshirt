@@ -334,9 +334,9 @@ public class QLKhuyenMaiPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "không nhập qua 100%");
             return;
         }
-        if (_check.checkNullString(txt_tenkm.getText()) || _check.checkNullString(txt_giakm.getText())
-                || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
-                || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
+        if (txt_tenkm.getText().isBlank() || txt_giakm.getText().isBlank()
+                || dc_ngaybatdau.getDateFormatString().isBlank()
+                || dc_ngaykt.getDateFormatString().isBlank()) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
             return;
         }

@@ -47,7 +47,7 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
                 hoaDonChiTietModel.setMaHoaDonCT(x.getMaHoaDonCT());
             }
         }
-        HoaDonChiTiet hdct = new HoaDonChiTiet(hoaDonChiTietModel.getMaHoaDonCT(), hoaDonChiTietModel.getSoLuong(), hoaDonChiTietModel.getSoLuong(), new HoaDon(hoaDonChiTietModel.getHoaDonModel().getMaHoaDon()), new SanPham(hoaDonChiTietModel.getSanPhamModel().getMaSanPham()));
+        HoaDonChiTiet hdct = new HoaDonChiTiet(hoaDonChiTietModel.getMaHoaDonCT(), hoaDonChiTietModel.getSoLuong(), hoaDonChiTietModel.getDonGia(), new HoaDon(hoaDonChiTietModel.getHoaDonModel().getMaHoaDon()), new SanPham(hoaDonChiTietModel.getSanPhamModel().getMaSanPham()));
         return hdct;
     }
     
