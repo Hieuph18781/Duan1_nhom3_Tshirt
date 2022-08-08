@@ -48,6 +48,7 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.swinglabs/swing-layout -->
         <dependency>
             <groupId>org.swinglabs</groupId>
