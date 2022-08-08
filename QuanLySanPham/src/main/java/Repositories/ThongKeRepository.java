@@ -110,10 +110,10 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong ngày");
             }
         } catch (HibernateException e) {
-            JOptionPane.showMessageDialog(null, "Khong co du lieu");
+            JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong ngày");
         }
         return a;
 
@@ -134,7 +134,7 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong tháng");
             }
         } catch (HibernateException e) {
             throw new RuntimeException(e);
@@ -158,7 +158,7 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Khong co du lieu thống kê trong năm");
             }
 
         } catch (HibernateException e) {
