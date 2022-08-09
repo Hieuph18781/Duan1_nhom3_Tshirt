@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Repositories;
+package Services;
 
-import DomainModels.HoaDon;
-import DomainModels.HoaDonChiTiet;
+import ViewsModels.HoaDonChiTietModel;
+import ViewsModels.HoaDonModel;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author dytc0
  */
-public interface IThongKeRepository {
+public interface IThongKeService {
 
     public List<Object[]> thongke1();
 
@@ -29,14 +29,16 @@ public interface IThongKeRepository {
 
     public long TongTien3();
 
-    public List<HoaDon> thongke5();
+    public List<HoaDonModel> thongke5();
 
-    public List<HoaDon> thongke6();
+    public List<HoaDonModel> thongke6();
 
-    public List<HoaDon> thongke7(Date a, Date b);
+    public List<HoaDonModel> thongke7(Date a, Date b);
 
-    public List<HoaDon> thongke8(Date a, Date b);
+    public List<HoaDonModel> thongke8(Date a, Date b);
 
+    public boolean Timkiem(String chuoi1, String chuoi2);
+    
     public List<Object[]> thongke9(int a);
 
 }

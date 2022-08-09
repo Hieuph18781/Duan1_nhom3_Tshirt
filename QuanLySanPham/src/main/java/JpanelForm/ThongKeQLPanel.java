@@ -434,15 +434,19 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
             fillTableHomNay();
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Ngày")) {
-            
+            try {
+                txt_ngay.getDate().toString().equals("");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Chọn ngày muốn thống kê");
+                return;
+            }
             cbc_thang.setEnabled(false);
             txt_nam.setEnabled(false);
             try {
                 fillTableTheoNgay();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Chọn ngày muốn thống kê");
+                JOptionPane.showMessageDialog(this, "Loi he thong");
             }
-            
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Tháng")) {

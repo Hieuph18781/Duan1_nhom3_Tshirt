@@ -207,11 +207,10 @@ public class FrameLogin extends javax.swing.JFrame {
 
     private void btn_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangnhapActionPerformed
 
-        if (CheckData.chekcKhoangTrang3(txtMaNV)
-                && CheckData.chekcKhoangTrang3(txtMatKhau)) {
+        
             login();
 
-        }
+        
 
 
     }//GEN-LAST:event_btn_dangnhapActionPerformed
