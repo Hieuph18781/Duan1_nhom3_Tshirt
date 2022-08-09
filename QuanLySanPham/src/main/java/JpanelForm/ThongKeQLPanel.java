@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,7 +50,7 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
 
     public String month() {
         Date date = new Date();
-        
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("MM");
         String format = simpleDateFormat.format(date);
@@ -433,18 +434,34 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
             fillTableHomNay();
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Ngày")) {
+            try {
+                txt_ngay.getDate().toString().equals("");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Chọn ngày muốn thống kê");
+                return;
+            }
             cbc_thang.setEnabled(false);
             txt_nam.setEnabled(false);
-            fillTableTheoNgay();
+            try {
+                fillTableTheoNgay();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Loi he thong");
+            }
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Tháng")) {
+            if (txt_nam.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+            }
             cbc_thang.setEnabled(true);
             txt_nam.setEnabled(true);
             fillTableTheoThang();
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Năm")) {
+            if (txt_nam.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+            }
             cbc_thang.setEnabled(true);
             txt_nam.setEnabled(true);
             fillTableTheoNam();

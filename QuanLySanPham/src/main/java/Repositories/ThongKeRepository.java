@@ -4,12 +4,15 @@
  */
 package Repositories;
 
+import DomainModels.HoaDon;
+import DomainModels.HoaDonChiTiet;
 import Utils.HibernateUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -71,7 +74,7 @@ public class ThongKeRepository implements IThongKeRepository {
     }
 
     @Override
-    public List<Object[]> thongke3(int a,int b) {
+    public List<Object[]> thongke3(int a, int b) {
         List<Object[]> list = new ArrayList<>();
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT S.MaSanPham,S.TenSanPham,SUM(H.SoLuong),SUM(S.gia*H.SoLuong)\n"
@@ -110,10 +113,10 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong ngày");
             }
         } catch (HibernateException e) {
-            JOptionPane.showMessageDialog(null, "Khong co du lieu");
+            JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong ngày");
         }
         return a;
 
@@ -134,7 +137,7 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Không có dữ liệu thống kê trong tháng");
             }
         } catch (HibernateException e) {
             throw new RuntimeException(e);
@@ -158,7 +161,7 @@ public class ThongKeRepository implements IThongKeRepository {
                 session.getTransaction().commit();
                 a = (long) query.uniqueResult();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Khong co du lieu");
+                JOptionPane.showMessageDialog(null, "Khong co du lieu thống kê trong năm");
             }
 
         } catch (HibernateException e) {
@@ -180,6 +183,94 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "order by SUM(S.gia*H.SoLuong) desc ";
             Query<?> query = session.createQuery(hql);
             query.setParameter("ThoiGianTao", a);
+            session.beginTransaction();
+            session.getTransaction().commit();
+
+            list = (List<Object[]>) query.getResultList();
+        } catch (HibernateException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<HoaDon> thongke5() {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 2"
+                    + "order by H.ThoiGianTao desc";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<HoaDon> thongke6() {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 1"
+                    + "order by H.ThoiGianTao desc";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<HoaDon> thongke7(Date a, Date b) {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 2 and CONVERT(date,H.ThoiGianTao) >= :ThoiGianTao and CONVERT (date,H.ThoiGianTao) <= :ThoiGianTao2";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+            query.setParameter("ThoiGianTao", a);
+            query.setParameter("ThoiGianTao2", b);
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<HoaDon> thongke8(Date a, Date b) {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 1 and CONVERT(date,H.ThoiGianTao) >= :ThoiGianTao and CONVERT (date,H.ThoiGianTao) <= :ThoiGianTao2";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+            query.setParameter("ThoiGianTao", a);
+            query.setParameter("ThoiGianTao2", b);
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<Object[]> thongke9(int a) {
+//        List<HoaDonChiTiet> nhanvien;
+//        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            String hql = "SELECT S.MaSanPham,S.TenSanPham,H.SoLuong,S.gia*H.SoLuong\n"
+//                    + "From SanPham S\n"
+//                    + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
+//                    + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
+//                    + "where HD.MaHoaDon = :MaHoaDon\n"
+//                    + "group by S.MaSanPham,S.TenSanPham,H.SoLuong";
+////                String hql="Select H.MaSanPham,H.SoLuong,H.DonGia\n"
+////                        + "From HoaDonChiTiet H\n"
+////                        + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
+////                        + "where HD.MaHoaDon = :MaHoaDon";
+//            TypedQuery<HoaDonChiTiet> query = session.createQuery(hql, HoaDonChiTiet.class);
+//            query.setParameter("MaHoaDon", a);
+//            nhanvien = query.getResultList();
+        List<Object[]> list = new ArrayList<>();
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT S.MaSanPham,S.TenSanPham,H.SoLuong,S.gia*H.SoLuong\n"
+                    + "From SanPham S\n"
+                    + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
+                    + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
+                    + "where HD.MaHoaDon = :MaHoaDon\n";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("MaHoaDon", a);
             session.beginTransaction();
             session.getTransaction().commit();
 

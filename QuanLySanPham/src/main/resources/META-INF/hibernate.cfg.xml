@@ -15,7 +15,9 @@
         </property>
 
 
+
         <property name="connection.username">sa</property>
+
 
 
         <property name="connection.password">123456</property>

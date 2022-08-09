@@ -69,6 +69,17 @@ public class CheckData {
         }
     }
 
+    public static boolean chekcKhoangTrang3(JTextField txt) {
+        int temp = txt.getText().indexOf(" ");
+        if (temp > -1) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Không được chứa khoảng trắng");
+            return false;
+        }
+
+    }
+
     public static boolean checkNullText(JPasswordField txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
@@ -92,7 +103,7 @@ public class CheckData {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
-    
+
     public static boolean chekcKhoangTrang2(String text) {
         int temp = text.indexOf(" ");
         if (temp > -1) {
