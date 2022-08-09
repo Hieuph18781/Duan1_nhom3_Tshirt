@@ -5,6 +5,7 @@
 package Views;
 
 import JpanelForm.QLBanHangPanel;
+import JpanelForm.QLHoaDonPanel;
 import JpanelForm.QLKhachHangPanel;
 import JpanelForm.QLKhuyenMaiPanel;
 import JpanelForm.QLNhanVienPanel;
@@ -30,16 +31,18 @@ public class MainTrue extends javax.swing.JFrame {
     /**
      * Creates new form MainTrue
      */
-      void init() {
+    void init() {
         new Timer(1000, new ActionListener() {
             SimpleDateFormat fomat = new SimpleDateFormat("hh:mm:ss a");
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 lbl_time.setText(fomat.format(new Date()));
             }
         }).start();
-           
+
     }
+
     public MainTrue() {
         initComponents();
         setLocationRelativeTo(null);
@@ -51,8 +54,6 @@ public class MainTrue extends javax.swing.JFrame {
         lbl_form.add(j);
         lbl_form.validate();
     }
-
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +72,7 @@ public class MainTrue extends javax.swing.JFrame {
         btn_khachhang = new javax.swing.JButton();
         btn_khuyenmai = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbl_time = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -174,6 +176,19 @@ public class MainTrue extends javax.swing.JFrame {
             }
         });
 
+        jButton17.setBackground(new java.awt.Color(51, 255, 255));
+        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton17.setForeground(new java.awt.Color(255, 255, 255));
+        jButton17.setText("Hoá Đơn");
+        jButton17.setBorder(null);
+        jButton17.setBorderPainted(false);
+        jButton17.setContentAreaFilled(false);
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,9 +197,13 @@ public class MainTrue extends javax.swing.JFrame {
             .addComponent(btn_sanpham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_hoadon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_nhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_khachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+            .addComponent(btn_khachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
             .addComponent(btn_khuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,15 +220,16 @@ public class MainTrue extends javax.swing.JFrame {
                 .addComponent(btn_khachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_khuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setForeground(new java.awt.Color(153, 255, 255));
 
-        lbl_time.setIcon(new javax.swing.ImageIcon("C:\\java3\\Edusys\\src\\icon\\Alarm.png")); // NOI18N
         lbl_time.setText("12:12:12 am");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -293,8 +313,7 @@ public class MainTrue extends javax.swing.JFrame {
     private void btn_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongkeActionPerformed
         if (Auth.isManager().equals("Nhân Viên")) {
             show(new ThongKeNVPanel());
-        }
-        else{
+        } else {
             show(new ThongKeQLPanel());
         }
     }//GEN-LAST:event_btn_thongkeActionPerformed
@@ -346,6 +365,10 @@ public class MainTrue extends javax.swing.JFrame {
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        show(new QLHoaDonPanel());
+    }//GEN-LAST:event_jButton17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,6 +412,7 @@ public class MainTrue extends javax.swing.JFrame {
     private javax.swing.JButton btn_sanpham;
     private javax.swing.JButton btn_thongke;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
