@@ -369,6 +369,13 @@ public class QLKhuyenMaiPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
             return;
         }
+        try {
+            dc_ngaybatdau.getDate().toString().equals("");
+            dc_ngaykt.getDate().toString().equals("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Không được để trống ngày");
+            return;
+        }
         if (Integer.parseInt(txt_giakm.getText()) > 100) {
             JOptionPane.showMessageDialog(this, "không nhập qua 100%");
             return;
