@@ -96,7 +96,7 @@ try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
     public List<KhachHang> find() {
         List<KhachHang> KH;
         try (Session sesion =HibernateUtil.getSessionFactory().openSession()){
-             String hql = "select p from KhachHang p";
+             String hql = "select p from KhachHang p where p.MaKhachHang != 1";
              TypedQuery<KhachHang> query=sesion.createQuery(hql,KhachHang.class);
                KH=query.getResultList();
         }

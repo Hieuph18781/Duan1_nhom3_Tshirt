@@ -35,6 +35,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         _IThongKeRepository = new ThongKeService();
         loadtable(_IThongKeRepository.thongke5());
         setrdb();
+        cbc_tg.setSelectedItem("Không");
     }
 
     void setrdb() {
@@ -53,7 +54,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
-                x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
+                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ":x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
         }
     }
 
@@ -129,6 +130,11 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jLabel8.setText("Tìm Kiếm Theo Khoảng Thời Gian");
 
         cbc_tg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Có", " " }));
+        cbc_tg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbc_tgActionPerformed(evt);
+            }
+        });
 
         btn_timkiem.setText("Lọc Danh Sách");
         btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
@@ -294,10 +300,11 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                                 .addComponent(txt_ngay2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdb_mahd)
-                            .addComponent(rdb_makh)
-                            .addComponent(rdb_manv))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdb_manv)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rdb_mahd)
+                                .addComponent(rdb_makh)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -481,6 +488,16 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
     }//GEN-LAST:event_tbl_hdMouseClicked
+
+    private void cbc_tgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_tgActionPerformed
+        if (cbc_tg.getSelectedItem().toString().equals("Không")) {
+            txt_ngay1.setEnabled(false);
+            txt_ngay2.setEnabled(false);
+        }else{
+            txt_ngay1.setEnabled(true);
+            txt_ngay2.setEnabled(true);
+        }
+    }//GEN-LAST:event_cbc_tgActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
