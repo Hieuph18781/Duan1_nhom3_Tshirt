@@ -50,7 +50,7 @@ public class FrameLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Nhan Vien khong con hoat dong");
 
                 } else if (!password.equals(nhanVien.getMatKhau())) {
-                    JOptionPane.showMessageDialog(this, "sai mat khau");
+                    JOptionPane.showMessageDialog(this, "Sai Mật Khẩu");
 
                 } else {
                     Auth.user = nhanVien;
@@ -103,7 +103,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Mật khẩu");
 
-        txtMatKhau.setText("123456");
+        txtMatKhau.setText("123");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatKhauActionPerformed(evt);
@@ -153,10 +153,10 @@ public class FrameLogin extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)

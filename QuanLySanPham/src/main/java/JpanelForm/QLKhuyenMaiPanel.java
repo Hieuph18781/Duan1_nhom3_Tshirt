@@ -326,6 +326,13 @@ public class QLKhuyenMaiPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        try {
+            dc_ngaybatdau.getDate().toString().equals("");
+            dc_ngaykt.getDate().toString().equals("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Không được để trống ngày");
+            return;
+        }
         if (!_check.checkso(txt_giakm.getText())) {
             JOptionPane.showMessageDialog(this, "không nhập chữ");
             return;
@@ -360,6 +367,13 @@ public class QLKhuyenMaiPanel extends javax.swing.JPanel {
                 || _check.checkNullString(dc_ngaybatdau.getDateFormatString())
                 || _check.checkNullString(dc_ngaykt.getDateFormatString())) {
             JOptionPane.showMessageDialog(this, "Không được để trống Tên");
+            return;
+        }
+        try {
+            dc_ngaybatdau.getDate().toString().equals("");
+            dc_ngaykt.getDate().toString().equals("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Không được để trống ngày");
             return;
         }
         if (Integer.parseInt(txt_giakm.getText()) > 100) {

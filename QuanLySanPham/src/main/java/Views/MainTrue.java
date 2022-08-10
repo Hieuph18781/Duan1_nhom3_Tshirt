@@ -127,7 +127,7 @@ public class MainTrue extends javax.swing.JFrame {
         btn_hoadon.setBackground(new java.awt.Color(51, 255, 255));
         btn_hoadon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_hoadon.setForeground(new java.awt.Color(255, 255, 255));
-        btn_hoadon.setText("Hoá Đơn");
+        btn_hoadon.setText("Bán Hàng");
         btn_hoadon.setBorder(null);
         btn_hoadon.setBorderPainted(false);
         btn_hoadon.setContentAreaFilled(false);
@@ -267,6 +267,7 @@ public class MainTrue extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Shop Bán Áo");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/shop-icon.png"))); // NOI18N
         jLabel2.setText("Hình ảnh");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -287,7 +288,7 @@ public class MainTrue extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lbl_form.setLayout(new java.awt.BorderLayout());

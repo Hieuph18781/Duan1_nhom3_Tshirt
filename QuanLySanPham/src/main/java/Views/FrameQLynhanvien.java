@@ -89,7 +89,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
 
             }
-            if (txt_manv.getText().length() > 0 && txt_hoten.getText().length() < 10) {
+            if (txt_manv.getText().length() > 0 || txt_hoten.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "Tên phải lớn hơn 5 ký tự");
 
             }
@@ -98,7 +98,7 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
             if (txt_sdt.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "SDT không được để trống");
             }
-            if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+            if (txt_sdt.getText().length() > 0 || txt_sdt.getText().length() < 10) {
                 JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
 
             }
@@ -500,16 +500,18 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
         try {
             System.out.println(getdata().toString());
             try {
+                
                 if (txt_matkhau.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                 }
 
-                if (!txt_ngaysinh.equals(null)) {
+                if (txt_ngaysinh.getDate()==null) {
                     JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
 
                     return;
                 }
+                
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
@@ -557,11 +559,12 @@ public class FrameQLynhanvien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                 }
-                if (txt_ngaysinh.equals(null)) {
+                if (txt_ngaysinh.getDate()==null) {
                     JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
 
                     return;
                 }
+               
 
                 NhanVienModel nv = getdata();
             } catch (ParseException ex) {
