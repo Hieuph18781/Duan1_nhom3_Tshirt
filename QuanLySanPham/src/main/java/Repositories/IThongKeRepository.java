@@ -29,6 +29,8 @@ public interface IThongKeRepository {
 
     public long TongTien3();
 
+    public long TongTien4(int a);
+
     public List<HoaDon> thongke5();
 
     public List<HoaDon> thongke6();

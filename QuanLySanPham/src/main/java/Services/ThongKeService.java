@@ -153,4 +153,10 @@ public class ThongKeService implements IThongKeService {
         return list;
     }
 
+    @Override
+    public long TongTien4(int a) {
+        long b = _IThongKeService.TongTien4(a);
+        return b;
+    }
+
 }
