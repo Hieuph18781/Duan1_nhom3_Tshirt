@@ -83,7 +83,11 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         setrdb();
         cbcLoaiKhachHang();
         loadtableSanPham(_ISanPhamService.getlistsanpham());
-        loadtableHoaThanhCong(_HoaDonService.getListFromDB());
+
+        loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
+        
+
+
     }
 
     void setrdb() {
