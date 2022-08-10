@@ -11,6 +11,7 @@ import Services.ThongKeService;
 import ViewsModels.HoaDonChiTietModel;
 import ViewsModels.HoaDonModel;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
-                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ":x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
+                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
         }
     }
 
@@ -106,6 +107,9 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_hd = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lbl_tongtien = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("HOÁ ĐƠN");
@@ -217,6 +221,33 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_hd);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setText("Tổng tiền :");
+
+        lbl_tongtien.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbl_tongtien.setText("jLabel10");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_tongtien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lbl_tongtien))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -259,14 +290,16 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                                 .addGap(1, 1, 1)
                                 .addComponent(jLabel1)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addGap(129, 129, 129))))
+                        .addGap(129, 129, 129))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(461, 461, 461)
                 .addComponent(jLabel3)
@@ -288,7 +321,9 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2))
+                        .addComponent(jScrollPane2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -485,15 +520,19 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
 
     private void tbl_hdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hdMouseClicked
         int row = tbl_hd.getSelectedRow();
+        String s = NumberFormat.getIntegerInstance().format(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
+        lbl_tongtien.setText(s);
+
+//lbl_tongtien.setText(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()))+" VND");
     }//GEN-LAST:event_tbl_hdMouseClicked
 
     private void cbc_tgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_tgActionPerformed
         if (cbc_tg.getSelectedItem().toString().equals("Không")) {
             txt_ngay1.setEnabled(false);
             txt_ngay2.setEnabled(false);
-        }else{
+        } else {
             txt_ngay1.setEnabled(true);
             txt_ngay2.setEnabled(true);
         }
@@ -510,10 +549,13 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_tongtien;
     private javax.swing.JRadioButton rdb_mahd;
     private javax.swing.JRadioButton rdb_makh;
     private javax.swing.JRadioButton rdb_manv;

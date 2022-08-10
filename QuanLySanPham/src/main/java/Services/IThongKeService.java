@@ -29,6 +29,8 @@ public interface IThongKeService {
 
     public long TongTien3();
 
+    public long TongTien4(int a);
+
     public List<HoaDonModel> thongke5();
 
     public List<HoaDonModel> thongke6();
@@ -38,7 +40,7 @@ public interface IThongKeService {
     public List<HoaDonModel> thongke8(Date a, Date b);
 
     public boolean Timkiem(String chuoi1, String chuoi2);
-    
+
     public List<Object[]> thongke9(int a);
 
 }

@@ -281,4 +281,26 @@ public class ThongKeRepository implements IThongKeRepository {
         return list;
     }
 
+    @Override
+    public long TongTien4(int a) {
+        long b = 0;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT SUM(S.gia*H.SoLuong)\n"
+                    + "From SanPham S\n"
+                    + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
+                    + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
+                    + "where HD.MaHoaDon = :MaHoaDon";
+
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("MaHoaDon", a);
+            session.beginTransaction();
+            session.getTransaction().commit();
+            b = (long) query.uniqueResult();
+
+        } catch (HibernateException e) {
+            JOptionPane.showMessageDialog(null, "");
+        }
+        return b;
+    }
+
 }
