@@ -114,7 +114,7 @@ public class MainTrue extends javax.swing.JFrame {
         btn_hoadon.setBackground(new java.awt.Color(51, 255, 255));
         btn_hoadon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_hoadon.setForeground(new java.awt.Color(255, 255, 255));
-        btn_hoadon.setText("Hoá Đơn");
+        btn_hoadon.setText("Bán Hàng");
         btn_hoadon.setBorder(null);
         btn_hoadon.setBorderPainted(false);
         btn_hoadon.setContentAreaFilled(false);
