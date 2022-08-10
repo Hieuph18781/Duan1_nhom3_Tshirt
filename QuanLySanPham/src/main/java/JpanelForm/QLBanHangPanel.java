@@ -107,7 +107,6 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         for (int i = 0; i < soluongSanPhamDachon; i++) {
             tongtien = tongtien + Integer.parseInt(tbl_sanPhamDaChon.getModel().getValueAt(i, 9).toString());
         }
-//        System.out.println(rdb_dungdiem.isSelected());
         if (rdb_dungdiem.isSelected()) {
             tongtien = tongtien - Integer.parseInt(txt_diemTichMuaHang.getText());
             tongtien = tongtien - (tongtien * (_lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()).getGiaKhuyenMai() / 100L));
@@ -115,10 +114,8 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             txt_thanhTien.setText(String.valueOf(_formatter.format(tong)));
             return false;
         }
-        System.out.println(_lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()).getGiaKhuyenMai());
         tongtien = tongtien - (tongtien * (_lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()).getGiaKhuyenMai() / 100L));
-        Long tong = (Long) tongtien;
-        txt_thanhTien.setText(String.valueOf(_formatter.format(tong)));
+        txt_thanhTien.setText(String.valueOf(_formatter.format(tongtien)));
         if (Utils.CheckData.checkNullString(txt_tienKhachDua.getText().replaceAll(",", ""))) {
             return false;
         }
@@ -152,6 +149,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             if (!(x.getNgayBatDau().compareTo(dateToday) == 1) && !(dateToday.compareTo(x.getNgayKetThuc()) == 1)) {
                 cbx.addElement(x.getTenKhuyenMai());
                 _lstKhuyenMai.add(x);
+                System.out.println(x.toString());
             }
         }
         cbc_khuyenMai.setModel(cbx);
