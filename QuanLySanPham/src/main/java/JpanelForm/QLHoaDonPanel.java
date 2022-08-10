@@ -35,6 +35,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         _IThongKeRepository = new ThongKeService();
         loadtable(_IThongKeRepository.thongke5());
         setrdb();
+        cbc_tg.setSelectedItem("Không");
     }
 
     void setrdb() {
@@ -129,6 +130,11 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jLabel8.setText("Tìm Kiếm Theo Khoảng Thời Gian");
 
         cbc_tg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Có", " " }));
+        cbc_tg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbc_tgActionPerformed(evt);
+            }
+        });
 
         btn_timkiem.setText("Lọc Danh Sách");
         btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
@@ -482,6 +488,16 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
     }//GEN-LAST:event_tbl_hdMouseClicked
+
+    private void cbc_tgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_tgActionPerformed
+        if (cbc_tg.getSelectedItem().toString().equals("Không")) {
+            txt_ngay1.setEnabled(false);
+            txt_ngay2.setEnabled(false);
+        }else{
+            txt_ngay1.setEnabled(true);
+            txt_ngay2.setEnabled(true);
+        }
+    }//GEN-LAST:event_cbc_tgActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

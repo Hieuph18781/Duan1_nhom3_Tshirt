@@ -412,6 +412,7 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Tháng")) {
             cbc_thang.setEnabled(true);
             txt_nam.setEnabled(true);
+            txt_ngay.setEnabled(false);
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Năm")) {
@@ -453,6 +454,7 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
             if (txt_nam.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
             }
+            
             cbc_thang.setEnabled(true);
             txt_nam.setEnabled(true);
             fillTableTheoThang();
