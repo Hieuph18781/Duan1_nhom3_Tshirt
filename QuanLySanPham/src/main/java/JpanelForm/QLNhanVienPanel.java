@@ -97,13 +97,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
             if (txt_sdt.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "SDT không được để trống");
             }
-            if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
-                JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
-            }
-
-            if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
-                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
-            }
+          
         } else if (txt_email.getText().length() < 5) {
             if (txt_email.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "email không được để trống");
@@ -630,7 +624,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
         }
 
         if (check() == false) {
-           // JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
+          
             return;
         } else {
             try {
@@ -638,6 +632,14 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
                     return;
                      }
+                  if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số ");
+               
+            }
+                if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                return;
+            }
                 if (txt_cccd.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Không được để trống CCCD");
                     return;
@@ -715,6 +717,16 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Không được để trống địa chỉ");
                     return;
                      }
+                 if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số");
+                
+            }
+                if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+                JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                return;
+            }
+
+           
                  if (!txt_email.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
                 JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
