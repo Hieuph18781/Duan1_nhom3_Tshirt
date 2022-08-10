@@ -4,6 +4,7 @@
  */
 package Application;
 
+import Utils.CheckData;
 import Views.FarmeQLBanHang;
 import Views.FarmeQLKhachHang;
 import Views.FarmeQLKhuyenMai;
