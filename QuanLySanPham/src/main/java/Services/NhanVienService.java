@@ -48,6 +48,7 @@ public class NhanVienService implements INhanVienService {
         _lstnhanvien = new ArrayList<>();
         var nhanvien = _inhanvientruyvan.findAll();
         for (NhanVien x : nhanvien) {
+            System.out.println(x.getHoTen());
             _lstnhanvien.add(new NhanVienModel(x.getMaNhanVien(), x.getHoTen(), x.getNgaySinh(), x.isGioiTinh(), x.getSoDienThoai(), x.getEmail(), x.getDiaChi(), x.getCCCD(), x.getChucVu(), x.getTrangThai(), x.getMatKhau()));
         }
         return _lstnhanvien;

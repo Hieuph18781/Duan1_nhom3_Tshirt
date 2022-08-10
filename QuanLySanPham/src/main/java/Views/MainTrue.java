@@ -12,7 +12,16 @@ import JpanelForm.QLNhanVienPanel;
 import JpanelForm.QLSanPhamPanel;
 import JpanelForm.ThongKeNVPanel;
 import JpanelForm.ThongKeQLPanel;
+import Services.HoaDonChiTietService;
+import Services.HoaDonService;
+import Services.IHoaDonChiTietService;
+import Services.IHoaDonService;
+import Services.ISanPhamService;
+import Services.SanPhamService;
 import Utils.Auth;
+import ViewsModels.HoaDonChiTietModel;
+import ViewsModels.HoaDonModel;
+import ViewsModels.SanPhamModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -31,6 +40,9 @@ public class MainTrue extends javax.swing.JFrame {
     /**
      * Creates new form MainTrue
      */
+    IHoaDonService _HoaDonService;
+    IHoaDonChiTietService _HoaDonCTService = new HoaDonChiTietService();
+    ISanPhamService _ISanPhamService = new SanPhamService();
     void init() {
         new Timer(1000, new ActionListener() {
             SimpleDateFormat fomat = new SimpleDateFormat("hh:mm:ss a");
@@ -47,6 +59,7 @@ public class MainTrue extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         init();
+        _HoaDonService = new HoaDonService();
     }
 
     public void show(JPanel j) {
@@ -362,6 +375,19 @@ public class MainTrue extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_khuyenmaiActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        for (HoaDonModel x : _HoaDonService.getLstToDay(new java.util.Date())) {
+            if (x.getTrangThai() == 0) {
+                for (HoaDonChiTietModel z : _HoaDonCTService.getListFromDB(x.getMaHoaDon())) {
+                    for (SanPhamModel y : _ISanPhamService.getlistsanpham()) {
+                        if (z.getSanPhamModel().getMaSanPham().equals(y.getMaSanPham())) {
+                            _ISanPhamService.suaSoLuongSP(y.getMaSanPham(), (y.getSoLuong() + z.getSoLuong()));
+                        }
+                    }
+                    z.setSoLuong(0);
+                    _HoaDonCTService.sua(z);
+                }
+            }
+        }
         new FrameLogin().setVisible(true);
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
