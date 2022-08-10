@@ -84,7 +84,6 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         cbcLoaiKhachHang();
         loadtableSanPham(_ISanPhamService.getlistsanpham());
         loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
-        
 
     }
 
@@ -750,7 +749,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
-        
+
         int indexHoaDOn = tbl_taoHoaDon.getSelectedRow();
         if (indexHoaDOn < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn cần thanh toán");
@@ -760,7 +759,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Tiền khách đưa không được nhập khoảng trắng");
             return;
         }
-        if (tongTien()==true) {
+        if (tongTien() == true) {
             JOptionPane.showMessageDialog(this, "Tiền Khách đưa phải là số");
             return;
         }
@@ -978,7 +977,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Nhập tối đa 5 kí tự số");
             return;
         }
-        if (!_checkDt.checkso(temp)||Integer.parseInt(temp)<=0 ) {
+        if (!_checkDt.checkso(temp) || Integer.parseInt(temp) <= 0) {
             JOptionPane.showMessageDialog(this, "Bạn Phải nhập số và phải > 0 , không chứa kí tự");
             return;
         }
