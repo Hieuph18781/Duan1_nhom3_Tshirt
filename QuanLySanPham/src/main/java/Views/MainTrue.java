@@ -254,6 +254,7 @@ public class MainTrue extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Shop Bán Áo");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/shop-icon.png"))); // NOI18N
         jLabel2.setText("Hình ảnh");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -274,7 +275,7 @@ public class MainTrue extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lbl_form.setLayout(new java.awt.BorderLayout());

@@ -50,7 +50,7 @@ public class FrameLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Nhan Vien khong con hoat dong");
 
                 } else if (!password.equals(nhanVien.getMatKhau())) {
-                    JOptionPane.showMessageDialog(this, "sai mat khau");
+                    JOptionPane.showMessageDialog(this, "Sai Mật Khẩu");
 
                 } else {
                     Auth.user = nhanVien;
