@@ -12,16 +12,25 @@ import java.util.List;
  * @author Admin
  */
 public interface IManagerKhachHangService {
+
     List<KhachHangModel> getKhachHang(int position, int pageSize);
+
     KhachHangModel getKhachhangById(int MaKhachHang);
-String  createKhachHang(KhachHangModel khachhangmodel);
-KhachHangModel  createNewKhachHang(KhachHangModel khachhangmodel);
+
+    String createKhachHang(KhachHangModel khachhangmodel);
+
+    KhachHangModel createNewKhachHang(KhachHangModel khachhangmodel);
+
     KhachHangModel update(KhachHangModel khachhangmodel);
-         long countAllKh();
-         public int getmaKH();
-           public List<KhachHangModel> TimKiem(String ten );
-public  boolean  timKiem2(String chuoi1,String chuoi2);
+
+    long countAllKh();
+
+    public int getmaKH();
+
+    public List<KhachHangModel> TimKiem(String ten);
+
+    public boolean timKiem2(String chuoi1, String chuoi2);
+
     List<KhachHangModel> getAllKhachHang();
 
-    
 }
