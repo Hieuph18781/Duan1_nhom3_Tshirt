@@ -34,7 +34,9 @@ public class KhachHang implements Serializable{
     
     @Nationalized
     private String DiaChi;
+    
     private String Email;
+    
     private int Diem;
     @OneToMany(mappedBy = "khachhang",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -106,6 +108,11 @@ public class KhachHang implements Serializable{
 
     public void setLstHoaDon(List<HoaDon> lstHoaDon) {
         this.lstHoaDon = lstHoaDon;
+    }
+
+    @Override
+    public String toString() {
+        return "KhachHang{" + "MaKhachHang=" + MaKhachHang + ", HoTen=" + HoTen + ", SoDienThoai=" + SoDienThoai + ", DiaChi=" + DiaChi + ", Email=" + Email + ", Diem=" + Diem + ", lstHoaDon=" + lstHoaDon + '}';
     }
 
     
