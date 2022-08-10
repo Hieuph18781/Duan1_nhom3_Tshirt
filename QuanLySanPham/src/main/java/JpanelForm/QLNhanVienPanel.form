@@ -60,8 +60,8 @@
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="rdb_email" min="-2" pref="116" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="rdb_diachi" min="-2" pref="112" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="rdb_diachi" min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="txt_timkiem" min="-2" pref="711" max="-2" attributes="0"/>
