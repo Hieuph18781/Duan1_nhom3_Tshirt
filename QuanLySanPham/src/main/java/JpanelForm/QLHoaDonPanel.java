@@ -53,7 +53,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
-                x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
+                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ":x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
         }
     }
 
@@ -294,10 +294,11 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                                 .addComponent(txt_ngay2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdb_mahd)
-                            .addComponent(rdb_makh)
-                            .addComponent(rdb_manv))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdb_manv)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rdb_mahd)
+                                .addComponent(rdb_makh)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
