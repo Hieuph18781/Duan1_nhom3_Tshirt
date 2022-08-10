@@ -792,7 +792,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             HoaDonModel hoaDonModel = new HoaDonModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 1).toString()), dateFormat.parse(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 2).toString()), 2, Auth.user, _khHangModel, _lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()));
             _HoaDonService.sua(hoaDonModel);
             _lstHoaDonCho.remove(indexHoaDOn);
-            loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
+//            loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
             loadtableHoaDonCho(_lstHoaDonCho);
             loadtableSanPhamDaChon(_HoaDonCTService.getListFromDB(-1));
             txt_tienKhachDua.setText("0");
