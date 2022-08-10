@@ -222,10 +222,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbl_hd);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setText("Tổng tiền :");
+        jLabel7.setText("Thành Tiền: ");
 
         lbl_tongtien.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lbl_tongtien.setText("jLabel10");
+        lbl_tongtien.setText("0 VND");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

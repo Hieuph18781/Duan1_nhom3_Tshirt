@@ -22,6 +22,7 @@ import Utils.Auth;
 import ViewsModels.HoaDonChiTietModel;
 import ViewsModels.HoaDonModel;
 import ViewsModels.SanPhamModel;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,7 @@ public class MainTrue extends javax.swing.JFrame {
     IHoaDonService _HoaDonService;
     IHoaDonChiTietService _HoaDonCTService = new HoaDonChiTietService();
     ISanPhamService _ISanPhamService = new SanPhamService();
+
     void init() {
         new Timer(1000, new ActionListener() {
             SimpleDateFormat fomat = new SimpleDateFormat("hh:mm:ss a");
@@ -327,9 +329,12 @@ public class MainTrue extends javax.swing.JFrame {
     private void btn_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongkeActionPerformed
         if (Auth.isManager().equals("Nhân Viên")) {
             show(new ThongKeNVPanel());
+
         } else {
             show(new ThongKeQLPanel());
+
         }
+
     }//GEN-LAST:event_btn_thongkeActionPerformed
 
     private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed
