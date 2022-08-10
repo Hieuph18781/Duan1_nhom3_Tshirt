@@ -91,7 +91,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
 
             }
-            
+           
         } else if (txt_sdt.getText().length() < 10) {
 
             if (txt_sdt.getText().length() == 0) {
@@ -634,8 +634,8 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
             return;
         } else {
             try {
-               if (txt_hoten.getText().length()>100||txt_hoten.getText().length()<5) {
-                     JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
+                if (txt_hoten.getText().length()>100||txt_hoten.getText().length()<5) {
+                    JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
                     return;
                      }
                 if (txt_cccd.getText().isEmpty()) {
@@ -703,8 +703,8 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
         try {
             System.out.println(getdata().toString());
             try {
-                  if (txt_hoten.getText().length()>100||txt_hoten.getText().length()<5) {
-                     JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
+                if (txt_hoten.getText().length()>100||txt_hoten.getText().length()<5) {
+                    JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
                     return;
                      }
                  if (txt_cccd.getText().isEmpty()) {
