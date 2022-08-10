@@ -523,7 +523,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         String s = NumberFormat.getIntegerInstance().format(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
-        lbl_tongtien.setText(s);
+        lbl_tongtien.setText(s +" VND");
 
 //lbl_tongtien.setText(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()))+" VND");
     }//GEN-LAST:event_tbl_hdMouseClicked
