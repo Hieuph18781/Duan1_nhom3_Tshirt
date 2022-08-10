@@ -30,7 +30,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         Kh.setMaKhachHang(DanhMucKHModel.getMaKhachHang());
         Kh.setHoTen(DanhMucKHModel.getHoTen());
         Kh.setDiaChi(DanhMucKHModel.getDiaChi());
-        Kh.setEmail(DanhMucKHModel.getDiaChi());
+        Kh.setEmail(DanhMucKHModel.getEmail());
         Kh.setSoDienThoai(DanhMucKHModel.getSoDienThoai());
         return Kh;
     }
@@ -40,6 +40,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         _lstKH = new ArrayList<>();
         var khachhang = _iKhachHang.fillAll(position, pageSize);
         for (KhachHang x : khachhang) {
+            System.out.println(x.getSoDienThoai());
             _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(), x.getDiem()));
         }
         return _lstKH;
@@ -122,8 +123,8 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         List<KhachHangModel> lstKH = new ArrayList<>();
         var khachhang = _iKhachHang.find();
         for (KhachHang x : khachhang) {
+//            System.out.println(x.toString());
             _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(),x.getDiaChi(),x.getEmail(),x.getDiem()));
-            System.out.println(x.getSoDienThoai());
         }
         return _lstKH;
     }
