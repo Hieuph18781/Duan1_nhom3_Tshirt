@@ -262,9 +262,10 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                             .addGap(68, 68, 68)
                             .addComponent(rdb_timchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(50, 50, 50)
-                            .addComponent(rdb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(52, 52, 52)
-                            .addComponent(rdb_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rdb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(45, 45, 45)
+                            .addComponent(rdb_diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(22, 22, 22))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -642,11 +643,11 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                      }
-                      if (txt_ngaysinh.equals(null)) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
-                   
-                    return;
-                      }
+//                      if (txt_ngaysinh.equals(null)) {
+//                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+//                   
+//                    return;
+//                      }
                 NhanVienModel nv = getdata();
             } catch (ParseException ex) {
                 Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -685,11 +686,11 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
                     return;
                      }
-                      if (!txt_ngaysinh.equals(null)) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
-                   
-                    return;
-                      }
+//                      if (!txt_ngaysinh.equals(null)) {
+//                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+//                   
+//                    return;
+//                      }
 
                 if (_inhanvienservice.sua(getdata()) != null) {
                     JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
