@@ -29,9 +29,11 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         KhachHang Kh = new KhachHang();
         Kh.setMaKhachHang(DanhMucKHModel.getMaKhachHang());
         Kh.setHoTen(DanhMucKHModel.getHoTen());
-        Kh.setDiaChi(DanhMucKHModel.getDiaChi());
-        Kh.setEmail(DanhMucKHModel.getEmail());
         Kh.setSoDienThoai(DanhMucKHModel.getSoDienThoai());
+        Kh.setDiaChi(DanhMucKHModel.getDiaChi());
+
+        Kh.setEmail(DanhMucKHModel.getEmail());
+
         return Kh;
     }
 
@@ -41,7 +43,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         var khachhang = _iKhachHang.fillAll(position, pageSize);
         for (KhachHang x : khachhang) {
             System.out.println(x.getSoDienThoai());
-            _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(), x.getDiem()));
+            _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
         }
         return _lstKH;
     }
@@ -49,7 +51,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
     @Override
     public KhachHangModel getKhachhangById(int MaKhachHang) {
         var x = _iKhachHang.findById(MaKhachHang);
-        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem());
+        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(),x.getSoDienThoai(), x.getDiaChi(),  x.getEmail(), x.getDiem());
 
     }
 
@@ -69,8 +71,8 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
 
     @Override
     public KhachHangModel update(KhachHangModel khachhangmodel) {
-        var x = _iKhachHang.save(new KhachHang(khachhangmodel.getMaKhachHang(), khachhangmodel.getHoTen(), khachhangmodel.getEmail(), khachhangmodel.getSoDienThoai(), khachhangmodel.getDiaChi(),khachhangmodel.getDiem()));
-        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem());
+        var x = _iKhachHang.save(new KhachHang(khachhangmodel.getMaKhachHang(), khachhangmodel.getHoTen(), khachhangmodel.getSoDienThoai(), khachhangmodel.getDiaChi(), khachhangmodel.getEmail(), khachhangmodel.getDiem()));
+        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem());
     }
 
     @Override
@@ -86,8 +88,8 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
     @Override
     public KhachHangModel createNewKhachHang(KhachHangModel khachhangmodel) {
         khachhangmodel.getMaKhachHang();
-        var x = _iKhachHang.save(new KhachHang(khachhangmodel.getMaKhachHang(), khachhangmodel.getHoTen(), khachhangmodel.getEmail(), khachhangmodel.getSoDienThoai(), khachhangmodel.getDiaChi(),khachhangmodel.getDiem()));
-        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem());
+        var x = _iKhachHang.save(new KhachHang(khachhangmodel.getMaKhachHang(), khachhangmodel.getHoTen(), khachhangmodel.getSoDienThoai(), khachhangmodel.getDiaChi(), khachhangmodel.getEmail(), khachhangmodel.getDiem()));
+        return new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem());
     }
 
     @Override
@@ -95,12 +97,12 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         List<KhachHangModel> KHmodel = new ArrayList<>();
         for (KhachHang x : _iKhachHang.find()) {
             if (x.getHoTen().toLowerCase().contains(ten.toLowerCase())) {
-                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem()));
+                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
 
-            } else if (x.getDiaChi().toLowerCase().contains(ten.toLowerCase())) {
-                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem()));
+            } else if (x.getEmail().toLowerCase().contains(ten.toLowerCase())) {
+                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
             } else if (x.getSoDienThoai().toLowerCase().contains(ten.toLowerCase())) {
-                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getEmail(), x.getSoDienThoai(), x.getDiaChi(),x.getDiem()));
+                KHmodel.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
 
             }
 
@@ -124,7 +126,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         var khachhang = _iKhachHang.find();
         for (KhachHang x : khachhang) {
 //            System.out.println(x.toString());
-            _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(),x.getDiaChi(),x.getEmail(),x.getDiem()));
+            _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
         }
         return _lstKH;
     }
