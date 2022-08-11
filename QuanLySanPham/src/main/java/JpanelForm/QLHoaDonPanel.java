@@ -112,7 +112,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
     public String KhachHang2(int a) {
         for (KhachHangModel x : _IKhachHangService.getAllKhachHang()) {
             if (x.getMaKhachHang() == a) {
-                return x.getDiaChi();
+                return x.getSoDienThoai();
             }
         }
         return null;
