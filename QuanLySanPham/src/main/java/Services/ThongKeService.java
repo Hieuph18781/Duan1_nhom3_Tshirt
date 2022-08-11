@@ -159,4 +159,12 @@ public class ThongKeService implements IThongKeService {
         return b;
     }
 
+    @Override
+    public boolean Timkiem2(String chuoi1, String chuoi2) {
+        if (chuoi1.equals(chuoi2)) {
+            return true;
+        }
+        return false;
+    }
+
 }

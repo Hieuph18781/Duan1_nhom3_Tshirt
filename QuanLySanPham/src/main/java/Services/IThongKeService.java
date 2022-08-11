@@ -40,6 +40,7 @@ public interface IThongKeService {
     public List<HoaDonModel> thongke8(Date a, Date b);
 
     public boolean Timkiem(String chuoi1, String chuoi2);
+    public boolean Timkiem2(String chuoi1, String chuoi2);
 
     public List<Object[]> thongke9(int a);
 

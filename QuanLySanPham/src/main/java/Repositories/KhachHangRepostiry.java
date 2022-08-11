@@ -21,7 +21,7 @@ public class KhachHangRepostiry implements IKhachHangRepository {
     public List<KhachHang> fillAll(int position, int pageSize) {
         List<KhachHang> khachhangs ;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "select p from KhachHang p";
+            String hql = "select p from KhachHang p where p.MaKhachHang != 1";
             TypedQuery<KhachHang> query = session.createQuery(hql, KhachHang.class);
             query.setFirstResult(position);
             query.setMaxResults(pageSize);
