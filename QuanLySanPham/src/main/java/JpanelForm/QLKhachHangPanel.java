@@ -194,7 +194,7 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã khách hàng", "Tên khách hàng", "SDT", "Địa chỉ", "Email"
+                "Mã khách hàng", "Tên khách hàng", "EMAIL", "SDT", "Địa chỉ"
             }
         ));
         tbl_khachhang.addMouseListener(new java.awt.event.MouseAdapter() {
