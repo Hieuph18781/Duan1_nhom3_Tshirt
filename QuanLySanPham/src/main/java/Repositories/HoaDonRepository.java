@@ -47,6 +47,7 @@ public class HoaDonRepository implements IHoaDonRepository {
 
     @Override
     public boolean update(HoaDon HoaDon) {
+        System.out.println("mã khách hàng:"+HoaDon.getKhachhang().getMaKhachHang());
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();

@@ -44,6 +44,7 @@ public class HoaDonService implements IHoaDonService {
         nv.setMaNhanVien(hdModel.getNhanvien().getMaNhanVien());
         nv.setHoTen(hdModel.getNhanvien().getHoTen());
         hd.setNhanvien(nv);
+        
         KhachHang kh = new KhachHang();
         kh.setMaKhachHang(hdModel.getKhachhang().getMaKhachHang());
         hd.setKhachhang(kh);

@@ -36,7 +36,7 @@ public class HoaDon implements Serializable {
     private Date ThoiGianTao;
     
     @Nationalized
-    private int TrangThai; //1: đang chờ thanh toán, 2: hủy, 3: thanh toán thành công
+    private int TrangThai; 
 
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")

@@ -83,7 +83,9 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         setrdb();
         cbcLoaiKhachHang();
         loadtableSanPham(_ISanPhamService.getlistsanpham());
+
         loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
+
 
     }
 
@@ -181,7 +183,6 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         }
         if (!cbc_khachHang.getSelectedItem().equals("Khách Lẻ")) {
             txt_soDienThoai.setEnabled(true);
-//            txt_tenKhachHang.setEnabled(true);
             rdb_dungdiem.setEnabled(true);
             rdb_khongdungdiem.setEnabled(true);
         }
@@ -222,13 +223,18 @@ public class QLBanHangPanel extends javax.swing.JPanel {
 
     public void loadtableHoaThanhCong(List<HoaDonModel> lstHoaDonModels) {
         DefaultTableModel _DefaultTableModel = new DefaultTableModel();
+        _DefaultTableModel = (DefaultTableModel) tbl_taoHoaDon.getModel();
         _DefaultTableModel.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        int stt = 1;
         for (HoaDonModel x : lstHoaDonModels) {
-            _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
-                x.getNhanvien().getHoTen(),
-                x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công"
-            });
+            if (x.getTrangThai() == 0) {
+                _lstHoaDonCho.add(x);
+                _DefaultTableModel.addRow(new Object[]{stt++, x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
+                    x.getNhanvien().getHoTen(),
+                    x.getTrangThai() == 0 ? "Đang Chờ" : "Đã Hủy"
+                });
+            }
         }
     }
 
@@ -749,7 +755,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
-        
+
         int indexHoaDOn = tbl_taoHoaDon.getSelectedRow();
         if (indexHoaDOn < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn cần thanh toán");
@@ -759,7 +765,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Tiền khách đưa không được nhập khoảng trắng");
             return;
         }
-        if (tongTien()==true) {
+        if (tongTien() == true) {
             JOptionPane.showMessageDialog(this, "Tiền Khách đưa phải là số");
             return;
         }
@@ -789,7 +795,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             HoaDonModel hoaDonModel = new HoaDonModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 1).toString()), dateFormat.parse(tbl_taoHoaDon.getModel().getValueAt(indexHoaDOn, 2).toString()), 2, Auth.user, _khHangModel, _lstKhuyenMai.get(cbc_khuyenMai.getSelectedIndex()));
             _HoaDonService.sua(hoaDonModel);
             _lstHoaDonCho.remove(indexHoaDOn);
-            loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
+//            loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
             loadtableHoaDonCho(_lstHoaDonCho);
             loadtableSanPhamDaChon(_HoaDonCTService.getListFromDB(-1));
             txt_tienKhachDua.setText("0");
@@ -834,8 +840,12 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             if (x.getSoDienThoai().equals(txt_soDienThoai.getText())) {
                 txt_tenKhachHang.setText(x.getHoTen());
                 _khHangModel = x;
+                System.out.println(_khHangModel.getMaKhachHang());
+                return;
             }
         }
+        txt_tenKhachHang.setText("");
+        _khHangModel = null;
     }//GEN-LAST:event_txt_soDienThoaiCaretUpdate
 
     private void cbc_khuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_khuyenMaiActionPerformed
@@ -921,6 +931,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
                 }
                 _ISanPhamService.suaSoLuongSP(tbl_sanPham.getValueAt(indexSp, 1).toString(), x.getSoLuong() - Integer.parseInt(temp));//update so luong san pham
                 hdct = new HoaDonChiTietModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHdCho, 1).toString()), Integer.parseInt(temp), Integer.parseInt(tbl_sanPham.getValueAt(indexSp, 9).toString()), x, getHoaDonCho());
+            
             }
         }
         _HoaDonCTService.them(hdct);//thêm hóa đơn chi tiết vào bd
@@ -977,7 +988,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Nhập tối đa 5 kí tự số");
             return;
         }
-        if (!_checkDt.checkso(temp)||Integer.parseInt(temp)<=0 ) {
+        if (!_checkDt.checkso(temp) || Integer.parseInt(temp) <= 0) {
             JOptionPane.showMessageDialog(this, "Bạn Phải nhập số và phải > 0 , không chứa kí tự");
             return;
         }
@@ -990,13 +1001,9 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
             if (x.getMaSanPham().equals(tbl_sanPhamDaChon.getModel().getValueAt(indexSp, 1).toString())) {
                 if ((x.getSoLuong() + Integer.parseInt((tbl_sanPhamDaChon.getValueAt(indexSp, 8).toString()))) < Integer.parseInt(temp)) {
-                    JOptionPane.showMessageDialog(this, "Số Lượng của sản phẩm chỉ còn :" + x.getSoLuong());
+                    JOptionPane.showMessageDialog(this, "Số Lượng của sản phẩm chỉ còn :" + (x.getSoLuong() + Integer.parseInt((tbl_sanPhamDaChon.getValueAt(indexSp, 8).toString()))));
                     return;
                 }
-//                if (x.getSoLuong() <= 0) {
-//                    JOptionPane.showMessageDialog(this, "Sản phẩm đã hết");
-//                    return;
-//                }
                 _ISanPhamService.suaSoLuongSP(tbl_sanPhamDaChon.getValueAt(indexSp, 1).toString(),
                         (x.getSoLuong() + Integer.parseInt((tbl_sanPhamDaChon.getValueAt(indexSp, 8).toString()))) - Integer.parseInt(temp));//update so luong san pham
                 hdct = new HoaDonChiTietModel(Integer.parseInt(tbl_taoHoaDon.getModel().getValueAt(indexHdCho, 1).toString()), Integer.parseInt(temp), 0, x, getHoaDonCho());
@@ -1025,21 +1032,16 @@ public class QLBanHangPanel extends javax.swing.JPanel {
             _HoaDonService.sua(hdmd);//cập nhật trạng thái hóa đơn
             _lstHoaDonCho.remove(indexHdCho);//remove hóa đơn khỏi list
             // xử lý Hóa đơn chi tiết
-            for (HoaDonChiTietModel x : _HoaDonCTService.getListFromDB(hdmd.getMaHoaDon())) {
-                for (SanPhamModel y : _ISanPhamService.getlistsanpham()) {
-                    if (x.getSanPhamModel().getMaSanPham().equals(y.getMaSanPham())) {
-                        _ISanPhamService.suaSoLuongSP(y.getMaSanPham(), (y.getSoLuong() + x.getSoLuong()));
-                    }
-                }
-                x.setSoLuong(0);
-                _HoaDonCTService.sua(x);
-            }
+
 
             loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
             loadtableHoaDonCho(_lstHoaDonCho);
             loadtableSanPhamDaChon(_HoaDonCTService.getListFromDB(-1));
             loadtableSanPham(_ISanPhamService.getlistsanpham());
             cbc_khachHang.setSelectedIndex(0);
+            txt_thanhTien.setText("0");
+            txt_tienKhachDua.setText("0");
+            txt_tienThua.setText("0");
         } catch (ParseException ex) {
             Logger.getLogger(QLBanHangPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
