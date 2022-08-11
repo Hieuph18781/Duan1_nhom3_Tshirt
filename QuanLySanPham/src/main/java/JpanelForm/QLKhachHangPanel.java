@@ -518,6 +518,7 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
+
         LoadDataTable(_iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize));
         this.txt_Ma.setText(String.valueOf(_iManageKhachHang.getmaKH()));
         this.txt_ten.setText("");
