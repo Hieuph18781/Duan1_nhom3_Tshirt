@@ -60,6 +60,10 @@ public class SanPham implements Serializable {
     @OneToMany(mappedBy = "sanpham",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDonChiTiet> lstHoaDonChiTiet;
+    
+    @OneToMany(mappedBy = "sanpham",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonDoiTraChiTiet> lstHoaDonDoiTraChiTiets;
 
     public SanPham() {
     }
@@ -178,5 +182,13 @@ public class SanPham implements Serializable {
         this.lstHoaDonChiTiet = lstHoaDonChiTiet;
     }
 
+    public List<HoaDonDoiTraChiTiet> getLstHoaDonDoiTraChiTiets() {
+        return lstHoaDonDoiTraChiTiets;
+    }
+
+    public void setLstHoaDonDoiTraChiTiets(List<HoaDonDoiTraChiTiet> lstHoaDonDoiTraChiTiets) {
+        this.lstHoaDonDoiTraChiTiets = lstHoaDonDoiTraChiTiets;
+    }
+    
     
 }

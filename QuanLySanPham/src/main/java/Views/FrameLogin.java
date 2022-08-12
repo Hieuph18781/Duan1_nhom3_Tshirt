@@ -103,7 +103,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Mật khẩu");
 
-        txtMatKhau.setText("123");
+        txtMatKhau.setText("123456789");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatKhauActionPerformed(evt);

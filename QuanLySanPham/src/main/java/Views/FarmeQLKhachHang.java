@@ -42,6 +42,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
     private void LoadDataTable(List<KhachHangModel> lstKH) {
         List<KhachHangModel> KHmodel = _iManageKhachHang.getKhachHang(_currentPage - 1, _pageSize);
+        _iManageKhachHang.getAllKhachHang();
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_khachhang.getModel();
         dtm.setRowCount(0);
         for (KhachHangModel d : KHmodel) {

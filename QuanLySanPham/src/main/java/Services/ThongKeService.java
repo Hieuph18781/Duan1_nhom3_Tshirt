@@ -65,7 +65,7 @@ public class ThongKeService implements IThongKeService {
 
     @Override
     public long TongTien3() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -76,10 +76,13 @@ public class ThongKeService implements IThongKeService {
         for (HoaDon x : hoadon) {
             NhanVienModel nhanVienModel = new NhanVienModel();
             nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
             KhachHangModel kdmd = new KhachHangModel();
             kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
             KhuyenMaiModel kmmd = new KhuyenMaiModel();
             kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            kmmd.setTenKhuyenMai(x.getKhuyenmai().getTenKhuyenMai());
             _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
         }
         return _lstHoaDon;
@@ -151,6 +154,20 @@ public class ThongKeService implements IThongKeService {
 
         List<Object[]> list = _IThongKeService.thongke9(a);
         return list;
+    }
+
+    @Override
+    public long TongTien4(int a) {
+        long b = _IThongKeService.TongTien4(a);
+        return b;
+    }
+
+    @Override
+    public boolean Timkiem2(String chuoi1, String chuoi2) {
+        if (chuoi1.equals(chuoi2)) {
+            return true;
+        }
+        return false;
     }
 
 }

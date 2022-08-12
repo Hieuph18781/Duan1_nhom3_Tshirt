@@ -140,40 +140,40 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
         cbc_khuyenMai.setModel(cbx);
     }
 
-    public void sendemail(String email) {
-        try {
-            Random rand = new Random();
-            _randomCode = rand.nextInt(999999);
-            String user = "cuongdtph18984@fpt.edu.vn";
-            String pass = "abcd@@@@1";
-            String to = email;
-            String subject = "Reseting Code";
-            String message = "Your reset code is " + _randomCode;
-            boolean sessionDebug = false;
-            Properties pros = System.getProperties();
-            pros.put("mail.smtp.starttls.enable", "true");
-            pros.put("mail.smtp.starttls.required", "true");
-            pros.put("mail.smtp.host", "smtp.gmail.com");
-            pros.put("mail.smtp.port", "587");
-            pros.put("mail.smtp.auth", "true");
-
-            Session mailSession = Session.getDefaultInstance(pros, null);
-            mailSession.setDebug(sessionDebug);
-            Message msg = new MimeMessage(mailSession);
-            msg.setFrom(new InternetAddress(user));
-            InternetAddress[] address = {new InternetAddress(to)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            msg.setSubject(subject);
-            msg.setText(message);
-            Transport transport = mailSession.getTransport("smtp");
-            transport.connect("smtp.gmail.com", user, pass);
-            transport.sendMessage(msg, msg.getAllRecipients());
-            transport.close();
-            JOptionPane.showMessageDialog(this, "Gửi mã xác nhận thành công");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void sendemail(String email) {
+//        try {
+//            Random rand = new Random();
+//            _randomCode = rand.nextInt(999999);
+//            String user = "cuongdtph18984@fpt.edu.vn";
+//            String pass = "abcd@@@@1";
+//            String to = email;
+//            String subject = "Reseting Code";
+//            String message = "Your reset code is " + _randomCode;
+//            boolean sessionDebug = false;
+//            Properties pros = System.getProperties();
+//            pros.put("mail.smtp.starttls.enable", "true");
+//            pros.put("mail.smtp.starttls.required", "true");
+//            pros.put("mail.smtp.host", "smtp.gmail.com");
+//            pros.put("mail.smtp.port", "587");
+//            pros.put("mail.smtp.auth", "true");
+//
+//            Session mailSession = Session.getDefaultInstance(pros, null);
+//            mailSession.setDebug(sessionDebug);
+//            Message msg = new MimeMessage(mailSession);
+//            msg.setFrom(new InternetAddress(user));
+//            InternetAddress[] address = {new InternetAddress(to)};
+//            msg.setRecipients(Message.RecipientType.TO, address);
+//            msg.setSubject(subject);
+//            msg.setText(message);
+//            Transport transport = mailSession.getTransport("smtp");
+//            transport.connect("smtp.gmail.com", user, pass);
+//            transport.sendMessage(msg, msg.getAllRecipients());
+//            transport.close();
+//            JOptionPane.showMessageDialog(this, "Gửi mã xác nhận thành công");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     void cbcLoaiKhachHang() {
         DefaultComboBoxModel cbx = new DefaultComboBoxModel();
@@ -1045,7 +1045,7 @@ public class FarmeQLBanHang extends javax.swing.JFrame {
     private void btn_guimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guimaActionPerformed
         btn_xacnhanMa.setEnabled(true);
         txt_xacnhanma.setEnabled(true);
-        sendemail(_khHangModel.getEmail());
+//        sendemail(_khHangModel.getEmail());
     }//GEN-LAST:event_btn_guimaActionPerformed
 
     private void txt_soDienThoaiCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_soDienThoaiCaretUpdate

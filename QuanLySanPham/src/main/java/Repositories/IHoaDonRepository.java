@@ -19,6 +19,8 @@ public interface IHoaDonRepository {
     public boolean update(HoaDon HoaDon);
 
     public List<HoaDon> selectAll();
-    
+
     public List<HoaDon> selectHoaDonToDate(Date enity);
+
+    public HoaDon getHoadonById(int mahoadon);
 }

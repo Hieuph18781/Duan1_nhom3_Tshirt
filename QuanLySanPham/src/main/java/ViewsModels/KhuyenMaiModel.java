@@ -81,5 +81,10 @@ public class KhuyenMaiModel {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
+
+    @Override
+    public String toString() {
+        return "KhuyenMaiModel{" + "IdKhuyenMai=" + IdKhuyenMai + ", TenKhuyenMai=" + TenKhuyenMai + ", NgayBatDau=" + NgayBatDau + ", NgayKetThuc=" + NgayKetThuc + ", GiaKhuyenMai=" + GiaKhuyenMai + ", MoTa=" + MoTa + '}';
+    }
      
 }

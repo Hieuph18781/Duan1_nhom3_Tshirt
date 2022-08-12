@@ -50,5 +50,7 @@
         <mapping class="DomainModels.KhachHang"/>
         <mapping class="DomainModels.HoaDon"/>
         <mapping class="DomainModels.HoaDonChiTiet"/>
+        <mapping class="DomainModels.HoaDonDoiTra"/>
+        <mapping class="DomainModels.HoaDonDoiTraChiTiet"/>
     </session-factory>
 </hibernate-configuration>
