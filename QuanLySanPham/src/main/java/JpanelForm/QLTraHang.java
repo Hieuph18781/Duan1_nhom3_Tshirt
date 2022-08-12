@@ -129,7 +129,6 @@ public class QLTraHang extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         pmn_tblHoaDonChiTiet = new javax.swing.JPopupMenu();
         mni_trahang = new javax.swing.JMenuItem();
         pmn_danhSachSPTra = new javax.swing.JPopupMenu();
@@ -601,6 +600,7 @@ public class QLTraHang extends javax.swing.JFrame {
         tongTienTra();
         loadtable(_IThongKeRepository.thongke5());
     }//GEN-LAST:event_btn_traHangActionPerformed
+
 
     /**
      * @param args the command line arguments

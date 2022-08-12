@@ -83,7 +83,6 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         cbcLoaiKhachHang();
         loadtableSanPham(_ISanPhamService.getlistsanpham());
         loadtableHoaThanhCong(_HoaDonService.getLstToDay(new java.util.Date()));
-
     }
 
     boolean tongTien() {

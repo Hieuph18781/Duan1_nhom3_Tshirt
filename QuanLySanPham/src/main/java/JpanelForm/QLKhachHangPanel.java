@@ -47,7 +47,7 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_khachhang.getModel();
         dtm.setRowCount(0);
         for (KhachHangModel d : KHmodel) {
-            Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(), d.getEmail(), d.getSoDienThoai(), d.getDiaChi()};
+            Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(),  d.getSoDienThoai(), d.getDiaChi(),d.getEmail()};
             dtm.addRow(rowdata);
 
         }
@@ -194,7 +194,7 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã khách hàng", "Tên khách hàng", "SDT", "Địa chỉ", "Email"
+                "Mã khách hàng", "Tên khách hàng", "EMAIL", "SDT", "Địa chỉ"
             }
         ));
         tbl_khachhang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -440,9 +440,9 @@ public class QLKhachHangPanel extends javax.swing.JPanel {
         }
         String maKh = this.tbl_khachhang.getValueAt(row, 0).toString();
         String HoTen = this.tbl_khachhang.getValueAt(row, 1).toString();
-        String DiaChi = this.tbl_khachhang.getValueAt(row, 3).toString();
-        String Email = this.tbl_khachhang.getValueAt(row, 4).toString();
-        String Sdt = this.tbl_khachhang.getValueAt(row, 2).toString();
+        String DiaChi = this.tbl_khachhang.getValueAt(row, 4).toString();
+        String Email = this.tbl_khachhang.getValueAt(row, 2).toString();
+        String Sdt = this.tbl_khachhang.getValueAt(row, 3).toString();
 
         this.txt_Ma.setText(maKh);
         this.txt_ten.setText(HoTen);

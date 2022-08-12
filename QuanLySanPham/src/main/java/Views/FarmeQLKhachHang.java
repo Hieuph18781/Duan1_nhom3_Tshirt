@@ -46,7 +46,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) this.tbl_khachhang.getModel();
         dtm.setRowCount(0);
         for (KhachHangModel d : KHmodel) {
-            Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(), d.getEmail(), d.getSoDienThoai(), d.getDiaChi()};
+            Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(),  d.getSoDienThoai(), d.getDiaChi(),d.getEmail()};
             dtm.addRow(rowdata);
 
         }
@@ -60,7 +60,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
             List<KhachHangModel> timkiem = _iManageKhachHang.TimKiem(key);
             for (KhachHangModel d : timkiem) {
-                Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(), d.getEmail(), d.getSoDienThoai(), d.getDiaChi()};
+                Object[] rowdata = {d.getMaKhachHang(), d.getHoTen(), d.getSoDienThoai(), d.getDiaChi(), d.getEmail()};
                 dtm.addRow(rowdata);
             }
         } catch (Exception e) {
@@ -69,7 +69,7 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
     }
 
     KhachHangModel getdata() {
-        return new KhachHangModel(Integer.parseInt(txt_Ma.getText()), txt_ten.getText(), txt_diachi.getText(), txt_email.getText(), txt_SDT.getText(),0);
+        return new KhachHangModel(Integer.parseInt(txt_Ma.getText()), txt_ten.getText(), txt_SDT.getText(), txt_diachi.getText(), txt_email.getText(),0);
     }
 
     private KhachHangModel getKhachHangFromInput() {
@@ -77,12 +77,13 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
 
         String Hoten = txt_ten.getText();
         khachhangs.setHoTen(Hoten);
+           String SDt = txt_SDT.getText();
+        khachhangs.setSoDienThoai(SDt);
         String DiaChi = txt_diachi.getText();
         khachhangs.setDiaChi(DiaChi);
         String Email = txt_email.getText();
         khachhangs.setEmail(Email);
-        String SDt = txt_SDT.getText();
-        khachhangs.setSoDienThoai(SDt);
+     
         return khachhangs;
     }
 
@@ -436,6 +437,10 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         if (xacnhan != JOptionPane.YES_OPTION) {
             return;
         }
+        if (_check.chekcKhoangTrang(txt_email.getText()) || _check.chekcKhoangTrang( txt_ten.getText()) ) {
+            JOptionPane.showMessageDialog(this, "Không để khoảng trắng");
+            return;
+        }
 
       
             KhachHangModel newKH = getKhachHangFromInput();
@@ -492,9 +497,9 @@ public class FarmeQLKhachHang extends javax.swing.JFrame {
         }
         String maKh = this.tbl_khachhang.getValueAt(row, 0).toString();
         String HoTen = this.tbl_khachhang.getValueAt(row, 1).toString();
-        String DiaChi = this.tbl_khachhang.getValueAt(row, 3).toString();
-        String Email = this.tbl_khachhang.getValueAt(row, 4).toString();
-        String Sdt = this.tbl_khachhang.getValueAt(row, 2).toString();
+        String DiaChi = this.tbl_khachhang.getValueAt(row, 4).toString();
+        String Email = this.tbl_khachhang.getValueAt(row, 2).toString();
+        String Sdt = this.tbl_khachhang.getValueAt(row, 3).toString();
 
         this.txt_Ma.setText(maKh);
         this.txt_ten.setText(HoTen);
