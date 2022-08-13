@@ -203,7 +203,6 @@ public class ThongKeRepository implements IThongKeRepository {
 
             nhanvien = query.getResultList();
         }
-        System.out.println(nhanvien.get(0).toString());
         return nhanvien;
     }
 
