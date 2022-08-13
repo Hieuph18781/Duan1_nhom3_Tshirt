@@ -14,7 +14,9 @@ import Services.IHoaDonChiTietService;
 import Services.IHoaDonDoiTraChiTietService;
 import Services.IHoaDonDoiTraService;
 import Services.IHoaDonService;
+import Services.ISanPhamService;
 import Services.IThongKeService;
+import Services.SanPhamService;
 import Services.ThongKeService;
 import Utils.Auth;
 import Utils.CheckData;
@@ -48,6 +50,7 @@ public class QLTraHang extends javax.swing.JFrame {
     IHoaDonDoiTraChiTietService _ihoadDoiTraChiTietService;
     NumberFormat _formatter = new DecimalFormat("#,###");
     IHoaDonService _iHoaDonService;
+    ISanPhamService _ISanPhamService;
 
     /**
      * Creates new form QLTraHang
@@ -59,6 +62,7 @@ public class QLTraHang extends javax.swing.JFrame {
         _hoaDonDoiTraService = new HoaDonDoiTraService();
         _ihoadDoiTraChiTietService = new HoaDonDoiTraChiTietService();
         _iHoaDonService = new HoaDonService();
+        _ISanPhamService = new SanPhamService();
         _checkDt = new CheckData();
         loadtable(_IThongKeRepository.thongke5());
         setlbl();
@@ -596,8 +600,12 @@ public class QLTraHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chọn hóa đơn cần trả hàng");
             return;
         }
-        if (tbl_sanPhamTra.getRowCount() < 0) {
+        if (tbl_sanPhamTra.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Chọn sản phẩm và số lượng cần trả hàng");
+            return;
+        }
+        int temp = JOptionPane.showConfirmDialog(this, "Xác Nhận bạn muốn trả hàng? ");
+        if (temp!=0) {
             return;
         }
         HoaDonModel hdmodel = new HoaDonModel();
@@ -616,6 +624,13 @@ public class QLTraHang extends javax.swing.JFrame {
         hdmodel.setTrangThai(3);
         _iHoaDonService.sua(hdmodel);
 
+        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (x.getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+                    _ISanPhamService.suaSoLuongSP(tbl_sanPhamTra.getValueAt(i, 1).toString(), x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString()));//update so luong san pham
+                }
+            }
+        }
         fillTableTheoNgay(-1);
         loadtableSanPhamTra(-1);
         tongTienTra();
