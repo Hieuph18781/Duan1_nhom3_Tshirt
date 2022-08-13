@@ -125,7 +125,6 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
         List<KhachHangModel> lstKH = new ArrayList<>();
         var khachhang = _iKhachHang.find();
         for (KhachHang x : khachhang) {
-//            System.out.println(x.toString());
             _lstKH.add(new KhachHangModel(x.getMaKhachHang(), x.getHoTen(), x.getSoDienThoai(), x.getDiaChi(), x.getEmail(), x.getDiem()));
         }
         return _lstKH;

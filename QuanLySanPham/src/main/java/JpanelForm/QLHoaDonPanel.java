@@ -67,7 +67,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
-                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : KhachHang1(x.getKhachhang().getMaKhachHang()), KhuyenMai(x.getKhuyenmai().getIdKhuyenMai()), x.getNhanvien().getMaNhanVien()});
+                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
         }
     }
 
@@ -112,7 +112,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
     public String KhachHang2(int a) {
         for (KhachHangModel x : _IKhachHangService.getAllKhachHang()) {
             if (x.getMaKhachHang() == a) {
-                return x.getSoDienThoai();
+                return x.getDiaChi();
             }
         }
         return null;

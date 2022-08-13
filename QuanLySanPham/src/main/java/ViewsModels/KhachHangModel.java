@@ -77,4 +77,9 @@ public class KhachHangModel {
         this.Diem = Diem;
     }
 
+    @Override
+    public String toString() {
+        return "KhachHangModel{" + "MaKhachHang=" + MaKhachHang + ", HoTen=" + HoTen + ", SoDienThoai=" + SoDienThoai + ", DiaChi=" + DiaChi + ", Email=" + Email + ", Diem=" + Diem + '}';
+    }
+
 }

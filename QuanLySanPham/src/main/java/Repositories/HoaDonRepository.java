@@ -47,7 +47,6 @@ public class HoaDonRepository implements IHoaDonRepository {
 
     @Override
     public boolean update(HoaDon HoaDon) {
-        System.out.println("mã khách hàng:"+HoaDon.getKhachhang().getMaKhachHang());
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
@@ -75,24 +74,37 @@ public class HoaDonRepository implements IHoaDonRepository {
         }
         return products;
     }
-
-    public static void main(String[] args) {
-        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(dateFormat1.format(new java.util.Date()));
-    }
+//
+//    public static void main(String[] args) {
+//        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        System.out.println(dateFormat1.format(new java.util.Date()));
+//    }
 
     @Override
     public List<HoaDon> selectHoaDonToDate(Date enity) {
         List<HoaDon> products;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-
-            
             DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
             DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String hql = "SELECT p FROM HoaDon p WHERE ThoiGianTao BETWEEN '" + dateFormat1.format(new java.util.Date()) + "' AND '" + dateFormat2.format(new java.util.Date())+"'";
+            String hql = "SELECT p FROM HoaDon p WHERE ThoiGianTao BETWEEN '" + dateFormat1.format(new java.util.Date()) + "' AND '" + dateFormat2.format(new java.util.Date()) + "'";
             TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
             products = query.getResultList();
             return products;
         }
+    }
+//    public static void main(String[] args) {
+//        System.out.println(getHoadonById(1).toString());
+//    }
+
+    @Override
+    public HoaDon getHoadonById(int mahoadon) {
+        HoaDon hoaDon;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT p FROM HoaDon p WHERE p.MaHoaDon = :MaHoaDon";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+            query.setParameter("MaHoaDon", mahoadon);
+            hoaDon = query.getSingleResult();
+        }
+        return hoaDon;
     }
 }

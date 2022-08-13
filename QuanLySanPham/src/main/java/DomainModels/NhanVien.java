@@ -59,6 +59,10 @@ public class NhanVien implements Serializable {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDon> lstHoaDon;
 
+    @OneToMany(mappedBy = "nhanvien",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonDoiTra> lstHoaDonDoiTras;
+
     public NhanVien() {
     }
 
@@ -180,6 +184,12 @@ public class NhanVien implements Serializable {
         this.lstHoaDon = lstHoaDon;
     }
 
-   
+    public List<HoaDonDoiTra> getLstHoaDonDoiTras() {
+        return lstHoaDonDoiTras;
+    }
+
+    public void setLstHoaDonDoiTras(List<HoaDonDoiTra> lstHoaDonDoiTras) {
+        this.lstHoaDonDoiTras = lstHoaDonDoiTras;
+    }
 
 }
