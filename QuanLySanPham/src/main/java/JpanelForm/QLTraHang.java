@@ -48,6 +48,7 @@ public class QLTraHang extends javax.swing.JFrame {
     IHoaDonDoiTraChiTietService _ihoadDoiTraChiTietService;
     NumberFormat _formatter = new DecimalFormat("#,###");
     IHoaDonService _iHoaDonService;
+
     /**
      * Creates new form QLTraHang
      */
@@ -103,7 +104,6 @@ public class QLTraHang extends javax.swing.JFrame {
         _DefaultTableModel.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         for (HoaDonModel x : hdmd) {
-            System.out.println(x.toString());
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
                 x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : x.getKhachhang().getHoTen(), x.getKhuyenmai().getTenKhuyenMai(), x.getNhanvien().getHoTen()});
@@ -129,6 +129,7 @@ public class QLTraHang extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         pmn_tblHoaDonChiTiet = new javax.swing.JPopupMenu();
         mni_trahang = new javax.swing.JMenuItem();
         pmn_danhSachSPTra = new javax.swing.JPopupMenu();
@@ -176,8 +177,22 @@ public class QLTraHang extends javax.swing.JFrame {
         pmn_danhSachSPTra.add(mni_xoaSp);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                jPanel2AncestorRemoved(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Danh Sách Hóa Đơn", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -206,6 +221,12 @@ public class QLTraHang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_hd);
 
         jLabel6.setText("Tìm Kiếm :");
+
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -298,7 +319,7 @@ public class QLTraHang extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
@@ -594,13 +615,64 @@ public class QLTraHang extends javax.swing.JFrame {
         hdmodel = hoaDonDoiTraMoDel.getHoaDonModel();
         hdmodel.setTrangThai(3);
         _iHoaDonService.sua(hdmodel);
-        
-         fillTableTheoNgay(-1);
+
+        fillTableTheoNgay(-1);
         loadtableSanPhamTra(-1);
         tongTienTra();
         loadtable(_IThongKeRepository.thongke5());
     }//GEN-LAST:event_btn_traHangActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        //Sự Kiện đóng Jpame
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jPanel2AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel2AncestorRemoved
+        //Sự Kiện đóng JPane
+//        int row = tbl_sanPhamTra.getSelectedRow();
+        int rowhdon = tbl_hd.getSelectedRow();
+//        if (row < 0) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
+//            return;
+//        }
+        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
+            HoaDonModel hdmodel = new HoaDonModel();
+            hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
+
+            KhachHangModel khmodel = new KhachHangModel();
+            khmodel.setMaKhachHang(1);
+
+            SanPhamModel sanPhamModel = new SanPhamModel();
+            sanPhamModel.setMaSanPham(tbl_hdct.getModel().getValueAt(i, 0).toString());
+
+            HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
+            int soluong = 0;
+            for (HoaDonChiTietModel x : _HoaDonCTService.getListFromDB(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()))) {
+                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+                    soluong = x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString());
+                    x.setSoLuong(soluong);
+                    _HoaDonCTService.sua(x);
+                }
+            }
+            for (HoaDonDoiTraChiTietModel x : _ihoadDoiTraChiTietService.getListFromDB(hoaDonDoiTraMoDel.getMaHoaDonDoiHang())) {
+                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+                    _ihoadDoiTraChiTietService.xoa(x);
+                }
+            }
+
+            fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
+            loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
+            tongTienTra();
+            if (tbl_sanPhamTra.getRowCount() == 0) {
+                _hoaDonDoiTraService.xoa(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
+            }
+        }
+
+
+    }//GEN-LAST:event_jPanel2AncestorRemoved
+
+    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+
+    }//GEN-LAST:event_jTextField1CaretUpdate
 
     /**
      * @param args the command line arguments
