@@ -5,11 +5,18 @@
 package JpanelForm;
 
 import Repositories.IThongKeRepository;
+import Repositories.KhuyenMaiRepository;
 import Repositories.ThongKeRepository;
+import Services.IKhuyenMaiService;
+import Services.IManagerKhachHangService;
 import Services.IThongKeService;
+import Services.KhuyenMaiService;
+import Services.ManagerKhachHangServicr;
 import Services.ThongKeService;
 import ViewsModels.HoaDonChiTietModel;
 import ViewsModels.HoaDonModel;
+import ViewsModels.KhachHangModel;
+import ViewsModels.KhuyenMaiModel;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -27,13 +34,18 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
 
     DefaultTableModel _defaultTB;
     IThongKeService _IThongKeRepository;
+    List<KhuyenMaiModel> _KhuyenMaiModel;
+    IKhuyenMaiService _IKhuyenMaiService;
+    IManagerKhachHangService _IKhachHangService;
 
     /**
      * Creates new form QLHoaDonPanel
      */
     public QLHoaDonPanel() {
         initComponents();
+        _IKhuyenMaiService = new KhuyenMaiService();
         _IThongKeRepository = new ThongKeService();
+        _IKhachHangService = new ManagerKhachHangServicr();
         loadtable(_IThongKeRepository.thongke5());
         setrdb();
         cbc_tg.setSelectedItem("Không");
@@ -75,6 +87,35 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         for (Object[] row : list) {
             model.addRow(row);
         }
+    }
+
+    public String KhuyenMai(int a) {
+        for (KhuyenMaiModel x : _IKhuyenMaiService.getListFromDB()) {
+            if (x.getIdKhuyenMai() == a) {
+                return x.getTenKhuyenMai();
+            }
+
+        }
+        return null;
+
+    }
+
+    public String KhachHang1(int a) {
+        for (KhachHangModel x : _IKhachHangService.getAllKhachHang()) {
+            if (x.getMaKhachHang() == a) {
+                return x.getHoTen();
+            }
+        }
+        return null;
+    }
+
+    public String KhachHang2(int a) {
+        for (KhachHangModel x : _IKhachHangService.getAllKhachHang()) {
+            if (x.getMaKhachHang() == a) {
+                return x.getDiaChi();
+            }
+        }
+        return null;
     }
 
     /**
@@ -180,6 +221,11 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jLabel6.setText("Từ Ngày");
 
         rdb_makh.setText("Theo Mã Khách Hàng");
+        rdb_makh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_makhActionPerformed(evt);
+            }
+        });
 
         rdb_manv.setText("Theo Mã Nhân Viên");
 
@@ -211,7 +257,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ma Hoa Don", "Thoi Gian", "Trang Thai", "Ma Khach Hang", "ID Khuyen Mai", "Ma Nhan Vien"
+                "Ma Hoa Don", "Thoi Gian", "Trang Thai", "Ma Khach Hang", "Ten Khuyen Mai", "Ma Nhan Vien"
             }
         ));
         tbl_hd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,10 +268,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbl_hd);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setText("Tổng tiền :");
+        jLabel7.setText("Thành Tiền: ");
 
         lbl_tongtien.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lbl_tongtien.setText("jLabel10");
+        lbl_tongtien.setText("0 VND");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -371,7 +417,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
             }
             if (rdb_makh.isSelected()) {
                 for (HoaDonModel x : _IThongKeRepository.thongke5()) {
-                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getKhachhang().getMaKhachHang()), txt_timKiem.getText())) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(KhachHang2(x.getKhachhang().getMaKhachHang())), txt_timKiem.getText())) {
                         lstTemp.add(x);
 
                     }
@@ -398,7 +444,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
             }
             if (rdb_makh.isSelected()) {
                 for (HoaDonModel x : _IThongKeRepository.thongke6()) {
-                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getKhachhang().getMaKhachHang()), txt_timKiem.getText())) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getKhachhang().getMaKhachHang()), (String.valueOf(txt_timKiem.getText())))) {
                         lstTemp.add(x);
 
                     }
@@ -472,6 +518,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (txt_ngay1.getDate().after(txt_ngay2.getDate())) {
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
+            return;
+        }
         if (cbc_trangthai.getSelectedItem().toString().equals("Đã Thanh Toán")
                 && cbc_tg.getSelectedItem().equals("Không")) {
             loadtable(_IThongKeRepository.thongke5());
@@ -523,7 +573,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         String s = NumberFormat.getIntegerInstance().format(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
-        lbl_tongtien.setText(s);
+        lbl_tongtien.setText(s + " VND");
 
 //lbl_tongtien.setText(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()))+" VND");
     }//GEN-LAST:event_tbl_hdMouseClicked
@@ -537,6 +587,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
             txt_ngay2.setEnabled(true);
         }
     }//GEN-LAST:event_cbc_tgActionPerformed
+
+    private void rdb_makhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_makhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdb_makhActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -29,14 +29,15 @@ import org.hibernate.annotations.Nationalized;
 @Entity
 @Table(name = "HoaDon")
 public class HoaDon implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int MaHoaDon;
-    
+
     private Date ThoiGianTao;
-    
+
     @Nationalized
-    private int TrangThai; 
+    private int TrangThai;//0: đang chờ, 1: Hủy, 2:Thành Công, 3: Đã trả hàng
 
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")
@@ -54,13 +55,17 @@ public class HoaDon implements Serializable {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDonChiTiet> lstHoaDonChitiet;
 
+    @OneToMany(mappedBy = "hoadon",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonDoiTra> lstHoaDonDoiTras;
+
     public HoaDon() {
     }
 
     public HoaDon(int MaHoaDon) {
         this.MaHoaDon = MaHoaDon;
     }
-    
+
     public HoaDon(int MaHoaDon, Date ThoiGianTao, int TrangThai, NhanVien nhanvien, KhachHang khachhang, KhuyenMai khuyenmai) {
         this.MaHoaDon = MaHoaDon;
         this.ThoiGianTao = ThoiGianTao;
@@ -126,9 +131,17 @@ public class HoaDon implements Serializable {
         this.lstHoaDonChitiet = lstHoaDonChitiet;
     }
 
+    public List<HoaDonDoiTra> getLstHoaDonDoiTras() {
+        return lstHoaDonDoiTras;
+    }
+
+    public void setLstHoaDonDoiTras(List<HoaDonDoiTra> lstHoaDonDoiTras) {
+        this.lstHoaDonDoiTras = lstHoaDonDoiTras;
+    }
+
     @Override
     public String toString() {
         return "HoaDon{" + "MaHoaDon=" + MaHoaDon + ", ThoiGianTao=" + ThoiGianTao + ", TrangThai=" + TrangThai + ", nhanvien=" + nhanvien.getHoTen() + ", khachhang=" + khachhang.getHoTen() + ", khuyenmai=" + khuyenmai.getTenKhuyenMai() + '}';
     }
-    
+
 }

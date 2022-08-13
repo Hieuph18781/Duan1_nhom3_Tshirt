@@ -4,6 +4,7 @@
  */
 package Application;
 
+import JpanelForm.QLTraHang;
 import Utils.CheckData;
 import Views.FarmeQLBanHang;
 import Views.FarmeQLKhachHang;
@@ -22,6 +23,7 @@ public class Application {
     public static void main(String[] args) {
         //new FarmeQLBanHang().setVisible(true);
         new FrameLogin().setVisible(true);
+//        new QLTraHang().setVisible(true);
        
     }
 }

@@ -22,25 +22,30 @@ import org.hibernate.annotations.Nationalized;
  */
 @Entity
 @Table(name = "KhachHang")
-public class KhachHang implements Serializable{
+public class KhachHang implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int MaKhachHang;
-    
+
     @Nationalized
     private String HoTen;
-    
+
     private String SoDienThoai;
-    
+
     @Nationalized
     private String DiaChi;
-    
+
     private String Email;
-    
+
     private int Diem;
     @OneToMany(mappedBy = "khachhang",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HoaDon> lstHoaDon;
+
+    @OneToMany(mappedBy = "khachhang",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonDoiTra> lstHoaDonDoiTras;
 
     public KhachHang() {
     }
@@ -110,11 +115,17 @@ public class KhachHang implements Serializable{
         this.lstHoaDon = lstHoaDon;
     }
 
-    @Override
-    public String toString() {
-        return "KhachHang{" + "MaKhachHang=" + MaKhachHang + ", HoTen=" + HoTen + ", SoDienThoai=" + SoDienThoai + ", DiaChi=" + DiaChi + ", Email=" + Email + ", Diem=" + Diem + ", lstHoaDon=" + lstHoaDon + '}';
+    public List<HoaDonDoiTra> getLstHoaDonDoiTras() {
+        return lstHoaDonDoiTras;
     }
 
-    
-    
+    public void setLstHoaDonDoiTras(List<HoaDonDoiTra> lstHoaDonDoiTras) {
+        this.lstHoaDonDoiTras = lstHoaDonDoiTras;
+    }
+
+    @Override
+    public String toString() {
+        return "KhachHang{" + "MaKhachHang=" + MaKhachHang + ", HoTen=" + HoTen + ", SoDienThoai=" + SoDienThoai + ", DiaChi=" + DiaChi + ", Email=" + Email + ", Diem=" + Diem + ", lstHoaDon=" + '}';
+    }
+
 }
