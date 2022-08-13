@@ -84,9 +84,7 @@ public class HoaDonRepository implements IHoaDonRepository {
     public List<HoaDon> selectHoaDonToDate(Date enity) {
         List<HoaDon> products;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-            DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String hql = "SELECT p FROM HoaDon p WHERE ThoiGianTao BETWEEN '" + dateFormat1.format(new java.util.Date()) + "' AND '" + dateFormat2.format(new java.util.Date()) + "'";
+            String hql = "SELECT p FROM HoaDon p WHERE p.TrangThai = 0";
             TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
             products = query.getResultList();
             return products;
