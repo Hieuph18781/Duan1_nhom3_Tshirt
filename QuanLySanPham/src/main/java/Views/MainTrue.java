@@ -12,6 +12,7 @@ import JpanelForm.QLKhuyenMaiPanel;
 import JpanelForm.QLNhanVienPanel;
 import JpanelForm.QLSanPhamPanel;
 import JpanelForm.QLTraHang;
+import JpanelForm.QLTraHangPanel;
 import JpanelForm.ThongKeNVPanel;
 import JpanelForm.ThongKeQLPanel;
 import Services.HoaDonChiTietService;
@@ -397,7 +398,7 @@ public class MainTrue extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_hoadonActionPerformed
 
     private void btn_nhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhanvienActionPerformed
-        //show(new QLTraHang());
+        show(new QLTraHangPanel());
 // TODO add your handling code here:
     }//GEN-LAST:event_btn_nhanvienActionPerformed
 
