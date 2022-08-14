@@ -238,7 +238,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rdb_makh">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Theo M&#xe3; Kh&#xe1;ch H&#xe0;ng"/>
+        <Property name="text" type="java.lang.String" value="Theo SDT Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdb_makhActionPerformed"/>

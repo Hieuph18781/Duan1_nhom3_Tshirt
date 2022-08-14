@@ -605,7 +605,7 @@ public class QLTraHang extends javax.swing.JFrame {
             return;
         }
         int temp = JOptionPane.showConfirmDialog(this, "Xác Nhận bạn muốn trả hàng? ");
-        if (temp!=0) {
+        if (temp != 0) {
             return;
         }
         HoaDonModel hdmodel = new HoaDonModel();
