@@ -6,6 +6,7 @@ package Repositories;
 
 import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
+import DomainModels.HoaDonDoiTra;
 import Utils.HibernateUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -301,6 +302,54 @@ public class ThongKeRepository implements IThongKeRepository {
             JOptionPane.showMessageDialog(null, "");
         }
         return b;
+    }
+
+    @Override
+    public List<HoaDonDoiTra> thongke10() {
+        List<HoaDonDoiTra> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDonDoiTra H";
+            TypedQuery<HoaDonDoiTra> query = session.createQuery(hql, HoaDonDoiTra.class);
+
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<HoaDonDoiTra> thongke11(Date a, Date b) {
+        List<HoaDonDoiTra> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDonDoiTra H where CONVERT(date,H.NgayTaoHoaDon) >= :ThoiGianTao and CONVERT (date,H.NgayTaoHoaDon) <= :ThoiGianTao2";
+            TypedQuery<HoaDonDoiTra> query = session.createQuery(hql, HoaDonDoiTra.class);
+            query.setParameter("ThoiGianTao", a);
+            query.setParameter("ThoiGianTao2", b);
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<Object[]> thongke12(int a) {
+        List<Object[]> list = new ArrayList<>();
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT S.MaSanPham,S.TenSanPham,C.SoLuong,C.DonGia*C.SoLuong\n"
+                    + "From SanPham S\n"
+                    + "Inner join HoaDonDoiTraChiTiet C on S.MaSanPham = C.sanpham\n"
+                    + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
+                    + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"
+                    + "where r.MaHoaDon = :MaHoaDon\n"
+                    + "order by H.NgayTaoHoaDon desc";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("MaHoaDon", a);
+            session.beginTransaction();
+            session.getTransaction().commit();
+
+            list = (List<Object[]>) query.getResultList();
+        } catch (HibernateException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 
 }

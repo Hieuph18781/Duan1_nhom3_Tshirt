@@ -5,6 +5,7 @@
 package Services;
 
 import ViewsModels.HoaDonChiTietModel;
+import ViewsModels.HoaDonDoiTraMoDel;
 import ViewsModels.HoaDonModel;
 import java.util.Date;
 import java.util.List;
@@ -44,5 +45,11 @@ public interface IThongKeService {
     public boolean Timkiem2(String chuoi1, String chuoi2);
 
     public List<Object[]> thongke9(int a);
+    
+    public List<HoaDonDoiTraMoDel> thongke10();
+    
+    public List<HoaDonDoiTraMoDel> thongke11(Date a, Date b);
+    
+    public List<Object[]> thongke12(int a);
 
 }
