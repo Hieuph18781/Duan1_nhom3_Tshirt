@@ -155,9 +155,10 @@
     <Component class="javax.swing.JComboBox" name="cbc_trangthai">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="3">
             <StringItem index="0" value="&#x110;&#xe3; Thanh To&#xe1;n"/>
             <StringItem index="1" value="&#x110;&#xe3; Hu&#x1ef7;"/>
+            <StringItem index="2" value="&#x110;&#xe3; &#x110;&#x1ed5;i Tr&#x1ea3;"/>
           </StringArray>
         </Property>
       </Properties>
