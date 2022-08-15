@@ -335,7 +335,7 @@ public class ThongKeRepository implements IThongKeRepository {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT S.MaSanPham,S.TenSanPham,C.SoLuong,C.DonGia*C.SoLuong\n"
                     + "From SanPham S\n"
-                    + "Inner join HoaDonDoiTraChiTiet C on S.MaSanPham = C.sanpham\n"
+                    + "Inner join HoaDonTraChiTiet C on S.MaSanPham = C.sanpham\n"
                     + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
                     + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"
                     + "where H.MaHoaDonDoiTra = :MaHoaDon\n"
@@ -358,7 +358,7 @@ public class ThongKeRepository implements IThongKeRepository {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT SUM(C.DonGia*C.SoLuong)\n"
                      + "From SanPham S\n"
-                    + "Inner join HoaDonDoiTraChiTiet C on S.MaSanPham = C.sanpham\n"
+                    + "Inner join HoaDonTraChiTiet C on S.MaSanPham = C.sanpham\n"
                     + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
                     + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"
                     + "where H.MaHoaDonDoiTra = :MaHoaDon\n";
