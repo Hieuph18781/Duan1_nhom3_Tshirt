@@ -106,7 +106,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where DAY(HD.ThoiGianTao) = DAY(GETDATE()) AND HD.TrangThai = 2";
+                    + "where DAY(HD.ThoiGianTao) = DAY(GETDATE()) AND HD.TrangThai = 2 OR HD.TrangThai = 3";
             System.out.println(hql);
             try {
                 Query<?> query = session.createQuery(hql);
@@ -131,7 +131,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where MONTH(HD.ThoiGianTao) = MONTH(GETDATE()) AND HD.TrangThai = 2";
+                    + "where MONTH(HD.ThoiGianTao) = MONTH(GETDATE()) AND HD.TrangThai = 2 OR HD.TrangThai = 3";
             try {
                 Query<?> query = session.createQuery(hql);
                 session.beginTransaction();
@@ -155,7 +155,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where YEAR(HD.ThoiGianTao) = YEAR(GETDATE()) AND HD.TrangThai = 2";
+                    + "where YEAR(HD.ThoiGianTao) = YEAR(GETDATE()) AND HD.TrangThai = 2 OR HD.TrangThai = 3";
             try {
                 Query<?> query = session.createQuery(hql);
                 session.beginTransaction();
@@ -338,7 +338,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "Inner join HoaDonDoiTraChiTiet C on S.MaSanPham = C.sanpham\n"
                     + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
                     + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"
-                    + "where r.MaHoaDon = :MaHoaDon\n"
+                    + "where H.MaHoaDonDoiTra = :MaHoaDon\n"
                     + "order by H.NgayTaoHoaDon desc";
             Query<?> query = session.createQuery(hql);
             query.setParameter("MaHoaDon", a);
@@ -350,6 +350,55 @@ public class ThongKeRepository implements IThongKeRepository {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    @Override
+    public long TongTien5(int a) {
+        long b = 0;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT SUM(C.DonGia*C.SoLuong)\n"
+                     + "From SanPham S\n"
+                    + "Inner join HoaDonDoiTraChiTiet C on S.MaSanPham = C.sanpham\n"
+                    + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
+                    + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"
+                    + "where H.MaHoaDonDoiTra = :MaHoaDon\n";
+
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("MaHoaDon", a);
+            session.beginTransaction();
+            session.getTransaction().commit();
+            b = (long) query.uniqueResult();
+
+        } catch (HibernateException e) {
+            JOptionPane.showMessageDialog(null, "");
+        }
+        return b;
+    }
+
+    @Override
+    public List<HoaDon> thongke13() {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 3"
+                    + "order by H.ThoiGianTao desc";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
+    @Override
+    public List<HoaDon> thongke14(Date a, Date b) {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 3 and CONVERT(date,H.ThoiGianTao) >= :ThoiGianTao and CONVERT (date,H.ThoiGianTao) <= :ThoiGianTao2";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+            query.setParameter("ThoiGianTao", a);
+            query.setParameter("ThoiGianTao2", b);
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
     }
 
 }

@@ -227,4 +227,47 @@ public class ThongKeService implements IThongKeService {
         return list;
     }
 
+    @Override
+    public long TongTien5(int a) {
+        long b = _IThongKeService.TongTien5(a);
+        return b;
+    }
+
+    @Override
+    public List<HoaDonModel> thongke13() {
+        _lstHoaDon = new ArrayList<>();
+        List<HoaDon> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke13();
+        for (HoaDon x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
+            KhuyenMaiModel kmmd = new KhuyenMaiModel();
+            kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            kmmd.setTenKhuyenMai(x.getKhuyenmai().getTenKhuyenMai());
+            _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
+        }
+        return _lstHoaDon;
+    }
+
+    @Override
+    public List<HoaDonModel> thongke14(Date a, Date b) {
+        _lstHoaDon = new ArrayList<>();
+        List<HoaDon> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke14(a, b);
+        for (HoaDon x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            KhuyenMaiModel kmmd = new KhuyenMaiModel();
+            kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
+        }
+        return _lstHoaDon;
+    }
+
 }

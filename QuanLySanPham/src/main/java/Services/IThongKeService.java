@@ -32,6 +32,8 @@ public interface IThongKeService {
 
     public long TongTien4(int a);
 
+    public long TongTien5(int a);
+    
     public List<HoaDonModel> thongke5();
 
     public List<HoaDonModel> thongke6();
@@ -51,5 +53,9 @@ public interface IThongKeService {
     public List<HoaDonDoiTraMoDel> thongke11(Date a, Date b);
     
     public List<Object[]> thongke12(int a);
+    
+    public List<HoaDonModel> thongke13();
+
+    public List<HoaDonModel> thongke14(Date a, Date b);
 
 }
