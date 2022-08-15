@@ -25,7 +25,8 @@ import org.hibernate.annotations.Nationalized;
  */
 @Entity
 @Table(name = "HoaDonDoiTra")
-public class HoaDonDoiTra implements Serializable{  
+public class HoaDonDoiTra implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int MaHoaDonDoiTra;
@@ -33,22 +34,26 @@ public class HoaDonDoiTra implements Serializable{
     private Date NgayTaoHoaDon;
     @Nationalized
     private String MoTa;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaHoaDon")
     private HoaDon hoadon;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaKhachHang")
     private KhachHang khachhang;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")
     private NhanVien nhanvien;
-    
-     @OneToMany(mappedBy = "hoadondoitra",
+
+    @OneToMany(mappedBy = "hoadondoitra",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<HoaDonDoiTraChiTiet> lstHoaDonDoiTraChiTiets;
+    private List<HoaDonTraChiTiet> lstHoaDonDoiTraChiTiets;
+
+    @OneToMany(mappedBy = "hoadondoitra",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonDoiChiTiet> lsthoaDoiChiTiets;
 
     public HoaDonDoiTra() {
     }
@@ -119,12 +124,20 @@ public class HoaDonDoiTra implements Serializable{
         this.nhanvien = nhanvien;
     }
 
-    public List<HoaDonDoiTraChiTiet> getLstHoaDonDoiTraChiTiets() {
+    public List<HoaDonTraChiTiet> getLstHoaDonDoiTraChiTiets() {
         return lstHoaDonDoiTraChiTiets;
     }
 
-    public void setLstHoaDonDoiTraChiTiets(List<HoaDonDoiTraChiTiet> lstHoaDonDoiTraChiTiets) {
+    public void setLstHoaDonDoiTraChiTiets(List<HoaDonTraChiTiet> lstHoaDonDoiTraChiTiets) {
         this.lstHoaDonDoiTraChiTiets = lstHoaDonDoiTraChiTiets;
+    }
+
+    public List<HoaDonDoiChiTiet> getLsthoaDoiChiTiets() {
+        return lsthoaDoiChiTiets;
+    }
+
+    public void setLsthoaDoiChiTiets(List<HoaDonDoiChiTiet> lsthoaDoiChiTiets) {
+        this.lsthoaDoiChiTiets = lsthoaDoiChiTiets;
     }
 
 }

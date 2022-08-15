@@ -5,7 +5,7 @@
 package Repositories;
 
 import DomainModels.HoaDonChiTiet;
-import DomainModels.HoaDonDoiTraChiTiet;
+import DomainModels.HoaDonTraChiTiet;
 import java.util.List;
 
 /**
@@ -13,11 +13,11 @@ import java.util.List;
  * @author Nguyen Van Thuan
  */
 public interface IHoaDonDoiTraChiTietRepositories {
-    public HoaDonDoiTraChiTiet insert(HoaDonDoiTraChiTiet HoaDon1);
+    public HoaDonTraChiTiet insert(HoaDonTraChiTiet HoaDon1);
 
-    public boolean update(HoaDonDoiTraChiTiet HoaDonDoiTraChiTiet);
+    public boolean update(HoaDonTraChiTiet HoaDonDoiTraChiTiet);
 
-    public boolean delete(HoaDonDoiTraChiTiet HoaDonDoiTraChiTiet);
+    public boolean delete(HoaDonTraChiTiet HoaDonDoiTraChiTiet);
 
-    public List<HoaDonDoiTraChiTiet> selectAll(int MaHoaDonDoiTra);
+    public List<HoaDonTraChiTiet> selectAll(int MaHoaDonDoiTra);
 }
