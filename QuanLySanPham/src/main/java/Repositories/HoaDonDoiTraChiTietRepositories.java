@@ -5,7 +5,7 @@
 package Repositories;
 
 import DomainModels.HoaDonChiTiet;
-import DomainModels.HoaDonDoiTraChiTiet;
+import DomainModels.HoaDonTraChiTiet;
 import Utils.HibernateUtil;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -20,8 +20,8 @@ import org.hibernate.query.Query;
 public class HoaDonDoiTraChiTietRepositories implements IHoaDonDoiTraChiTietRepositories{
 
     @Override
-    public HoaDonDoiTraChiTiet insert(HoaDonDoiTraChiTiet HoaDon1) {
-        HoaDon1.setMaHoaDonDoiTraChiTiet(0);
+    public HoaDonTraChiTiet insert(HoaDonTraChiTiet HoaDon1) {
+        HoaDon1.setMaHoaDonTraChiTiet(0);
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
@@ -39,7 +39,7 @@ public class HoaDonDoiTraChiTietRepositories implements IHoaDonDoiTraChiTietRepo
     }
 
     @Override
-    public boolean update(HoaDonDoiTraChiTiet HoaDonDoiTraChiTiet) {
+    public boolean update(HoaDonTraChiTiet HoaDonDoiTraChiTiet) {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
@@ -58,15 +58,15 @@ public class HoaDonDoiTraChiTietRepositories implements IHoaDonDoiTraChiTietRepo
     }
 
     @Override
-    public boolean delete(HoaDonDoiTraChiTiet HoaDonDoiTraChiTiet) {
+    public boolean delete(HoaDonTraChiTiet HoaDonDoiTraChiTiet) {
         boolean check;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
-                String hql = "DELETE HoaDonDoiTraChiTiet p WHERE p.MaHoaDonDoiTraChiTiet = :MaHoaDonDoiTraChiTiet";
+                String hql = "DELETE HoaDonTraChiTiet p WHERE p.MaHoaDonTraChiTiet = :MaHoaDonTraChiTiet";
                 Query query = session.createQuery(hql);
-                query.setParameter("MaHoaDonDoiTraChiTiet", HoaDonDoiTraChiTiet.getMaHoaDonDoiTraChiTiet());
+                query.setParameter("MaHoaDonTraChiTiet", HoaDonDoiTraChiTiet.getMaHoaDonTraChiTiet());
                 int result = query.executeUpdate();
                 if (result == 0) {
                     check = true;
@@ -82,24 +82,24 @@ public class HoaDonDoiTraChiTietRepositories implements IHoaDonDoiTraChiTietRepo
 //    public static void main(String[] args) {
 //        List<HoaDonDoiTraChiTiet> products;
 //        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            String hql = "SELECT p FROM HoaDonDoiTraChiTiet p WHERE p.hoadondoitra = "+191;
-//            TypedQuery<HoaDonDoiTraChiTiet> query = session.createQuery(hql, HoaDonDoiTraChiTiet.class);
+//            String hql = "SELECT p FROM HoaDonTraChiTiet p WHERE p.hoadondoitra = "+191;
+//            TypedQuery<HoaDonDoiTraChiTiet> query = session.createQuery(hql, HoaDonTraChiTiet.class);
 //            products = query.getResultList();
 //            if (products.isEmpty()) {
 //                System.out.println("1");
 //            }
-//            for (HoaDonDoiTraChiTiet x : products) {
+//            for (HoaDonTraChiTiet x : products) {
 //                System.out.println(x);
 //            }
 //        }
 //        
 //    }
     @Override
-    public List<HoaDonDoiTraChiTiet> selectAll(int MaHoaDonDoiTra) {
-        List<HoaDonDoiTraChiTiet> products;
+    public List<HoaDonTraChiTiet> selectAll(int MaHoaDonDoiTra) {
+        List<HoaDonTraChiTiet> products;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT p FROM HoaDonDoiTraChiTiet p WHERE p.hoadondoitra = "+MaHoaDonDoiTra;
-            TypedQuery<HoaDonDoiTraChiTiet> query = session.createQuery(hql, HoaDonDoiTraChiTiet.class);
+            String hql = "SELECT p FROM HoaDonTraChiTiet p WHERE p.hoadondoitra = "+MaHoaDonDoiTra;
+            TypedQuery<HoaDonTraChiTiet> query = session.createQuery(hql, HoaDonTraChiTiet.class);
             products = query.getResultList();
         }
         return products;

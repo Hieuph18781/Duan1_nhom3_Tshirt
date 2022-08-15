@@ -527,6 +527,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         loadtableSanPhamTra(-1);
         tongTienTra();
         loadtable(_IThongKeRepository.thongke5());
+        tbl_hd.setEnabled(true);
     }//GEN-LAST:event_btn_traHangActionPerformed
 
     private void jPanel2AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel2AncestorRemoved
@@ -629,6 +630,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
         loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
         tongTienTra();
+        tbl_hd.setEnabled(false);
     }//GEN-LAST:event_mni_trahangActionPerformed
 
     private void mni_xoaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_xoaSpActionPerformed
@@ -667,6 +669,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         tongTienTra();
         if (tbl_sanPhamTra.getRowCount() == 0) {
             _hoaDonDoiTraService.xoa(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
+            tbl_hd.setEnabled(true);
         }
     }//GEN-LAST:event_mni_xoaSpActionPerformed
 
