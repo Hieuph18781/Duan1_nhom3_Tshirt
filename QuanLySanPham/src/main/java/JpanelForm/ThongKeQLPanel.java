@@ -84,8 +84,6 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         return s;
     }
 
-    
-
     void fillTableHomNay() {
         DefaultTableModel model = (DefaultTableModel) tbl12.getModel();
         model.setRowCount(0);
@@ -453,13 +451,14 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
             try {
                 fillTableTheoNgay();
             } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, "Loi he thong");
+                JOptionPane.showMessageDialog(this, "Loi he thong");
             }
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Tháng")) {
             if (txt_nam.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+                return;
             }
             txt_ngay.setEnabled(false);
             cbc_thang.setEnabled(true);
@@ -470,6 +469,7 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Năm")) {
             if (txt_nam.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+                return;
             }
             txt_ngay.setEnabled(false);
             cbc_thang.setEnabled(false);
