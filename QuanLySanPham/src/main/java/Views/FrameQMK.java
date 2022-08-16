@@ -20,7 +20,6 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import Utils.CheckData;
 
-
 /**
  *
  * @author dytc0
@@ -260,10 +259,7 @@ public class FrameQMK extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guimaActionPerformed
-        if (CheckData.chekcKhoangTrang3(txt_maxacnhan)
-                && CheckData.chekcKhoangTrang3(txt_email)) {
-            return;
-        }
+
         if (CheckData.checkNullText(txt_email)
                 && CheckData.checkNullText(txt_manhanvien)) {
             checkEmail();
@@ -272,9 +268,7 @@ public class FrameQMK extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_guimaActionPerformed
 
     private void btn_xacnhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacnhanActionPerformed
-        if (CheckData.chekcKhoangTrang3(txt_maxacnhan)) {
-            return;
-        }
+
         if (CheckData.checkNullText(txt_maxacnhan)) {
             if (Integer.parseInt(txt_maxacnhan.getText()) == randomCode) {
 
@@ -293,16 +287,13 @@ public class FrameQMK extends javax.swing.JDialog {
     private void btn_dmkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dmkActionPerformed
         String mnv = txt_manhanvien.getText();
         String mk = String.valueOf(txt_pass2.getPassword());
-        if (CheckData.chekcKhoangTrang3(txt_pass1)
-                && CheckData.chekcKhoangTrang3(txt_pass2)) {
-            
-        }
+
         if (String.valueOf(txt_pass1.getPassword()).equals(String.valueOf(mk))) {
             _iINhanVienService.updatemk(mnv, mk);
             JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
             this.dispose();
             new FrameLogin().setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không khớp");
         }
     }//GEN-LAST:event_btn_dmkActionPerformed
