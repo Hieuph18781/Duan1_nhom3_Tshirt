@@ -91,27 +91,18 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Tên không được để trống");
 
             }
-            if (txt_manv.getText().length() > 0 && txt_hoten.getText().length() < 10) {
-                JOptionPane.showMessageDialog(this, "Tên phải lớn hơn 5 ký tự");
 
-            }
         } else if (txt_sdt.getText().length() < 10) {
 
             if (txt_sdt.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "SDT không được để trống");
             }
-            if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
-                JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
-            }
 
-            if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
-                JOptionPane.showMessageDialog(this, "số điện thoại phải đúng định dạng");
-            }
         } else if (txt_email.getText().length() < 5) {
             if (txt_email.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "email không được để trống");
             }
-            
+
         } else if (txt_diachi.getText().length() < 3) {
 //            if (txt_diachi.getText().length() == 0) {
 //                JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống !");
@@ -623,134 +614,150 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cbc_chucvuActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
- int temp =  JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm nhân viên không ? "); // yes=0 ,no=1 , canel=2
-        if (temp==0) {
-             try {
-            System.out.println(getdata().toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-        if (check() == false) {
-           // JOptionPane.showMessageDialog(this, "Hãy nhập lại cho đúng ");
-            return;
-        } else {
+        int temp = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm nhân viên không ? "); // yes=0 ,no=1 , canel=2
+        if (temp == 0) {
             try {
-                if (txt_hoten.getText().length()>100) {
-                    JOptionPane.showMessageDialog(this, "Họ Tên Phải nhỏ hơn 100 kí tự");
-                    return;
-                     }
-                if (txt_cccd.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống CCCD");
-                    return;
-                     }
-                if (txt_diachi.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống địa chỉ");
-                    return;
-                     }
-                  if (txt_matkhau.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
-                    return;
-                     }
-                   if (!txt_email.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-                JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
+                System.out.println(getdata().toString());
+            } catch (ParseException ex) {
+                Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            if (check() == false) {
+
                 return;
-
-            }
-                      if (txt_ngaysinh.getDate()==null) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+            } else {
+                try {
                    
-                    return;
-                      }
-                      
-                NhanVienModel nv = getdata();
-            } catch (ParseException ex) {
-                Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    if (txt_cccd.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống CCCD");
+                        return;
+                    }
+                     if (txt_hoten.getText().length() > 100 || txt_hoten.getText().length() < 5) {
+                        JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
+                        return;
+                    }
+                    if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                        JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số ");
+return;
+                    }
+                    if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+                        JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                        return;
+                    }
+                    if (txt_diachi.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống địa chỉ");
+                        return;
+                    }
+                    if (txt_matkhau.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                        return;
+                    }
+                    if (!txt_email.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+                        JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
+                        return;
 
-            try {
-                if (_inhanvienservice.createNewProduct(getdata()) != null) {
-                    JOptionPane.showMessageDialog(this, "Thêm thành công");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Không thêm được");
+                    }
+                    if (txt_ngaysinh.getDate() == null) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+
+                        return;
+                    }
+
+                    NhanVienModel nv = getdata();
+                } catch (ParseException ex) {
+                    Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (ParseException ex) {
-                Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            loadtable(_inhanvienservice.getproduct());
-            // TODO add your handling code here:
 
-        }
-        }else if (temp==1) {
+                try {
+                    if (_inhanvienservice.createNewProduct(getdata()) != null) {
+                        JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Không thêm được");
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                loadtable(_inhanvienservice.getproduct());
+                // TODO add your handling code here:
+
+            }
+        } else if (temp == 1) {
             JOptionPane.showMessageDialog(this, " Bạn chọn không thêm ");
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, " Bạn Không thêm gì ");
         }
-        
-        
-       
+
 
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-         int temp =  JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa thông tin nhân viên ? "); // yes=0 ,no=1 , canel=2
-        if (temp==0) {
-             if (check() == false) {
-           
-            return;
+        int temp = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa thông tin nhân viên ? "); // yes=0 ,no=1 , canel=2
+        if (temp == 0) {
+            if (check() == false) {
 
-        }
-        try {
-            System.out.println(getdata().toString());
-            try {
-                 if (txt_hoten.getText().length()>100) {
-                    JOptionPane.showMessageDialog(this, "Họ Tên Phải nhỏ hơn 100 kí tự");
-                    return;
-                     }
-                 if (txt_cccd.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống CCCD");
-                    return;
-                     }
-                if (txt_diachi.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống địa chỉ");
-                    return;
-                     }
-                 if (!txt_email.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-                JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
                 return;
 
             }
-                  if (txt_matkhau.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
-                    return;
-                     }
-                      if (txt_ngaysinh.getDate()==null) {
-                    JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
-                   
-                    return;
-                      }
+            try {
+                System.out.println(getdata().toString());
+                try {
+                    if (txt_hoten.getText().length() > 100 || txt_hoten.getText().length() < 5) {
+                        JOptionPane.showMessageDialog(this, "Họ Tên phải lớn hơn 5 kí tự nhỏ hơn 100 kí tự");
+                        return;
+                    }
+                    if (txt_cccd.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống CCCD");
+                        return;
+                    }
+                    if (txt_diachi.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống địa chỉ");
+                        return;
+                    }
+                    if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
+                        JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số");
+return;
+                    }
+                    if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
+                        JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
+                        return;
+                    }
 
-                if (_inhanvienservice.sua(getdata()) != null) {
-                    JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
+                    if (!txt_email.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+                        JOptionPane.showMessageDialog(this, "Email phải đúng định dạng ");
+                        return;
+
+                    }
+                    if (txt_matkhau.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu");
+                        return;
+                    }
+                    if (txt_ngaysinh.getDate() == null) {
+                        JOptionPane.showMessageDialog(this, "Không được để trống ngày sinh ! Mời nhập lại");
+
+                        return;
+                    }
+
+                    if (_inhanvienservice.sua(getdata()) != null) {
+                        JOptionPane.showMessageDialog(this, "Sửa Thành Công ");
+                    }
+                    loadtable(_inhanvienservice.getproduct());  // TODO add your handling code here:
+                } catch (ParseException ex) {
+                    Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                loadtable(_inhanvienservice.getproduct());  // TODO add your handling code here:
             } catch (ParseException ex) {
                 Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(QLNhanVienPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else if (temp==1) {
+        } else if (temp == 1) {
             JOptionPane.showMessageDialog(this, " Bạn đã chọn không sửa  ");
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, " Bạn không sửa gì");
         }
-       
+
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_moiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_moiActionPerformed
@@ -770,7 +777,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cbc_trangthaiActionPerformed
 
     private void rdb_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_emailActionPerformed
-       if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
@@ -784,7 +791,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_rdb_emailActionPerformed
 
     private void rdb_diachiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_diachiActionPerformed
-if (txt_timkiem.getText().isBlank()) {
+        if (txt_timkiem.getText().isBlank()) {
             loadtable(_inhanvienservice.getproduct());
             return;
         }
