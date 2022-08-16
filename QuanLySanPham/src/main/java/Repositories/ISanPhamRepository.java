@@ -12,10 +12,16 @@ import java.util.List;
  * @author hieu
  */
 public interface ISanPhamRepository {
+
     List<SanPham> findAll();
+
     public SanPham insert(SanPham danhMucSp);
 
     public boolean update(SanPham danhMucSp);
-    public boolean updateSoLuongSP(String MaSp , int soLuong);
+
+    public boolean updateSoLuongSP(String MaSp, int soLuong);
+
     SanPham findById(String ma);
+
+    public List<SanPham> findGiaAndMaSp(int gia, String maSanPham);
 }
