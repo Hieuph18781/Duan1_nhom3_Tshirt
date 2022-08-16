@@ -639,7 +639,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     }
                     if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
                         JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số ");
-
+return;
                     }
                     if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
                         JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
@@ -718,7 +718,7 @@ public class QLNhanVienPanel extends javax.swing.JPanel {
                     }
                     if (!txt_sdt.getText().matches("0\\d{2}\\d{2}\\d{5}")) {
                         JOptionPane.showMessageDialog(this, "Số điện thoại phải đúng định dạng ! Hãy nhập số");
-
+return;
                     }
                     if (txt_sdt.getText().length() > 0 && txt_sdt.getText().length() < 10) {
                         JOptionPane.showMessageDialog(this, "SDT phải là 10 số");
