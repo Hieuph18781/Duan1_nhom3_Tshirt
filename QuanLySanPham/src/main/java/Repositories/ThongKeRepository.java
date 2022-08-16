@@ -34,7 +34,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where DAY(HD.ThoiGianTao) = DAY(GETDATE()) and HD.TrangThai = 2"
+                    + "where DAY(HD.ThoiGianTao) = DAY(GETDATE()) and HD.TrangThai = 2 or HD.TrangThai = 3"
                     + "group by S.MaSanPham,S.TenSanPham\n"
                     + "order by SUM(S.gia*H.SoLuong) desc ";
             Query<?> query = session.createQuery(hql);
@@ -198,7 +198,7 @@ public class ThongKeRepository implements IThongKeRepository {
     public List<HoaDon> thongke5() {
         List<HoaDon> nhanvien;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 2"
+            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 2 or H.TrangThai = 3"
                     + "order by H.ThoiGianTao desc";
             TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
 
