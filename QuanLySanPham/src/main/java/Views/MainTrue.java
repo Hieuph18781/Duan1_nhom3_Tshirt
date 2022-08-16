@@ -448,7 +448,7 @@ public class MainTrue extends javax.swing.JFrame {
         if (Auth.isManager().equals("Quản Lý")) {
             show(new QLNhanVienPanel());
         } else {
-            JOptionPane.showMessageDialog(this, "Ban phai la quan ly de dung cn nay");
+            JOptionPane.showMessageDialog(this, "Bạn phải là quản lý để dùng chức năng này");
         }
     }//GEN-LAST:event_btn_nhanvien1ActionPerformed
 

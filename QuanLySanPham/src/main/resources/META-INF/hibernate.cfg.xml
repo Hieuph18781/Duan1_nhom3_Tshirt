@@ -18,13 +18,13 @@
 
 
 
-        <property name="connection.username">ab</property>
+        <property name="connection.username">cuong12</property>
 
 
 
         
 
-        <property name="connection.password">12345</property>
+        <property name="connection.password">1234</property>
 
 
 

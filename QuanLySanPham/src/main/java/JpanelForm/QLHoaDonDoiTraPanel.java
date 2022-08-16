@@ -160,7 +160,7 @@ public class QLHoaDonDoiTraPanel extends javax.swing.JPanel {
         lbl_tongtien = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("HOÁ ĐƠN ĐỔI TRẢ");
+        jLabel3.setText("HOÁ ĐƠN TRẢ");
 
         jLabel9.setText("Tìm Kiếm");
 
@@ -245,7 +245,7 @@ public class QLHoaDonDoiTraPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tbl_hdct);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Hoá Đơn Chi Tiết");
+        jLabel4.setText("Hoá Đơn Trả Chi Tiết");
 
         tbl_hd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
