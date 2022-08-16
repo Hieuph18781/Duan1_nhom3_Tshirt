@@ -127,4 +127,35 @@ public class SanPhamService implements ISanPhamService {
         return _sanphamservice.updateSoLuongSP(MaSp, soLuong);
     }
 
+    @Override
+    public List<SanPhamModel> getlstGiaAndMaSp(int gia, String maSanPham) {
+        List<SanPhamModel> getlstspham = new ArrayList<>();
+        List<SanPham> lstSp = new ArrayList<>();
+        lstSp = _sanphamservice.findAll();
+        for (SanPham x : lstSp) {
+            ChatLieuModel clmd = new ChatLieuModel();
+            clmd.setMaChatLieu(x.getChatlieu().getMaChatLieu());
+            clmd.setTenChatLieu(x.getChatlieu().getTenChatLieu());
+
+            KieuDangModel kdmd = new KieuDangModel();
+            kdmd.setMaKieuDang(x.getKieudang().getMaKieuDang());
+            kdmd.setTenKieuDang(x.getKieudang().getTenKieuDang());
+
+            DanhMucSanPhamModel dmsp = new DanhMucSanPhamModel();
+            dmsp.setMaDanhMuc(x.getDanhMucSanPham().getMaDanhMuc());
+            dmsp.setTenDanhMuc(x.getDanhMucSanPham().getTenDanhMuc());
+
+            MauSacModel msmd = new MauSacModel();
+            msmd.setMaMauSac(x.getMausac().getMaMauSac());
+            msmd.setTenMauSac(x.getMausac().getTenMauSac());
+
+            SizeModel szmd = new SizeModel();
+            szmd.setMaSize(x.getSize().getMaSize());
+            szmd.setTenSize(x.getSize().getTenSize());
+
+            getlstspham.add(new SanPhamModel(x.getMaSanPham(), x.getTenSanPham(), x.getSoLuong(), x.getGia(), x.getMota(), x.getTrangThai(), clmd, kdmd, dmsp, msmd, szmd));
+        }
+        return getlstspham;
+    }
+
 }

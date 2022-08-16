@@ -18,11 +18,11 @@ import javax.persistence.Table;
  * @author Nguyen Van Thuan
  */
 @Entity
-@Table(name = "HoaDonDoiTraChiTiet")
-public class HoaDonDoiTraChiTiet implements Serializable{
+@Table(name = "HoaDonDoiChiTiet")
+public class HoaDonDoiChiTiet implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int MaHoaDonDoiTraChiTiet;
+    private int MaHoaDonDoiChiTiet;
     private int SoLuong;
     private int DonGia;
     
@@ -34,23 +34,23 @@ public class HoaDonDoiTraChiTiet implements Serializable{
     @JoinColumn(name = "MaSanPham")
     private SanPham sanpham;
 
-    public HoaDonDoiTraChiTiet() {
+    public HoaDonDoiChiTiet() {
     }
 
-    public HoaDonDoiTraChiTiet(int MaHoaDonDoiTraChiTiet, int SoLuong, int DonGia, HoaDonDoiTra hoadondoitra, SanPham sanpham) {
-        this.MaHoaDonDoiTraChiTiet = MaHoaDonDoiTraChiTiet;
+    public HoaDonDoiChiTiet(int MaHoaDonDoiChiTiet, int SoLuong, int DonGia, HoaDonDoiTra hoadondoitra, SanPham sanpham) {
+        this.MaHoaDonDoiChiTiet = MaHoaDonDoiChiTiet;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
         this.hoadondoitra = hoadondoitra;
         this.sanpham = sanpham;
     }
 
-    public int getMaHoaDonDoiTraChiTiet() {
-        return MaHoaDonDoiTraChiTiet;
+    public int getMaHoaDonDoiChiTiet() {
+        return MaHoaDonDoiChiTiet;
     }
 
-    public void setMaHoaDonDoiTraChiTiet(int MaHoaDonDoiTraChiTiet) {
-        this.MaHoaDonDoiTraChiTiet = MaHoaDonDoiTraChiTiet;
+    public void setMaHoaDonDoiChiTiet(int MaHoaDonDoiChiTiet) {
+        this.MaHoaDonDoiChiTiet = MaHoaDonDoiChiTiet;
     }
 
     public int getSoLuong() {
@@ -84,6 +84,5 @@ public class HoaDonDoiTraChiTiet implements Serializable{
     public void setSanpham(SanPham sanpham) {
         this.sanpham = sanpham;
     }
-    
     
 }

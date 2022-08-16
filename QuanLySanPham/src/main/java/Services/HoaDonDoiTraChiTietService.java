@@ -6,7 +6,7 @@ package Services;
 
 import DomainModels.HoaDonChiTiet;
 import DomainModels.HoaDonDoiTra;
-import DomainModels.HoaDonDoiTraChiTiet;
+import DomainModels.HoaDonTraChiTiet;
 import DomainModels.NhanVien;
 import DomainModels.SanPham;
 import Repositories.HoaDonChiTietRepository;
@@ -42,7 +42,7 @@ public class HoaDonDoiTraChiTietService implements IHoaDonDoiTraChiTietService {
         _IHoaDonDoiTraChiTietRepositories = new HoaDonDoiTraChiTietRepositories();
     }
     
-    HoaDonDoiTraChiTiet getHoaDonDtCt(HoaDonDoiTraChiTietModel HoaDonDoiTraChiTietModel){
+    HoaDonTraChiTiet getHoaDonDtCt(HoaDonDoiTraChiTietModel HoaDonDoiTraChiTietModel){
         HoaDonDoiTra hddt = new HoaDonDoiTra();
         hddt.setMaHoaDonDoiTra(HoaDonDoiTraChiTietModel.getHoaDonDoiTraModel().getMaHoaDonDoiHang());
         
@@ -50,7 +50,7 @@ public class HoaDonDoiTraChiTietService implements IHoaDonDoiTraChiTietService {
         nv.setMaSanPham(HoaDonDoiTraChiTietModel.getSanPhamModel().getMaSanPham());
         
         
-        return new HoaDonDoiTraChiTiet(HoaDonDoiTraChiTietModel.getMaHoaDonDoiTraChiTiet(), HoaDonDoiTraChiTietModel.getSoLuong(), HoaDonDoiTraChiTietModel.getDonGia(), hddt, nv);
+        return new HoaDonTraChiTiet(HoaDonDoiTraChiTietModel.getMaHoaDonDoiTraChiTiet(), HoaDonDoiTraChiTietModel.getSoLuong(), HoaDonDoiTraChiTietModel.getDonGia(), hddt, nv);
     }
     
     @Override
@@ -64,7 +64,7 @@ public class HoaDonDoiTraChiTietService implements IHoaDonDoiTraChiTietService {
                 return sua(HoaDonDoiTraChiTietModel);
             }
         }
-        HoaDonDoiTraChiTiet dmsp = _IHoaDonDoiTraChiTietRepositories.insert(getHoaDonDtCt(HoaDonDoiTraChiTietModel));
+        HoaDonTraChiTiet dmsp = _IHoaDonDoiTraChiTietRepositories.insert(getHoaDonDtCt(HoaDonDoiTraChiTietModel));
         if (dmsp == null) {
             return null;
         }
@@ -91,8 +91,8 @@ public class HoaDonDoiTraChiTietService implements IHoaDonDoiTraChiTietService {
         if (MaHoaDonDoiTra == -1) {
             return _lsthoaDonDoiTraChiTietModels;
         }
-        List<HoaDonDoiTraChiTiet> lts = _IHoaDonDoiTraChiTietRepositories.selectAll(MaHoaDonDoiTra);
-        for (HoaDonDoiTraChiTiet x : lts) {
+        List<HoaDonTraChiTiet> lts = _IHoaDonDoiTraChiTietRepositories.selectAll(MaHoaDonDoiTra);
+        for (HoaDonTraChiTiet x : lts) {
             
             ChatLieuModel clmd = new ChatLieuModel();
             clmd.setMaChatLieu(x.getSanpham().getChatlieu().getMaChatLieu());
@@ -124,7 +124,7 @@ public class HoaDonDoiTraChiTietService implements IHoaDonDoiTraChiTietService {
         HoaDonModel hoaDonModel = new HoaDonModel(x.getHoadondoitra().getHoadon().getMaHoaDon(), x.getHoadondoitra().getHoadon().getThoiGianTao(), x.getHoadondoitra().getHoadon().getTrangThai(), nhanVienModel, kdmd1, kmmd);
             
             HoaDonDoiTraMoDel hddtmd = new HoaDonDoiTraMoDel(x.getHoadondoitra().getMaHoaDonDoiTra(), x.getHoadondoitra().getTongTienHoanTra(), x.getHoadondoitra().getNgayTaoHoaDon(), x.getHoadondoitra().getMoTa(),hoaDonModel , kdmd1, nhanVienModel);
-            _lsthoaDonDoiTraChiTietModels.add(new HoaDonDoiTraChiTietModel(x.getMaHoaDonDoiTraChiTiet(), x.getSoLuong(), x.getDonGia(), hddtmd, spmd));
+            _lsthoaDonDoiTraChiTietModels.add(new HoaDonDoiTraChiTietModel(x.getMaHoaDonTraChiTiet(), x.getSoLuong(), x.getDonGia(), hddtmd, spmd));
         }
         
         return _lsthoaDonDoiTraChiTietModels;

@@ -4,6 +4,7 @@
  */
 package Services;
 
+import DomainModels.SanPham;
 import ViewsModels.SanPhamModel;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface ISanPhamService {
     public boolean suaSoLuongSP(String MaSp, int soLuong);
     public String getMaSanPham();
     public boolean Timkiem(String chuoi1, String chuoi2);
+    public List<SanPhamModel> getlstGiaAndMaSp(int gia, String maSanPham);
 }

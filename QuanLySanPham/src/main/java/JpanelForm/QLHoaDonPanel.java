@@ -66,8 +66,8 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
-                x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
-                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : x.getKhachhang().getMaKhachHang(), x.getKhuyenmai().getIdKhuyenMai(), x.getNhanvien().getMaNhanVien()});
+                x.getTrangThai() == 1 ? "Huỷ" : x.getTrangThai() == 2 ? "Thành Công" : "Đã Đổi Trả",
+                x.getKhachhang().getMaKhachHang() == 1 ? "Khách Lẻ" : x.getKhachhang().getHoTen(), x.getKhuyenmai().getTenKhuyenMai(), x.getNhanvien().getMaNhanVien()});
         }
     }
 
@@ -112,7 +112,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
     public String KhachHang2(int a) {
         for (KhachHangModel x : _IKhachHangService.getAllKhachHang()) {
             if (x.getMaKhachHang() == a) {
-                return x.getDiaChi();
+                return x.getSoDienThoai();
             }
         }
         return null;
@@ -157,7 +157,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Trạng Thái");
 
-        cbc_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã Thanh Toán", "Đã Huỷ" }));
+        cbc_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã Thanh Toán", "Đã Huỷ", "Đã Đổi Trả" }));
         cbc_trangthai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbc_trangthaiActionPerformed(evt);
@@ -220,7 +220,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Từ Ngày");
 
-        rdb_makh.setText("Theo Mã Khách Hàng");
+        rdb_makh.setText("Theo SDT Khách Hàng");
         rdb_makh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdb_makhActionPerformed(evt);
@@ -418,6 +418,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
             if (rdb_makh.isSelected()) {
                 for (HoaDonModel x : _IThongKeRepository.thongke5()) {
                     if (_IThongKeRepository.Timkiem(String.valueOf(KhachHang2(x.getKhachhang().getMaKhachHang())), txt_timKiem.getText())) {
+                        System.out.println(String.valueOf(KhachHang2(x.getKhachhang().getMaKhachHang())));
                         lstTemp.add(x);
 
                     }
@@ -513,21 +514,74 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                 }
             }
             loadtable(lstTemp);
+        } else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Đổi Trả")
+                && cbc_tg.getSelectedItem().toString().equals("Có")) {
+            if (rdb_mahd.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke14(txt_ngay1.getDate(), txt_ngay2.getDate())) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getMaHoaDon()), txt_timKiem.getText())) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            if (rdb_makh.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke14(txt_ngay1.getDate(), txt_ngay2.getDate())) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getKhachhang().getMaKhachHang()), txt_timKiem.getText())) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            if (rdb_manv.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke7(txt_ngay1.getDate(), txt_ngay2.getDate())) {
+                    if (_IThongKeRepository.Timkiem(x.getNhanvien().getMaNhanVien(), txt_timKiem.getText())) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            loadtable(lstTemp);
+        } else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Đổi Trả")
+                && cbc_tg.getSelectedItem().equals("Không")) {
+            if (rdb_mahd.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke13()) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getMaHoaDon()), txt_timKiem.getText())) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            if (rdb_makh.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke13()) {
+                    if (_IThongKeRepository.Timkiem(String.valueOf(x.getKhachhang().getMaKhachHang()), (String.valueOf(txt_timKiem.getText())))) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            if (rdb_manv.isSelected()) {
+                for (HoaDonModel x : _IThongKeRepository.thongke13()) {
+                    if (_IThongKeRepository.Timkiem(x.getNhanvien().getMaNhanVien(), txt_timKiem.getText())) {
+                        lstTemp.add(x);
+
+                    }
+                }
+            }
+            loadtable(lstTemp);
         }
     }//GEN-LAST:event_txt_timKiemCaretUpdate
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        if (txt_ngay1.getDate().after(txt_ngay2.getDate())) {
-            JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
-            return;
-        }
         if (cbc_trangthai.getSelectedItem().toString().equals("Đã Thanh Toán")
                 && cbc_tg.getSelectedItem().equals("Không")) {
             loadtable(_IThongKeRepository.thongke5());
         } else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Huỷ")
                 && cbc_tg.getSelectedItem().equals("Không")) {
             loadtable(_IThongKeRepository.thongke6());
+        }else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Đổi Trả")
+                && cbc_tg.getSelectedItem().equals("Không")) {
+            loadtable(_IThongKeRepository.thongke13());    
         } else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Thanh Toán")
                 && cbc_tg.getSelectedItem().equals("Có")) {
             try {
@@ -538,6 +592,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Vui lòng chọn ngày");
                 return;
             }
+            if (txt_ngay1.getDate().after(txt_ngay2.getDate())) {
+                JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                return;
+            }
             loadtable(_IThongKeRepository.thongke7(txt_ngay1.getDate(), txt_ngay2.getDate()));
         } else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Huỷ")
                 && cbc_tg.getSelectedItem().equals("Có")) {
@@ -546,6 +604,25 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                 txt_ngay2.getDate().toString().equals("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Vui lòng chọn ngày");
+                return;
+            }
+            if (txt_ngay1.getDate().after(txt_ngay2.getDate())) {
+                JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                return;
+            }
+            loadtable(_IThongKeRepository.thongke8(txt_ngay1.getDate(), txt_ngay2.getDate()));
+        }
+        else if (cbc_trangthai.getSelectedItem().toString().equals("Đã Đổi Trả")
+                && cbc_tg.getSelectedItem().equals("Có")) {
+            try {
+                txt_ngay1.getDate().toString().equals("");
+                txt_ngay2.getDate().toString().equals("");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn ngày");
+                return;
+            }
+            if (txt_ngay1.getDate().after(txt_ngay2.getDate())) {
+                JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
                 return;
             }
             loadtable(_IThongKeRepository.thongke8(txt_ngay1.getDate(), txt_ngay2.getDate()));

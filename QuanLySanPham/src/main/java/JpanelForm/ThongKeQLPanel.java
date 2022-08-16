@@ -7,9 +7,12 @@ package JpanelForm;
 import Repositories.IThongKeRepository;
 import Repositories.ThongKeRepository;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -330,21 +333,6 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbc_theloai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbc_thang, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -363,6 +351,21 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
                         .addGap(65, 65, 65)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbc_theloai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbc_thang, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,18 +396,18 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addComponent(txt_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addContainerGap(197, Short.MAX_VALUE))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbc_theloaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_theloaiActionPerformed
 
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Ngày")) {
+            txt_ngay.setEnabled(true);
             cbc_thang.setEnabled(false);
             txt_nam.setEnabled(false);
 
@@ -416,7 +419,8 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
 
         }
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Năm")) {
-            cbc_thang.setEnabled(true);
+            txt_ngay.setEnabled(false);
+            cbc_thang.setEnabled(false);
             txt_nam.setEnabled(true);
 
         }
@@ -443,6 +447,7 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
             }
             cbc_thang.setEnabled(false);
             txt_nam.setEnabled(false);
+            txt_ngay.setEnabled(true);
             try {
                 fillTableTheoNgay();
             } catch (Exception e) {
@@ -453,8 +458,9 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Tháng")) {
             if (txt_nam.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+                return;
             }
-            
+            txt_ngay.setEnabled(false);
             cbc_thang.setEnabled(true);
             txt_nam.setEnabled(true);
             fillTableTheoThang();
@@ -463,8 +469,10 @@ public class ThongKeQLPanel extends javax.swing.JPanel {
         if (cbc_theloai.getSelectedItem().toString().equals("Theo Năm")) {
             if (txt_nam.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Chọn năm muốn thống kê");
+                return;
             }
-            cbc_thang.setEnabled(true);
+            txt_ngay.setEnabled(false);
+            cbc_thang.setEnabled(false);
             txt_nam.setEnabled(true);
             fillTableTheoNam();
 

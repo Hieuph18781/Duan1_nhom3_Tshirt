@@ -17,7 +17,9 @@
 
 
 
+
         <property name="connection.username">ab</property>
+
 
 
         
@@ -54,6 +56,7 @@
         <mapping class="DomainModels.HoaDon"/>
         <mapping class="DomainModels.HoaDonChiTiet"/>
         <mapping class="DomainModels.HoaDonDoiTra"/>
-        <mapping class="DomainModels.HoaDonDoiTraChiTiet"/>
+        <mapping class="DomainModels.HoaDonTraChiTiet"/>
+        <mapping class="DomainModels.HoaDonDoiChiTiet"/>
     </session-factory>
 </hibernate-configuration>

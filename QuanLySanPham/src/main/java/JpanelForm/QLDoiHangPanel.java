@@ -1,11 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package JpanelForm;
 
-import Repositories.IThongKeRepository;
-import Repositories.ThongKeRepository;
 import Services.HoaDonChiTietService;
 import Services.HoaDonDoiTraChiTietService;
 import Services.HoaDonDoiTraService;
@@ -30,18 +28,19 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author dytc0
+ * @author Nguyen Van Thuan
  */
-public class QLTraHang extends javax.swing.JFrame {
+public class QLDoiHangPanel extends javax.swing.JPanel {
 
+    /**
+     * Creates new form QLDoiHangPanel
+     */
     DefaultTableModel _defaultTB;
     IThongKeService _IThongKeRepository;
     CheckData _checkDt;
@@ -52,10 +51,7 @@ public class QLTraHang extends javax.swing.JFrame {
     IHoaDonService _iHoaDonService;
     ISanPhamService _ISanPhamService;
 
-    /**
-     * Creates new form QLTraHang
-     */
-    public QLTraHang() {
+    public QLDoiHangPanel() {
         initComponents();
         _HoaDonCTService = new HoaDonChiTietService();
         _IThongKeRepository = new ThongKeService();
@@ -66,7 +62,8 @@ public class QLTraHang extends javax.swing.JFrame {
         _checkDt = new CheckData();
         loadtable(_IThongKeRepository.thongke5());
         setlbl();
-        tbl_hd.setEnabled(false);
+        String abcd = "ađas";
+        new PrameChonSanPhamDoi(abcd).setVisible(true);
     }
 
     void setlbl() {
@@ -135,16 +132,12 @@ public class QLTraHang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pmn_tblHoaDonChiTiet = new javax.swing.JPopupMenu();
-        mni_trahang = new javax.swing.JMenuItem();
-        pmn_danhSachSPTra = new javax.swing.JPopupMenu();
-        mni_xoaSp = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_hd = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_timkiem = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_hdct = new javax.swing.JTable();
@@ -164,29 +157,6 @@ public class QLTraHang extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lbl_tongtienhoantra = new javax.swing.JLabel();
         btn_traHang = new javax.swing.JButton();
-
-        mni_trahang.setText("Trả Hàng");
-        mni_trahang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mni_trahangActionPerformed(evt);
-            }
-        });
-        pmn_tblHoaDonChiTiet.add(mni_trahang);
-
-        mni_xoaSp.setText("Xóa");
-        mni_xoaSp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mni_xoaSpActionPerformed(evt);
-            }
-        });
-        pmn_danhSachSPTra.add(mni_xoaSp);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -222,17 +192,14 @@ public class QLTraHang extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_hdMouseClicked(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tbl_hdMouseReleased(evt);
-            }
         });
         jScrollPane1.setViewportView(tbl_hd);
 
         jLabel6.setText("Tìm Kiếm :");
 
-        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1CaretUpdate(evt);
+                txt_timkiemCaretUpdate(evt);
             }
         });
 
@@ -243,11 +210,11 @@ public class QLTraHang extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)))
+                        .addComponent(txt_timkiem)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -256,7 +223,7 @@ public class QLTraHang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -281,7 +248,6 @@ public class QLTraHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_hdct.setComponentPopupMenu(pmn_tblHoaDonChiTiet);
         jScrollPane2.setViewportView(tbl_hdct);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -301,7 +267,7 @@ public class QLTraHang extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh Sách Sản Phẩm Trả", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh Sách Sản Phẩm Đổi", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         tbl_sanPhamTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -319,7 +285,6 @@ public class QLTraHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_sanPhamTra.setComponentPopupMenu(pmn_danhSachSPTra);
         tbl_sanPhamTra.setInheritsPopupMenu(true);
         jScrollPane3.setViewportView(tbl_sanPhamTra);
 
@@ -369,7 +334,7 @@ public class QLTraHang extends javax.swing.JFrame {
 
         lbl_tongtienhoantra.setText("0");
 
-        btn_traHang.setText("Trả Hàng");
+        btn_traHang.setText("Đổi Hàng");
         btn_traHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_traHangActionPerformed(evt);
@@ -458,7 +423,7 @@ public class QLTraHang extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -469,124 +434,37 @@ public class QLTraHang extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_hdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hdMouseClicked
-//        
+        //        if (tbl_sanPhamTra.getRowCount() > 0) {
+        //            JOptionPane.showMessageDialog(this, "Bạn đang có hóa đơn đang trả");
+        //            return;
+        //        }
+        int row = tbl_hd.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
+        lbl_hoadon.setText(tbl_hd.getModel().getValueAt(row, 0).toString());
+        lbl_nhanVien.setText(tbl_hd.getModel().getValueAt(row, 5).toString());
+        lbl_khachHang.setText(tbl_hd.getModel().getValueAt(row, 3).toString());
+        lbl_tongtienhoantra.setText("0");
     }//GEN-LAST:event_tbl_hdMouseClicked
 
-    private void mni_trahangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_trahangActionPerformed
-        int row = tbl_hdct.getSelectedRow();
-        int rowhdon = tbl_hd.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn Sản Phẩm Cần Trả");
-            return;
-        }
-        if (Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 2).toString()) == 0) {
-            JOptionPane.showMessageDialog(this, "Đã trả hết hết phẩm");
-            return;
-        }
-        String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Sản phẩm Muốn Trả");
-        if (temp == null) {
-            return;
-        }
-        if (temp.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Không được để trống");
-            return;
-        }
-        if (_checkDt.chekcKhoangTrang(temp)) {
-            JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
-            return;
-        }
-        if (temp.length() > 6) {
-            JOptionPane.showMessageDialog(this, "Nhập tối đa 5 kí tự số");
-            return;
-        }
-        if (!_checkDt.checkso(temp) || Integer.parseInt(temp) <= 0) {
-            JOptionPane.showMessageDialog(this, "Bạn Phải nhập số và phải > 0 , không chứa kí tự");
-            return;
-        }
-        if (Long.parseLong(temp) > 99999) {
-            JOptionPane.showMessageDialog(this, "số lượng tối đa có thể nhập là là 99,999");
-            return;
-        }
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
 
-        if (Integer.parseInt(temp) > Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 2).toString())) {
-            JOptionPane.showMessageDialog(this, "Số lượng trả phải bé hơn số lượng đang có");
-            return;
-        }
-        HoaDonModel hdmodel = new HoaDonModel();
-        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
-
-        KhachHangModel khmodel = new KhachHangModel();
-        khmodel.setMaKhachHang(1);
-
-        SanPhamModel sanPhamModel = new SanPhamModel();
-        sanPhamModel.setMaSanPham(tbl_hdct.getModel().getValueAt(row, 0).toString());
-
-        HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 3).toString()) * Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 2).toString()), new java.util.Date(), "", hdmodel, khmodel, Auth.user));//tạo hóa đơn trả
-
-        HoaDonChiTietModel hdct = new HoaDonChiTietModel(0, Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 2).toString()) - Integer.parseInt(temp), Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 3).toString()), sanPhamModel, hdmodel);//sửa hóa đơn chi tiết
-        _HoaDonCTService.sua(hdct);
-        _ihoadDoiTraChiTietService.them(new HoaDonDoiTraChiTietModel(0, Integer.parseInt(temp), Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 3).toString()), hoaDonDoiTraMoDel, sanPhamModel));
-        fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
-        loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
-        tongTienTra();
-    }//GEN-LAST:event_mni_trahangActionPerformed
-
-    private void mni_xoaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_xoaSpActionPerformed
-        int row = tbl_sanPhamTra.getSelectedRow();
-        int rowhdon = tbl_hd.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
-            return;
-        }
-        HoaDonModel hdmodel = new HoaDonModel();
-        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
-
-        KhachHangModel khmodel = new KhachHangModel();
-        khmodel.setMaKhachHang(1);
-
-        SanPhamModel sanPhamModel = new SanPhamModel();
-        sanPhamModel.setMaSanPham(tbl_hdct.getModel().getValueAt(row, 0).toString());
-
-        HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
-        int soluong = 0;
-        for (HoaDonChiTietModel x : _HoaDonCTService.getListFromDB(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()))) {
-            if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(row, 1).toString())) {
-                soluong = x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(row, 8).toString());
-                x.setSoLuong(soluong);
-                _HoaDonCTService.sua(x);
-            }
-        }
-        for (HoaDonDoiTraChiTietModel x : _ihoadDoiTraChiTietService.getListFromDB(hoaDonDoiTraMoDel.getMaHoaDonDoiHang())) {
-            if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(row, 1).toString())) {
-                _ihoadDoiTraChiTietService.xoa(x);
-            }
-        }
-
-        fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
-        loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
-        tongTienTra();
-        if (tbl_sanPhamTra.getRowCount() == 0) {
-            _hoaDonDoiTraService.xoa(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
-        }
-    }//GEN-LAST:event_mni_xoaSpActionPerformed
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     private void btn_traHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_traHangActionPerformed
         int rowhdon = tbl_hd.getSelectedRow();
@@ -602,138 +480,77 @@ public class QLTraHang extends javax.swing.JFrame {
         if (temp != 0) {
             return;
         }
-        HoaDonModel hdmodel = new HoaDonModel();
-        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
-
-        KhachHangModel khmodel = new KhachHangModel();
-        khmodel.setMaKhachHang(1);
-
-        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
-        HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
-        hoaDonDoiTraMoDel.setTongTienHoanTra(Integer.parseInt(lbl_tongtienhoantra.getText().replaceAll(",", "")));
-        hoaDonDoiTraMoDel.setNgayTaoHoaDon(new java.util.Date());
-        hoaDonDoiTraMoDel.setMoTa(tar_lydo.getText());
-        _hoaDonDoiTraService.sua(hoaDonDoiTraMoDel);
-        hdmodel = hoaDonDoiTraMoDel.getHoaDonModel();
-        hdmodel.setTrangThai(3);
-        _iHoaDonService.sua(hdmodel);
-
-        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
-            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
-                if (x.getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
-                    _ISanPhamService.suaSoLuongSP(tbl_sanPhamTra.getValueAt(i, 1).toString(), x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString()));//update so luong san pham
-                }
-            }
-        }
-        fillTableTheoNgay(-1);
-        loadtableSanPhamTra(-1);
-        tongTienTra();
-        loadtable(_IThongKeRepository.thongke5());
+//        HoaDonModel hdmodel = new HoaDonModel();
+//        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
+//
+//        KhachHangModel khmodel = new KhachHangModel();
+//        khmodel.setMaKhachHang(1);
+//
+//        hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
+//        HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
+//        hoaDonDoiTraMoDel.setTongTienHoanTra(Integer.parseInt(lbl_tongtienhoantra.getText().replaceAll(",", "")));
+//        hoaDonDoiTraMoDel.setNgayTaoHoaDon(new java.util.Date());
+//        hoaDonDoiTraMoDel.setMoTa(tar_lydo.getText());
+//        _hoaDonDoiTraService.sua(hoaDonDoiTraMoDel);
+//        hdmodel = hoaDonDoiTraMoDel.getHoaDonModel();
+//        hdmodel.setTrangThai(3);
+//        _iHoaDonService.sua(hdmodel);
+//
+//        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
+//            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+//                if (x.getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+//                    _ISanPhamService.suaSoLuongSP(tbl_sanPhamTra.getValueAt(i, 1).toString(), x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString()));//update so luong san pham
+//                }
+//            }
+//        }
+//        fillTableTheoNgay(-1);
+//        loadtableSanPhamTra(-1);
+//        tongTienTra();
+//        loadtable(_IThongKeRepository.thongke5());
     }//GEN-LAST:event_btn_traHangActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        //Sự Kiện đóng Jpame
-    }//GEN-LAST:event_formWindowClosed
 
     private void jPanel2AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel2AncestorRemoved
         //Sự Kiện đóng JPane
-//        int row = tbl_sanPhamTra.getSelectedRow();
+        //        int row = tbl_sanPhamTra.getSelectedRow();
         int rowhdon = tbl_hd.getSelectedRow();
-//        if (row < 0) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
-//            return;
+        //        if (row < 0) {
+        //            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
+        //            return;
+        //        }
+//        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
+//            HoaDonModel hdmodel = new HoaDonModel();
+//            hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
+//
+//            KhachHangModel khmodel = new KhachHangModel();
+//            khmodel.setMaKhachHang(1);
+//
+//            SanPhamModel sanPhamModel = new SanPhamModel();
+//            sanPhamModel.setMaSanPham(tbl_hdct.getModel().getValueAt(i, 0).toString());
+//
+//            HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
+//            int soluong = 0;
+//            for (HoaDonChiTietModel x : _HoaDonCTService.getListFromDB(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()))) {
+//                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+//                    soluong = x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString());
+//                    x.setSoLuong(soluong);
+//                    _HoaDonCTService.sua(x);
+//                }
+//            }
+//            for (HoaDonDoiTraChiTietModel x : _ihoadDoiTraChiTietService.getListFromDB(hoaDonDoiTraMoDel.getMaHoaDonDoiHang())) {
+//                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
+//                    _ihoadDoiTraChiTietService.xoa(x);
+//                }
+//            }
+//
+//            fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
+//            loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
+//            tongTienTra();
+//            if (tbl_sanPhamTra.getRowCount() == 0) {
+//                _hoaDonDoiTraService.xoa(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
+//            }
 //        }
-        for (int i = 0; i < tbl_sanPhamTra.getRowCount(); i++) {
-            HoaDonModel hdmodel = new HoaDonModel();
-            hdmodel.setMaHoaDon(Integer.parseInt(tbl_hd.getModel().getValueAt(rowhdon, 0).toString()));
-
-            KhachHangModel khmodel = new KhachHangModel();
-            khmodel.setMaKhachHang(1);
-
-            SanPhamModel sanPhamModel = new SanPhamModel();
-            sanPhamModel.setMaSanPham(tbl_hdct.getModel().getValueAt(i, 0).toString());
-
-            HoaDonDoiTraMoDel hoaDonDoiTraMoDel = _hoaDonDoiTraService.them(new HoaDonDoiTraMoDel(0, 0, new java.util.Date(), "", hdmodel, khmodel, Auth.user));
-            int soluong = 0;
-            for (HoaDonChiTietModel x : _HoaDonCTService.getListFromDB(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()))) {
-                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
-                    soluong = x.getSoLuong() + Integer.parseInt(tbl_sanPhamTra.getModel().getValueAt(i, 8).toString());
-                    x.setSoLuong(soluong);
-                    _HoaDonCTService.sua(x);
-                }
-            }
-            for (HoaDonDoiTraChiTietModel x : _ihoadDoiTraChiTietService.getListFromDB(hoaDonDoiTraMoDel.getMaHoaDonDoiHang())) {
-                if (x.getSanPhamModel().getMaSanPham().equals(tbl_sanPhamTra.getModel().getValueAt(i, 1).toString())) {
-                    _ihoadDoiTraChiTietService.xoa(x);
-                }
-            }
-
-            fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(rowhdon, 0).toString()));
-            loadtableSanPhamTra(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
-            tongTienTra();
-            if (tbl_sanPhamTra.getRowCount() == 0) {
-                _hoaDonDoiTraService.xoa(hoaDonDoiTraMoDel.getMaHoaDonDoiHang());
-            }
-        }
-
-
     }//GEN-LAST:event_jPanel2AncestorRemoved
 
-    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
-
-    }//GEN-LAST:event_jTextField1CaretUpdate
-
-    private void tbl_hdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hdMouseReleased
-//        if (tbl_sanPhamTra.getRowCount() > 0) {
-//            JOptionPane.showMessageDialog(this, "Bạn đang có hóa đơn đang trả");
-//            return;
-//        }
-        int row = tbl_hd.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        fillTableTheoNgay(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString()));
-        lbl_hoadon.setText(tbl_hd.getModel().getValueAt(row, 0).toString());
-        lbl_nhanVien.setText(tbl_hd.getModel().getValueAt(row, 5).toString());
-        lbl_khachHang.setText(tbl_hd.getModel().getValueAt(row, 3).toString());
-        lbl_tongtienhoantra.setText("0");
-        tbl_hd.setColumnSelectionAllowed(false);
-    }//GEN-LAST:event_tbl_hdMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QLTraHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QLTraHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QLTraHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QLTraHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QLTraHang().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_traHang;
@@ -752,18 +569,14 @@ public class QLTraHang extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_hoadon;
     private javax.swing.JLabel lbl_khachHang;
     private javax.swing.JLabel lbl_nhanVien;
     private javax.swing.JLabel lbl_tongtienhoantra;
-    private javax.swing.JMenuItem mni_trahang;
-    private javax.swing.JMenuItem mni_xoaSp;
-    private javax.swing.JPopupMenu pmn_danhSachSPTra;
-    private javax.swing.JPopupMenu pmn_tblHoaDonChiTiet;
     private javax.swing.JTextArea tar_lydo;
     private javax.swing.JTable tbl_hd;
     private javax.swing.JTable tbl_hdct;
     private javax.swing.JTable tbl_sanPhamTra;
+    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }

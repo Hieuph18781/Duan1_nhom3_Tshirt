@@ -6,9 +6,12 @@ package Services;
 
 import DomainModels.HoaDon;
 import DomainModels.HoaDonChiTiet;
+import DomainModels.HoaDonDoiTra;
 import Repositories.IThongKeRepository;
 import Repositories.ThongKeRepository;
 import ViewsModels.HoaDonChiTietModel;
+import ViewsModels.HoaDonDoiTraChiTietModel;
+import ViewsModels.HoaDonDoiTraMoDel;
 import ViewsModels.HoaDonModel;
 import ViewsModels.KhachHangModel;
 import ViewsModels.KhuyenMaiModel;
@@ -27,6 +30,8 @@ public class ThongKeService implements IThongKeService {
     IThongKeRepository _IThongKeService;
     List<HoaDonModel> _lstHoaDon;
     List<HoaDonChiTietModel> _lstHoaDonCT;
+    List<HoaDonDoiTraMoDel> _lstHoaDon2;
+    List<HoaDonDoiTraChiTietModel> _lstHoaDonCT2;
 
     public ThongKeService() {
         _IThongKeService = new ThongKeRepository();
@@ -168,6 +173,101 @@ public class ThongKeService implements IThongKeService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<HoaDonDoiTraMoDel> thongke10() {
+        _lstHoaDon2 = new ArrayList<>();
+        List<HoaDonDoiTra> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke10();
+        for (HoaDonDoiTra x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
+            HoaDonModel hd = new HoaDonModel();
+            hd.setMaHoaDon(x.getHoadon().getMaHoaDon());
+            
+            _lstHoaDon2.add(new HoaDonDoiTraMoDel(x.getMaHoaDonDoiTra(), x.getTongTienHoanTra(),x.getNgayTaoHoaDon(), x.getMoTa(), 
+                    hd, 
+                    kdmd, nhanVienModel));
+        }
+        return _lstHoaDon2;
+    }
+
+    @Override
+    public List<HoaDonDoiTraMoDel> thongke11(Date a, Date b) {
+        _lstHoaDon2 = new ArrayList<>();
+        List<HoaDonDoiTra> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke11(a,b);
+        for (HoaDonDoiTra x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
+            HoaDonModel hd = new HoaDonModel();
+            hd.setMaHoaDon(x.getHoadon().getMaHoaDon());
+            
+            _lstHoaDon2.add(new HoaDonDoiTraMoDel(x.getMaHoaDonDoiTra(), x.getTongTienHoanTra(),x.getNgayTaoHoaDon(), x.getMoTa(), 
+                    hd, 
+                    kdmd, nhanVienModel));
+        }
+        return _lstHoaDon2;
+    }
+
+    @Override
+    public List<Object[]> thongke12(int a) {
+        _lstHoaDonCT2 = new ArrayList<>();
+
+        List<Object[]> list = _IThongKeService.thongke12(a);
+        return list;
+    }
+
+    @Override
+    public long TongTien5(int a) {
+        long b = _IThongKeService.TongTien5(a);
+        return b;
+    }
+
+    @Override
+    public List<HoaDonModel> thongke13() {
+        _lstHoaDon = new ArrayList<>();
+        List<HoaDon> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke13();
+        for (HoaDon x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
+            KhuyenMaiModel kmmd = new KhuyenMaiModel();
+            kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            kmmd.setTenKhuyenMai(x.getKhuyenmai().getTenKhuyenMai());
+            _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
+        }
+        return _lstHoaDon;
+    }
+
+    @Override
+    public List<HoaDonModel> thongke14(Date a, Date b) {
+        _lstHoaDon = new ArrayList<>();
+        List<HoaDon> hoadon = new ArrayList<>();
+        hoadon = _IThongKeService.thongke14(a, b);
+        for (HoaDon x : hoadon) {
+            NhanVienModel nhanVienModel = new NhanVienModel();
+            nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            KhachHangModel kdmd = new KhachHangModel();
+            kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            KhuyenMaiModel kmmd = new KhuyenMaiModel();
+            kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
+        }
+        return _lstHoaDon;
     }
 
 }
