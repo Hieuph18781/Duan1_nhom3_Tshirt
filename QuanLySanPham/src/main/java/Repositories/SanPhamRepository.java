@@ -5,6 +5,7 @@
 package Repositories;
 
 import DomainModels.DanhMucSanPham;
+import DomainModels.HoaDonChiTiet;
 import DomainModels.SanPham;
 import Utils.HibernateUtil;
 
@@ -31,6 +32,12 @@ public class SanPhamRepository implements ISanPhamRepository {
         return products;
     }
 
+//    public static void main(String[] args) {
+//        List<SanPham> products = findGiaAndMaSp(80000, "MaSP1");
+//        for (SanPham x : products) {
+//            System.out.println(x.getMaSanPham());
+//        }
+//    }
     @Override
     public SanPham insert(SanPham danhMucSp) {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -92,4 +99,15 @@ public class SanPhamRepository implements ISanPhamRepository {
         }
     }
 
+    @Override
+    public List<SanPham> findGiaAndMaSp(int gia, String maSanPham) {
+        List<SanPham> products;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT p FROM SanPham p WHERE p.MaSanPham = '" + maSanPham + "' or p.gia <=" + gia;
+//            select * from SanPham where gia <= 80000 or MaSanPham = 'MaSP1'
+            TypedQuery<SanPham> query = session.createQuery(hql, SanPham.class);
+            products = query.getResultList();
+        }
+        return products;
+    }
 }

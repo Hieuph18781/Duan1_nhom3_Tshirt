@@ -584,7 +584,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Đã trả hết hết phẩm");
             return;
         }
-        String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Sản phẩm Muốn Trả");
+        String temp = JOptionPane.showInputDialog(this, "Nhập Số Lượng Sản phẩm Muốn Đổi");
         if (temp == null) {
             return;
         }
@@ -608,7 +608,6 @@ public class QLTraHangPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "số lượng tối đa có thể nhập là là 99,999");
             return;
         }
-
         if (Integer.parseInt(temp) > Integer.parseInt(tbl_hdct.getModel().getValueAt(row, 2).toString())) {
             JOptionPane.showMessageDialog(this, "Số lượng trả phải bé hơn số lượng đang có");
             return;

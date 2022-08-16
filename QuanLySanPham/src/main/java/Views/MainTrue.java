@@ -415,7 +415,6 @@ public class MainTrue extends javax.swing.JFrame {
     private void btn_khuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khuyenmaiActionPerformed
 
         show(new QLKhuyenMaiPanel());
-//        show(new QLDoiHangPanel());
     }//GEN-LAST:event_btn_khuyenmaiActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
