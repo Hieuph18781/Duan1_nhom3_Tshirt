@@ -57,7 +57,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where CONVERT(date,HD.ThoiGianTao) = :ThoiGianTao and HD.TrangThai = 2"
+                    + "where CONVERT(date,HD.ThoiGianTao) = :ThoiGianTao and HD.TrangThai = 2 or HD.TrangThai = 3"
                     + "group by S.MaSanPham,S.TenSanPham\n"
                     + "order by SUM(S.gia*H.SoLuong) desc ";
 
@@ -82,7 +82,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where MONTH(HD.ThoiGianTao) = :ThoiGianTao and YEAR(HD.ThoiGianTao) = :ThoiGianTao2 and HD.TrangThai = 2"
+                    + "where MONTH(HD.ThoiGianTao) = :ThoiGianTao and YEAR(HD.ThoiGianTao) = :ThoiGianTao2 and HD.TrangThai = 2 or HD.TrangThai = 3"
                     + "group by S.MaSanPham,S.TenSanPham\n"
                     + "order by SUM(S.gia*H.SoLuong) desc ";
             Query<?> query = session.createQuery(hql);
@@ -179,7 +179,7 @@ public class ThongKeRepository implements IThongKeRepository {
                     + "From SanPham S\n"
                     + "Inner join HoaDonChiTiet H on S.MaSanPham = H.sanpham\n"
                     + "Inner join HoaDon HD on H.hoadon = HD.MaHoaDon\n"
-                    + "where YEAR(HD.ThoiGianTao) = :ThoiGianTao and HD.TrangThai = 2"
+                    + "where YEAR(HD.ThoiGianTao) = :ThoiGianTao and HD.TrangThai = 2 or HD.TrangThai = 3"
                     + "group by S.MaSanPham,S.TenSanPham\n"
                     + "order by SUM(S.gia*H.SoLuong) desc ";
             Query<?> query = session.createQuery(hql);
@@ -357,7 +357,7 @@ public class ThongKeRepository implements IThongKeRepository {
         long b = 0;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT SUM(C.DonGia*C.SoLuong)\n"
-                     + "From SanPham S\n"
+                    + "From SanPham S\n"
                     + "Inner join HoaDonTraChiTiet C on S.MaSanPham = C.sanpham\n"
                     + "Inner join HoaDonDoiTra H on C.hoadondoitra = H.MaHoaDonDoiTra\n"
                     + "Inner join HoaDon r on H.hoadon = r.MaHoaDon\n"

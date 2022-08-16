@@ -49,7 +49,7 @@ public interface IThongKeRepository {
     public List<HoaDonDoiTra> thongke11(Date a, Date b);
 
     public List<Object[]> thongke12(int a);
-    
+
     public List<HoaDon> thongke13();
 
     public List<HoaDon> thongke14(Date a, Date b);
