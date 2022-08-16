@@ -57,5 +57,7 @@ public interface IThongKeService {
     public List<HoaDonModel> thongke13();
 
     public List<HoaDonModel> thongke14(Date a, Date b);
+    
+    public List<HoaDonModel> thongke15();
 
 }

@@ -28,6 +28,8 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -60,7 +62,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         _iHoaDonService = new HoaDonService();
         _ISanPhamService = new SanPhamService();
         _checkDt = new CheckData();
-        loadtable(_IThongKeRepository.thongke5());
+        loadtable(_IThongKeRepository.thongke15());
         setlbl();
     }
 
@@ -103,6 +105,7 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         _DefaultTableModel = (DefaultTableModel) tbl_hd.getModel();
         _DefaultTableModel.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new java.util.Date();
         for (HoaDonModel x : hdmd) {
             _DefaultTableModel.addRow(new Object[]{x.getMaHoaDon(), dateFormat.format(x.getThoiGianTao()),
                 x.getTrangThai() == 0 ? "Đang Chờ" : x.getTrangThai() == 1 ? "Hủy" : "Thành Công",
@@ -238,12 +241,11 @@ public class QLTraHangPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -483,7 +485,13 @@ public class QLTraHangPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_hdMouseClicked
 
     private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
-
+        List<HoaDonModel> _lst = new ArrayList<>();
+        for (HoaDonModel x : _IThongKeRepository.thongke15()) {
+            if (_ISanPhamService.Timkiem(String.valueOf(x.getMaHoaDon()), txt_timkiem.getText())) {
+                _lst.add(x);
+            }
+        }
+        loadtable(_lst);
     }//GEN-LAST:event_txt_timkiemCaretUpdate
 
     private void btn_traHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_traHangActionPerformed

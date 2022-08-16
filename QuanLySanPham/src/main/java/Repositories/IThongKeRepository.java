@@ -53,5 +53,7 @@ public interface IThongKeRepository {
     public List<HoaDon> thongke13();
 
     public List<HoaDon> thongke14(Date a, Date b);
+    
+    public List<HoaDon> thongke15();
 
 }
