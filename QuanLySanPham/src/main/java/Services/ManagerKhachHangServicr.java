@@ -82,7 +82,7 @@ public class ManagerKhachHangServicr implements IManagerKhachHangService {
 
     @Override
     public int getmaKH() {
-        return _lstKH.size() + 1;
+        return _lstKH.size() + 2;
     }
 
     @Override
