@@ -401,4 +401,18 @@ public class ThongKeRepository implements IThongKeRepository {
         return nhanvien;
     }
 
+    @Override
+    public List<HoaDon> thongke15() {
+        List<HoaDon> nhanvien;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT H FROM HoaDon H \n"
+                    + "where DATEDIFF(day,H.ThoiGianTao,GETDATE())<=3"
+                    + "And H.TrangThai = 2\n"
+                    + "order by H.ThoiGianTao desc";
+            TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
+            nhanvien = query.getResultList();
+        }
+        return nhanvien;
+    }
+
 }

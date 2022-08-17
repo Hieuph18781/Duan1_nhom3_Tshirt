@@ -267,10 +267,17 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         mni_xoaSanPham = new javax.swing.JMenuItem();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_timKiem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sanPham = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        rdb_theoMa = new javax.swing.JRadioButton();
+        rdb_theoTen = new javax.swing.JRadioButton();
+        rdb_theoSize = new javax.swing.JRadioButton();
+        rdb_theoMau = new javax.swing.JRadioButton();
+        rdb_theoDanMucSp = new javax.swing.JRadioButton();
+        rdb_theoChatLieu = new javax.swing.JRadioButton();
+        rdb_theoKieuDang = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_sanPhamDaChon = new javax.swing.JTable();
@@ -326,6 +333,12 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách sản phẩm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
+        txt_timKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timKiemCaretUpdate(evt);
+            }
+        });
+
         tbl_sanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -348,6 +361,55 @@ public class QLBanHangPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Tìm Kiếm :");
 
+        rdb_theoMa.setText("Theo Mã");
+        rdb_theoMa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoMaActionPerformed(evt);
+            }
+        });
+
+        rdb_theoTen.setText("Theo Tên");
+        rdb_theoTen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoTenActionPerformed(evt);
+            }
+        });
+
+        rdb_theoSize.setText("Theo Size");
+        rdb_theoSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoSizeActionPerformed(evt);
+            }
+        });
+
+        rdb_theoMau.setText("Theo Màu");
+        rdb_theoMau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoMauActionPerformed(evt);
+            }
+        });
+
+        rdb_theoDanMucSp.setText("Theo Danh Mục Sản phẩm");
+        rdb_theoDanMucSp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoDanMucSpActionPerformed(evt);
+            }
+        });
+
+        rdb_theoChatLieu.setText("Theo Chất Liệu");
+        rdb_theoChatLieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoChatLieuActionPerformed(evt);
+            }
+        });
+
+        rdb_theoKieuDang.setText("Theo Kiểu Dáng");
+        rdb_theoKieuDang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdb_theoKieuDangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -356,20 +418,42 @@ public class QLBanHangPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1053, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                        .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoMa)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoTen)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoSize)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoMau)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoDanMucSp)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoChatLieu)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdb_theoKieuDang)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(rdb_theoMa)
+                    .addComponent(rdb_theoTen)
+                    .addComponent(rdb_theoSize)
+                    .addComponent(rdb_theoMau)
+                    .addComponent(rdb_theoDanMucSp)
+                    .addComponent(rdb_theoChatLieu)
+                    .addComponent(rdb_theoKieuDang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
         );
@@ -479,7 +563,7 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+            .addComponent(jScrollPane4)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -973,6 +1057,164 @@ public class QLBanHangPanel extends javax.swing.JPanel {
         checkLoaiKhachHang();
     }//GEN-LAST:event_cbc_khachHangActionPerformed
 
+    private void txt_timKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timKiemCaretUpdate
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        if (rdb_theoMa.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getMaSanPham(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoTen.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getTenSanPham(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoSize.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getSizeModel().getTenSize(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoMau.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getMausacModel().getTenMauSac(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoDanMucSp.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getDanhMucSanPhamModel().getTenDanhMuc(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoChatLieu.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getChatlieuModel().getTenChatLieu(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+        if (rdb_theoKieuDang.isSelected()) {
+            for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+                if (_ISanPhamService.Timkiem(x.getKieudangModel().getTenKieuDang(), txt_timKiem.getText())) {
+                    lstTemp.add(x);
+                }
+            }
+        }
+
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_txt_timKiemCaretUpdate
+
+    private void rdb_theoMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoMaActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getMaSanPham(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoMaActionPerformed
+
+    private void rdb_theoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoTenActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getTenSanPham(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoTenActionPerformed
+
+    private void rdb_theoSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoSizeActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getSizeModel().getTenSize(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoSizeActionPerformed
+
+    private void rdb_theoMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoMauActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getMausacModel().getTenMauSac(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoMauActionPerformed
+
+    private void rdb_theoDanMucSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoDanMucSpActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getDanhMucSanPhamModel().getTenDanhMuc(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoDanMucSpActionPerformed
+
+    private void rdb_theoChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoChatLieuActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getChatlieuModel().getTenChatLieu(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoChatLieuActionPerformed
+
+    private void rdb_theoKieuDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdb_theoKieuDangActionPerformed
+        if (txt_timKiem.getText().isBlank()) {
+            loadtableSanPham(_ISanPhamService.getlistsanpham());
+            return;
+        }
+        List<SanPhamModel> lstTemp = new ArrayList<>();
+        for (SanPhamModel x : _ISanPhamService.getlistsanpham()) {
+            if (_ISanPhamService.Timkiem(x.getKieudangModel().getTenKieuDang(), txt_timKiem.getText())) {
+                lstTemp.add(x);
+            }
+        }
+        loadtableSanPham(lstTemp);
+    }//GEN-LAST:event_rdb_theoKieuDangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_huyHoaDon;
@@ -997,12 +1239,18 @@ public class QLBanHangPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem mni_thayDoiSoLuong;
     private javax.swing.JMenuItem mni_themSanPham;
     private javax.swing.JMenuItem mni_xoaSanPham;
     private javax.swing.JPopupMenu pmv_sanPham;
     private javax.swing.JPopupMenu pmv_sanPhamDaChon;
+    private javax.swing.JRadioButton rdb_theoChatLieu;
+    private javax.swing.JRadioButton rdb_theoDanMucSp;
+    private javax.swing.JRadioButton rdb_theoKieuDang;
+    private javax.swing.JRadioButton rdb_theoMa;
+    private javax.swing.JRadioButton rdb_theoMau;
+    private javax.swing.JRadioButton rdb_theoSize;
+    private javax.swing.JRadioButton rdb_theoTen;
     private javax.swing.JTable tbl_sanPham;
     private javax.swing.JTable tbl_sanPhamDaChon;
     private javax.swing.JTable tbl_taoHoaDon;
@@ -1011,5 +1259,6 @@ public class QLBanHangPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_thanhTien;
     private javax.swing.JTextField txt_tienKhachDua;
     private javax.swing.JTextField txt_tienThua;
+    private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
 }
