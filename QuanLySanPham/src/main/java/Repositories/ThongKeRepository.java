@@ -237,7 +237,7 @@ public class ThongKeRepository implements IThongKeRepository {
     public List<HoaDon> thongke8(Date a, Date b) {
         List<HoaDon> nhanvien;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT H FROM HoaDon H where H.TrangThai = 1 and CONVERT(date,H.ThoiGianTao) >= :ThoiGianTao and CONVERT (date,H.ThoiGianTao) <= :ThoiGianTao2";
+            String hql = "SELECT H FROM HoaDon H where CONVERT(date,H.ThoiGianTao) >= :ThoiGianTao and CONVERT (date,H.ThoiGianTao) <= :ThoiGianTao2 and H.TrangThai = 1";
             TypedQuery<HoaDon> query = session.createQuery(hql, HoaDon.class);
             query.setParameter("ThoiGianTao", a);
             query.setParameter("ThoiGianTao2", b);

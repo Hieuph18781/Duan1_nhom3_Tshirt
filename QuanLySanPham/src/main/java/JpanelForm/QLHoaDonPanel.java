@@ -625,7 +625,7 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
                 return;
             }
-            loadtable(_IThongKeRepository.thongke8(txt_ngay1.getDate(), txt_ngay2.getDate()));
+            loadtable(_IThongKeRepository.thongke14(txt_ngay1.getDate(), txt_ngay2.getDate()));
         }
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
@@ -646,6 +646,10 @@ public class QLHoaDonPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_ngay1PropertyChange
 
     private void tbl_hdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hdMouseClicked
+        if (cbc_trangthai.getSelectedItem().toString().equals("Đã Huỷ")) {
+            return;
+        }
+        
         int row = tbl_hd.getSelectedRow();
         String s = NumberFormat.getIntegerInstance().format(_IThongKeRepository.TongTien4(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
         //        loadtable2(_IThongKeRepository.thongke9(Integer.parseInt(tbl_hd.getValueAt(row, 0).toString())));
