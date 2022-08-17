@@ -47,7 +47,7 @@ public class FrameLogin extends javax.swing.JFrame {
                 String password = new String(txtMatKhau.getPassword());
                 NhanVienModel nhanVien = _iINhanVienService.findNhanVien(mamv);
                 if (nhanVien.getTrangThai().equalsIgnoreCase("Đã nghỉ việc")) {
-                    JOptionPane.showMessageDialog(this, "Nhan Vien khong con hoat dong");
+                    JOptionPane.showMessageDialog(this, "Nhân viên không còn hoạt động");
 
                 } else if (!password.equals(nhanVien.getMatKhau())) {
                     JOptionPane.showMessageDialog(this, "Sai Mật Khẩu");

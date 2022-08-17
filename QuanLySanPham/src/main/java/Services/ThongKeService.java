@@ -127,10 +127,13 @@ public class ThongKeService implements IThongKeService {
         for (HoaDon x : hoadon) {
             NhanVienModel nhanVienModel = new NhanVienModel();
             nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
             KhachHangModel kdmd = new KhachHangModel();
             kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
             KhuyenMaiModel kmmd = new KhuyenMaiModel();
             kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            kmmd.setTenKhuyenMai(x.getKhuyenmai().getTenKhuyenMai());
             _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
         }
         return _lstHoaDon;
@@ -144,10 +147,13 @@ public class ThongKeService implements IThongKeService {
         for (HoaDon x : hoadon) {
             NhanVienModel nhanVienModel = new NhanVienModel();
             nhanVienModel.setMaNhanVien(x.getNhanvien().getMaNhanVien());
+            nhanVienModel.setHoTen(x.getNhanvien().getHoTen());
             KhachHangModel kdmd = new KhachHangModel();
             kdmd.setMaKhachHang(x.getKhachhang().getMaKhachHang());
+            kdmd.setHoTen(x.getKhachhang().getHoTen());
             KhuyenMaiModel kmmd = new KhuyenMaiModel();
             kmmd.setIdKhuyenMai(x.getKhuyenmai().getIdKhuyenMai());
+            kmmd.setTenKhuyenMai(x.getKhuyenmai().getTenKhuyenMai());
             _lstHoaDon.add(new HoaDonModel(x.getMaHoaDon(), x.getThoiGianTao(), x.getTrangThai(), nhanVienModel, kdmd, kmmd));
         }
         return _lstHoaDon;

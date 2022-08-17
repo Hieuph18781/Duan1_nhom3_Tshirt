@@ -66,6 +66,7 @@ public class MainTrue extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         init();
         _HoaDonService = new HoaDonService();
+        show(new QLBanHangPanel());
     }
 
     public void show(JPanel j) {
